@@ -6,6 +6,7 @@ info:
   version: 1.0.0
 servers:
   - url: 'http://localhost:3000'
+    description: Local
 paths:
   '/users/{userId}':
     parameters:
@@ -187,3 +188,12 @@ components:
         - lastName
         - email
         - emailVerified
+  securitySchemes:
+    API Key - 1:
+      name: API Key
+      type: apiKey
+      in: header
+      description: ''
+    API Key - 2:
+      type: http
+      scheme: bearer
