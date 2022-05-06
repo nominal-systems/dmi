@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "08fc1910-a0a7-46df-a9b7-f07b2f8f0603",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User sign up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08a97677-ac85-4980-8f43-e6bfdc1f4608",
+						"exec": [
+							"pm.test(\"Response status should be 201 CREATED\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {    ",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "11929e90-8020-499a-b67c-b95f42b97467",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"alice.smith@gmail.com\",\n  \"password\": \"123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
