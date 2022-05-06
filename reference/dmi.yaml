@@ -18,7 +18,8 @@ paths:
         description: Id of an existing user.
     get:
       summary: Get User Info by User ID
-      tags: []
+      tags:
+        - Users
       responses:
         '200':
           description: User Found
@@ -76,6 +77,8 @@ paths:
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
       security: []
+      tags:
+        - Users
 components:
   schemas:
     User:
