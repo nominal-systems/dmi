@@ -189,11 +189,12 @@ components:
         - email
         - emailVerified
   securitySchemes:
-    API Key - 1:
-      name: API Key
+    API Key:
       type: apiKey
+      name: API Key
       in: header
       description: ''
-    API Key - 2:
+    Bearer token:
       type: http
       scheme: bearer
+      description: ''
