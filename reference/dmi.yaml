@@ -141,7 +141,6 @@ components:
       value:
         id: 142
         email: alice.smith@gmail.com
-        password: '123456789'
         createdDate: '2020-01-01T00:00:00.000Z'
     UserCreateExample:
       value:
