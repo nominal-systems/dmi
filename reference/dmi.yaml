@@ -7,63 +7,41 @@ info:
 servers:
   - url: 'http://localhost:3000'
     description: Local
-  - url: 'https://stoplight.io/mocks/nominal/dmi/57735574'
-    description: Mock Server
 paths:
   /users:
     post:
       summary: Creates a new User
       operationId: post-user
+      description: Create a new user.
+      requestBody:
+        $ref: '#/components/requestBodies/UserCreateBody'
       responses:
         '201':
-          description: User Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Example User:
-                  $ref: '#/components/examples/UserExample'
+          $ref: '#/components/responses/UserCreated'
         '400':
           $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
         '409':
           description: Email Already Taken
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-            examples:
-              Create User Alice Smith:
-                $ref: '#/components/examples/UserExample'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
       security:
         - BasicAuth: [ ]
       tags:
         - Users
-    parameters: [ ]
   /users/{userId}:
     parameters:
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get User by ID
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
       responses:
         '200':
-          description: User Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Get User Alice Smith:
-                  $ref: '#/components/examples/UserExample'
+          $ref: '#/components/responses/UserFound'
         '404':
           description: User Not Found
         '401':
           $ref: '#/components/responses/401Unauthorized'
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
       security:
         - BearerAuth: [ ]
       tags:
@@ -117,11 +95,38 @@ components:
       description: Id of an existing user.
       schema:
         type: integer
+  requestBodies:
+    UserCreateBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+          examples:
+            Create User Alice Smith:
+              $ref: '#/components/examples/UserCreateExample'
   responses:
     400BadRequest:
       description: Missing required information.
     401Unauthorized:
       description: Unauthorized operation.
+    UserCreated:
+      description: User Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+          examples:
+            Example User:
+              $ref: '#/components/examples/UserExample'
+    UserFound:
+      description: User Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+          examples:
+            Get User Alice Smith:
+              $ref: '#/components/examples/UserExample'
   examples:
     UserExample:
       value:
@@ -129,4 +134,7 @@ components:
         email: alice.smith@gmail.com
         password: '123456789'
         createdDate: '2020-01-01T00:00:00.000Z'
-
+    UserCreateExample:
+      value:
+        email: alice.smith@gmail.com
+        password: '123456789'
