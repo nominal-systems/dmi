@@ -100,7 +100,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/User'
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+                format: password
+              required:
+                - email
+                - password
           examples:
             Create User Alice Smith:
               $ref: '#/components/examples/UserCreateExample'
