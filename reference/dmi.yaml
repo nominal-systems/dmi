@@ -12,9 +12,9 @@ paths:
     post:
       summary: Creates a new User
       operationId: post-user
-      description: Create a new user.
+      description: Create a new User.
       requestBody:
-        $ref: '#/components/requestBodies/UserCreateBody'
+        $ref: '#/components/requestBodies/UserCredentialsBody'
       responses:
         '201':
           $ref: '#/components/responses/UserCreated'
@@ -40,6 +40,52 @@ paths:
           $ref: '#/components/responses/UserFound'
         '404':
           description: User Not Found
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - BasicAuth: [ ]
+      tags:
+        - Users
+  /users/auth:
+    post:
+      summary: Login User
+      operationId: post-users-auth
+      description: Login the user with the matching email and password.
+      requestBody:
+        $ref: '#/components/requestBodies/UserCredentialsBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthTokenIssued'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      tags:
+        - Users
+  /users/me:
+    get:
+      summary: Get logged in User
+      operationId: get-users-me
+      description: Retrieve the information of the logged in user.
+      responses:
+        '200':
+          $ref: '#/components/responses/UserFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Users
+  /users/me/password:
+    put:
+      summary: Update logged in User Password
+      operationId: put-users-me-password
+      description: Update the password of the logged in user.
+      requestBody:
+        $ref: '#/components/requestBodies/UserPasswordBody'
+      responses:
+        '200':
+          description: Password Updated
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
       security:
@@ -96,7 +142,7 @@ components:
       schema:
         type: integer
   requestBodies:
-    UserCreateBody:
+    UserCredentialsBody:
       content:
         application/json:
           schema:
@@ -113,6 +159,20 @@ components:
           examples:
             Create User Alice Smith:
               $ref: '#/components/examples/UserCreateExample'
+    UserPasswordBody:
+      content:
+        application/json:
+          schema:
+            properties:
+              password:
+                type: string
+                format: password
+              required:
+                - password
+          examples:
+            Update User password:
+              value:
+                password: NewPassword
   responses:
     BadRequest:
       description: Missing required information.
@@ -136,6 +196,21 @@ components:
           examples:
             Get User Alice Smith:
               $ref: '#/components/examples/UserExample'
+    AuthTokenIssued:
+      description: Auth token
+      content:
+        application/json:
+          schema:
+            title: UserLoggedIn
+            type: object
+            description: ''
+            properties:
+              token:
+                type: string
+                description: The JWT token used to authenticate the user.
+          examples:
+            Auth Token:
+              $ref: '#/components/examples/AuthTokenExample'
   examples:
     UserExample:
       value:
@@ -146,3 +221,6 @@ components:
       value:
         email: alice.smith@gmail.com
         password: '123456789'
+    AuthTokenExample:
+      value:
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
