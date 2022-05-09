@@ -19,9 +19,9 @@ paths:
         '201':
           $ref: '#/components/responses/UserCreated'
         '400':
-          $ref: '#/components/responses/400BadRequest'
+          $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: '#/components/responses/Unauthorized'
         '409':
           description: Email Already Taken
       security:
@@ -41,7 +41,7 @@ paths:
         '404':
           description: User Not Found
         '401':
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: '#/components/responses/Unauthorized'
       security:
         - BearerAuth: [ ]
       tags:
@@ -114,9 +114,9 @@ components:
             Create User Alice Smith:
               $ref: '#/components/examples/UserCreateExample'
   responses:
-    400BadRequest:
+    BadRequest:
       description: Missing required information.
-    401Unauthorized:
+    Unauthorized:
       description: Unauthorized operation.
     UserCreated:
       description: User Created
