@@ -1,0 +1,29 @@
+title: User
+type: object
+description: ''
+properties:
+  id:
+    type: integer
+    description: Unique identifier for the given user.
+    readOnly: true
+    example: 142
+  email:
+    type: string
+    format: email
+    example: alice.smith@gmail.com
+  password:
+    type: string
+    format: password
+    writeOnly: true
+    example: 123456789
+  createdDate:
+    type: string
+    format: date
+    description: The date that the user was created.
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
+required:
+  - id
+  - email
+  - password
+  - createdDate

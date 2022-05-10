@@ -14,14 +14,14 @@ paths:
       operationId: post-user
       description: Create a new User.
       requestBody:
-        $ref: '#/components/requestBodies/UserCredentialsBody'
+        $ref: './requestBodies/UserCredentialsBody.yaml'
       responses:
         '201':
-          $ref: '#/components/responses/UserCreated'
+          $ref: './responses/UserCreated.yaml'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: './responses/BadRequest.yaml'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: './responses/Unauthorized.yaml'
         '409':
           description: Email Already Taken
       security:
@@ -30,18 +30,18 @@ paths:
         - Admin
   /users/{userId}:
     parameters:
-      - $ref: '#/components/parameters/userId'
+      - $ref: './parameters/userId.yaml'
     get:
       summary: Get User by ID
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
       responses:
         '200':
-          $ref: '#/components/responses/UserFound'
+          $ref: './responses/UserFound.yaml'
         '404':
           description: User Not Found
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: './responses/Unauthorized.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -52,12 +52,12 @@ paths:
       operationId: post-users-auth
       description: Login the user with the matching email and password.
       requestBody:
-        $ref: '#/components/requestBodies/UserCredentialsBody'
+        $ref: './requestBodies/UserCredentialsBody.yaml'
       responses:
         '200':
-          $ref: '#/components/responses/AuthTokenIssued'
+          $ref: './responses/AuthTokenIssued.yaml'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: './responses/Unauthorized.yaml'
       tags:
         - Users
   /users/me:
@@ -67,9 +67,9 @@ paths:
       description: Retrieve the information of the logged in user.
       responses:
         '200':
-          $ref: '#/components/responses/UserFound'
+          $ref: './responses/UserFound.yaml'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: './responses/Unauthorized.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -80,14 +80,14 @@ paths:
       operationId: put-users-me-password
       description: Update the password of the logged in user.
       requestBody:
-        $ref: '#/components/requestBodies/UserPasswordBody'
+        $ref: './requestBodies/UserPasswordBody.yaml'
       responses:
         '200':
           description: Password Updated
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: './responses/BadRequest.yaml'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: './responses/Unauthorized.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -104,123 +104,3 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
-  schemas:
-    User:
-      title: User
-      type: object
-      description: ''
-      examples:
-        - $ref: '#/components/examples/UserExample'
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the given user.
-          readOnly: true
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-          format: password
-          writeOnly: true
-        createdDate:
-          type: string
-          format: date
-          description: The date that the user was created.
-          readOnly: true
-      required:
-        - id
-        - email
-        - password
-        - createdDate
-  parameters:
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: Id of an existing user.
-      schema:
-        type: integer
-  requestBodies:
-    UserCredentialsBody:
-      content:
-        application/json:
-          schema:
-            properties:
-              email:
-                type: string
-                format: email
-              password:
-                type: string
-                format: password
-              required:
-                - email
-                - password
-          examples:
-            Create User Alice Smith:
-              $ref: '#/components/examples/UserCreateExample'
-    UserPasswordBody:
-      content:
-        application/json:
-          schema:
-            properties:
-              password:
-                type: string
-                format: password
-            required:
-              - password
-          examples:
-            Update User password:
-              value:
-                password: NewPassword
-  responses:
-    BadRequest:
-      description: Missing required information.
-    Unauthorized:
-      description: Unauthorized operation.
-    UserCreated:
-      description: User Created
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/User'
-          examples:
-            Example User:
-              $ref: '#/components/examples/UserExample'
-    UserFound:
-      description: User Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/User'
-          examples:
-            Get User Alice Smith:
-              $ref: '#/components/examples/UserExample'
-    AuthTokenIssued:
-      description: Auth token
-      content:
-        application/json:
-          schema:
-            title: UserLoggedIn
-            type: object
-            description: ''
-            properties:
-              token:
-                type: string
-                description: The JWT token used to authenticate the user.
-          examples:
-            Auth Token:
-              $ref: '#/components/examples/AuthTokenExample'
-  examples:
-    UserExample:
-      value:
-        id: 142
-        email: alice.smith@gmail.com
-        createdDate: '2020-01-01T00:00:00.000Z'
-    UserCreateExample:
-      value:
-        email: alice.smith@gmail.com
-        password: '123456789'
-    AuthTokenExample:
-      value:
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
