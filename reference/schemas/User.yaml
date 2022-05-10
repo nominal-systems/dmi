@@ -16,14 +16,15 @@ properties:
     format: password
     writeOnly: true
     example: 123456789
-  createdDate:
+  createdAt:
     type: string
     format: date
-    description: The date that the user was created.
+    description: The date that the user was updated
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
-required:
-  - id
-  - email
-  - password
-  - createdDate
+  updatedAt:
+    type: string
+    format: date
+    description: The date that the user was updated
+    readOnly: true
+    example: 2020-02-01T00:00:00.000Z

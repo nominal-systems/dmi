@@ -1,0 +1,14 @@
+OrganizationApiKeys:
+  description: Organization production and test API keys.
+  type: object
+  properties:
+    prodKey:
+      type: string
+      description: Production API key for the organization.
+      readOnly: true
+      example: uri0IBNQp6bTj8hI1bUQWSNRLHUY1obbewqU
+    testKey:
+      type: string
+      description: Test API key for the organization.
+      readOnly: true
+      example: mMIHYAWLOxAQbQI1F5vGosx6Roc6mcJ3iO2A

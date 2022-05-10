@@ -1,0 +1,6 @@
+title: Organization
+description: Organization.
+type: object
+allOf:
+  - $ref: './OrganizationInfo.yaml#/OrganizationInfo'
+  - $ref: './OrganizationApiKeys.yaml#/OrganizationApiKeys'

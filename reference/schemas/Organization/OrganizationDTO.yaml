@@ -1,0 +1,11 @@
+OrganizationDTO:
+  title: OrganizationDTO
+  description: Organization DTO
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the organization.
+      example: My Organization
+  required:
+    - name

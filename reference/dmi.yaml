@@ -92,6 +92,44 @@ paths:
         - BearerAuth: [ ]
       tags:
         - Users
+  /organizations:
+    post:
+      summary: Create a new organization
+      operationId: post-organizations
+      description: Create a new Organization.
+      requestBody:
+        $ref: './requestBodies/OrganizationCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/OrganizationCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '409':
+          description: Organization name already taken.
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Organizations
+  /organizations/{organizationId}:
+    parameters:
+      - $ref: './parameters/organizationId.yaml'
+    get:
+      summary: Get organization by ID
+      operationId: get-organizations-organizationId
+      description: Retrieve the information of the organization with the matching organization ID.
+      responses:
+        '200':
+          $ref: './responses/OrganizationFound.yaml'
+        '404':
+          description: Organization Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Organizations
 components:
   securitySchemes:
     BasicAuth:
