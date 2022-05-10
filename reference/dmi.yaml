@@ -19,9 +19,9 @@ paths:
         '201':
           $ref: './responses/UserCreated.yaml'
         '400':
-          $ref: './responses/BadRequest.yaml'
+          $ref: './responses/400BadRequest.yaml'
         '401':
-          $ref: './responses/Unauthorized.yaml'
+          $ref: './responses/401Unauthorized.yaml'
         '409':
           description: Email Already Taken
       security:
@@ -41,7 +41,7 @@ paths:
         '404':
           description: User Not Found
         '401':
-          $ref: './responses/Unauthorized.yaml'
+          $ref: './responses/401Unauthorized.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -57,7 +57,7 @@ paths:
         '200':
           $ref: './responses/AuthTokenIssued.yaml'
         '401':
-          $ref: './responses/Unauthorized.yaml'
+          $ref: './responses/401Unauthorized.yaml'
       tags:
         - Users
   /users/me:
@@ -69,7 +69,7 @@ paths:
         '200':
           $ref: './responses/UserFound.yaml'
         '401':
-          $ref: './responses/Unauthorized.yaml'
+          $ref: './responses/401Unauthorized.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -85,9 +85,9 @@ paths:
         '200':
           description: Password Updated
         '400':
-          $ref: './responses/BadRequest.yaml'
+          $ref: './responses/400BadRequest.yaml'
         '401':
-          $ref: './responses/Unauthorized.yaml'
+          $ref: './responses/401Unauthorized.yaml'
       security:
         - BearerAuth: [ ]
       tags:
