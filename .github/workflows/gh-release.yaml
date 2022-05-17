@@ -13,11 +13,11 @@ jobs:
       - name: Build
         uses: mpetrunic/swagger-cli-action@v1.0.0
         with:
-          command: bundle reference/dmi.yaml > dmi-api.json
+          command: bundle -t yaml -o dmi-api.yaml reference/dmi.yaml
       - name: Test
-        run: cat dmi-api.json
+        run: cat dmi-api.yaml
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: dmi-api.json
+          files: dmi-api.yaml
