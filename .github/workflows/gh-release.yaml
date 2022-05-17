@@ -11,7 +11,7 @@ jobs:
       - name: Build
         uses: mpetrunic/swagger-cli-action@v1.0.0
         with:
-          command: build reference/dmi.yaml dmi-api.yaml
+          command: bundle reference/dmi.yaml dmi-api.yaml
       - name: Test
         run: cat dmi-api.yaml
       - name: Release
