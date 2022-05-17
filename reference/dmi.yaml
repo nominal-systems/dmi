@@ -3,7 +3,7 @@ x-stoplight:
   id: 545mk2dwwzqkv
 info:
   title: dmi
-  version: 1.0.0
+  version: 0.1.0
 servers:
   - url: 'http://localhost:3000'
     description: Local
