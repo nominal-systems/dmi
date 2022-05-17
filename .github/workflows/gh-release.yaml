@@ -9,10 +9,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: echo ${{ github.sha }} > Release.txt
+        uses: mpetrunic/swagger-cli-action@v1.0.0
+        with:
+          command: build reference/dmi.yaml dmi-api.yaml
       - name: Test
-        run: cat Release.txt
+        run: cat dmi-api.yaml
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: Release.txt
+          files: dmi-api.yaml
