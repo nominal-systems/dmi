@@ -1,6 +1,9 @@
 name: Create GitHub Release
 
-on: push
+on:
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -8,13 +11,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Build
         uses: mpetrunic/swagger-cli-action@v1.0.0
         with:
-          command: bundle reference/dmi.yaml dmi-api.yaml
+          command: bundle reference/dmi.yaml > dmi-api-$RELEASE_VERSION.json
       - name: Test
-        run: cat dmi-api.yaml
+        run: cat dmi-api-$RELEASE_VERSION.json
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dmi-api.yaml
+          files: dmi-api-$RELEASE_VERSION.json
