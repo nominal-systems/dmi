@@ -130,6 +130,20 @@ paths:
         - BearerAuth: [ ]
       tags:
         - Organizations
+  /organizations/{organizationId}/keys:
+    parameters:
+      - $ref: './parameters/organizationId.yaml'
+    get:
+      summary: Get organization API keys
+      operationId: get-organizations-organizationId-keys
+      description: Retrieve the API keys of the organization with the matching organization ID.
+      responses:
+        '200':
+          $ref: './responses/OrganizationKeysFound.yaml'
+        '404':
+          description: Organization Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
 components:
   securitySchemes:
     BasicAuth:
