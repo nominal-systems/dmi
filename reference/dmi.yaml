@@ -167,9 +167,33 @@ paths:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
         '404':
-          description: Organization Not Foun
+          description: Organization Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+      tags:
+        - Organizations
+  /organizations/{organizationId}/members:
+    parameters:
+      - $ref: './parameters/organizationId.yaml'
+    post:
+      summary: Add a new member to an organization
+      operationId: post-organizations-organizationId-members
+      description: Add a new member to the organization with the matching organization ID.
+      requestBody:
+        $ref: './requestBodies/OrganizationMemberCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/OrganizationFound.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '404':
+          description: Organization Not Found
+        '409':
+          description: User already a member of the organization.
+      security:
+        - BearerAuth: [ ]
       tags:
         - Organizations
 components:

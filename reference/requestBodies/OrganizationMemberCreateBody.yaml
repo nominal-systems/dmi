@@ -1,0 +1,13 @@
+description: Add member to an organization body
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+          example: 5f3d6c8b-b8b3-4b8f-a8d6-8f8c9d8f8d8d
+      required:
+        - userId
