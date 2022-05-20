@@ -3,6 +3,3 @@ content:
   application/json:
     schema:
       $ref: '../schemas/User.yaml'
-    examples:
-      Get User Alice Smith:
-        $ref: '../examples/User.yaml'

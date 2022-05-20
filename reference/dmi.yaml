@@ -11,7 +11,7 @@ paths:
   /users:
     post:
       summary: Create a new User
-      operationId: post-user
+      operationId: post-users
       description: Create a new User.
       requestBody:
         $ref: './requestBodies/UserCredentialsBody.yaml'
@@ -24,6 +24,19 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '409':
           description: Email Already Taken
+      security:
+        - BasicAuth: [ ]
+      tags:
+        - Admin
+    get:
+      summary: Get all Users
+      operationId: get-users
+      description: Get all Users.
+      responses:
+        '200':
+          $ref: './responses/UserList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -147,7 +160,7 @@ paths:
       tags:
         - Organizations
     put:
-      summary: Regenerate API keys for an organization
+      summary: Regenerate organization API keys
       operationId: put-organizations-organizationId-keys
       description: Regenerate the API keys of the organization with the matching organization ID.
       responses:
