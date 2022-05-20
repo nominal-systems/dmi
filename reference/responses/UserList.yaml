@@ -1,7 +1,7 @@
-description: User Found
+description: User List
 content:
   application/json:
     schema:
       type: array
-        items:
-          $ref: '../schemas/User.yaml'
+      items:
+        $ref: '../schemas/User.yaml'

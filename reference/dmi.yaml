@@ -167,7 +167,7 @@ paths:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
         '404':
-          description: Organization Not Found
+          description: Organization Not Foun
         '401':
           $ref: './responses/401Unauthorized.yaml'
       tags:
