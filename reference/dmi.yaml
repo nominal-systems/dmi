@@ -144,6 +144,21 @@ paths:
           description: Organization Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+      tags:
+        - Organizations
+    put:
+      summary: Regenerate API keys for an organization
+      operationId: put-organizations-organizationId-keys
+      description: Regenerate the API keys of the organization with the matching organization ID.
+      responses:
+        '200':
+          $ref: './responses/OrganizationKeysFound.yaml'
+        '404':
+          description: Organization Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      tags:
+        - Organizations
 components:
   securitySchemes:
     BasicAuth:
