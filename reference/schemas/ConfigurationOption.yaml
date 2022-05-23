@@ -1,26 +1,27 @@
-title: ConfigurationOption
-type: object
-description: A configurable option for a provider.
-properties:
-  type:
-    type: string
-    description: The type of the option.
-    enum:
-      - string
-      - boolean
-      - integer
-    example: string
-  name:
-    type: string
-    description: The name of the option.
-    minLength: 1
-    example: url
-  description:
-    type: string
-    description: The description of the option.
-    minLength: 1
-    example: The base URL of the provider.
-  required:
-    type: boolean
-    description: Whether the option is required.
-    example: true
+ConfigurationOption:
+  title: ConfigurationOption
+  type: object
+  description: A configurable option for a provider.
+  properties:
+    type:
+      type: string
+      description: The type of the option.
+      enum:
+        - string
+        - boolean
+        - integer
+      example: string
+    name:
+      type: string
+      description: The name of the option.
+      minLength: 1
+      example: url
+    description:
+      type: string
+      description: The description of the option.
+      minLength: 1
+      example: The base URL of the provider.
+    required:
+      type: boolean
+      description: Whether the option is required.
+      example: true

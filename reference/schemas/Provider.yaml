@@ -21,7 +21,7 @@ properties:
     type: array
     description: The configuration options for the provider
     items:
-      $ref: './ConfigurationOption.yaml'
+      $ref: './ConfigurationOption.yaml#/ConfigurationOption'
     example:
       - type: string
         name: url
@@ -39,7 +39,7 @@ properties:
     type: array
     description: The integration options for the provider
     items:
-      $ref: './ConfigurationOption.yaml'
+      $ref: './ConfigurationOption.yaml#/ConfigurationOption'
     example:
       - type: string
         name: clientId
