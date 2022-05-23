@@ -1,0 +1,7 @@
+name: practiceId
+in: path
+required: true
+description: Id of an existing practice
+schema:
+  type: string
+  format: uuid

@@ -1,0 +1,26 @@
+title: Practice
+type: object
+description: A practice of an organization
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Unique identifier for the practice.
+    readOnly: true
+    example: 94f9bdb8-c6f2-4970-8b56-0a2de1fe62e1
+  name:
+    type: string
+    description: Name of the practice
+    example: My Practice
+  createdAt:
+    type: string
+    format: date
+    description: The date that the practice was updated
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
+  updatedAt:
+    type: string
+    format: date
+    description: The date that the practice was updated
+    readOnly: true
+    example: 2020-02-01T00:00:00.000Z

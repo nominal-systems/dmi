@@ -1,6 +1,6 @@
 title: User
 type: object
-description: ''
+description: A user of the system
 properties:
   id:
     type: integer

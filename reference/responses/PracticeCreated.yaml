@@ -1,0 +1,5 @@
+description: Practice Created
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Practice.yaml'

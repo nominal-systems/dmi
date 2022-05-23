@@ -202,6 +202,77 @@ paths:
         - BearerAuth: [ ]
       tags:
         - Organizations
+  /practices:
+    post:
+      summary: Create a new Practice
+      operationId: post-practices
+      description: Create a new Practice.
+      responses:
+        '201':
+          $ref: './responses/PracticeCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+        '409':
+          description: Practice name already taken.
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Practices
+    get:
+      summary: List all practices
+      operationId: get-practices
+      description: Retrieve all practices.
+      responses:
+        '200':
+          $ref: './responses/PracticeList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Practices
+  /practices/{practiceId}:
+    parameters:
+      - $ref: './parameters/practiceId.yaml'
+    get:
+      summary: Get a practice by ID
+      operationId: get-practices-practiceId
+      description: Retrieve the practice with the matching practice ID.
+      responses:
+        '200':
+          $ref: './responses/PracticeFound.yaml'
+        '404':
+          description: Practice Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Practices
+    delete:
+      summary: Delete a practice
+      operationId: delete-practices-practiceId
+      description: Delete the practice with the matching practice ID.
+      responses:
+        '204':
+          description: Practice deleted
+        '404':
+          description: Practice Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
 components:
   securitySchemes:
     BasicAuth:
