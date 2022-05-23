@@ -207,6 +207,8 @@ paths:
       summary: Create a new Practice
       operationId: post-practices
       description: Create a new Practice.
+      requestBody:
+        $ref: './requestBodies/PracticeCreateBody.yaml'
       responses:
         '201':
           $ref: './responses/PracticeCreated.yaml'
@@ -273,6 +275,11 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+        tags:
+          - Practices
 components:
   securitySchemes:
     BasicAuth:
