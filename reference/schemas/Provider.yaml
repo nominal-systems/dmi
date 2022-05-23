@@ -1,0 +1,47 @@
+title: Provider
+type: object
+description: A diagnostic provider
+properties:
+  id:
+    type: string
+    description: The provider slug
+    minLength: 1
+    example: demo
+  description:
+    type: string
+    description: The description of the provider
+    minLength: 1
+    example: Demo provider
+  configurationUri:
+    type: string
+    description: The URI to the provider's configuration resource
+    minLength: 1
+    example: /providers/demo/configuration
+  configurationOptions:
+    type: array
+    description: The configuration options for the provider
+    items:
+      $ref: './ConfigurationOption.yaml'
+    example:
+      - type: string
+        name: url
+        description: The URL of the provider
+        required: true
+      - type: string
+        name: partnerId
+        description: The partner ID for the provider
+        required: true
+      - type: string
+        name: partnerToken
+        description: The partner token for the provider
+        required: true
+  integrationOptions:
+    type: array
+    description: The integration options for the provider
+    items:
+      $ref: './ConfigurationOption.yaml'
+    example:
+      - type: string
+        name: clientId
+        description: The client ID for the provider
+        required: true

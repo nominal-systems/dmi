@@ -280,6 +280,23 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Practices
+  /providers:
+    get:
+      summary: List available diagnostic providers
+      operationId: get-providers
+      description: Retrieve all diagnostic providers.
+      responses:
+        '200':
+          $ref: './responses/ProviderList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Providers
 components:
   securitySchemes:
     BasicAuth:
