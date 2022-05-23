@@ -278,8 +278,8 @@ paths:
       security:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
-        tags:
-          - Practices
+      tags:
+        - Practices
 components:
   securitySchemes:
     BasicAuth:
