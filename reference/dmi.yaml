@@ -22,6 +22,8 @@ paths:
           $ref: './responses/400BadRequest.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
         '409':
           description: Email Already Taken
       security:
@@ -37,6 +39,8 @@ paths:
           $ref: './responses/UserList.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -55,6 +59,8 @@ paths:
           description: User Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
       security:
         - BasicAuth: [ ]
       tags:
