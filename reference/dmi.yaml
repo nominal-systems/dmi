@@ -81,7 +81,7 @@ paths:
         - Users
   /users/me:
     get:
-      summary: Get logged-in user
+      summary: Get user details
       operationId: get-users-me
       description: Retrieve the information of the logged in user.
       responses:
@@ -95,7 +95,7 @@ paths:
         - Users
   /users/me/password:
     put:
-      summary: Change password for logged-in user
+      summary: Change password
       operationId: put-users-me-password
       description: Update the password of the logged in user.
       requestBody:
@@ -182,7 +182,7 @@ paths:
     parameters:
       - $ref: './parameters/organizationId.yaml'
     post:
-      summary: Add a user to an organization as a member
+      summary: Add member to an organization
       operationId: post-organizations-organizationId-members
       description: Add a new member to the organization with the matching organization ID.
       requestBody:
