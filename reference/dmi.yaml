@@ -5,12 +5,12 @@ info:
   title: dmi
   version: 0.1.0
 servers:
-  - url: 'http://localhost:3000'
-    description: Local
+  - url: 'http://localhost:4010'
+    description: Local Mock Server
 paths:
   /users:
     post:
-      summary: Create a new User
+      summary: Create a user
       operationId: post-users
       description: Create a new User.
       requestBody:
@@ -31,7 +31,7 @@ paths:
       tags:
         - Admin
     get:
-      summary: Get all Users
+      summary: List all users
       operationId: get-users
       description: Get all Users.
       responses:
@@ -49,7 +49,7 @@ paths:
     parameters:
       - $ref: './parameters/userId.yaml'
     get:
-      summary: Get User by ID
+      summary: Get a user by ID
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
       responses:
@@ -67,7 +67,7 @@ paths:
         - Admin
   /users/auth:
     post:
-      summary: Login
+      summary: Log in
       operationId: post-users-auth
       description: Login the user with the matching email and password.
       requestBody:
@@ -81,7 +81,7 @@ paths:
         - Users
   /users/me:
     get:
-      summary: Get logged-in User
+      summary: Get logged-in user
       operationId: get-users-me
       description: Retrieve the information of the logged in user.
       responses:
@@ -95,7 +95,7 @@ paths:
         - Users
   /users/me/password:
     put:
-      summary: Update logged-in User password
+      summary: Change password for logged-in user
       operationId: put-users-me-password
       description: Update the password of the logged in user.
       requestBody:
@@ -113,7 +113,7 @@ paths:
         - Users
   /organizations:
     post:
-      summary: Create a new organization
+      summary: Create an organization
       operationId: post-organizations
       description: Create a new Organization.
       requestBody:
@@ -135,7 +135,7 @@ paths:
     parameters:
       - $ref: './parameters/organizationId.yaml'
     get:
-      summary: Get organization by ID
+      summary: Get an organization by ID
       operationId: get-organizations-organizationId
       description: Retrieve the information of the organization with the matching organization ID.
       responses:
@@ -182,7 +182,7 @@ paths:
     parameters:
       - $ref: './parameters/organizationId.yaml'
     post:
-      summary: Add a new member to an organization
+      summary: Add a user to an organization as a member
       operationId: post-organizations-organizationId-members
       description: Add a new member to the organization with the matching organization ID.
       requestBody:
