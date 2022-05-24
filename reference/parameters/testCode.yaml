@@ -1,0 +1,8 @@
+name: testCode
+in: path
+required: true
+description: Test code
+schema:
+  type: string
+  minLength: 1
+  example: HEM

@@ -616,6 +616,30 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders
+  /orders/{orderId}/tests/{testCode}:
+    delete:
+      summary: Cancel a specific test
+      operationId: delete-orders-orderId-tests-testCode
+      description: Cancel the test with the matching test code from the order with the matching order ID.
+      parameters:
+        - $ref: './parameters/orderId.yaml'
+        - $ref: './parameters/testCode.yaml'
+      responses:
+        '204':
+          description: Test removed
+        '404':
+          description: Order Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+        '409':
+          description: Test code not in order
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders
 components:
   securitySchemes:
     BasicAuth:
