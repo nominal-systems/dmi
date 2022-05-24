@@ -1,0 +1,11 @@
+description: Array of test code objects
+required: true
+content:
+  application/json:
+    schema:
+      type: array
+      description: 'Array of unique test codes'
+      minItems: 1
+      uniqueItems: true
+      items:
+        $ref: '../schemas/TestCode.yaml#/TestCode'

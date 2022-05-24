@@ -1,0 +1,10 @@
+TestCode:
+  title: Order Test
+  type: object
+  description: Test code object
+  properties:
+    code:
+      type: string
+      example: HEM
+  required:
+    - code

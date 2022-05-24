@@ -593,6 +593,29 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders
+  /orders/{orderId}/tests:
+    post:
+      summary: Add tests to an existing order
+      operationId: post-orders-orderId-tests
+      description: Add a test for the order with the matching order ID.
+      requestBody:
+        $ref: './requestBodies/TestCodes.yaml'
+      responses:
+        '202':
+          description: './responses/202Accepted.yaml'
+        '404':
+          description: Order Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+        '409':
+          description: Test code already in order
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders
 components:
   securitySchemes:
     BasicAuth:
