@@ -1,0 +1,8 @@
+name: integrationId
+in: path
+required: true
+description: Id of an existing integration
+schema:
+  type: string
+  minLength: 1
+  example: 175509ad-3b4a-4668-a7b8-3754c5437e03

@@ -1,0 +1,7 @@
+description: Integrations list
+content:
+  application/json:
+    schema:
+      type: array
+      items:
+        $ref: '../schemas/Integration.yaml'

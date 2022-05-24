@@ -399,6 +399,82 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Providers
+  /integrations:
+    post:
+      summary: Create a diagnostic provider integration
+      operationId: post-integrations
+      description: Create a new diagnostic provider integration for a practice with a provider configuration.
+      requestBody:
+        $ref: './requestBodies/IntegrationCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/IntegrationCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Integrations
+    get:
+      summary: List all diagnostic provider integrations
+      operationId: get-integrations
+      description: Retrieve the diagnostic provider integrations.
+      responses:
+        '200':
+          $ref: './responses/IntegrationList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Integrations
+  /integrations/{integrationId}:
+    parameters:
+      - $ref: './parameters/integrationId.yaml'
+    get:
+      summary: Get a diagnostic provider integration
+      operationId: get-integrations-integrationId
+      description: Retrieve the diagnostic provider integration with the matching integration ID.
+      responses:
+        '200':
+          $ref: './responses/IntegrationFound.yaml'
+        '404':
+          description: Integration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Integrations
+    delete:
+      summary: Delete a diagnostic provider integration
+      operationId: delete-integrations-integrationId
+      description: Remove a diagnostic provider integration.
+      responses:
+        '204':
+          description: Integration Deleted
+        '404':
+          description: Integration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Integrations
 components:
   securitySchemes:
     BasicAuth:

@@ -1,0 +1,5 @@
+description: Integration Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Integration.yaml'
