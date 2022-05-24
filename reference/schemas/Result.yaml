@@ -38,4 +38,4 @@ properties:
     type: array
     description: The test results of the result.
     items:
-      $ref: './TestResult.yaml#TestResult'
+      $ref: './TestResult.yaml#/TestResult'
