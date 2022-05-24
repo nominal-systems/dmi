@@ -36,7 +36,7 @@ TestResultItem:
       type: array
       description: Reference ranges of the test
       items:
-        $ref: './ReferenceRange.yaml#ReferenceRange'
+        $ref: './ReferenceRange.yaml#/ReferenceRange'
     notes:
       type: string
       description: Notes about the result
