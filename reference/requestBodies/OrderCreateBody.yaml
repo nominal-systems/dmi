@@ -1,0 +1,7 @@
+description: Create an order request body
+required: true
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Order.yaml'
+

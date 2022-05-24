@@ -475,6 +475,43 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Integrations
+  /orders:
+    post:
+      summary: Create an order
+      operationId: post-orders
+      description: Create a test order for a patient.
+      requestBody:
+        $ref: './requestBodies/OrderCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/OrderCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders
+    get:
+      summary: List all orders
+      operationId: get-orders
+      description: Retrieve the orders.
+      responses:
+        '200':
+          $ref: './responses/OrderList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders
 components:
   securitySchemes:
     BasicAuth:

@@ -1,0 +1,20 @@
+title: Veterinarian
+type: object
+description: A veterinarian
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the veterinarian.
+    readOnly: true
+    example: 5cd4983d-be3b-4bfc-a8a2-4371393f26c8
+  firstName:
+    type: string
+    description: The first name of the veterinarian.
+    example: John
+  lastName:
+    type: string
+    description: The last name of the veterinarian.
+    example: Doe
+  contact:
+    $ref: './Contact.yaml#/Contact'

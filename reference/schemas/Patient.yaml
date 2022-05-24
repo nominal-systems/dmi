@@ -1,0 +1,45 @@
+title: Patient
+type: object
+description: Patient for an order
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the order.
+    readOnly: true
+    example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
+  name:
+    type: string
+    description: The name of the patient.
+    example: John Doe
+  species:
+    type: string
+    description: The species code.
+    example: Canis lupus familiaris
+  breed:
+    type: string
+    description: The breed code.
+    example: Domestic
+  sex:
+    type: string
+    description: The sex code
+    example: MALE
+  birthdate:
+    type: string
+    description: Birth date in 'YYYY-MM-DD' format.
+    example: 2011-05-14
+  weight:
+    type: object
+    properties:
+      measurement:
+        type: number
+        minimum: 0
+        description: Measured amount.
+        example: 10.5
+      units:
+        type: string
+        description: The units of the measurement.
+        enum:
+          - KG
+          - LBS
+        example: KG

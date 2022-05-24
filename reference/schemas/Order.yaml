@@ -1,0 +1,50 @@
+title: Order
+type: object
+description: Test order
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the order.
+    readOnly: true
+    example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
+  integrationId:
+    type: string
+    format: uuid
+    description: The unique identifier of the integration.
+    readOnly: true
+    example: 175509ad-3b4a-4668-a7b8-3754c5437e03
+  patient:
+    $ref: '../schemas/Patient.yaml'
+  client:
+    $ref: '../schemas/Client.yaml'
+  veterinarian:
+    $ref: '../schemas/Veterinarian.yaml'
+  testCodes:
+    type: array
+    description: The test codes to be ordered.
+    items:
+      type: string
+    example:
+      - HEM
+        COL
+  devices:
+    type: array
+    description: The list of desired device IDs.
+    items:
+      type: string
+    example:
+      - IVLS
+  technician:
+    type: string
+    description: TThe name of the practicing technician.
+    example: Dr. Doolittle
+  notes:
+    type: string
+    description: Notes to include with the order.
+    example: This is a note.
+  editable:
+    type: boolean
+    description: Whether tests can be added or removed from this order.
+    example: true
+

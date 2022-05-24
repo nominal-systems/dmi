@@ -1,0 +1,23 @@
+Address:
+  title: Address
+  type: object
+  description: An address
+  properties:
+    street:
+      type: string
+      description: Street address
+    city:
+      type: string
+      description: City
+    postalCode:
+      type: string
+      description: Postal Code
+    country:
+      type: string
+      description: Country
+    phone:
+      type: string
+      description: Phone number
+    email:
+      type: string
+      description: Email address

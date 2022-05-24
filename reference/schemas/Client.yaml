@@ -1,0 +1,30 @@
+title: Client
+type: object
+description: Pet owner
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the client.
+    readOnly: true
+    example: 11bd1e6c-2a94-418c-8c2a-3b059f1cb138
+  firstName:
+    type: string
+    description: The first name of the client.
+    example: John
+  lastName:
+    type: string
+    description: The last name of the client.
+    example: Smith
+  contact:
+    $ref: './Contact.yaml#/Contact'
+  address:
+    $ref: './Address.yaml#/Address'
+  isDoctor:
+    type: boolean
+    description: Whether the client is a doctor.
+    example: true
+  isStaff:
+    type: boolean
+    description: Whether the client is a staff member.
+    example: false
