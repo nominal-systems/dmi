@@ -284,10 +284,31 @@ paths:
     get:
       summary: List available diagnostic providers
       operationId: get-providers
-      description: Retrieve all available diagnostic providers, along with their configuration and integration options.
+      description: Retrieve all available diagnostic providers.
       responses:
         '200':
           $ref: './responses/ProviderList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Providers
+  /providers/{providerId}:
+    parameters:
+      - $ref: './parameters/providerId.yaml'
+    get:
+      summary: Get a diagnostic provider
+      operationId: get-providers-providerId
+      description: Retrieve the diagnostic provider with the matching provider ID.
+      responses:
+        '200':
+          $ref: './responses/ProviderFound.yaml'
+        '404':
+          description: Provider Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':

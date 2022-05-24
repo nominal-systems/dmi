@@ -1,0 +1,5 @@
+description: Provider Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Provider.yaml'
