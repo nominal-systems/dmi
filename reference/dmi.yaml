@@ -602,7 +602,7 @@ paths:
         $ref: './requestBodies/TestCodes.yaml'
       responses:
         '202':
-          description: './responses/202Accepted.yaml'
+          $ref: './responses/202Accepted.yaml'
         '404':
           description: Order Not Found
         '401':
