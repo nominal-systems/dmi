@@ -1,0 +1,23 @@
+title: ProviderConfiguration
+type: object
+description: Instance of a configuration for a diagnostic provider.
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the provider.
+    readOnly: true
+    example: 0e0f3afe-9796-4ef1-adeb-92f736e8617f
+  providerId:
+    type: string
+    description: The unique identifier of the provider.
+    readOnly: true
+    example: demo
+  createdAt:
+    type: string
+    format: date
+    description: The date that the provider configuration was created
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
+  configuration:
+    $ref: './ProviderConfigurationOptions.yaml#/ProviderConfigurationOptions'

@@ -1,0 +1,6 @@
+description: Create a Provider Configuration request body
+required: true
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/ProviderConfigurationOptions.yaml#/ProviderConfigurationOptions'

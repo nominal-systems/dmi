@@ -284,10 +284,33 @@ paths:
     get:
       summary: List available diagnostic providers
       operationId: get-providers
-      description: Retrieve all diagnostic providers.
+      description: Retrieve all available diagnostic providers, along with their configuration and integration options.
       responses:
         '200':
           $ref: './responses/ProviderList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Providers
+  /providers/{providerId}/configurations:
+    parameters:
+      - $ref: './parameters/providerId.yaml'
+    post:
+      summary: Configure a diagnostic provider
+      operationId: post-providers-providerId-configurations
+      description: Create a new configuration for a diagnostic provider by specifying an options object.
+      requestBody:
+        $ref: './requestBodies/ProviderConfigurationCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/ProviderConfigurationCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':

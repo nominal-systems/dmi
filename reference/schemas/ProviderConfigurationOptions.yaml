@@ -1,0 +1,11 @@
+ProviderConfigurationOptions:
+  title: ProviderConfigurationOptions
+  type: object
+  description: Provider configuration object
+  additionalProperties:
+    type: string
+  example:
+    url: /providers/demo/configuration
+    partnerId: demo
+    partnerToken: 939b3c22-b0df-480b-9d47-9e78a6002d5b
+
