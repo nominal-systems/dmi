@@ -1,0 +1,8 @@
+name: configurationId
+in: path
+required: true
+description: Id of an existing configuration
+schema:
+  type: string
+  minLength: 1
+  example: 03c7c61f-a380-4f43-8e65-d2bea3159588

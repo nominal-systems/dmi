@@ -1,0 +1,5 @@
+description: Provider Configuration Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/ProviderConfiguration.yaml'

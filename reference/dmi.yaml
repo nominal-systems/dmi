@@ -359,6 +359,28 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Providers
+  /providers/{providerId}/configurations/{configurationId}:
+    parameters:
+      - $ref: './parameters/providerId.yaml'
+      - $ref: './parameters/configurationId.yaml'
+    get:
+      summary: Get a configuration for a provider
+      operationId: get-providers-providerId-configurations-configurationId
+      description: Retrieve the configuration with the matching configuration ID for the specified provider.
+      responses:
+        '200':
+          $ref: './responses/ProviderConfigurationFound.yaml'
+        '404':
+          description: Provider Configuration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Providers
 components:
   securitySchemes:
     BasicAuth:
