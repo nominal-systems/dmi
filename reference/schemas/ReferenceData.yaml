@@ -1,0 +1,14 @@
+Sex:
+  title: Sex
+  description: Sex
+  type: object
+  properties:
+    id:
+      type: string
+      description: Sex code
+      example: MALE
+    name:
+      type: string
+      description: Sex name
+      example: Male
+

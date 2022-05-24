@@ -662,6 +662,20 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders and results
+  /refs/sexes:
+    get:
+      summary: Get the list of accepted sex codes
+      operationId: get-refs-sexes
+      description: Retrieve the list of the accepted sex codes, along with the list hash
+      responses:
+        '200':
+          $ref: './responses/SexesList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
+        tags:
+          - Reference data
 components:
   securitySchemes:
     BasicAuth:

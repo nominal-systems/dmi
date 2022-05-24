@@ -1,0 +1,14 @@
+description: Sexes list
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '../schemas/ReferenceData.yaml#/Sex'
+        hash:
+          type: string
+          description: Sex list hash
+          example: 3691308f2a4c2f6983f2880d32e29c84
