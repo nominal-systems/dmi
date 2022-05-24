@@ -12,7 +12,6 @@ properties:
     type: string
     format: uuid
     description: The unique identifier of the integration.
-    readOnly: true
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
   patient:
     $ref: '../schemas/Patient.yaml'
@@ -25,9 +24,7 @@ properties:
     description: The test codes to be ordered.
     items:
       type: string
-    example:
-      - HEM
-        COL
+    example: [HEM,COL]
   devices:
     type: array
     description: The list of desired device IDs.

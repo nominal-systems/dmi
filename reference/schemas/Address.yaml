@@ -6,18 +6,16 @@ Address:
     street:
       type: string
       description: Street address
+      example: Frydenlundsvej 30
     city:
       type: string
       description: City
+      example: Copenhagen
     postalCode:
       type: string
       description: Postal Code
+      example: 2950
     country:
       type: string
       description: Country
-    phone:
-      type: string
-      description: Phone number
-    email:
-      type: string
-      description: Email address
+      example: DK
