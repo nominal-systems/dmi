@@ -533,6 +533,41 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders
+  /orders/{orderId}:
+    parameters:
+      - $ref: './parameters/orderId.yaml'
+    get:
+      summary: Get an order
+      operationId: get-orders-orderId
+      description: Retrieve the order with the matching order ID.
+      responses:
+        '200':
+          $ref: './responses/OrderFound.yaml'
+        '404':
+          description: Order Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders
+    delete:
+      summary: Cancel an order
+      operationId: delete-orders-orderId
+      description: Cancel the order with the matching order ID.
+      responses:
+        '204':
+          description: Order Deleted
+        '404':
+          description: Order Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+
 components:
   securitySchemes:
     BasicAuth:

@@ -1,0 +1,8 @@
+name: orderId
+in: path
+required: true
+description: Id of an existing order
+schema:
+  type: string
+  minLength: 1
+  example: bfd7af61-35e4-40af-827a-a77641bd44ef
