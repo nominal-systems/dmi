@@ -674,8 +674,8 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
       security:
         - BearerAuth: [ ]
-        tags:
-          - Reference data
+      tags:
+        - Reference data
 components:
   securitySchemes:
     BasicAuth:
