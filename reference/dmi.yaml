@@ -572,6 +572,27 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders
+  /orders/{orderId}/result.json:
+    parameters:
+      - $ref: './parameters/orderId.yaml'
+    get:
+      summary: Get an order result
+      operationId: get-orders-orderId-result
+      description: Retrieve the order result with the matching order ID.
+      responses:
+        '200':
+          $ref: './responses/OrderResult.yaml'
+        '404':
+          description: Order Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders
 components:
   securitySchemes:
     BasicAuth:

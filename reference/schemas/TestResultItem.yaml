@@ -1,0 +1,42 @@
+TestResultItem:
+  title: TestResultItem
+  description: An observation within a test suite.
+  type: object
+  properties:
+    analyte:
+      type: string
+      description: Analyte name
+    code:
+      type: string
+      description: Analyte code
+    status:
+      type: string
+      description: Status of the test result
+      enum:
+        - IN_PROCESS
+        - DONE
+        - CANCELLED
+    valueString:
+      type: string
+      description: Text value of the result
+    valueQuantity:
+      type: object
+      description: Numerical value of the result
+      properties:
+        value:
+          type: number
+          description: Numerical value of the result
+        unit:
+          type: string
+          description: Unit of the result value
+    interpretation:
+      type: string
+      description: Interpretation of the result in context of the reference range
+    referenceRange:
+      type: array
+      description: Reference ranges of the test
+      items:
+        $ref: './ReferenceRange.yaml#ReferenceRange'
+    notes:
+      type: string
+      description: Notes about the result

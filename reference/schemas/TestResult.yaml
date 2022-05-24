@@ -1,0 +1,22 @@
+TestResult:
+  title: TestResult
+  description: A test result
+  type: object
+  properties:
+    code:
+      type: string
+      description: The test code
+      example: HEM
+    name:
+      type: string
+      description: The test name
+      example: Hematology
+    notes:
+      type: string
+      description: Notes about the test
+      example: Patient has a history of cancer
+    results:
+      type: array
+      description: Results included in the test
+      items:
+        $ref: './TestResultItem.yaml#/TestResultItem'

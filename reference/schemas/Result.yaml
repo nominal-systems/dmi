@@ -1,0 +1,41 @@
+title: Result
+description: Order Result
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the result.
+    readOnly: true
+    example: 3025460e-7606-4643-a1ff-47c732e8ab20
+  orderId:
+    type: string
+    format: uuid
+    description: The unique identifier of the order.
+    readOnly: true
+    example: 3025460e-7606-4643-a1ff-47c732e8ab20
+  status:
+    type: string
+    description: The status of the result.
+    enum:
+      - IN_PROCESS
+      - DONE
+      - CANCELLED
+    example: IN_PROCESS
+  createdAt:
+    type: string
+    format: date
+    description: The date that the result was created
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
+  updatedAt:
+    type: string
+    format: date
+    description: The date that the result was updated
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
+  testResults:
+    type: array
+    description: The test results of the result.
+    items:
+      $ref: './TestResult.yaml#TestResult'
