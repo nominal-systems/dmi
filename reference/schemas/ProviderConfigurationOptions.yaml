@@ -2,8 +2,7 @@ ProviderConfigurationOptions:
   title: ProviderConfigurationOptions
   type: object
   description: Provider configuration object
-  additionalProperties:
-    type: string
+  additionalProperties: true
   example:
     url: /providers/demo/configuration
     partnerId: demo
