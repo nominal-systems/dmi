@@ -322,7 +322,7 @@ paths:
     parameters:
       - $ref: './parameters/providerId.yaml'
     get:
-      summary: Get the configurations for a provider
+      summary: List all configurations for a diagnostic provider
       operationId: get-providers-providerId-configurations
       description: Retrieve the configurations for the specified provider.
       responses:
@@ -370,6 +370,24 @@ paths:
       responses:
         '200':
           $ref: './responses/ProviderConfigurationFound.yaml'
+        '404':
+          description: Provider Configuration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Providers
+    delete:
+      summary: Delete a configuration for a provider
+      operationId: delete-providers-providerId-configurations-configurationId
+      description: Remove a configuration from a provider.
+      responses:
+        '204':
+          description: Configuration Deleted
         '404':
           description: Provider Configuration Not Found
         '401':
