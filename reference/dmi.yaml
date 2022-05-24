@@ -554,7 +554,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders
+        - Orders and results
   /orders/{orderId}:
     parameters:
       - $ref: './parameters/orderId.yaml'
@@ -575,7 +575,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders
+        - Orders and results
     delete:
       summary: Cancel an order
       operationId: delete-orders-orderId
@@ -593,7 +593,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders
+        - Orders and results
   /orders/{orderId}/result.json:
     parameters:
       - $ref: './parameters/orderId.yaml'
@@ -614,7 +614,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders
+        - Orders and results
   /orders/{orderId}/tests:
     post:
       summary: Add tests to an existing order
@@ -637,7 +637,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders
+        - Orders and results
   /orders/{orderId}/tests/{testCode}:
     delete:
       summary: Cancel a specific test
@@ -661,7 +661,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders
+        - Orders and results
 components:
   securitySchemes:
     BasicAuth:
