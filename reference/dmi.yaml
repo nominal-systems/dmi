@@ -359,6 +359,28 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Providers
+  /providers/{providerId}/services:
+    parameters:
+      - $ref: './parameters/providerId.yaml'
+      - $ref: './parameters/query/integrationId.yaml'
+    get:
+      summary: Get directory of services for a diagnostic provider
+      operationId: get-providers-providerId-services
+      description: Retrieve the directory of services for the specified provider and configured integration.
+      responses:
+        '200':
+          $ref: './responses/ProviderServiceList.yaml'
+        '404':
+          description: Integration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Directory of services
   /providers/{providerId}/configurations/{configurationId}:
     parameters:
       - $ref: './parameters/providerId.yaml'

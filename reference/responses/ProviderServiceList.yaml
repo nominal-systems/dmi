@@ -1,0 +1,7 @@
+description: Provider service list
+content:
+  application/json:
+    schema:
+      type: array
+      items:
+        $ref: '../schemas/ProviderService.yaml'

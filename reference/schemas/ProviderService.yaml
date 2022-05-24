@@ -1,0 +1,32 @@
+title: ProviderService
+description: Service offered by a provider
+type: object
+properties:
+  code:
+    type: string
+    minLength: 1
+    description: The test code
+    example: HEM
+  name:
+    type: string
+    minLength: 1
+    description: The test name
+    example: Hematology
+  category:
+    type: string
+    minLength: 1
+    description: The test category
+    example: Chemistry
+  type:
+    type: string
+    minLength: 1
+    description: The test type
+    example: IN_HOUSE
+  price:
+    type: number
+    description: The price of the test, expressed in units of `currency`
+    minimum: 0
+  currency:
+    type: string
+    minLength: 1
+    description: The [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) currency code for the test price
