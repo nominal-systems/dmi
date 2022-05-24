@@ -570,8 +570,8 @@ paths:
       security:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
-        tags:
-          - Orders
+      tags:
+        - Orders
 components:
   securitySchemes:
     BasicAuth:
