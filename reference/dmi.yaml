@@ -300,6 +300,24 @@ paths:
   /providers/{providerId}/configurations:
     parameters:
       - $ref: './parameters/providerId.yaml'
+    get:
+      summary: Get the configurations for a provider
+      operationId: get-providers-providerId-configurations
+      description: Retrieve the configurations for the specified provider.
+      responses:
+        '200':
+          $ref: './responses/ProviderConfigurationList.yaml'
+        '404':
+          description: Provider Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Providers
     post:
       summary: Configure a diagnostic provider
       operationId: post-providers-providerId-configurations
