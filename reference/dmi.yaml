@@ -497,9 +497,30 @@ paths:
       tags:
         - Orders
     get:
-      summary: List all orders
+      summary: Search orders
       operationId: get-orders
-      description: Retrieve the orders.
+      description: Retrieve the orders that match the search criteria.
+      parameters:
+        - in: query
+          name: date_start
+          schema:
+            type: string
+          description: End date in 'YYYY-MM-DD' format.
+        - in: query
+          name: date_end
+          schema:
+            type: string
+          description: End date in 'YYYY-MM-DD' format.
+        - in: query
+          name: provider_id
+          schema:
+            type: string
+          description: The provider ID.
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Order status.
       responses:
         '200':
           $ref: './responses/OrderList.yaml'
