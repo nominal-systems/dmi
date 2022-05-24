@@ -567,7 +567,11 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
-
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+        tags:
+          - Orders
 components:
   securitySchemes:
     BasicAuth:
