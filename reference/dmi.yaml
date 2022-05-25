@@ -729,6 +729,27 @@ paths:
       summary: Get the list of events
       operationId: get-events
       description: Retrieve the list of the events, along with the list hash
+      parameters:
+        - in: query
+          name: start_seq
+          description: Starting sequence number of events
+          schema:
+            type: number
+        - in: query
+          name: date_start
+          description: End date in 'YYYY-MM-DD' format.
+          schema:
+            type: string
+        - in: query
+          name: date_end
+          description: End date in 'YYYY-MM-DD' format.
+          schema:
+            type: string
+        - in: query
+          name: practice_id
+          description: The practice ID of the events.
+          schema:
+            type: string
       responses:
         '200':
           $ref: './responses/EventList.yaml'
