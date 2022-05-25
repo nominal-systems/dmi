@@ -1,0 +1,7 @@
+name: date_start
+in: query
+description: End date in 'YYYY-MM-DD' format.
+schema:
+  type: string
+  format: date
+  example: 2019-01-01

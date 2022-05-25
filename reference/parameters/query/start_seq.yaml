@@ -1,0 +1,7 @@
+name: start_seq
+in: query
+description: Starting sequence number of events
+schema:
+  type: number
+  minimum: 0
+  example: 12

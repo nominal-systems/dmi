@@ -1,4 +1,4 @@
-name: integrationId
+name: integration_id
 in: query
 required: true
 description: Id of an existing integration

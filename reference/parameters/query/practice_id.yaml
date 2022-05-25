@@ -1,0 +1,7 @@
+name: practice_id
+in: query
+description: Id of an existing practice
+schema:
+  type: string
+  minLength: 1
+  example: 94f9bdb8-c6f2-4970-8b56-0a2de1fe62e1

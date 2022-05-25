@@ -362,7 +362,7 @@ paths:
   /providers/{providerId}/services:
     parameters:
       - $ref: './parameters/providerId.yaml'
-      - $ref: './parameters/query/integrationId.yaml'
+      - $ref: './parameters/query/integration_id.yaml'
     get:
       summary: Get directory of services for a diagnostic provider
       operationId: get-providers-providerId-services
@@ -730,26 +730,10 @@ paths:
       operationId: get-events
       description: Retrieve the list of the events, along with the list hash
       parameters:
-        - in: query
-          name: start_seq
-          description: Starting sequence number of events
-          schema:
-            type: number
-        - in: query
-          name: date_start
-          description: End date in 'YYYY-MM-DD' format.
-          schema:
-            type: string
-        - in: query
-          name: date_end
-          description: End date in 'YYYY-MM-DD' format.
-          schema:
-            type: string
-        - in: query
-          name: practice_id
-          description: The practice ID of the events.
-          schema:
-            type: string
+        - $ref: './parameters/query/start_seq.yaml'
+        - $ref: './parameters/query/date_start.yaml'
+        - $ref: './parameters/query/date_end.yaml'
+        - $ref: './parameters/query/practice_id.yaml'
       responses:
         '200':
           $ref: './responses/EventList.yaml'
