@@ -1,6 +1,6 @@
 title: Integration
-type: object
 description: Integration between a practice and a provider
+type: object
 properties:
   id:
     type: string

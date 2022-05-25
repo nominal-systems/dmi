@@ -724,6 +724,23 @@ paths:
         - BearerAuth: [ ]
       tags:
         - Reference data
+  /events:
+    get:
+      summary: Get the list of events
+      operationId: get-events
+      description: Retrieve the list of the events, along with the list hash
+      responses:
+        '200':
+          $ref: './responses/EventList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Events
 components:
   securitySchemes:
     BasicAuth:
