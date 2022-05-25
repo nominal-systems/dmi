@@ -1,0 +1,9 @@
+name: order_status
+in: query
+description: Order status
+schema:
+  type: string
+  enum:
+    - pending
+    - completed
+  example: 'pending'
