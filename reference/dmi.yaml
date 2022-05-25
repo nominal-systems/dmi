@@ -676,6 +676,34 @@ paths:
         - BearerAuth: [ ]
       tags:
         - Reference data
+  /refs/species:
+    get:
+      summary: Get the list of accepted species codes
+      operationId: get-refs-species
+      description: Retrieve the list of the accepted species codes, along with the list hash
+      responses:
+        '200':
+          $ref: './responses/SpeciesList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference data
+  /refs/breeds:
+    get:
+      summary: Get the list of accepted breeds
+      operationId: get-refs-breeds
+      description: Retrieve the list of the accepted breeds, along with the list hash
+      responses:
+        '200':
+          $ref: './responses/BreedsList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference data
 components:
   securitySchemes:
     BasicAuth:

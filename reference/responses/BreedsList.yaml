@@ -1,0 +1,14 @@
+description: Breeds list
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '../schemas/ReferenceData.yaml#/Breed'
+        hash:
+          type: string
+          description: Breed list hash
+          example: 8f60c8102d29fcd525162d02eed4566b

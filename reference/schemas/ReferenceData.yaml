@@ -11,4 +11,33 @@ Sex:
       type: string
       description: Sex name
       example: Male
-
+Species:
+  title: Species
+  description: Species
+  type: object
+  properties:
+    id:
+      type: string
+      description: Species code
+      example: CANIS_FAMILIARIS
+    name:
+      type: string
+      description: Species name
+      example: Canis familiaris
+Breed:
+  title: Breed
+  description: Breed
+  type: object
+  properties:
+    id:
+      type: string
+      description: Breed code
+      example: TERRIER
+    name:
+      type: string
+      description: Species name
+      example: Terrier
+    species:
+      type: string
+      description: Species code
+      example: CANIS_FAMILIARIS

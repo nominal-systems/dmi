@@ -1,0 +1,14 @@
+description: Species list
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '../schemas/ReferenceData.yaml#/Species'
+        hash:
+          type: string
+          description: Species list hash
+          example: 9f6e6800cfae7749eb6c486619254b9c
