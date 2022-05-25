@@ -381,6 +381,26 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Directory of services
+  /providers/{providerId}/devices:
+    parameters:
+      - $ref: './parameters/providerId.yaml'
+    get:
+      summary: List provider devices
+      operationId: get-providers-providerId-devices
+      description: Retrieve the devices for the specified provider.
+      responses:
+        '200':
+          $ref: './responses/ProviderDeviceList.yaml'
+        '404':
+          description: Provider Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Providers
   /providers/{providerId}/configurations/{configurationId}:
     parameters:
       - $ref: './parameters/providerId.yaml'

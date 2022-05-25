@@ -1,0 +1,24 @@
+title: Provider Device
+description: A diagnostic device for a provider
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the device
+    example: IVLS
+  status:
+    type: string
+    description: The status of the device
+    enum:
+      - ACTIVE
+      - INACTIVE
+    example: ACTIVE
+  serialNumber:
+    type: string
+    description: The serial number of the device
+    example: ABCDEF123456
+  tests:
+    type: array
+    nullable: true
+    items:
+      $ref: './TestCode.yaml#/TestCode'

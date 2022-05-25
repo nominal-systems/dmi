@@ -1,0 +1,7 @@
+description: Provider device list
+content:
+  application/json:
+    schema:
+      type: array
+      items:
+        $ref: '../schemas/ProviderDevice.yaml'
