@@ -11,12 +11,16 @@ properties:
   orderId:
     type: string
     format: uuid
-    description: The unique identifier of the order.
+    description: The unique identifier of the order that generated the result, or the new generated order if the result was generated directly from the device.
     readOnly: true
-    example: 3025460e-7606-4643-a1ff-47c732e8ab20
+    example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
   status:
     type: string
-    description: The status of the result.
+    description: |
+      The status of the result.
+      `IN_PROCESS` means the result is being processed, no actual analyte values will be present.
+      `DONE` means the result has been processed and ready to be interpreted clinically.
+      `CANCELLED` means the result was cancelled and shouldn't be interpreted clinically.
     enum:
       - IN_PROCESS
       - DONE
@@ -25,13 +29,13 @@ properties:
   createdAt:
     type: string
     format: date
-    description: The date that the result was created
+    description: The datetime that the result was created.
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
   updatedAt:
     type: string
     format: date
-    description: The date that the result was updated
+    description: The datetime that the result was updated
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
   testResults:
