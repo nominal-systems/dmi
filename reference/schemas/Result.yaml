@@ -1,5 +1,9 @@
 title: Result
-description: Order Result
+description: |
+  The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these.
+  
+  Results can come from a previously generated order, or can come directly from a device.
+  Each ordered test code will have a matching item in `items`, which in turn may have one or more clinical observation.
 type: object
 properties:
   id:
@@ -50,6 +54,6 @@ properties:
   testResults:
     type: array
     description: |
-      The test results of the result.
+      The array of test code results.
     items:
       $ref: './TestResult.yaml#/TestResult'

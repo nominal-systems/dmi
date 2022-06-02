@@ -6,9 +6,11 @@ TestResultItem:
     analyte:
       type: string
       description: Analyte name
+      example: Hemoglobin
     code:
       type: string
       description: Analyte code
+      example: HEM
     status:
       type: string
       description: Status of the test result
@@ -16,9 +18,11 @@ TestResultItem:
         - IN_PROCESS
         - DONE
         - CANCELLED
+      example: IN_PROCESS
     valueString:
       type: string
       description: Text value of the result
+      example: Visible
     valueQuantity:
       type: object
       description: Numerical value of the result
@@ -26,12 +30,15 @@ TestResultItem:
         value:
           type: number
           description: Numerical value of the result
+          example: 10.0
         unit:
           type: string
           description: Unit of the result value
+          example: g/dL
     interpretation:
       type: string
       description: Interpretation of the result in context of the reference range
+      example: Normal
     referenceRange:
       type: array
       description: Reference ranges of the test
@@ -40,3 +47,4 @@ TestResultItem:
     notes:
       type: string
       description: Notes about the result
+      example: Measurement was performed in a non-sterile environment

@@ -1,6 +1,7 @@
 TestResult:
   title: TestResult
-  description: A test result
+  description: |
+    A test code result, that can have one or more observed analytes.
   type: object
   properties:
     code:
@@ -17,6 +18,7 @@ TestResult:
       example: Patient has a history of cancer
     results:
       type: array
-      description: Results included in the test
+      description: |
+        The array of observed analytes for the requested test code.
       items:
         $ref: './TestResultItem.yaml#/TestResultItem'

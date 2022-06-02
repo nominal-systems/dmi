@@ -1,7 +1,8 @@
 ReferenceRange:
   title: ReferenceRange
   type: object
-  description: A reference range, set of ordered low and high values by a clinician.
+  description: |
+    A reference range, set of ordered low and high values by a clinician.
   properties:
     type:
       type: string
@@ -9,12 +10,16 @@ ReferenceRange:
       enum:
         - NORMAL
         - CRITICAL
+      example: NORMAL
     text:
       type: string
       description: Text based reference range.
+      example: Red
     low:
       type: number
       description: Low range, if relevant.
+      example: 5.0
     high:
       type: number
       description: High range, if relevant.
+      example: 20.0
