@@ -18,8 +18,11 @@ properties:
     type: string
     description: |
       The status of the result.
+      
       `IN_PROCESS` means the result is being processed, no actual analyte values will be present.
+      
       `DONE` means the result has been processed and ready to be interpreted clinically.
+      
       `CANCELLED` means the result was cancelled and shouldn't be interpreted clinically.
     enum:
       - IN_PROCESS
