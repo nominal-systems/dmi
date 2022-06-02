@@ -22,3 +22,21 @@ TestResult:
         The array of observed analytes for the requested test code.
       items:
         $ref: './TestResultItem.yaml#/TestResultItem'
+      example:
+        analyte: HEM
+        code: HEM
+        status: DONE
+        valueQuantity:
+          value: 10.0
+          unit: g/dL
+        interpretation: Normal
+        referenceRange:
+          - type: NORMAL
+            text: Normal
+            low: 5.0
+            high: 20.0
+          - type: CRITICAL
+            text: Critical
+            low: 0.0
+            high: 5.0
+        notes: Measurement was performed in a non-sterile environment
