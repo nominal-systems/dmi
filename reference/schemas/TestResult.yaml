@@ -30,6 +30,11 @@ TestResult:
         - DONE
         - CANCELLED
       example: DONE
+    deviceId:
+      type: string
+      description: |
+        ID of the device used to generate the observation data.
+      example: 9M9051
     notes:
       type: string
       description: Notes about the test
@@ -57,5 +62,4 @@ TestResult:
             text: Critical
             low: 0.0
             high: 5.0
-        device: 9M9051
         notes: Measurement was performed in a non-sterile environment
