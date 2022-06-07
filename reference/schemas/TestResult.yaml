@@ -39,7 +39,7 @@ TestResult:
       description: |
         The array of clinical observations for the test result.
       items:
-        $ref: './Observation.yaml#/Observation'
+        $ref: './Observation.yaml'
       example:
         name: Hemoglobin
         code: HEM
