@@ -23,6 +23,8 @@ Observation:
         - DONE
         - CANCELLED
       example: DONE
+    patient:
+      $ref: '../schemas/Patient.yaml'
     valueString:
       type: string
       description: Text value of the result
@@ -48,6 +50,11 @@ Observation:
       description: Reference ranges of the test
       items:
         $ref: './ReferenceRange.yaml#/ReferenceRange'
+    device:
+      type: string
+      description: |
+        ID of the device used to generate the observation data.
+      example: 9M9051
     notes:
       type: string
       description: Notes about the result

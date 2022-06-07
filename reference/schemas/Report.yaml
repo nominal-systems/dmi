@@ -1,16 +1,15 @@
 title: Report
 description: |
-  The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these.
+  The findings and interpretations of diagnostic tests performed on patients, groups of patients and/or specimens derived from these.
   
-  Reports can come from a previously generated order, or can come directly from a device.
-  A report can contain a list of results that correspond to the ordered tests, if the result came from a previously generated order.
+  Reports contain an array of results that group clinical observations into test results and requested in the order.
 type: object
 properties:
   id:
     type: string
     format: uuid
     description: |
-      The unique identifier of the result.
+      The unique identifier of the report.
     required: true
     readOnly: true
     example: 3025460e-7606-4643-a1ff-47c732e8ab20
@@ -18,9 +17,7 @@ properties:
     type: string
     format: uuid
     description: |
-      The unique identifier of the order that generated the result.
-      
-      Note that if the result was generated directly from the device (i.e. result was unrequested), the referenced order will be created by the broker.
+      The unique identifier of the order that generated the report.
     readOnly: true
     required: true
     example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
@@ -57,6 +54,6 @@ properties:
   results:
     type: array
     description: |
-      Array of test results.
+      Array of test results as requested in the order.
     items:
       $ref: './TestResult.yaml#/TestResult'

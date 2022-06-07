@@ -1,7 +1,7 @@
 TestResult:
   title: TestResult
   description: |
-    A test result that can contain one or more clinical observations.
+    A group of clinical observations that belong to a test suite or panel.
   type: object
   properties:
     code:
@@ -19,9 +19,9 @@ TestResult:
       description: |
         The status of the test result.
         
-        `PENDING` means the test result is being processed, not all observations will be present.
+        `PENDING` means the test result is being processed, not all required observations are present or in a final state.
         
-        `DONE` means the test result has been processed and ready to be interpreted clinically.
+        `DONE` means the test result has been fully processed and ready to be interpreted clinically.
         
         `CANCELLED` means the test result was cancelled and shouldn't be interpreted clinically.
       required: true
@@ -30,11 +30,6 @@ TestResult:
         - DONE
         - CANCELLED
       example: DONE
-    device:
-      type: string
-      description: |
-        ID of the device used to generate the observation data.
-      example: 9M9051
     notes:
       type: string
       description: Notes about the test
@@ -42,7 +37,7 @@ TestResult:
     observations:
       type: array
       description: |
-        The array of observed analytes for the requested test code.
+        The array of clinical observations for the test result.
       items:
         $ref: './Observation.yaml#/Observation'
       example:
@@ -62,4 +57,5 @@ TestResult:
             text: Critical
             low: 0.0
             high: 5.0
+        device: 9M9051
         notes: Measurement was performed in a non-sterile environment
