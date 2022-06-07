@@ -20,7 +20,9 @@ TestResult:
         The status of the test result.
         
         `PENDING` means the test result is being processed, not all observations will be present.
+        
         `DONE` means the test result has been processed and ready to be interpreted clinically.
+        
         `CANCELLED` means the test result was cancelled and shouldn't be interpreted clinically.
       required: true
       enum:
@@ -32,6 +34,7 @@ TestResult:
       type: string
       description: |
         ID of the device used to generate the observation data.
+      example: 9M9051
     notes:
       type: string
       description: Notes about the test

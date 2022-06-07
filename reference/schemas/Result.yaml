@@ -20,7 +20,7 @@ properties:
     description: |
       The unique identifier of the order that generated the result.
       
-      Note that if the result was generated directly from the device, the order will be created by the API.
+      Note that if the result was generated directly from the device (i.e. result was unrequested), the referenced order will be created by the broker.
     readOnly: true
     required: true
     example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
