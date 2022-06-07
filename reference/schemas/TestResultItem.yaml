@@ -1,24 +1,28 @@
 TestResultItem:
   title: TestResultItem
-  description: An observation within a test suite.
+  description: |
+    An observation within a test suite.
   type: object
   properties:
-    analyte:
-      type: string
-      description: Analyte name
-      example: Hemoglobin
     code:
       type: string
       description: Analyte code
+      required: true
       example: HEM
+    name:
+      type: string
+      description: Analyte name
+      required: true
+      example: Hemoglobin
     status:
       type: string
       description: Status of the test result
+      required: true
       enum:
-        - IN_PROCESS
+        - PENDING
         - DONE
         - CANCELLED
-      example: IN_PROCESS
+      example: DONE
     valueString:
       type: string
       description: Text value of the result

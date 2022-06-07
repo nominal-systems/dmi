@@ -11,6 +11,7 @@ properties:
     format: uuid
     description: |
       The unique identifier of the result.
+    required: true
     readOnly: true
     example: 3025460e-7606-4643-a1ff-47c732e8ab20
   orderId:
@@ -21,6 +22,7 @@ properties:
       
       Note that if the result was generated directly from the device, the order will be created by the API.
     readOnly: true
+    required: true
     example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
   status:
     type: string
@@ -32,6 +34,7 @@ properties:
       `DONE` means the result has been processed and ready to be interpreted clinically.
       
       `CANCELLED` means the result was cancelled and shouldn't be interpreted clinically.
+    required: true
     enum:
       - IN_PROCESS
       - DONE

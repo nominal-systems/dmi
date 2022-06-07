@@ -1,17 +1,37 @@
 TestResult:
   title: TestResult
   description: |
-    A test code result, that can have one or more observed analytes.
+    A test result that can contain one or more clinical observations.
   type: object
   properties:
     code:
       type: string
       description: The test code
+      required: true
       example: HEM
     name:
       type: string
       description: The test name
+      required: true
       example: Hematology
+    status:
+      type: string
+      description: |
+        The status of the test result.
+        
+        `PENDING` means the test result is being processed, not all observations will be present.
+        `DONE` means the test result has been processed and ready to be interpreted clinically.
+        `CANCELLED` means the test result was cancelled and shouldn't be interpreted clinically.
+      required: true
+      enum:
+        - PENDING
+        - DONE
+        - CANCELLED
+      example: DONE
+    device:
+      type: string
+      description: |
+        ID of the device used to generate the observation data.
     notes:
       type: string
       description: Notes about the test
@@ -23,7 +43,7 @@ TestResult:
       items:
         $ref: './TestResultItem.yaml#/TestResultItem'
       example:
-        analyte: HEM
+        name: Hemoglobin
         code: HEM
         status: DONE
         valueQuantity:
