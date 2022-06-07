@@ -1,5 +1,0 @@
-description: Order Result
-content:
-  application/json:
-    schema:
-      $ref: '../schemas/Result.yaml'

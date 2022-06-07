@@ -1,0 +1,5 @@
+description: Order Report
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Report.yaml'

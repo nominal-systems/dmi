@@ -1,5 +1,5 @@
-TestResultItem:
-  title: TestResultItem
+Observation:
+  title: Observation
   description: |
     An observation within a test suite.
   type: object

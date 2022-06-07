@@ -1,9 +1,9 @@
-title: Result
+title: Report
 description: |
   The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these.
   
-  Results can come from a previously generated order, or can come directly from a device.
-  Each ordered test code will have a matching item in `items`, which in turn may have one or more clinical observation.
+  Reports can come from a previously generated order, or can come directly from a device.
+  A report can contain a list of results that correspond to the ordered tests, if the result came from a previously generated order.
 type: object
 properties:
   id:
@@ -54,9 +54,9 @@ properties:
       The datetime that the result was updated
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
-  testResults:
+  results:
     type: array
     description: |
-      The array of test code results.
+      Array of test results.
     items:
       $ref: './TestResult.yaml#/TestResult'

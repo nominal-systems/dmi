@@ -39,12 +39,12 @@ TestResult:
       type: string
       description: Notes about the test
       example: Patient has a history of cancer
-    results:
+    observations:
       type: array
       description: |
         The array of observed analytes for the requested test code.
       items:
-        $ref: './TestResultItem.yaml#/TestResultItem'
+        $ref: './Observation.yaml#/Observation'
       example:
         name: Hemoglobin
         code: HEM

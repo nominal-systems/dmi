@@ -598,7 +598,7 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders and results
-  /orders/{orderId}/result.json:
+  /orders/{orderId}/report.json:
     parameters:
       - $ref: './parameters/orderId.yaml'
     get:
@@ -607,7 +607,7 @@ paths:
       description: Retrieve the order result with the matching order ID.
       responses:
         '200':
-          $ref: './responses/OrderResult.yaml'
+          $ref: './responses/OrderReport.yaml'
         '404':
           description: Order Not Found
         '401':
