@@ -57,3 +57,12 @@ properties:
       Array of test results as requested in the order.
     items:
       $ref: './TestResult.yaml#/TestResult'
+  presentedForm:
+    type: array
+    description: |
+      Rich text representation of the entire result as issued by the diagnostic service. 
+      
+      Multiple formats are allowed but they shall be semantically equivalent.
+    items:
+      $ref: './Attachment.yaml#/Attachment'
+    

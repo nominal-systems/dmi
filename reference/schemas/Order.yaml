@@ -8,6 +8,11 @@ properties:
     description: The unique identifier of the order.
     readOnly: true
     example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
+  externalId:
+    type: string
+    description: The external identifier of the order in the provider's system.
+    readOnly: true
+    example: 87436384
   integrationId:
     type: string
     format: uuid
@@ -36,8 +41,7 @@ properties:
     description: The list of desired device IDs.
     items:
       type: string
-    example:
-      - IVLS
+    example:[IVLS]
   technician:
     type: string
     description: TThe name of the practicing technician.

@@ -38,6 +38,12 @@ properties:
         type: string
         description: Unit of the result value
         example: g/dL
+  media:
+    type: array
+    description: |
+      Visual representations of the observation.
+    items:
+      $ref: './Attachment.yaml#/Attachment'
   interpretation:
     type: string
     description: Interpretation of the result in context of the reference range
