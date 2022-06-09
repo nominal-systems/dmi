@@ -41,7 +41,8 @@ properties:
     description: The list of desired device IDs.
     items:
       type: string
-    example:[IVLS]
+    example:
+      - IVLS
   technician:
     type: string
     description: TThe name of the practicing technician.
