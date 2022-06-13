@@ -712,12 +712,11 @@ paths:
     get:
       summary: Search events
       operationId: get-events
-      description: Retrieve the list of the events, along with the list hash
+      description: Search for events that match the search criteria.
       parameters:
-        - $ref: './parameters/query/start_seq.yaml'
         - $ref: './parameters/query/date_start.yaml'
         - $ref: './parameters/query/date_end.yaml'
-        - $ref: './parameters/query/practice_id.yaml'
+        - $ref: './parameters/query/event_type.yaml'
       responses:
         '200':
           $ref: './responses/EventList.yaml'

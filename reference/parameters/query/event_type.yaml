@@ -1,0 +1,6 @@
+name: event-type
+in: query
+required: true
+description: Type of the event
+schema:
+  $ref: '../../schemas/EventType.yaml#/EventType'

@@ -10,11 +10,9 @@ EventType:
   enum:
     - 'order:created'
     - 'order:status'
-    - 'order:results'
-    - 'order:cancelled'
   example: 'order:created'
 DataOrderCreated:
-  title: order:created
+  title: order:created event data
   description: |
       The data sent in the `order:created` event.
   type: object
@@ -22,7 +20,7 @@ DataOrderCreated:
     order:
       $ref: './Order.yaml'
 DataOrderStatus:
-  title: order:status
+  title: order:status event data
   description: |
     The data sent in the `order:status` event.
   type: object
