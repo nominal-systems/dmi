@@ -1,6 +1,9 @@
 title: Order
 type: object
-description: Test order
+description: |
+  Requisition for a set of test to be performed on a patient.
+  
+  Desired test codes and target devices should be specified in the order, along with the patient, client and veterinarian details.
 properties:
   id:
     type: string

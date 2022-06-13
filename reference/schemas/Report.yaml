@@ -1,8 +1,8 @@
 title: Report
 description: |
-  The findings and interpretations of diagnostic tests performed on patients, groups of patients and/or specimens derived from these.
+  The findings and interpretations of diagnostic tests performed on patients, and/or specimens derived from these.
   
-  Reports contain an array of results that group clinical observations into test results and requested in the order.
+  Reports contain an array of results that group clinical observations into test results as requested in an order, or with a meaningful logical grouping.
 type: object
 properties:
   id:

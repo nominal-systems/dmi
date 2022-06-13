@@ -1,6 +1,6 @@
 title: Observation
 description: |
-  An observation within a test suite.
+  Laboratory and clinical or diagnostic data for patients and/or specimens derived from these.
 type: object
 properties:
   code:
