@@ -4,6 +4,7 @@ EventSubscriptionType:
   type: string
   enum:
     - azure_event_hubs
+  example: azure_event_hubs
 EventSubscriptionOptions:
     description: |
       Options for the subscription. The options are specific to the `subscription_type`.
@@ -15,6 +16,11 @@ EventSubscriptionOptions:
       * `event_hub_key_value`:  The shared key value.
     oneOf:
       - $ref: '#/AzureEventHubsSubscriptionOptions'
+    example:
+      event_hub_name: my-event-hub
+      event_hub_namespace: my-namespace
+      event_hub_key_name: my-key-name
+      event_hub_key_value: my-key-value
 AzureEventHubsSubscriptionOptions:
     description: |
       Options for the Azure Event Hubs subscription.

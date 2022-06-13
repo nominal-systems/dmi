@@ -732,7 +732,7 @@ paths:
         - Events
   /event-subscriptions:
     post:
-      summary: Create an event subscription.
+      summary: Create an event subscription
       operationId: post-event-subscriptions
       description: Subscribe to a specific event type.
       requestBody:
@@ -755,7 +755,7 @@ paths:
     parameters:
       - $ref: './parameters/subscriptionId.yaml'
     get:
-      summary: Get an event subscription details.
+      summary: Get an event subscription details
       operationId: get-event-subscriptions-subscriptionId
       description: Retrieve the event subscription with the matching subscription ID.
       responses:
@@ -773,7 +773,7 @@ paths:
       tags:
         - Events
     delete:
-      summary: Cancel an event subscription.
+      summary: Cancel an event subscription
       operationId: delete-event-subscriptions-subscriptionId
       parameters:
         - $ref: './parameters/subscriptionId.yaml'

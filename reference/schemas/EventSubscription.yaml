@@ -14,7 +14,7 @@ properties:
   subscription_type:
     $ref: './EventSubscriptionType.yaml#/EventSubscriptionType'
   subscription_options:
-    $ref: './EventSubscriptionOptions.yaml#/EventSubscriptionOptions'
+    $ref: './EventSubscriptionType.yaml#/EventSubscriptionOptions'
 required:
   - id
   - event_type

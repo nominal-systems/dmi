@@ -12,3 +12,4 @@ EventType:
     - 'order:status'
     - 'order:results'
     - 'order:cancelled'
+  example: 'order:created'
