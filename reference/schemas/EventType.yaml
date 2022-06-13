@@ -14,6 +14,7 @@ EventType:
     - 'order:cancelled'
   example: 'order:created'
 DataOrderCreated:
+  title: order:created
   description: |
       The data sent in the `order:created` event.
   type: object
@@ -21,6 +22,7 @@ DataOrderCreated:
     order:
       $ref: './Order.yaml'
 DataOrderStatus:
+  title: order:status
   description: |
     The data sent in the `order:status` event.
   type: object
