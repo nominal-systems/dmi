@@ -3,4 +3,4 @@ description: |
 content:
   application/json:
     schema:
-    $ref: '../schemas/EventSubscription.yaml'
+      $ref: '../schemas/EventSubscription.yaml'
