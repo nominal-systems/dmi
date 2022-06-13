@@ -1,5 +1,6 @@
 title: Event
-description: Events related to orders and results
+description: |
+  Events related to orders and results
 type: object
 properties:
   seq:
@@ -7,18 +8,8 @@ properties:
     description: The sequence number of the event
     minimum: 0
     example: 12
-  namespace:
-    type: string
-    description: The namespace of the event
-    enum:
-      - orders
-      - references
-    example: orders
   type:
-    type: string
-    enum:
-      - 'order:status'
-    example: 'order:status'
+    $ref: './EventType.yaml#/EventType'
   integrationId:
     type: string
     description: The integration that generated the event

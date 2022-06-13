@@ -730,6 +730,67 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Events
+  /event-subscriptions:
+    post:
+      summary: Create an event subscription.
+      operationId: post-event-subscriptions
+      description: Subscribe to a specific event type.
+      requestBody:
+        $ref: './requestBodies/EventSubscriptionCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/EventSubscriptionCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Events
+  /event-subscriptions/{subscriptionId}:
+    parameters:
+      - $ref: './parameters/subscriptionId.yaml'
+    get:
+      summary: Get an event subscription details.
+      operationId: get-event-subscriptions-subscriptionId
+      description: Retrieve the event subscription with the matching subscription ID.
+      responses:
+        '200':
+          $ref: './responses/EventSubscriptionFound.yaml'
+        '404':
+          description: Subscription Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Events
+    delete:
+      summary: Cancel an event subscription.
+      operationId: delete-event-subscriptions-subscriptionId
+      parameters:
+        - $ref: './parameters/subscriptionId.yaml'
+      responses:
+        '204':
+          description: Subscription cancelled
+        '404':
+          description: Subscription Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Events
 components:
   securitySchemes:
     BasicAuth:

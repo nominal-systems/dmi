@@ -1,0 +1,14 @@
+EventType:
+  description: |
+    The type of event.
+    
+    * `order:created` - An order was created.
+    * `order:status` - The status of an order has changed.
+    * `order:results` - Results were added to an order.
+    * `order:cancelled` - An order was cancelled.
+  type: string
+  enum:
+    - 'order:created'
+    - 'order:status'
+    - 'order:results'
+    - 'order:cancelled'

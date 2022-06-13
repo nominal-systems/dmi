@@ -1,0 +1,6 @@
+description: |
+  EventSubscription Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/EventSubscription.yaml'

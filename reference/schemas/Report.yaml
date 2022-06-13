@@ -10,7 +10,6 @@ properties:
     format: uuid
     description: |
       The unique identifier of the report.
-    required: true
     readOnly: true
     example: 3025460e-7606-4643-a1ff-47c732e8ab20
   orderId:
@@ -19,7 +18,6 @@ properties:
     description: |
       The unique identifier of the order that generated the report.
     readOnly: true
-    required: true
     example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
   status:
     type: string
@@ -31,7 +29,6 @@ properties:
       `DONE` means the result has been processed and ready to be interpreted clinically.
       
       `CANCELLED` means the result was cancelled and shouldn't be interpreted clinically.
-    required: true
     enum:
       - IN_PROCESS
       - DONE
@@ -65,4 +62,7 @@ properties:
       Multiple formats are allowed but they shall be semantically equivalent.
     items:
       $ref: './Attachment.yaml#/Attachment'
-    
+required:
+  - id
+  - orderId
+  - status

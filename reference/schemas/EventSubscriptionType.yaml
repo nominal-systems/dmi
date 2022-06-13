@@ -1,0 +1,43 @@
+EventSubscriptionType:
+  description: |
+    The type of subscription. Currently only Azure Event Hubs subscriptions are supported.
+  type: string
+  enum:
+    - azure_event_hubs
+EventSubscriptionOptions:
+    description: |
+      Options for the subscription. The options are specific to the `subscription_type`.
+    
+      For Azure Event Hubs subscriptions, the options are:
+      * `event_hub_name`: The name of the event hub.
+      * `event_hub_namespace`: The namespace of the event hub.
+      * `event_hub_key_name`: The shared key name.
+      * `event_hub_key_value`:  The shared key value.
+    oneOf:
+      - $ref: '#/AzureEventHubsSubscriptionOptions'
+AzureEventHubsSubscriptionOptions:
+    description: |
+      Options for the Azure Event Hubs subscription.
+    type: object
+    properties:
+      event_hub_name:
+        type: string
+        description: The name of the event hub.
+        example: event-hub-name
+      event_hub_namespace:
+        type: string
+        description: The namespace of the event hub.
+        example: event-hub-namespace
+      event_hub_key_name:
+        type: string
+        description: The shared key name.
+        example: event-hub-key-name
+      event_hub_key_value:
+        type: string
+        description: The shared key value.
+        example: event-hub-key-value
+    required:
+      - event_hub_name
+      - event_hub_namespace
+      - event_hub_key_name
+      - event_hub_key_value
