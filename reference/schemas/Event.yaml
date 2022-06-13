@@ -3,26 +3,22 @@ description: |
   Events related to orders and results
 type: object
 properties:
-  seq:
-    type: number
-    description: The sequence number of the event
-    minimum: 0
-    example: 12
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the event.
+    example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
+  time:
+    type: integer
+    description: Time of the event in Unix epoch time.
+    example: 1655129477
   type:
     $ref: './EventType.yaml#/EventType'
   integrationId:
     type: string
     description: The integration that generated the event
-    example: 175509ad-3b4a-4668-a7b8-3754c5437e03
-  value:
-    type: object
-    additionalProperties: true
-    description: The event value
-    example:
-      orderId: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
-      status: waiting-for-input
-  context:
-    type: object
-    additionalProperties: true
-    description: The event context
-    example: {}
+    example: 175509ad-3b4a-4668-a7b8-3754c5437e03.
+  data:
+    oneOf:
+      - $ref: './EventType.yaml#/DataOrderCreated'
+      - $ref: './EventType.yaml#/DataOrderStatus'

@@ -13,3 +13,24 @@ EventType:
     - 'order:results'
     - 'order:cancelled'
   example: 'order:created'
+DataOrderCreated:
+  description: |
+      The data sent in the `order:created` event.
+  type: object
+  properties:
+    order:
+      $ref: './Order.yaml'
+DataOrderStatus:
+  description: |
+    The data sent in the `order:status` event.
+  type: object
+  properties:
+    orderId:
+      type: string
+      format: uuid
+      description: The unique identifier of the order.
+      example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
+    status:
+      type: string
+      description: The status of the order.
+      example: waiting-for-input

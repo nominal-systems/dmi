@@ -710,7 +710,7 @@ paths:
         - Reference data
   /events:
     get:
-      summary: Get the list of events
+      summary: Search events
       operationId: get-events
       description: Retrieve the list of the events, along with the list hash
       parameters:
