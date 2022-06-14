@@ -6,17 +6,14 @@ properties:
   code:
     type: string
     description: Analyte code
-    required: true
     example: HEM
   name:
     type: string
     description: Analyte name
-    required: true
     example: Hemoglobin
   status:
     type: string
     description: Status of the test result
-    required: true
     enum:
       - PENDING
       - DONE
@@ -57,3 +54,7 @@ properties:
     type: string
     description: Notes about the result
     example: Measurement was performed in a non-sterile environment
+required:
+  - code
+  - name
+  - status

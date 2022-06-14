@@ -5,7 +5,9 @@
   </component>
   <component name="SwUserDefinedSpecifications">
     <option name="specTypeByUrl">
-      <map />
+      <map>
+        <entry key="file://$PROJECT_DIR$/reference/requestBodies/UserCredentialsBody.yaml" value="openapi30" />
+      </map>
     </option>
   </component>
 </project>

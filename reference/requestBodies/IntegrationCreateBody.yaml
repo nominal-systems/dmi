@@ -3,15 +3,16 @@ required: true
 content:
   application/json:
     schema:
-      practiceId:
-        type: string
-        format: uuid
-        description: Unique identifier for the practice.
-        example: 94f9bdb8-c6f2-4970-8b56-0a2de1fe62e1
-      providerConfigurationId:
-        type: string
-        format: uuid
-        description: The unique identifier of the provider configuration.
-        example: 0e0f3afe-9796-4ef1-adeb-92f736e8617f
-      integrationOptions:
-        $ref: '../schemas/IntegrationOptions.yaml#/IntegrationOptions'
+      properties:
+        practiceId:
+          type: string
+          format: uuid
+          description: Unique identifier for the practice.
+          example: 94f9bdb8-c6f2-4970-8b56-0a2de1fe62e1
+        providerConfigurationId:
+          type: string
+          format: uuid
+          description: The unique identifier of the provider configuration.
+          example: 0e0f3afe-9796-4ef1-adeb-92f736e8617f
+        integrationOptions:
+          $ref: '../schemas/IntegrationOptions.yaml#/IntegrationOptions'

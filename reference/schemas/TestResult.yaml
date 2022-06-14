@@ -7,12 +7,10 @@ TestResult:
     code:
       type: string
       description: The test code
-      required: true
       example: HEM
     name:
       type: string
       description: The test name
-      required: true
       example: Hematology
     status:
       type: string
@@ -24,7 +22,6 @@ TestResult:
         `DONE` means the test result has been fully processed and ready to be interpreted clinically.
         
         `CANCELLED` means the test result was cancelled and shouldn't be interpreted clinically.
-      required: true
       enum:
         - PENDING
         - DONE
@@ -63,3 +60,7 @@ TestResult:
             low: 0.0
             high: 5.0
         notes: Measurement was performed in a non-sterile environment
+  required:
+    - code
+    - name
+    - status
