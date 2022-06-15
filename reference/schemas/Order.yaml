@@ -11,16 +11,31 @@ properties:
     description: The unique identifier of the order.
     readOnly: true
     example: 74c7cac2-0bd5-4e56-b114-f088a502dc6a
-  externalId:
+  requisitionId:
     type: string
-    description: The external identifier of the order in the provider's system.
-    readOnly: true
+    description: |
+      The original requisition identifier provided by the PIMS.
+      
+      This could be used by the PIMS to match the order to the original requisition.
     example: 87436384
+  accessionId:
+    type: string
+    description: |
+      The accession identifier provided by the provider.
+      
+      The identifier assigned by the provider to the order. This could be used by the PIMS to match the order to the original requisition to the order in the provider's system.
   integrationId:
     type: string
     format: uuid
     description: The unique identifier of the integration.
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
+  pdf:
+    type: string
+    format: uri
+    description: |
+      The URL of the provider generated PDF that accompanies specimens to the lab.
+      
+      This could be used by the PIMS to match the order to the original requisition.
   status:
     type: string
     enum:
@@ -58,4 +73,8 @@ properties:
     type: boolean
     description: Whether tests can be added or removed from this order.
     example: true
-
+required:
+  - id
+  - integrationId
+  - status
+  - patient

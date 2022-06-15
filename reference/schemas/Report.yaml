@@ -29,10 +29,13 @@ properties:
       `DONE` means the result has been processed and ready to be interpreted clinically.
       
       `CANCELLED` means the result was cancelled and shouldn't be interpreted clinically.
+      
+      `REVISED` Means the result was revised after reaching a final state and new information is available.
     enum:
       - IN_PROCESS
       - DONE
       - CANCELLED
+      - REVISED
     example: IN_PROCESS
   createdAt:
     type: string

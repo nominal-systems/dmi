@@ -598,13 +598,13 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders and results
-  /orders/{orderId}/report.json:
+  /orders/{orderId}/report:
     parameters:
       - $ref: './parameters/orderId.yaml'
     get:
-      summary: Get an order result
-      operationId: get-orders-orderId-result
-      description: Retrieve the order result with the matching order ID.
+      summary: Get the report for an order
+      operationId: get-orders-orderId-report
+      description: Retrieve the report for and with the matching order ID.
       responses:
         '200':
           $ref: './responses/OrderReport.yaml'
@@ -618,7 +618,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
   /orders/{orderId}/tests:
     post:
       summary: Add tests to an existing order
