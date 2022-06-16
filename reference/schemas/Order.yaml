@@ -17,43 +17,67 @@ properties:
       The original requisition identifier provided by the PIMS.
       
       This could be used by the PIMS to match the order to the original requisition.
-    example: 87436384
+    example: ABC-87436384
   accessionId:
     type: string
     description: |
       The accession identifier provided by the provider.
       
       The identifier assigned by the provider to the order. This could be used by the PIMS to match the order to the original requisition to the order in the provider's system.
+    example: 8279820
   integrationId:
     type: string
     format: uuid
     description: The unique identifier of the integration.
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
-  pdf:
+  manifestUri:
     type: string
     format: uri
     description: |
-      The URL of the provider generated PDF that accompanies specimens to the lab.
+      The URL of the provider generated manifest (generally a PDF) that accompanies specimens to the lab.
+  submissionUri:
+    type: string
+    format: uri
+    description: |
+      The URL of the provider's UI to complete the order submission.
       
-      This could be used by the PIMS to match the order to the original requisition.
+      This generally will be an iFrame containing a form.
   status:
     type: string
+    description: |
+      The status of the order.
+      
+      - `ACCEPTED` - The order is accepted and exists in Nominal’s domain.
+      - `WAITING_FOR_INPUT` - The provider requires user input before it can be submitted.
+      - `SUBMITTED` - The order has been submitted to the provider.
+      - `PARTIAL` - Some tests are completed and are available.
+      - `COMPLETED` - All tests in the order have been completed and are available.
+      - `CANCELLED` - The order is cancelled and won’t be processed by the provider.
+      - `ERROR` - The order is in error and has been withdrawn.
+
     enum:
-      - pending
-      - completed
-    example: 'pending'
+      - ACCEPTED
+      - WAITING_FOR_INPUT
+      - SUBMITTED
+      - PARTIAL
+      - COMPLETED
+      - CANCELLED
+      - ERROR
+    example: COMPLETED
   patient:
-    $ref: '../schemas/Patient.yaml'
+    $ref: './Patient.yaml'
   client:
-    $ref: '../schemas/Client.yaml'
+    $ref: './Client.yaml'
   veterinarian:
-    $ref: '../schemas/Veterinarian.yaml'
-  testCodes:
+    $ref: './Veterinarian.yaml'
+  tests:
     type: array
-    description: The test codes to be ordered.
+    description: The codes of the tests to be ordered.
     items:
-      type: string
-    example: [HEM,COL]
+      $ref: './TestCode.yaml#/TestCode'
+    example:
+      - code: HEM
+      - code: COL
   devices:
     type: array
     description: The list of desired device IDs.

@@ -1,6 +1,7 @@
 title: Veterinarian
 type: object
-description: A veterinarian
+description: |
+  The veterinarian requesting the order.
 properties:
   id:
     type: string

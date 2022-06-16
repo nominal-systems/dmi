@@ -1,6 +1,7 @@
 title: Patient
 type: object
-description: Patient for an order
+description: |
+  The subject of the ordered tests
 properties:
   id:
     type: string

@@ -1,6 +1,7 @@
 title: Client
 type: object
-description: Pet owner
+description: |
+  The client of the order. Usually the pet owner.
 properties:
   id:
     type: string

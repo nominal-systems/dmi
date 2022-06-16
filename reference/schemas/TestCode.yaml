@@ -1,7 +1,7 @@
 TestCode:
-  title: Order Test
+  title: Test code
   type: object
-  description: Test code object
+  description: Test code object.
   properties:
     code:
       type: string
