@@ -3,3 +3,6 @@ content:
   application/json:
     schema:
       $ref: '../schemas/Report.yaml'
+    examples:
+      Urinalysis:
+        $ref: '../examples/Report.yaml#/Urinalysis'

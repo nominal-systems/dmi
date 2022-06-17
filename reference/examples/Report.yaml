@@ -1,0 +1,35 @@
+Urinalysis:
+  summary: Report containing Urinalysis results
+  value:
+    id: 306bdb0f-63b7-466d-8194-ada61c1e1778
+    orderId: 22e7765a-36b6-4987-8554-e1026a1d80f3
+    status: FINAL
+    createdAt: 2020-01-01T00:00:00.000Z
+    updatedAt: 2020-01-01T00:00:00.000Z
+    testResults:
+      - name: Urinalysis
+        code: URI
+        status: COMPLETED
+        observations:
+          - name: Color
+            code: 923
+            status: DONE
+            valueString: YELLOW
+          - name: Clarity
+            code: 924
+            status: DONE
+            valueString: CLEAR
+          - name: Specific Gravity
+            code: 938
+            status: DONE
+            valueQuantity:
+              value: 1.005
+          - name: White Blood Cells
+            code: 930
+            status: DONE
+            valueQuantity:
+              value: 2.0
+            referenceRange:
+              - type: NORMAL
+                low: 0.0
+                high: 5.0
