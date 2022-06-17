@@ -1,68 +1,67 @@
-TestResult:
-  title: TestResult
-  description: |
-    A group of clinical observations that belong to a test suite or panel.
-  type: object
-  properties:
-    code:
-      type: string
-      description: The test code
-      example: HEM
-    name:
-      type: string
-      description: The test name
-      example: Hematology
-    status:
-      type: string
-      description: |
-        The status of the test result.
-        
-        - `PENDING` - No observations in the test have been performed yet.
-        - `PARTIAL` - Some observations in the test have been performed and their results available.
-        - `COMPLETED` - All of the observations in the test were performed and their results available. 
-        - `REVISED` - A change has been made to any observation that previously was DONE.
-        - `CANCELLED` - The test was cancelled and no observation will be performed.
-      enum:
-        - PENDING
-        - PARTIAL
-        - COMPLETED
-        - REVISED
-        - CANCELLED
-      example: DONE
-    deviceId:
-      type: string
-      description: |
-        ID of the device used to generate the observation data.
-      example: 9M9051
-    notes:
-      type: string
-      description: Notes about the test
-      example: Patient has a history of cancer
-    observations:
-      type: array
-      description: |
-        The array of clinical observations for the test result.
-      items:
-        $ref: './Observation.yaml'
-      example:
-        name: Hemoglobin
-        code: HEM
-        status: DONE
-        valueQuantity:
-          value: 10.0
-          unit: g/dL
-        interpretation: Normal
-        referenceRange:
-          - type: NORMAL
-            text: Normal
-            low: 5.0
-            high: 20.0
-          - type: CRITICAL
-            text: Critical
-            low: 0.0
-            high: 5.0
-        notes: Measurement was performed in a non-sterile environment
-  required:
-    - code
-    - name
-    - status
+title: TestResult
+description: |
+  A group of clinical observations that belong to a test suite or panel.
+type: object
+properties:
+  code:
+    type: string
+    description: The test code
+    example: HEM
+  name:
+    type: string
+    description: The test name
+    example: Hematology
+  status:
+    type: string
+    description: |
+      The status of the test result.
+      
+      - `PENDING` - No observations in the test have been performed yet.
+      - `PARTIAL` - Some observations in the test have been performed and their results available.
+      - `COMPLETED` - All of the observations in the test were performed and their results available. 
+      - `REVISED` - A change has been made to any observation that previously was DONE.
+      - `CANCELLED` - The test was cancelled and no observation will be performed.
+    enum:
+      - PENDING
+      - PARTIAL
+      - COMPLETED
+      - REVISED
+      - CANCELLED
+    example: DONE
+  deviceId:
+    type: string
+    description: |
+      ID of the device used to generate the observation data.
+    example: 9M9051
+  notes:
+    type: string
+    description: Notes about the test
+    example: Patient has a history of cancer
+  observations:
+    type: array
+    description: |
+      The array of clinical observations for the test result.
+    items:
+      $ref: './Observation.yaml'
+    example:
+      name: Hemoglobin
+      code: HEM
+      status: DONE
+      valueQuantity:
+        value: 10.0
+        unit: g/dL
+      interpretation: Normal
+      referenceRange:
+        - type: NORMAL
+          text: Normal
+          low: 5.0
+          high: 20.0
+        - type: CRITICAL
+          text: Critical
+          low: 0.0
+          high: 5.0
+      notes: Measurement was performed in a non-sterile environment
+required:
+  - code
+  - name
+  - status

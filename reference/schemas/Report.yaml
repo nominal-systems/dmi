@@ -53,7 +53,7 @@ properties:
     description: |
       Array of test results as requested in the order.
     items:
-      $ref: './TestResult.yaml#/TestResult'
+      $ref: './TestResult.yaml'
   presentedForm:
     type: array
     description: |
