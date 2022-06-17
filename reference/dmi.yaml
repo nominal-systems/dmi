@@ -666,6 +666,27 @@ paths:
           ApiKeyAuth: [ ]
       tags:
         - Orders & Results
+  /reports/{reportId}:
+    parameters:
+      - $ref: './parameters/reportId.yaml'
+    get:
+      summary: Get a report by ID
+      operationId: get-reports-reportId
+      description: Retrieve the report with the matching report ID.
+      responses:
+          '200':
+            $ref: './responses/ReportFound.yaml'
+          '404':
+            description: Report Not Found
+          '401':
+            $ref: './responses/401Unauthorized.yaml'
+          '403':
+            $ref: './responses/403Forbidden.yaml'
+      security:
+        - BearerAuth: [ ]
+          ApiKeyAuth: [ ]
+      tags:
+        - Orders & Results
   /refs/sexes:
     get:
       summary: Get the list of accepted sex codes

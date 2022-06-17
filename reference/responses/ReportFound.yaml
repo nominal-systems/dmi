@@ -1,0 +1,5 @@
+description: Report Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Report.yaml'
