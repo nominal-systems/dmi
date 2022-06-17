@@ -22,21 +22,18 @@ properties:
   status:
     type: string
     description: |
-      The status of the result.
+      The status of the report.
       
-      `IN_PROCESS` means the result is being processed, no actual analyte values will be present.
-      
-      `DONE` means the result has been processed and ready to be interpreted clinically.
-      
-      `CANCELLED` means the result was cancelled and shouldn't be interpreted clinically.
-      
-      `REVISED` Means the result was revised after reaching a final state and new information is available.
+      - `REGISTERED` - The existence of the report is registered, but there is not results available yet. 
+      - `PARTIAL` - Some of the tests in the report are completed, data in the report may be incomplete.
+      - `FINAL` - All of the tests in the report are completed, the report is complete and verified.
+      - `CANCELLED` - The tests were cancelled and the report will not be available.
     enum:
-      - IN_PROCESS
-      - DONE
+      - REGISTERED
+      - PARTIAL
+      - FINAL
       - CANCELLED
-      - REVISED
-    example: IN_PROCESS
+    example: FINAL
   createdAt:
     type: string
     format: date
@@ -51,7 +48,7 @@ properties:
       The datetime that the result was updated
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
-  results:
+  testResults:
     type: array
     description: |
       Array of test results as requested in the order.

@@ -17,14 +17,16 @@ TestResult:
       description: |
         The status of the test result.
         
-        `PENDING` means the test result is being processed, not all required observations are present or in a final state.
-        
-        `DONE` means the test result has been fully processed and ready to be interpreted clinically.
-        
-        `CANCELLED` means the test result was cancelled and shouldn't be interpreted clinically.
+        - `PENDING` - No observations in the test have been performed yet.
+        - `PARTIAL` - Some observations in the test have been performed and their results available.
+        - `COMPLETED` - All of the observations in the test were performed and their results available. 
+        - `REVISED` - A change has been made to any observation that previously was DONE.
+        - `CANCELLED` - The test was cancelled and no observation will be performed.
       enum:
         - PENDING
-        - DONE
+        - PARTIAL
+        - COMPLETED
+        - REVISED
         - CANCELLED
       example: DONE
     deviceId:

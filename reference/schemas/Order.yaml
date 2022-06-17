@@ -34,14 +34,14 @@ properties:
     type: string
     format: uri
     description: |
-      The URL of the provider generated manifest (generally a PDF) that accompanies specimens to the lab.
+      The URL of the provider generated manifest (usually a PDF) that accompanies specimens to the lab.
   submissionUri:
     type: string
     format: uri
     description: |
       The URL of the provider's UI to complete the order submission.
       
-      This generally will be an iFrame containing a form.
+      This usually will be an iFrame containing a form.
   status:
     type: string
     description: |
@@ -70,14 +70,12 @@ properties:
     $ref: './Client.yaml'
   veterinarian:
     $ref: './Veterinarian.yaml'
-  tests:
+  testCodes:
     type: array
-    description: The codes of the tests to be ordered.
+    description: The test codes to be ordered.
     items:
-      $ref: './TestCode.yaml#/TestCode'
-    example:
-      - code: HEM
-      - code: COL
+      type: string
+    example: [ HEM,COL ]
   devices:
     type: array
     description: The list of desired device IDs.

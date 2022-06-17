@@ -13,7 +13,12 @@ properties:
     example: Hemoglobin
   status:
     type: string
-    description: Status of the test result
+    description: |
+      Status of the test result.
+      
+      - `PENDING` - Measurement has not been performed by the analyzer yet
+      - `DONE` - The analyzer has performed the measurement
+      - `CANCELLED` - The measurement has been cancelled
     enum:
       - PENDING
       - DONE

@@ -537,7 +537,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
     get:
       summary: Search orders
       operationId: get-orders
@@ -558,7 +558,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
   /orders/{orderId}:
     parameters:
       - $ref: './parameters/orderId.yaml'
@@ -579,7 +579,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
     delete:
       summary: Cancel an order
       operationId: delete-orders-orderId
@@ -597,7 +597,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
   /orders/{orderId}/report:
     parameters:
       - $ref: './parameters/orderId.yaml'
@@ -641,7 +641,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
   /orders/{orderId}/tests/{testCode}:
     delete:
       summary: Cancel a specific test
@@ -665,7 +665,7 @@ paths:
         - BearerAuth: [ ]
           ApiKeyAuth: [ ]
       tags:
-        - Orders and results
+        - Orders & Results
   /refs/sexes:
     get:
       summary: Get the list of accepted sex codes
