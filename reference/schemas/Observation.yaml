@@ -48,7 +48,8 @@ properties:
       $ref: './Attachment.yaml#/Attachment'
   interpretation:
     type: string
-    description: Interpretation of the result in context of the reference range
+    description: |
+      Interpretation of the result in context of the reference range, usually used when the value is out of the normal range.
     example: Normal
   referenceRange:
     type: array

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/dmi.iml" filepath="$PROJECT_DIR$/.idea/dmi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../provider-pocs/provider-pocs.iml" filepath="$PROJECT_DIR$/../provider-pocs/provider-pocs.iml" />
     </modules>
   </component>
 </project>

@@ -33,3 +33,253 @@ Urinalysis:
               - type: NORMAL
                 low: 0.0
                 high: 5.0
+Hematology:
+  summary: Report containing Hematology results in final state.
+  value:
+    id: baf3d4fc-6462-424f-9a16-151721189429
+    orderId: 175cce4d-30d9-4275-92d1-e18a7d856779
+    status: FINAL
+    notes: |
+      Slide reviewed microscopically.
+      No parasites seen.
+    createdAt: '2020-01-01T00:00:00.000Z'
+    updatedAt: '2020-01-01T00:00:00.000Z'
+    testResults:
+      - name: Hematology
+        code: HEM
+        status: COMPLETED
+        observations:
+          - name: RBC
+            code: C3011
+            status: DONE
+            valueQuantity:
+              value: 7.41
+              unit: M/µL
+            referenceRange:
+              - type: NORMAL
+                low: 5.39
+                high: 8.70
+              - type: CRITICAL
+                low: 1.0
+                high: 10.2
+          - name: Hematocrit
+            code: C3012
+            status: DONE
+            valueQuantity:
+              value: 51.9
+              unit: '%'
+            referenceRange:
+              - type: NORMAL
+                low: 38.3
+                high: 56.5
+              - type: CRITICAL
+                low: 6.0
+                high: 66.0
+          - name: Hemoglobin
+            code: C3013
+            status: DONE
+            valueQuantity:
+              value: 16.6
+              unit: g/dL
+            referenceRange:
+              - type: NORMAL
+                low: 13.4
+                high: 20.7
+              - type: CRITICAL
+                low: 2.0
+                high: 23.5
+          - name: MCV
+            code: C3014
+            status: DONE
+            valueQuantity:
+              value: 70
+              unit: fL
+            referenceRange:
+              - type: NORMAL
+                low: 59
+                high: 76
+              - type: CRITICAL
+                low: 50
+                high: 94
+          - name: MCH
+            code: C3015
+            status: DONE
+            valueQuantity:
+              value: 22.5
+              unit: pg
+            referenceRange:
+              - type: NORMAL
+                low: 21.9
+                high: 26.1
+              - type: CRITICAL
+                low: 16.0
+                high: 31.0
+          - name: MCHC
+            code: C3016
+            status: DONE
+            valueQuantity:
+              value: 32.2
+              unit: g/dL
+            referenceRange:
+              - type: NORMAL
+                low: 32.6
+                high: 39.2
+              - type: CRITICAL
+                low: 26.0
+                high: 42.2
+            interpretation: Low
+          - name: '% Reticulocyte'
+            code: C3017
+            status: DONE
+            valueQuantity:
+              value: 0.5
+              unit: '%'
+          - name: 'Reticulocytes'
+            code: C3018
+            status: DONE
+            valueQuantity:
+              value: 37
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 10
+                high: 110
+              - type: CRITICAL
+                low: 0
+                high: 410
+          - name: 'Reticulocyte Hemoglobin'
+            code: C3019
+            status: DONE
+            valueQuantity:
+              value: 25.2
+              unit: pg
+            referenceRange:
+              - type: NORMAL
+                low: 24.5
+                high: 31.8
+              - type: CRITICAL
+                low: 10.0
+                high: 35.0
+          - name: WBC
+            code: C3020
+            status: DONE
+            valueQuantity:
+              value: 11.7
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 4.9
+                high: 17.6
+              - type: CRITICAL
+                low: 0.5
+                high: 90
+          - name: '% Neutrophils'
+            code: C3021
+            status: DONE
+            valueQuantity:
+              value: 82.3
+              unit: '%'
+          - name: '% Lymphocytes'
+            code: C3022
+            status: DONE
+            valueQuantity:
+              value: 8.5
+              unit: '%'
+          - name: '% Monocytes'
+            code: C3023
+            status: DONE
+            valueQuantity:
+              value: 8.0
+              unit: '%'
+          - name: '% Eosinophils'
+            code: C3024
+            status: DONE
+            valueQuantity:
+              value: 1.1
+              unit: '%'
+          - name: '% Basophils'
+            code: C3025
+            status: DONE
+            valueQuantity:
+              value: 0.1
+              unit: '%'
+          - name: Neutrophils
+            code: C3026
+            status: DONE
+            valueQuantity:
+              value: 9.629
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 2.94
+                high: 12.67
+              - type: CRITICAL
+                low: 0
+                high: 51
+          - name: Lymphocytes
+            code: C3027
+            status: DONE
+            valueQuantity:
+              value: 0.995
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 0.5
+                high: 1.5
+              - type: CRITICAL
+                low: 0
+                high: 2.5
+            interpretation: Low
+          - name: Monocytes
+            code: C3028
+            status: DONE
+            valueQuantity:
+              value: 0.936
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 0.13
+                high: 1.15
+              - type: CRITICAL
+                low: 0
+                high: 6.6
+          - name: Eosinophils
+            code: C3029
+            status: DONE
+            valueQuantity:
+              value: 0.129
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 0.070
+                high: 1.490
+              - type: CRITICAL
+                low: 0.000
+                high: 5.000
+          - name: Basophils
+            code: C3030
+            status: DONE
+            valueQuantity:
+              value: 0.012
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 0.00
+                high: 0.10
+              - type: CRITICAL
+                low: 0.00
+                high: 0.35
+          - name: Platelets
+            code: C3031
+            status: DONE
+            notes: Platelet clumps seen on slide. Platelet count and blood film estimate may be falsely decreased.
+            valueQuantity:
+              value: 442
+              unit: K/µL
+            referenceRange:
+              - type: NORMAL
+                low: 143
+                high: 448
+              - type: CRITICAL
+                low: 0
+                high: 1000

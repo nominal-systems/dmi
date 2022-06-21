@@ -6,3 +6,5 @@ content:
     examples:
       Urinalysis:
         $ref: '../examples/Report.yaml#/Urinalysis'
+      Hematology:
+        $ref: '../examples/Report.yaml#/Hematology'
