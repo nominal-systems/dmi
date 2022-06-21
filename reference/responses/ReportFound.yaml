@@ -10,3 +10,5 @@ content:
         $ref: '../examples/Report.yaml#/Hematology'
       Chemistry:
         $ref: '../examples/Report.yaml#/Chemistry'
+      Screening:
+        $ref: '../examples/Report.yaml#/Screening'
