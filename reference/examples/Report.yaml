@@ -11,28 +11,82 @@ Urinalysis:
         code: URI
         status: COMPLETED
         observations:
-          - name: Color
-            code: C923
-            status: DONE
-            valueString: YELLOW
-          - name: Clarity
-            code: C924
-            status: DONE
-            valueString: CLEAR
-          - name: Specific Gravity
-            code: C938
-            status: DONE
+          - name: 'Color'
+            code: 'U923'
+            status: 'DONE'
+            valueString: 'YELLOW'
+          - name: 'Clarity'
+            code: 'U924'
+            status: 'DONE'
+            valueString: 'CLEAR'
+          - name: 'Specific Gravity'
+            code: 'U925'
+            status: 'DONE'
             valueQuantity:
               value: 1.005
-          - name: White Blood Cells
-            code: C930
-            status: DONE
+          - name: 'pH'
+            code: 'U926'
+            status: 'DONE'
             valueQuantity:
-              value: 2.0
+              value: 7.0
+          - name: 'Urine Protein'
+            code: 'U927'
+            status: 'DONE'
+            valueString: '+1'
+          - name: 'Glucose'
+            code: 'U928'
+            status: 'DONE'
+            valueString: 'NEGATIVE'
+          - name: 'Ketones'
+            code: 'U929'
+            status: 'DONE'
+            valueString: 'NEGATIVE'
+          - name: 'Blood / Hemoglobin'
+            code: 'U930'
+            status: 'DONE'
+            valueString: 'NEGATIVE'
+          - name: 'Bilirubin'
+            code: 'U931'
+            status: 'DONE'
+            valueString: 'NEGATIVE'
+          - name: 'Urobilinogen'
+            code: 'U932'
+            status: 'DONE'
+            valueString: 'NORMAL'
+          - name: 'White Blood Cells'
+            code: 'U933'
+            status: 'DONE'
+            valueQuantity:
+              value: 0.2
+              unit: 'HPF'
             referenceRange:
               - type: NORMAL
                 low: 0.0
                 high: 5.0
+          - name: 'Red Blood Cells'
+            code: 'U934'
+            status: 'DONE'
+            valueString: 'NONE SEEN'
+          - name: 'Bacteria'
+            code: 'U935'
+            status: 'DONE'
+            valueString: 'NONE SEEN'
+          - name: 'Epithelial Cells'
+            code: 'U936'
+            status: 'DONE'
+            valueString: 'RARE (0-1)'
+          - name: 'Mucus'
+            code: 'U937'
+            status: 'DONE'
+            valueString: 'NONE SEEN'
+          - name: 'Casts'
+            code: 'U938'
+            status: 'DONE'
+            valueString: 'NONE SEEN'
+          - name: 'Crystals'
+            code: 'U939'
+            status: 'DONE'
+            valueString: 'OCCASIONAL AMMONIUM MG PHOSPHATE (0-1)/HPF'
 Hematology:
   summary: Report containing Hematology results in final state.
   value:
@@ -50,7 +104,7 @@ Hematology:
         status: COMPLETED
         observations:
           - name: RBC
-            code: C3011
+            code: H3011
             status: DONE
             valueQuantity:
               value: 7.41
@@ -63,7 +117,7 @@ Hematology:
                 low: 1.0
                 high: 10.2
           - name: Hematocrit
-            code: C3012
+            code: H3012
             status: DONE
             valueQuantity:
               value: 51.9
@@ -76,7 +130,7 @@ Hematology:
                 low: 6.0
                 high: 66.0
           - name: Hemoglobin
-            code: C3013
+            code: H3013
             status: DONE
             valueQuantity:
               value: 16.6
@@ -89,7 +143,7 @@ Hematology:
                 low: 2.0
                 high: 23.5
           - name: MCV
-            code: C3014
+            code: H3014
             status: DONE
             valueQuantity:
               value: 70
@@ -102,7 +156,7 @@ Hematology:
                 low: 50
                 high: 94
           - name: MCH
-            code: C3015
+            code: H3015
             status: DONE
             valueQuantity:
               value: 22.5
@@ -115,7 +169,7 @@ Hematology:
                 low: 16.0
                 high: 31.0
           - name: MCHC
-            code: C3016
+            code: H3016
             status: DONE
             valueQuantity:
               value: 32.2
@@ -129,13 +183,13 @@ Hematology:
                 high: 42.2
             interpretation: Low
           - name: '% Reticulocyte'
-            code: C3017
+            code: H3017
             status: DONE
             valueQuantity:
               value: 0.5
               unit: '%'
           - name: 'Reticulocytes'
-            code: C3018
+            code: H3018
             status: DONE
             valueQuantity:
               value: 37
@@ -148,7 +202,7 @@ Hematology:
                 low: 0
                 high: 410
           - name: 'Reticulocyte Hemoglobin'
-            code: C3019
+            code: H3019
             status: DONE
             valueQuantity:
               value: 25.2
@@ -161,7 +215,7 @@ Hematology:
                 low: 10.0
                 high: 35.0
           - name: WBC
-            code: C3020
+            code: H3020
             status: DONE
             valueQuantity:
               value: 11.7
@@ -174,37 +228,37 @@ Hematology:
                 low: 0.5
                 high: 90
           - name: '% Neutrophils'
-            code: C3021
+            code: H3021
             status: DONE
             valueQuantity:
               value: 82.3
               unit: '%'
           - name: '% Lymphocytes'
-            code: C3022
+            code: H3022
             status: DONE
             valueQuantity:
               value: 8.5
               unit: '%'
           - name: '% Monocytes'
-            code: C3023
+            code: H3023
             status: DONE
             valueQuantity:
               value: 8.0
               unit: '%'
           - name: '% Eosinophils'
-            code: C3024
+            code: H3024
             status: DONE
             valueQuantity:
               value: 1.1
               unit: '%'
           - name: '% Basophils'
-            code: C3025
+            code: H3025
             status: DONE
             valueQuantity:
               value: 0.1
               unit: '%'
           - name: Neutrophils
-            code: C3026
+            code: H3026
             status: DONE
             valueQuantity:
               value: 9.629
@@ -217,7 +271,7 @@ Hematology:
                 low: 0
                 high: 51
           - name: Lymphocytes
-            code: C3027
+            code: H3027
             status: DONE
             valueQuantity:
               value: 0.995
@@ -231,7 +285,7 @@ Hematology:
                 high: 2.5
             interpretation: Low
           - name: Monocytes
-            code: C3028
+            code: H3028
             status: DONE
             valueQuantity:
               value: 0.936
@@ -244,7 +298,7 @@ Hematology:
                 low: 0
                 high: 6.6
           - name: Eosinophils
-            code: C3029
+            code: H3029
             status: DONE
             valueQuantity:
               value: 0.129
@@ -257,7 +311,7 @@ Hematology:
                 low: 0.000
                 high: 5.000
           - name: Basophils
-            code: C3030
+            code: H3030
             status: DONE
             valueQuantity:
               value: 0.012
@@ -270,7 +324,7 @@ Hematology:
                 low: 0.00
                 high: 0.35
           - name: Platelets
-            code: C3031
+            code: H3031
             status: DONE
             notes: Platelet clumps seen on slide. Platelet count and blood film estimate may be falsely decreased.
             valueQuantity:
