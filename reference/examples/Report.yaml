@@ -1,5 +1,5 @@
 Urinalysis:
-  summary: Report containing Urinalysis results
+  summary: Report (FINAL) containing Urinalysis test results.
   value:
     id: 306bdb0f-63b7-466d-8194-ada61c1e1778
     orderId: 22e7765a-36b6-4987-8554-e1026a1d80f3
@@ -88,7 +88,7 @@ Urinalysis:
             status: 'DONE'
             valueString: 'OCCASIONAL AMMONIUM MG PHOSPHATE (0-1)/HPF'
 Hematology:
-  summary: Report containing Hematology results in final state.
+  summary: Report (FINAL) containing Hematology test results.
   value:
     id: baf3d4fc-6462-424f-9a16-151721189429
     orderId: 175cce4d-30d9-4275-92d1-e18a7d856779
@@ -337,3 +337,346 @@ Hematology:
               - type: CRITICAL
                 low: 0
                 high: 1000
+Chemistry:
+  summary: Report (FINAL) containing Chemistry test results.
+  value:
+    id: 523d2b62-5b39-4e99-9d96-727c3ed08dff
+    orderId: 6923f914-b2ac-4d02-9742-b22463363096
+    status: FINAL
+    createdAt: 2019-01-01T00:00:00.000Z
+    updatedAt: 2019-01-01T00:00:00.000Z
+    testResults:
+      - name: Chemistry
+        code: CHE
+        status: COMPLETED
+        observations:
+          - name: 'Glucose'
+            code: 'C2216'
+            status: DONE
+            valueQuantity:
+              value: 94
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 63
+                high: 114
+              - type: CRITICAL
+                low: 21
+                high: 700
+          - name: 'IDEXX SDMA'
+            code: 'C2217'
+            status: DONE
+            notes: 'SDMA is increased and creatinine is within the reference interval: likely impaired GFR and kidney function. Recommended next step: evaluate complete urinalysis. For information on recommended actions visit: www.idexx.com/sdmaalgorithm'
+            valueQuantity:
+              value: 16
+              unit: 'µg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 0
+                high: 14
+              - type: CRITICAL
+                low: 0
+                high: 35
+            interpretation: High
+          - name: 'Creatinine'
+            code: 'C2218'
+            status: DONE
+            valueQuantity:
+              value: 0.5
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 0.5
+                high: 1.5
+              - type: CRITICAL
+                low: 0
+                high: 5
+          - name: 'BUN'
+            code: 'C2219'
+            status: DONE
+            valueQuantity:
+              value: 12
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 9
+                high: 31
+              - type: CRITICAL
+                low: 0
+                high: 100
+          - name: 'BUN: Creatinine Ratio'
+            code: 'C2220'
+            status: DONE
+            valueQuantity:
+              value: 24.0
+          - name: 'Phosphorus'
+            code: 'C2221'
+            status: DONE
+            valueQuantity:
+              value: 5.1
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 2.5
+                high: 6.1
+              - type: CRITICAL
+                low: 0.5
+                high: 20
+          - name: 'Calcium'
+            code: 'C2222'
+            status: DONE
+            valueQuantity:
+              value: 9.9
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 8.4
+                high: 11.8
+              - type: CRITICAL
+                low: 2
+                high: 15.5
+          - name: 'Sodium'
+            code: 'C2223'
+            status: DONE
+            valueQuantity:
+              value: 151
+              unit: 'mmol/L'
+            referenceRange:
+              - type: NORMAL
+                low: 142
+                high: 152
+              - type: CRITICAL
+                low: 115
+                high: 165
+          - name: 'Potassium'
+            code: 'C2224'
+            status: DONE
+            valueQuantity:
+              value: 4.9
+              unit: 'mmol/L'
+            referenceRange:
+              - type: NORMAL
+                low: 4.0
+                high: 5.4
+              - type: CRITICAL
+                low: 2.0
+                high: 7.5
+          - name: 'Na: K Ratio'
+            code: 'C2225'
+            status: DONE
+            valueQuantity:
+              value: 31
+            referenceRange:
+              - type: NORMAL
+                low: 28
+                high: 37
+              - type: CRITICAL
+                low: 18
+                high: 45
+          - name: 'Chloride'
+            code: 'C2226'
+            status: DONE
+            valueQuantity:
+              value: 109
+              unit: 'mmol/L'
+            referenceRange:
+              - type: NORMAL
+                low: 108
+                high: 119
+              - type: CRITICAL
+                low: 50
+                high: 145
+          - name: 'TCO2 (Bicarbonate)'
+            code: 'C2227'
+            status: DONE
+            valueQuantity:
+              value: 26
+              unit: 'mmol/L'
+            referenceRange:
+              - type: NORMAL
+                low: 13
+                high: 27
+              - type: CRITICAL
+                low: 5
+                high: 32
+          - name: 'Anion Gap'
+            code: 'C2228'
+            status: DONE
+            valueQuantity:
+              value: 21
+              unit: 'mmol/L'
+            referenceRange:
+              - type: NORMAL
+                low: 11
+                high: 26
+              - type: CRITICAL
+                low: 8
+                high: 40
+          - name: 'Total Protein'
+            code: 'C2229'
+            status: DONE
+            valueQuantity:
+              value: 6.0
+              unit: 'g/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 5.5
+                high: 7.5
+              - type: CRITICAL
+                low: 1
+                high: 9.6
+          - name: 'Albumin'
+            code: 'C2230'
+            status: DONE
+            valueQuantity:
+              value: 3.0
+              unit: 'g/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 2.7
+                high: 3.9
+              - type: CRITICAL
+                low: 0.5
+                high: 4.5
+          - name: 'Globulin'
+            code: 'C2231'
+            status: DONE
+            valueQuantity:
+              value: 3.0
+              unit: 'g'
+            referenceRange:
+              - type: NORMAL
+                low: 2.4
+                high: 4
+              - type: CRITICAL
+                low: 0.5
+                high: 7.2
+          - name: 'Albumin: Globulin Ratio'
+            code: 'C2232'
+            status: DONE
+            valueQuantity:
+              value: 1.0
+            referenceRange:
+              - type: NORMAL
+                low: 0.7
+                high: 1.5
+              - type: CRITICAL
+                low: 0.1
+                high: 1.6
+          - name: 'ALT'
+            code: 'C2233'
+            status: DONE
+            valueQuantity:
+              value: 140
+              unit: 'U/L'
+            referenceRange:
+              - type: NORMAL
+                low: 18
+                high: 121
+              - type: CRITICAL
+                low: 0
+                high: 1700
+            interpretation: High
+          - name: 'AST'
+            code: 'C2234'
+            status: DONE
+            valueQuantity:
+              value: 28
+              unit: 'U/L'
+            referenceRange:
+              - type: NORMAL
+                low: 16
+                high: 55
+              - type: CRITICAL
+                low: 0
+                high: 500
+          - name: 'ALP'
+            code: 'C2235'
+            status: DONE
+            valueQuantity:
+              value: 989
+              unit: 'U/L'
+            referenceRange:
+              - type: NORMAL
+                low: 5
+                high: 160
+              - type: CRITICAL
+                low: 0
+                high: 600
+            interpretation: High
+          - name: 'GGT'
+            code: 'C2236'
+            status: DONE
+            valueQuantity:
+              value: 12
+              unit: 'U/L'
+            referenceRange:
+              - type: NORMAL
+                low: 0
+                high: 13
+              - type: CRITICAL
+                low: 0
+                high: 200
+          - name: 'Bilirubin - Total'
+            code: 'C2237'
+            status: DONE
+            valueQuantity:
+              value: 0.2
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 0
+                high: 0.3
+              - type: CRITICAL
+                low: 0
+                high: 10
+          - name: 'Bilirubin - Conjugated'
+            code: 'C2238'
+            status: DONE
+            valueQuantity:
+                value: 0.1
+                unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 0
+                high: 0.1
+              - type: CRITICAL
+                low: 0
+                high: 10
+          - name: 'Cholesterol'
+            code: 'C2239'
+            status: DONE
+            valueQuantity:
+              value: 307
+              unit: 'mg/dL'
+            referenceRange:
+              - type: NORMAL
+                low: 131
+                high: 347
+              - type: CRITICAL
+                low: 20
+                high: 800
+          - name: 'Creatine Kinase'
+            code: 'C2240'
+            status: DONE
+            valueQuantity:
+              value: 308
+              unit: 'U/L'
+            referenceRange:
+              - type: NORMAL
+                low: 10
+                high: 200
+              - type: CRITICAL
+                low: 0
+                high: 2500
+            interpretation: High
+          - name: 'Hemolysis Index'
+            code: 'C2241'
+            status: DONE
+            notes: 'Index of N, 1+, 2+ exhibits no significant effect on chemistry values.'
+            valueString: 'N'
+          - name: 'Lipemia Index'
+            code: 'C2242'
+            status: DONE
+            notes: 'Index of N, 1+, 2+ exhibits no significant effect on chemistry values.'
+            valueString: 'N'

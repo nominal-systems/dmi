@@ -8,3 +8,5 @@ content:
         $ref: '../examples/Report.yaml#/Urinalysis'
       Hematology:
         $ref: '../examples/Report.yaml#/Hematology'
+      Chemistry:
+        $ref: '../examples/Report.yaml#/Chemistry'
