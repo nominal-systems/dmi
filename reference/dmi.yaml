@@ -2,7 +2,7 @@ openapi: 3.0.0
 x-stoplight:
   id: 545mk2dwwzqkv
 info:
-  title: dmi
+  title: DMI API
   version: 0.1.0
 servers:
   - url: 'http://localhost:4010'
