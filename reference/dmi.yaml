@@ -163,6 +163,8 @@ paths:
           description: Organization Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
       tags:
         - Organizations
     put:
@@ -178,6 +180,8 @@ paths:
           description: Organization Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
       tags:
         - Organizations
   /organizations/{organizationId}/members:
@@ -223,8 +227,7 @@ paths:
         '409':
           description: Practice name already taken.
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Practices
     get:
@@ -239,8 +242,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Practices
   /practices/{practiceId}:
@@ -260,8 +262,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Practices
     delete:
@@ -280,8 +281,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Practices
   /providers:
@@ -297,8 +297,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
   /providers/{providerId}:
@@ -318,8 +317,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
   /providers/{providerId}/configurations:
@@ -339,8 +337,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
     post:
@@ -361,8 +358,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
   /providers/{providerId}/services:
@@ -383,8 +379,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Directory of services
   /providers/{providerId}/devices:
@@ -404,7 +399,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
   /providers/{providerId}/configurations/{configurationId}:
@@ -425,8 +420,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
     delete:
@@ -446,8 +440,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Providers
   /integrations:
@@ -467,8 +460,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Integrations
     get:
@@ -483,8 +475,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Integrations
   /integrations/{integrationId}:
@@ -504,8 +495,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Integrations
     delete:
@@ -524,8 +514,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Integrations
   /orders:
@@ -545,8 +534,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
     get:
@@ -566,8 +554,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
   /orders/{orderId}:
@@ -587,8 +574,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
     delete:
@@ -607,8 +593,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
   /orders/{orderId}/report:
@@ -628,8 +613,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
   /orders/{orderId}/tests:
@@ -651,8 +635,7 @@ paths:
         '409':
           description: Test code already in order
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
   /orders/{orderId}/tests/{testCode}:
@@ -675,8 +658,7 @@ paths:
         '409':
           description: Test code not in order
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
   /reports/{reportId}:
@@ -696,8 +678,7 @@ paths:
           '403':
             $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
   /refs/sexes:
@@ -711,7 +692,7 @@ paths:
         '401':
           $ref: './responses/401Unauthorized.yaml'
       security:
-        - BearerAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Reference data
   /refs/species:
@@ -725,7 +706,7 @@ paths:
         '401':
           $ref: './responses/401Unauthorized.yaml'
       security:
-        - BearerAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Reference data
   /refs/breeds:
@@ -739,7 +720,7 @@ paths:
         '401':
           $ref: './responses/401Unauthorized.yaml'
       security:
-        - BearerAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Reference data
   /events:
@@ -759,8 +740,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Events
   /event-subscriptions:
@@ -780,8 +760,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Events
   /event-subscriptions/{subscriptionId}:
@@ -801,8 +780,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Events
     delete:
@@ -820,8 +798,7 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
       security:
-        - BearerAuth: [ ]
-          ApiKeyAuth: [ ]
+        - ApiKeyAuth: [ ]
       tags:
         - Events
 components:
