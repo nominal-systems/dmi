@@ -1,0 +1,10 @@
+Berlin:
+  id: 1cc62002-5e24-45b8-87dd-ddddcc2b1b89
+  name: Berlin
+  species: CANIS_LUPUS_FAMILIARIS
+  breed: JACK_RUSSEL_TERRIER
+  sex: MALE
+  birthdate: '2011-05-08'
+  weight:
+    measurement: 8.5
+    units: KG

@@ -48,6 +48,8 @@ properties:
       The datetime that the result was updated
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
+  patient:
+    $ref: './Patient.yaml'
   testResults:
     type: array
     description: |
