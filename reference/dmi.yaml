@@ -132,12 +132,12 @@ paths:
       tags:
         - Organizations
   /organizations/{organizationId}:
-    parameters:
-      - $ref: './parameters/organizationId.yaml'
     get:
       summary: Get an organization by ID
       operationId: get-organizations-organizationId
       description: Retrieve the information of the organization with the matching organization ID.
+      parameters:
+        - $ref: './parameters/organizationId.yaml'
       responses:
         '200':
           $ref: './responses/OrganizationFound.yaml'
@@ -150,12 +150,12 @@ paths:
       tags:
         - Organizations
   /organizations/{organizationId}/keys:
-    parameters:
-      - $ref: './parameters/organizationId.yaml'
     get:
       summary: Get organization API keys
       operationId: get-organizations-organizationId-keys
       description: Retrieve the API keys of the organization with the matching organization ID.
+      parameters:
+        - $ref: './parameters/organizationId.yaml'
       responses:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
@@ -169,6 +169,8 @@ paths:
       summary: Regenerate organization API keys
       operationId: put-organizations-organizationId-keys
       description: Regenerate the API keys of the organization with the matching organization ID.
+      parameters:
+        - $ref: './parameters/organizationId.yaml'
       responses:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
@@ -179,12 +181,12 @@ paths:
       tags:
         - Organizations
   /organizations/{organizationId}/members:
-    parameters:
-      - $ref: './parameters/organizationId.yaml'
     post:
       summary: Add member to an organization
       operationId: post-organizations-organizationId-members
       description: Add a new member to the organization with the matching organization ID.
+      parameters:
+        - $ref: './parameters/organizationId.yaml'
       requestBody:
         $ref: './requestBodies/OrganizationMemberCreateBody.yaml'
       responses:
@@ -242,12 +244,12 @@ paths:
       tags:
         - Practices
   /practices/{practiceId}:
-    parameters:
-      - $ref: './parameters/practiceId.yaml'
     get:
       summary: Get a practice by ID
       operationId: get-practices-practiceId
       description: Retrieve the practice with the matching practice ID.
+      parameters:
+        - $ref: './parameters/practiceId.yaml'
       responses:
         '200':
           $ref: './responses/PracticeFound.yaml'
@@ -266,6 +268,8 @@ paths:
       summary: Delete a practice
       operationId: delete-practices-practiceId
       description: Delete the practice with the matching practice ID.
+      parameters:
+        - $ref: './parameters/practiceId.yaml'
       responses:
         '204':
           description: Practice deleted
@@ -298,12 +302,12 @@ paths:
       tags:
         - Providers
   /providers/{providerId}:
-    parameters:
-      - $ref: './parameters/providerId.yaml'
     get:
       summary: Get a diagnostic provider
       operationId: get-providers-providerId
       description: Retrieve the diagnostic provider with the matching provider ID.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
       responses:
         '200':
           $ref: './responses/ProviderFound.yaml'
@@ -319,12 +323,12 @@ paths:
       tags:
         - Providers
   /providers/{providerId}/configurations:
-    parameters:
-      - $ref: './parameters/providerId.yaml'
     get:
       summary: List all configurations for a diagnostic provider
       operationId: get-providers-providerId-configurations
       description: Retrieve the configurations for the specified provider.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
       responses:
         '200':
           $ref: './responses/ProviderConfigurationList.yaml'
@@ -343,6 +347,8 @@ paths:
       summary: Configure a diagnostic provider
       operationId: post-providers-providerId-configurations
       description: Create a new configuration for a diagnostic provider by specifying an options object.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
       requestBody:
         $ref: './requestBodies/ProviderConfigurationCreateBody.yaml'
       responses:
@@ -360,13 +366,13 @@ paths:
       tags:
         - Providers
   /providers/{providerId}/services:
-    parameters:
-      - $ref: './parameters/providerId.yaml'
-      - $ref: './parameters/query/integration_id.yaml'
     get:
       summary: Get directory of services for a diagnostic provider
       operationId: get-providers-providerId-services
       description: Retrieve the directory of services for the specified provider and configured integration.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/query/integration_id.yaml'
       responses:
         '200':
           $ref: './responses/ProviderServiceList.yaml'
@@ -382,12 +388,12 @@ paths:
       tags:
         - Directory of services
   /providers/{providerId}/devices:
-    parameters:
-      - $ref: './parameters/providerId.yaml'
     get:
       summary: List provider devices
       operationId: get-providers-providerId-devices
       description: Retrieve the devices for the specified provider.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
       responses:
         '200':
           $ref: './responses/ProviderDeviceList.yaml'
@@ -402,13 +408,13 @@ paths:
       tags:
         - Providers
   /providers/{providerId}/configurations/{configurationId}:
-    parameters:
-      - $ref: './parameters/providerId.yaml'
-      - $ref: './parameters/configurationId.yaml'
     get:
       summary: Get a configuration for a provider
       operationId: get-providers-providerId-configurations-configurationId
       description: Retrieve the configuration with the matching configuration ID for the specified provider.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/configurationId.yaml'
       responses:
         '200':
           $ref: './responses/ProviderConfigurationFound.yaml'
@@ -427,6 +433,9 @@ paths:
       summary: Delete a configuration for a provider
       operationId: delete-providers-providerId-configurations-configurationId
       description: Remove a configuration from a provider.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/configurationId.yaml'
       responses:
         '204':
           description: Configuration Deleted
@@ -479,12 +488,12 @@ paths:
       tags:
         - Integrations
   /integrations/{integrationId}:
-    parameters:
-      - $ref: './parameters/integrationId.yaml'
     get:
       summary: Get a diagnostic provider integration
       operationId: get-integrations-integrationId
       description: Retrieve the diagnostic provider integration with the matching integration ID.
+      parameters:
+        - $ref: './parameters/integrationId.yaml'
       responses:
         '200':
           $ref: './responses/IntegrationFound.yaml'
@@ -503,6 +512,8 @@ paths:
       summary: Delete a diagnostic provider integration
       operationId: delete-integrations-integrationId
       description: Remove a diagnostic provider integration.
+      parameters:
+        - $ref: './parameters/integrationId.yaml'
       responses:
         '204':
           description: Integration Deleted
@@ -560,12 +571,12 @@ paths:
       tags:
         - Orders & Results
   /orders/{orderId}:
-    parameters:
-      - $ref: './parameters/orderId.yaml'
     get:
       summary: Get an order
       operationId: get-orders-orderId
       description: Retrieve the order with the matching order ID.
+      parameters:
+        - $ref: './parameters/orderId.yaml'
       responses:
         '200':
           $ref: './responses/OrderFound.yaml'
@@ -584,6 +595,8 @@ paths:
       summary: Cancel an order
       operationId: delete-orders-orderId
       description: Cancel the order with the matching order ID.
+      parameters:
+        - $ref: './parameters/orderId.yaml'
       responses:
         '204':
           description: Order Deleted
@@ -599,12 +612,12 @@ paths:
       tags:
         - Orders & Results
   /orders/{orderId}/report:
-    parameters:
-      - $ref: './parameters/orderId.yaml'
     get:
       summary: Get the report for an order
       operationId: get-orders-orderId-report
       description: Retrieve the report for and with the matching order ID.
+      parameters:
+        - $ref: './parameters/orderId.yaml'
       responses:
         '200':
           $ref: './responses/OrderReport.yaml'
@@ -667,12 +680,12 @@ paths:
       tags:
         - Orders & Results
   /reports/{reportId}:
-    parameters:
-      - $ref: './parameters/reportId.yaml'
     get:
       summary: Get a report by ID
       operationId: get-reports-reportId
       description: Retrieve the report with the matching report ID.
+      parameters:
+        - $ref: './parameters/reportId.yaml'
       responses:
           '200':
             $ref: './responses/ReportFound.yaml'
@@ -772,12 +785,12 @@ paths:
       tags:
         - Events
   /event-subscriptions/{subscriptionId}:
-    parameters:
-      - $ref: './parameters/subscriptionId.yaml'
     get:
       summary: Get an event subscription details
       operationId: get-event-subscriptions-subscriptionId
       description: Retrieve the event subscription with the matching subscription ID.
+      parameters:
+        - $ref: './parameters/subscriptionId.yaml'
       responses:
         '200':
           $ref: './responses/EventSubscriptionFound.yaml'
