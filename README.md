@@ -19,8 +19,15 @@ and a mock server will be available at http://127.0.0.1:4010
 To import the OpenAPI specification file, Postman collections and environments:
 1. From your Workspace, click on "Import".
 2. Select the "Code repository" tab and click on "GitHub" and follow the GitHub authorization flow.
-3. Configure the integration:
+3. Configure the import:
    1. GitHub organization: nominal-systems
    2. Repository: dmi
    3. Branch: master
-4. Review the files to be imported and click on "Import"
+4. Review the files to be imported:
+   - DMI API (OpenAPI 3.0 API)
+   - DMI API [Local] (Postman environment for local server)
+   - DMI API [Mock Server] (Postman environment for remote mock server)
+5. Click on "Show advanced settings":
+   1. On "Request parameter generation" select "Schema".
+   2. On "Folder organization" select "Tags".
+6. Click on "Import"
