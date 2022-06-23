@@ -626,6 +626,94 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
+  /orders/urinalysis/report:
+    get:
+      summary: Urinalysis report
+      operationId: get-orders-urinalysis-report
+      description: |
+        Retrieve a sample report containing a urinalysis test.
+        
+        *Please note that this endpoint is for development purposes only and will not be part of the initial release.*
+      responses:
+        '200':
+          description: Sample Urinalysis Report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/Report.yaml'
+              examples:
+                Chemistry:
+                  $ref: './examples/Report.yaml#/Urinalysis'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Examples
+  /orders/chemistry/report:
+    get:
+      summary: Chemistry report
+      operationId: get-orders-chemistry-report
+      description: |
+        Retrieve a sample report containing a chemistry test.
+        
+        *Please note that this endpoint is for development purposes only and will not be part of the initial release.*
+      responses:
+        '200':
+          description: Sample Chemistry Report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/Report.yaml'
+              examples:
+                Chemistry:
+                  $ref: './examples/Report.yaml#/Chemistry'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Examples
+  /orders/hematology/report:
+    get:
+      summary: Hematology report
+      operationId: get-orders-hematology-report
+      description: |
+        Retrieve a sample report containing an hematology test.
+        
+        *Please note that this endpoint is for development purposes only and will not be part of the initial release.*
+      responses:
+        '200':
+          description: Sample Hematology Report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/Report.yaml'
+              examples:
+                Chemistry:
+                  $ref: './examples/Report.yaml#/Hematology'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Examples
+  /orders/screening/report:
+    get:
+      summary: Screening report
+      operationId: get-orders-screening-report
+      description: |
+        Retrieve a sample report for a full adult screening. The report includes a provider PDF.
+        
+        *Please note that this endpoint is for development purposes only and will not be part of the initial release.*
+      responses:
+        '200':
+          description: Sample Screening Report
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/Report.yaml'
+              examples:
+                Chemistry:
+                  $ref: './examples/Report.yaml#/Screening'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Examples
   /orders/{orderId}/tests:
     post:
       summary: Add tests to an existing order
@@ -824,3 +912,15 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
+tags:
+  - name: Admin
+  - name: Users
+  - name: Organizations
+  - name: Practices
+  - name: Providers
+  - name: Integrations
+  - name: Directory of services
+  - name: Reference data
+  - name: Orders & Results
+  - name: Events
+  - name: Examples
