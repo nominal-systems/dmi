@@ -1,0 +1,125 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Getting started",
+      "uri": "docs/getting-started.md"
+    },
+    {
+      "type": "divider",
+      "title": "Orders & Results"
+    },
+    {
+      "type": "item",
+      "title": "Orders",
+      "uri": "docs/orders/readme.md"
+    },
+    {
+      "type": "item",
+      "title": "Reports & Results",
+      "uri": "docs/results/readme.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIs"
+    },
+    {
+      "type": "item",
+      "title": "DMI API",
+      "uri": "reference/dmi.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "Client",
+      "uri": "reference/schemas/Client.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Event",
+      "uri": "reference/schemas/Event.yaml"
+    },
+    {
+      "type": "item",
+      "title": "EventSubscription",
+      "uri": "reference/schemas/EventSubscription"
+    },
+    {
+      "type": "item",
+      "title": "Integration",
+      "uri": "reference/schemas/Integration.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Observation",
+      "uri": "reference/schemas/Observation.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order",
+      "uri": "reference/schemas/Order.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Organization",
+      "uri": "reference/schemas/Organization/Organization.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Patient",
+      "uri": "reference/schemas/Patient.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Practice",
+      "uri": "reference/schemas/Practice.yaml"
+    },{
+      "type": "item",
+      "title": "Provider",
+      "uri": "reference/schemas/Provider.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ProviderConfiguration",
+      "uri": "reference/schemas/ProviderConfiguration.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ProviderDevice",
+      "uri": "reference/schemas/ProviderDevice.yaml"
+    },
+    {
+      "type": "item",
+      "title": "ProviderService",
+      "uri": "reference/schemas/ProviderService.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Report",
+      "uri": "reference/schemas/Report.yaml"
+    },
+    {
+      "type": "item",
+      "title": "TestCode.yaml",
+      "uri": "reference/schemas/"
+    },
+    {
+      "type": "item",
+      "title": "TestResult.yaml",
+      "uri": "reference/schemas/"
+    },
+    {
+      "type": "item",
+      "title": "User",
+      "uri": "reference/schemas/User.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Veterinarian",
+      "uri": "reference/schemas/Veterinarian.yaml"
+    }
+  ]
+}
