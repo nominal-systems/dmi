@@ -8,3 +8,7 @@ You can use the DMI API is test mode (with the test API keys) which doesn't affe
 The DMI API use API keys to authenticate requests for most operations. You can [view](https://nominal.stoplight.io/docs/dmi/856061bdc3bcf-get-organization-api-keys) and [regenerate](https://nominal.stoplight.io/docs/dmi/0284e6090ecf0-regenerate-organization-api-keys) your API keys using the Organization endpoints.
 
 Organization management is secured using the [JWT Bearer Auth](https://jwt.io/introduction), and users are provisioned by an admin user with server provided credentials using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
+
+## Next steps
+
+- Explore the [API specification](https://nominal.stoplight.io/docs/dmi/545mk2dwwzqkv-dmi-api)
