@@ -1,49 +1,50 @@
 EventSubscriptionType:
   description: |
-    The type of subscription. Currently only Azure Event Hubs subscriptions are supported.
+    The type of subscription. 
+    
+    Currently only Azure Event Hubs subscriptions are supported.
   type: string
   enum:
     - azure_event_hubs
   example: azure_event_hubs
 EventSubscriptionOptions:
     description: |
-      Options for the subscription. The options are specific to the `subscription_type`.
-    
-      For Azure Event Hubs subscriptions, the options are:
-      * `event_hub_name`: The name of the event hub.
-      * `event_hub_namespace`: The namespace of the event hub.
-      * `event_hub_key_name`: The shared key name.
-      * `event_hub_key_value`:  The shared key value.
+      Options for the subscription.
     oneOf:
       - $ref: '#/AzureEventHubsSubscriptionOptions'
     example:
-      event_hub_name: my-event-hub
-      event_hub_namespace: my-namespace
-      event_hub_key_name: my-key-name
-      event_hub_key_value: my-key-value
+      hub_name: my-event-hub
+      hub_namespace: my-namespace
+      sa_key_name: my-key-name
+      sa_key_value: my-key-value
 AzureEventHubsSubscriptionOptions:
     description: |
-      Options for the Azure Event Hubs subscription.
+      Options for the Azure Event Hubs subscription:
+      
+      * `hub_name`: The name of the event hub.
+      * `hub_namespace`: The namespace of the event hub.
+      * `sa_key_name`: The shared access key name.
+      * `sa_key_value`:  The shared access key value.
     type: object
     properties:
-      event_hub_name:
+      hub_name:
         type: string
         description: The name of the event hub.
         example: event-hub-name
-      event_hub_namespace:
+      hub_namespace:
         type: string
         description: The namespace of the event hub.
         example: event-hub-namespace
-      event_hub_key_name:
+      sa_key_name:
         type: string
         description: The shared key name.
         example: event-hub-key-name
-      event_hub_key_value:
+      sa_key_value:
         type: string
         description: The shared key value.
         example: event-hub-key-value
     required:
-      - event_hub_name
-      - event_hub_namespace
-      - event_hub_key_name
-      - event_hub_key_value
+      - hub_name
+      - hub_namespace
+      - sa_key_name
+      - sa_key_value

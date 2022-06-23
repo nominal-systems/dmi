@@ -1,6 +1,12 @@
 title: EventSubscription
 description: |
   Event subscriptions allow your application to get notified of events that occur in the broker.
+  
+  ### Supported subscription types
+  
+  **Azure Event Hubs**
+  
+  Use the `azure_event_hubs` subscription type create ab Azure Event Hubs subscription and receive event messages to your hub/namesapce.
 type: object
 properties:
   id:
