@@ -1,10 +1,12 @@
-ProviderConfigurationOptions:
-  title: ProviderConfigurationOptions
-  type: object
-  description: Provider configuration object
-  additionalProperties: true
-  example:
-    url: /providers/demo/configuration
-    partnerId: demo
-    partnerToken: 939b3c22-b0df-480b-9d47-9e78a6002d5b
+title: ProviderConfigurationOptions
+type: object
+description: |
+  Provider configuration object.
+  
+  This will vary depending on the provider.
+additionalProperties: true
+example:
+  url: /providers/demo/configuration
+  partnerId: demo
+  partnerToken: 939b3c22-b0df-480b-9d47-9e78a6002d5b
 
