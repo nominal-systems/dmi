@@ -2,4 +2,4 @@ description: Organization Created
 content:
   application/json:
     schema:
-      $ref: '../schemas/Organization/OrganizationInfo.yaml#/OrganizationInfo'
+      $ref: '../schemas/Organization.yaml'

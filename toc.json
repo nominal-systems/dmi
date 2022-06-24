@@ -65,7 +65,7 @@
     {
       "type": "item",
       "title": "Organization",
-      "uri": "reference/schemas/Organization/Organization.yaml"
+      "uri": "reference/schemas/Organization.yaml"
     },
     {
       "type": "item",

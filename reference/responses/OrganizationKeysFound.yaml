@@ -2,4 +2,4 @@ description: Organization Found
 content:
   application/json:
     schema:
-      $ref: '../schemas/Organization/OrganizationApiKeys.yaml#/OrganizationApiKeys'
+      $ref: '../schemas/OrganizationApiKeys.yaml'

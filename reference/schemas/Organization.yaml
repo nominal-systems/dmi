@@ -1,0 +1,42 @@
+title: Organization
+description: Organization
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Unique identifier for the organization.
+    readOnly: true
+    example: ee2befeb-ff19-4088-a5eb-45ea15430c16
+  name:
+    type: string
+    description: Name of the organization.
+    example: My Organization
+  createdAt:
+    type: string
+    format: date-time
+    description: The date that the organization was created
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
+  updatedAt:
+    type: string
+    format: date-time
+    description: The date that the organization was updated
+    readOnly: true
+    example: 2020-02-01T00:00:00.000Z
+  owner:
+    readOnly: true
+    allOf:
+      - $ref: './User.yaml'
+  members:
+    type: array
+    readOnly: true
+    items:
+      $ref: './User.yaml'
+required:
+  - id
+  - name
+  - createdAt
+  - updatedAt
+  - owner
+  - members
