@@ -1,0 +1,20 @@
+title: Address
+type: object
+description: An address expressed using postal conventions.
+properties:
+  street:
+    type: string
+    description: Street address
+    example: Frydenlundsvej 30
+  city:
+    type: string
+    description: City
+    example: Copenhagen
+  postalCode:
+    type: string
+    description: Postal Code
+    example: 2950
+  country:
+    type: string
+    description: Country
+    example: DK

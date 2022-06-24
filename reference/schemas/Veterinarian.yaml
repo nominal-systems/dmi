@@ -18,4 +18,8 @@ properties:
     description: The last name of the veterinarian.
     example: Doe
   contact:
-    $ref: './Contact.yaml#/Contact'
+    description: The contact details for the veterinarian.
+    allOf:
+        - $ref: '../types/Contact.yaml'
+required:
+  - id

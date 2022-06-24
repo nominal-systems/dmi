@@ -63,7 +63,7 @@ properties:
       
       Multiple formats are allowed but they shall be semantically equivalent.
     items:
-      $ref: './Attachment.yaml#/Attachment'
+      $ref: '../types/Attachment.yaml'
 required:
   - id
   - orderId

@@ -18,9 +18,13 @@ properties:
     description: The last name of the client.
     example: Smith
   contact:
-    $ref: './Contact.yaml#/Contact'
+    description: The contact details for the client.
+    allOf:
+      - $ref: '../types/Contact.yaml'
   address:
-    $ref: './Address.yaml#/Address'
+    description: The address of the client.
+    allOf:
+      - $ref: '../types/Address.yaml'
   isDoctor:
     type: boolean
     description: Whether the client is a doctor.
@@ -29,3 +33,5 @@ properties:
     type: boolean
     description: Whether the client is a staff member.
     example: false
+required:
+  - id

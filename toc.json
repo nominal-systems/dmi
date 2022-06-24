@@ -76,7 +76,8 @@
       "type": "item",
       "title": "Practice",
       "uri": "reference/schemas/Practice.yaml"
-    },{
+    },
+    {
       "type": "item",
       "title": "Provider",
       "uri": "reference/schemas/Provider.yaml"
@@ -120,6 +121,25 @@
       "type": "item",
       "title": "Veterinarian",
       "uri": "reference/schemas/Veterinarian.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Datatypes"
+    },
+    {
+      "type": "item",
+      "title": "Address",
+      "uri": "reference/types/Address.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Attachment",
+      "uri": "reference/types/Attachment.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Contact",
+      "uri": "reference/types/Contact.yaml"
     }
   ]
 }

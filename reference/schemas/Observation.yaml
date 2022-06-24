@@ -45,7 +45,7 @@ properties:
     description: |
       Visual representations of the observation.
     items:
-      $ref: './Attachment.yaml#/Attachment'
+      $ref: '../types/Attachment.yaml'
   interpretation:
     type: string
     description: |
