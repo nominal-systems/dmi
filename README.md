@@ -3,7 +3,7 @@
 ## Getting Started
 
 ### Documentation 
-Access the documentation for the Diagnostic Modality Integration API at: https://nominal.stoplight.io/docs/dmi/6e712a6d86e43-diagnostic-modality-integration-api 
+Access the documentation for the Diagnostic Modality Integration API at: https://nominal.stoplight.io/docs/dmi 
 
 ### Mock Server
 The API has a publicly available mock server that can be used to test and develop integrating into the API: https://stoplight.io/mocks/nominal/dmi/57735574
