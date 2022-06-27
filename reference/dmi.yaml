@@ -841,6 +841,26 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Events
+  /events/{eventId}:
+    get:
+      summary: Get an event by ID
+      operationId: get-events-eventId
+      description: Retrieve the event with the matching event ID.
+      parameters:
+        - $ref: './parameters/eventId.yaml'
+      responses:
+        '200':
+          $ref: './responses/EventFound.yaml'
+        '404':
+          description: Event Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Events
   /event-subscriptions:
     post:
       summary: Create an event subscription

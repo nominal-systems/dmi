@@ -7,18 +7,28 @@ properties:
     type: string
     format: uuid
     description: The unique identifier of the event.
+    readOnly: true
     example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
   time:
     type: integer
-    description: Time of the event in Unix epoch time.
+    description: Time at which the object was created. Measured in seconds since the Unix epoch.
+    readOnly: true
     example: 1655129477
   type:
-    $ref: './EventType.yaml#/EventType'
+    readOnly: true
+    allOf:
+      - $ref: './EventType.yaml#/EventType'
   integrationId:
     type: string
     description: The integration that generated the event
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03.
+    readOnly: true
   data:
+    description: The data associated with the event.
     oneOf:
       - $ref: './EventType.yaml#/DataOrderCreated'
       - $ref: './EventType.yaml#/DataOrderStatus'
+required:
+  - id
+  - time
+  - type

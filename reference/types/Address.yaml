@@ -4,17 +4,17 @@ description: An address expressed using postal conventions.
 properties:
   street:
     type: string
-    description: Street address
+    description: Street name, number, direction & P.O. Box etc.
     example: Frydenlundsvej 30
   city:
     type: string
-    description: City
+    description: Name of city, town etc.
     example: Copenhagen
   postalCode:
     type: string
-    description: Postal Code
+    description: Postal code for area
     example: 2950
   country:
     type: string
-    description: Country
+    description: ISO 3166 2 letter country code.
     example: DK

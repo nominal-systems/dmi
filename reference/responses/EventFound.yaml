@@ -1,0 +1,5 @@
+description: Event Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Event.yaml'
