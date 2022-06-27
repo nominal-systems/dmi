@@ -13,7 +13,7 @@ properties:
     type: string
     format: byte
     description: The actual data of the attachment - a sequence of bytes, base64 encoded.
-  url:
+  uri:
     type: string
     format: uri
     description: The URL where the data can be retrieved.

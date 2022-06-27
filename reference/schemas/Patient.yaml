@@ -44,3 +44,6 @@ properties:
           - KG
           - LBS
         example: KG
+required:
+  - id
+  - name

@@ -23,18 +23,20 @@ properties:
     description: |
       The accession identifier provided by the provider.
       
-      The identifier assigned by the provider to the order. This could be used by the PIMS to match the order to the original requisition to the order in the provider's system.
+      The identifier assigned to the order by the provider. This could be used by the PIMS to match the order to the original requisition in the provider's system.
     example: 8279820
   integrationId:
     type: string
     format: uuid
     description: The unique identifier of the integration.
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
-  manifestUri:
-    type: string
-    format: uri
-    description: |
-      The URL of the provider generated manifest (usually a PDF) that accompanies specimens to the lab.
+  manifest:
+    description: The provider-generated manifest (usually a PDF) that accompanies specimens to the lab.
+    allOf:
+      - $ref: '../types/Attachment.yaml'
+    example:
+      contentType: application/pdf
+      uri: http://example.com/path/to/manifest.pdf
   submissionUri:
     type: string
     format: uri
@@ -65,11 +67,17 @@ properties:
       - ERROR
     example: COMPLETED
   patient:
-    $ref: './Patient.yaml'
+    description: The subject the tests are ordered for.
+    allOf:
+      - $ref: './Patient.yaml'
   client:
-    $ref: './Client.yaml'
+    description: The client of the order. Usually the pet owner.
+    allOf:
+      - $ref: './Client.yaml'
   veterinarian:
-    $ref: './Veterinarian.yaml'
+    description: The veterinarian requesting the order.
+    allOf:
+      - $ref: './Veterinarian.yaml'
   testCodes:
     type: array
     description: The test codes to be ordered.
