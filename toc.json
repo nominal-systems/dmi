@@ -30,6 +30,11 @@
       "uri": "docs/configuration/organizations-and-practices.md"
     },
     {
+      "type": "item",
+      "title": "Providers",
+      "uri": "docs/configuration/providers.md"
+    },
+    {
       "type": "divider",
       "title": "Orders & Results"
     },

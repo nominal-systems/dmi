@@ -11,7 +11,7 @@ The DMI API use API keys to authenticate requests for most operations. You can [
 Organization management is secured using the [JWT Bearer Auth](https://jwt.io/introduction), and users are provisioned by an admin user with server provided credentials using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
 
 ## Events
-Events are our way of letting you know when something relevant happens in your organizations. When something relevant occurs an `Event` object is created (see [Event](/docs/dmi/schemas/event) schema) and published to any previously created subscription endpoints or message queues. As other resources in the API, events can be listed, searched and retrieved individually. 
+Events are our way of letting you know when something relevant happens in the broker. When something relevant occurs an `Event` object is created (see [Event](/docs/dmi/schemas/event) schema) and published to any previously created subscription endpoints or message queues. As other resources in the API, events can be listed, searched and retrieved individually. 
 
 Learn more about events in the [Events API Reference](docs/orders-and-results/events.md).
 
