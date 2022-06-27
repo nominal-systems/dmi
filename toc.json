@@ -2,8 +2,32 @@
   "items": [
     {
       "type": "item",
-      "title": "Getting started",
+      "title": "Introduction",
+      "uri": "docs/introduction.md"
+    },
+    {
+      "type": "item",
+      "title": "Getting Started",
       "uri": "docs/getting-started.md"
+    },
+    {
+      "type": "item",
+      "title": "Developer Quickstart",
+      "uri": "docs/developer-quickstart.md"
+    },
+    {
+      "type": "divider",
+      "title": "Configuration"
+    },
+    {
+      "type": "item",
+      "title": "Users",
+      "uri": "docs/users.md"
+    },
+    {
+      "type": "item",
+      "title": "Organizations & Practices",
+      "uri": "docs/organizations-and-practices.md"
     },
     {
       "type": "divider",
@@ -12,12 +36,51 @@
     {
       "type": "item",
       "title": "Orders",
-      "uri": "docs/orders/readme.md"
+      "uri": "docs/orders.md"
     },
     {
       "type": "item",
-      "title": "Reports & Results",
-      "uri": "docs/results/readme.md"
+      "title": "Directory of Services",
+      "uri": "docs/directory-of-services.md"
+    },
+    {
+      "type": "item",
+      "title": "Reference Data",
+      "uri": "docs/reference-data.md"
+    },
+    {
+      "type": "item",
+      "title": "Results",
+      "uri": "docs/results.md"
+    },
+    {
+      "type": "item",
+      "title": "Events",
+      "uri": "docs/events.md"
+    },
+    {
+      "type": "divider",
+      "title": "Providers"
+    },
+    {
+      "type": "item",
+      "title": "Demo Provider",
+      "uri": "docs/providers/demo-provider.md"
+    },
+    {
+      "type": "item",
+      "title": "Antech",
+      "uri": "docs/providers/antech.md"
+    },
+    {
+      "type": "item",
+      "title": "IDEXX",
+      "uri": "docs/providers/idexx.md"
+    },
+    {
+      "type": "item",
+      "title": "Zoetis",
+      "uri": "docs/providers/zoetis.md"
     },
     {
       "type": "divider",
@@ -26,7 +89,8 @@
     {
       "type": "item",
       "title": "DMI API",
-      "uri": "reference/dmi.yaml"
+      "uri": "reference/dmi.yaml",
+      "slug": "api"
     },
     {
       "type": "divider",
@@ -40,7 +104,8 @@
     {
       "type": "item",
       "title": "Event",
-      "uri": "reference/schemas/Event.yaml"
+      "uri": "reference/schemas/Event.yaml",
+      "slug": "schemas/event"
     },
     {
       "type": "item",

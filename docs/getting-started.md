@@ -1,14 +1,18 @@
-# Diagnostic Modality Integration API
+# Getting Started
 
-The Diagnostic Modality Integration API is organized around REST, has predictable resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+## API Reference
+The DMI API is organized around REST, has predictable resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
-You can use the DMI API is test mode (with the test API keys) which doesn't affect your real data or generates any real interaction with diagnostic modality providers.
+You can use the DMI API in test mode (with the test API keys) which doesn't affect your real data or generates any real interaction with diagnostic modality providers.
 
 ## Authentication
-The DMI API use API keys to authenticate requests for most operations. You can [view](https://nominal.stoplight.io/docs/dmi/856061bdc3bcf-get-organization-api-keys) and [regenerate](https://nominal.stoplight.io/docs/dmi/0284e6090ecf0-regenerate-organization-api-keys) your API keys using the Organization endpoints.
+The DMI API use API keys to authenticate requests for most operations. You can [view](/docs/dmi/api/operations/list-organization-keys) and [regenerate](/docs/dmi/api/operations/update-a-organization-key) your API keys using the Organization endpoints.
 
 Organization management is secured using the [JWT Bearer Auth](https://jwt.io/introduction), and users are provisioned by an admin user with server provided credentials using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
 
-## Next steps
+## Events
+Events are our way of letting you know when something relevant happens in your organizations. When something relevant occurs an `Event` object is created (see [Event](/docs/dmi/schemas/event) schema) and published to any previously created subscription endpoints or message queues. As other resources in the API, events can be listed, searched and retrieved individually. 
 
-- Explore the [API specification](https://nominal.stoplight.io/docs/dmi/545mk2dwwzqkv-dmi-api)
+Learn more about events in the [Events API Reference](docs/events.md).
+
+To start configuring your integration with a demo provider through the DMI API, see the [Developer Quickstart](developer-quickstart.md).
