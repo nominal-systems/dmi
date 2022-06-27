@@ -3,17 +3,17 @@
     {
       "type": "item",
       "title": "Introduction",
-      "uri": "docs/introduction.md"
+      "uri": "docs/01-introduction.md"
     },
     {
       "type": "item",
       "title": "Getting Started",
-      "uri": "docs/getting-started.md"
+      "uri": "docs/02-getting-started.md"
     },
     {
       "type": "item",
       "title": "Developer Quickstart",
-      "uri": "docs/developer-quickstart.md"
+      "uri": "docs/03-developer-quickstart.md"
     },
     {
       "type": "divider",
@@ -22,12 +22,12 @@
     {
       "type": "item",
       "title": "Users",
-      "uri": "docs/users.md"
+      "uri": "docs/configuration/users.md"
     },
     {
       "type": "item",
       "title": "Organizations & Practices",
-      "uri": "docs/organizations-and-practices.md"
+      "uri": "docs/configuration/organizations-and-practices.md"
     },
     {
       "type": "divider",
@@ -36,27 +36,27 @@
     {
       "type": "item",
       "title": "Orders",
-      "uri": "docs/orders.md"
+      "uri": "docs/orders-and-results/orders.md"
     },
     {
       "type": "item",
       "title": "Directory of Services",
-      "uri": "docs/directory-of-services.md"
+      "uri": "docs/orders-and-results/directory-of-services.md"
     },
     {
       "type": "item",
       "title": "Reference Data",
-      "uri": "docs/reference-data.md"
+      "uri": "docs/orders-and-results/reference-data.md"
     },
     {
       "type": "item",
       "title": "Results",
-      "uri": "docs/results.md"
+      "uri": "docs/orders-and-results/results.md"
     },
     {
       "type": "item",
       "title": "Events",
-      "uri": "docs/events.md"
+      "uri": "docs/orders-and-results/events.md"
     },
     {
       "type": "divider",
