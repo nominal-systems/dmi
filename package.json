@@ -4,7 +4,8 @@
   "description": "## Getting Started",
   "main": "index.js",
   "scripts": {
-    "publish": "npx @stoplight/cli@5 push --ci-token $CI_TOKEN"
+    "validate": "swagger-cli validate reference/dmi.yaml",
+    "publish": "npm run validate && npx @stoplight/cli@5 push --ci-token $CI_TOKEN"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/nominal-systems/dmi/issues"
   },
-  "homepage": "https://github.com/nominal-systems/dmi#readme"
+  "homepage": "https://github.com/nominal-systems/dmi#readme",
+  "devDependencies": {
+    "swagger-cli": "^4.0.4"
+  }
 }
