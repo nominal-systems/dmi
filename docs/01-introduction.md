@@ -22,4 +22,6 @@ In summary:
 
 A **Partner** needs to integrate with a diagnostic modality **Provider**. An **Admin User** provision **Users** that manage **Organizations** and their **Practices**. Then **Provider Configurations** are created for each Provider the Organization wants to connect to and connects Practices to Providers through an **Integration**. **Orders** for diagnostic tests can be ordered through the API, which eventually will generate a diagnostic **Report** with the findings.
 
+---
+
 To understand how the API is designed and more about its features see the [Getting Started](02-getting-started.md) section.

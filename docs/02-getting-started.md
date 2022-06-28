@@ -13,6 +13,8 @@ Organization management is secured using the [JWT Bearer Auth](https://jwt.io/in
 ## Events
 Events are our way of letting you know when something relevant happens in the broker. When something relevant occurs an `Event` object is created (see [Event](/docs/dmi/schemas/event) schema) and published to any previously created subscription endpoints or message queues. As other resources in the API, events can be listed, searched and retrieved individually. 
 
-Learn more about events in the [Events API Reference](docs/events/events.md).
+Learn more about events at [Events](docs/events/events.md) in the API Reference.
+
+---
 
 To start configuring your integration with a demo provider through the DMI API, see the [Developer Quickstart](03-developer-quickstart.md).
