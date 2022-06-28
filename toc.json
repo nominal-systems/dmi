@@ -64,7 +64,8 @@
     {
       "type": "item",
       "title": "Reference Data",
-      "uri": "docs/orders-and-results/reference-data.md"
+      "uri": "docs/orders-and-results/reference-data.md",
+      "slug": "reference-data"
     },
     {
       "type": "item",
@@ -149,7 +150,8 @@
     {
       "type": "item",
       "title": "Patient",
-      "uri": "reference/schemas/Patient.yaml"
+      "uri": "reference/schemas/Patient.yaml",
+      "slug": "schemas/patient"
     },
     {
       "type": "item",
@@ -174,7 +176,8 @@
     {
       "type": "item",
       "title": "ProviderService",
-      "uri": "reference/schemas/ProviderService.yaml"
+      "uri": "reference/schemas/ProviderService.yaml",
+      "slug": "schemas/provider-service"
     },
     {
       "type": "item",

@@ -3,7 +3,7 @@ Sex:
   description: Sex
   type: object
   properties:
-    id:
+    code:
       type: string
       description: Sex code
       example: MALE
@@ -11,12 +11,15 @@ Sex:
       type: string
       description: Sex name
       example: Male
+  required:
+    - code
+    - name
 Species:
   title: Species
   description: Species
   type: object
   properties:
-    id:
+    code:
       type: string
       description: Species code
       example: CANIS_FAMILIARIS
@@ -24,12 +27,15 @@ Species:
       type: string
       description: Species name
       example: Canis familiaris
+  required:
+    - code
+    - name
 Breed:
   title: Breed
   description: Breed
   type: object
   properties:
-    id:
+    code:
       type: string
       description: Breed code
       example: TERRIER
@@ -41,3 +47,6 @@ Breed:
       type: string
       description: Species code
       example: CANIS_FAMILIARIS
+  required:
+    - code
+    - name

@@ -15,19 +15,22 @@ properties:
     example: Laika
   species:
     type: string
-    description: The species code.
+    description: |
+      The species code. See [Species](/docs/dmi/reference-data#species) in the API Reference.
     example: CANIS_LUPUS_FAMILIARIS
   breed:
     type: string
-    description: The breed code.
+    description: |
+      The breed code. See [Breeds](/docs/dmi/reference-data#breeds) in the API Reference.
     example: JACK_RUSSEL_TERRIER
   sex:
     type: string
-    description: The sex code
+    description: |
+      The sex code. See [Sexes](/docs/dmi/reference-data#sexes) in the API Reference.
     example: MALE
   birthdate:
     type: string
-    description: Birth date in 'YYYY-MM-DD' format.
+    description: Birth date in `YYYY-MM-DD` format.
     example: 2011-05-14
   weight:
     type: object

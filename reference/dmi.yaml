@@ -392,7 +392,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Directory of services
+        - Directory of Services
   /providers/{providerId}/devices:
     get:
       summary: List provider devices
@@ -793,7 +793,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Reference data
+        - Reference Data
   /refs/species:
     get:
       summary: Get the list of accepted species codes
@@ -807,7 +807,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Reference data
+        - Reference Data
   /refs/breeds:
     get:
       summary: Get the list of accepted breeds
@@ -821,7 +821,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Reference data
+        - Reference Data
   /events:
     get:
       summary: Search events
@@ -940,8 +940,8 @@ tags:
   - name: Practices
   - name: Providers
   - name: Integrations
-  - name: Directory of services
-  - name: Reference data
+  - name: Directory of Services
+  - name: Reference Data
   - name: Orders & Results
   - name: Events
   - name: Examples
