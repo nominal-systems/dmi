@@ -5,7 +5,7 @@ info:
   title: DMI API
   version: 0.1.0
   description: |
-    # Diagnostic Modality Integration API
+    # API Reference
     The Diagnostic Modality Integration API is organized around REST, has predictable resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
     
     You can use the DMI API is test mode (with the test API keys) which doesn't affect your real data or generates any real interaction with diagnostic modality providers.

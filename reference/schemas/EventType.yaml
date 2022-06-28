@@ -1,36 +1,71 @@
 EventType:
   description: |
-    The type of event.
+    The type of event. See [Event Types](/docs/dmi/events#event-types) in the API Reference for more details.
     
-    * `order:created` - An order was created.
-    * `order:status` - The status of an order has changed.
-    * `order:results` - Results were added to an order.
-    * `order:cancelled` - An order was cancelled.
+    - `order:created` — Occurs when an order is created
+    - `order:updated` — Occurs when an order is updated
+    - `order:results` — Occurs when results are added to an order
+    - `report:created` — Occurs when a report is created
+    - `report:updated` — Occurs when a report is updated
   type: string
   enum:
     - 'order:created'
-    - 'order:status'
+    - 'order:updated'
+    - 'order:results'
+    - 'report:created'
+    - 'report:updated'
   example: 'order:created'
-DataOrderCreated:
-  title: order:created event data
+PayloadOrderCreated:
+  title: order:created
   description: |
       The data sent in the `order:created` event.
   type: object
   properties:
     order:
       $ref: './Order.yaml'
-DataOrderStatus:
-  title: order:status event data
+PayloadOrderUpdated:
+  title: order:updated
   description: |
-    The data sent in the `order:status` event.
+    The data sent in the `order:updated` event.
   type: object
   properties:
+    order:
+      $ref: './Order.yaml'
+PayloadOrderResults:
+  title: order:results
+  description: |
+    The data sent in the `order:results` event.
+  type: object
+  properties:
+    order:
+      $ref: './Order.yaml'
+    report:
+      $ref: './Report.yaml'
+    results:
+      type: array
+      items:
+        $ref: './TestResult.yaml'
+PayloadReportCreated:
+  title: report:created
+  description: |
+    The data sent in the `report:created` event.
+  type: object
+  properties:
+    report:
+      $ref: './Report.yaml'
     orderId:
       type: string
-      format: uuid
-      description: The unique identifier of the order.
+      description: The order ID associated with the report.
       example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
-    status:
+PayloadReportUpdated:
+  title: report:updated
+  description: |
+    The data sent in the `report:updated` event.
+  type: object
+  properties:
+    report:
+      $ref: './Report.yaml'
+    orderId:
       type: string
-      description: The status of the order.
-      example: waiting-for-input
+      description: The order ID associated with the report.
+      example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f

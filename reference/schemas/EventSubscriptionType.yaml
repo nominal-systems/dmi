@@ -1,6 +1,6 @@
 EventSubscriptionType:
   description: |
-    The type of subscription. 
+    The type of subscription. See [Event Subscriptions](/docs/dmi/events#event-subscriptions) in the API Reference for more information.
     
     Currently only Azure Event Hubs subscriptions are supported.
   type: string

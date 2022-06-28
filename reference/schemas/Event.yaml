@@ -26,8 +26,11 @@ properties:
   data:
     description: The data associated with the event.
     oneOf:
-      - $ref: './EventType.yaml#/DataOrderCreated'
-      - $ref: './EventType.yaml#/DataOrderStatus'
+      - $ref: './EventType.yaml#/PayloadOrderCreated'
+      - $ref: './EventType.yaml#/PayloadOrderUpdated'
+      - $ref: './EventType.yaml#/PayloadOrderResults'
+      - $ref: './EventType.yaml#/PayloadReportCreated'
+      - $ref: './EventType.yaml#/PayloadReportUpdated'
 required:
   - id
   - time

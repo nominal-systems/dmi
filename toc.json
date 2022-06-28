@@ -35,6 +35,12 @@
       "uri": "docs/configuration/providers.md"
     },
     {
+      "type": "item",
+      "title": "Events",
+      "uri": "docs/events/events.md",
+      "slug": "events"
+    },
+    {
       "type": "divider",
       "title": "Orders & Results"
     },
@@ -57,11 +63,6 @@
       "type": "item",
       "title": "Results",
       "uri": "docs/orders-and-results/results.md"
-    },
-    {
-      "type": "item",
-      "title": "Events",
-      "uri": "docs/orders-and-results/events.md"
     },
     {
       "type": "divider",
@@ -115,7 +116,7 @@
     {
       "type": "item",
       "title": "EventSubscription",
-      "uri": "reference/schemas/EventSubscription"
+      "uri": "reference/schemas/EventSubscription.yaml"
     },
     {
       "type": "item",
@@ -174,13 +175,9 @@
     },
     {
       "type": "item",
-      "title": "TestCode.yaml",
-      "uri": "reference/schemas/"
-    },
-    {
-      "type": "item",
-      "title": "TestResult.yaml",
-      "uri": "reference/schemas/"
+      "title": "TestResult",
+      "uri": "reference/schemas/TestResult.yaml",
+      "slug": "schemas/test-result"
     },
     {
       "type": "item",

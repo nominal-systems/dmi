@@ -1,6 +1,6 @@
 title: EventSubscription
 description: |
-  Event subscriptions allow your application to get notified of events that occur in the broker.
+  Event subscriptions allow your application to get notified of events that occur in the broker. See [Event Subscriptions](/docs/dmi/events#event-subscriptions) in the API Reference for more information.
   
   ### Supported subscription types
   
