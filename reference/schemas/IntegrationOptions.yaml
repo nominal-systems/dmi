@@ -1,8 +1,0 @@
-IntegrationOptions:
-  title: IntegrationOptions
-  type: object
-  description: Integration configuration object
-  additionalProperties: true
-  example:
-    clientId: nominal
-

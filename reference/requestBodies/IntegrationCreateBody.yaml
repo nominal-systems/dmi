@@ -15,4 +15,9 @@ content:
           description: The unique identifier of the provider configuration.
           example: 0e0f3afe-9796-4ef1-adeb-92f736e8617f
         integrationOptions:
-          $ref: '../schemas/IntegrationOptions.yaml#/IntegrationOptions'
+          description: The provider-specific integration options.
+          oneOf:
+            - $ref: '../providers/DemoProvider.yaml#/IntegrationOptions'
+            - $ref: '../providers/Antech.yaml#/IntegrationOptions'
+            - $ref: '../providers/Idexx.yaml#/IntegrationOptions'
+            - $ref: '../providers/Zoetis.yaml#/IntegrationOptions'

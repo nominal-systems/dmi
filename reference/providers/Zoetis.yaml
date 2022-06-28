@@ -1,0 +1,29 @@
+Configuration:
+  title: Zoetis
+  description: |
+    Configuration object for the Zoetis. See [Configuration Options](/docs/dmi/zoetis#configuration-options) in the Zoetis API Reference.
+  type: object
+  properties:
+    url:
+      type: string
+      description: Base URL.
+      example: https://zoetis.example.com/
+    client_id:
+      type: string
+      description: FUSE Client ID.
+      example: 23322323
+    client_password:
+      type: string
+      description: FUSE Client Password.
+      example: DDgfjs782!kswws
+  required:
+    - url
+    - client_id
+    - client_password
+IntegrationOptions:
+  title: Zoetis
+  type: object
+  additionalProperties: true
+  description: |
+    Integration options for the Zoetis. See [Integration Options](/docs/dmi/zoetis#integration-options) in the Zoetis API Reference.
+  

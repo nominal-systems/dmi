@@ -1,0 +1,44 @@
+Configuration:
+  title: IDEXX
+  type: object
+  description: |
+    Configuration object for the IDEXX. See [Configuration Options](/docs/dmi/idexx#configuration-options) in the IDEXX API Reference.
+  properties:
+    ordering_base_url:
+      type: string
+      description: Ordering base URL.
+      example: https://idexx.example.com/
+    rest_base_url:
+      type: string
+      description: Result view Base URL.
+      example: https://idexx.example.com/
+    username:
+      type: string
+      description: IDEXX API username.
+      example: admin
+    password:
+      type: string
+      description: IDEXX API password.
+      example: admin
+  required:
+    - ordering_base_url
+    - rest_base_url
+    - username
+    - password
+IntegrationOptions:
+  title: IDEXX
+  type: object
+  description: |
+    Integration options for the IDEXX. See [Integration Options](/docs/dmi/idexx#integration-options) in the IDEXX API Reference.
+  properties:
+    pims_id:
+      type: string
+      description: PIMS ID.
+      example: 87498374974938
+    pims_version:
+      type: string
+      description: PIMS version.
+      example: 1
+  required:
+    - pims_id
+    - pims_version

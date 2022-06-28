@@ -1,0 +1,35 @@
+Configuration:
+  title: Antech
+  type: object
+  description: |
+    Configuration object for the Antech. See [Configuration Options](/docs/dmi/antech#configuration-options) in the Antech API Reference.
+  properties:
+    base_url:
+      type: string
+      description: Base URL.
+      example: https://antech.example.com/
+    username:
+      type: string
+      description: Antech API username.
+      example: admin
+    password:
+      type: string
+      description: Antech API password.
+      example: admin
+  required:
+    - base_url
+    - username
+    - password
+IntegrationOptions:
+  title: Antech
+  type: object
+  description: |
+    Integration options for the Antech. See [Integration Options](/docs/dmi/antech#integration-options) in the Antech API Reference.
+  properties:
+    clinic_id:
+      type: string
+      description: Clinic ID used to login to Antech's API.
+      example: ABC-1223-2244444
+  required:
+      - clinic_id
+

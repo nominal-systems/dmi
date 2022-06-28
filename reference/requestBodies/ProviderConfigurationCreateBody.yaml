@@ -6,4 +6,8 @@ required: true
 content:
   application/json:
     schema:
-      $ref: '../schemas/ProviderConfigurationOptions.yaml'
+      oneOf:
+        - $ref: '../providers/DemoProvider.yaml#/Configuration'
+        - $ref: '../providers/Antech.yaml#/Configuration'
+        - $ref: '../providers/Idexx.yaml#/Configuration'
+        - $ref: '../providers/Zoetis.yaml#/Configuration'

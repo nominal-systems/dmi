@@ -79,22 +79,26 @@
     {
       "type": "item",
       "title": "Demo Provider",
-      "uri": "docs/providers/demo-provider.md"
+      "uri": "docs/providers/demo-provider.md",
+      "slug": "demo-provider"
     },
     {
       "type": "item",
       "title": "Antech",
-      "uri": "docs/providers/antech.md"
+      "uri": "docs/providers/antech.md",
+      "slug": "antech"
     },
     {
       "type": "item",
       "title": "IDEXX",
-      "uri": "docs/providers/idexx.md"
+      "uri": "docs/providers/idexx.md",
+      "slug": "idexx"
     },
     {
       "type": "item",
       "title": "Zoetis",
-      "uri": "docs/providers/zoetis.md"
+      "uri": "docs/providers/zoetis.md",
+      "slug": "zoetis"
     },
     {
       "type": "divider",

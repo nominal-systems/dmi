@@ -1,0 +1,24 @@
+Configuration:
+  title: DemoProvider
+  type: object
+  description: |
+    Configuration object for the Demo Provider. See [Configuration Options](/docs/dmi/demo-provider#configuration-options) in the Demo Provider API Reference.
+  properties:
+    url:
+      type: string
+      description: The URL of Demo Provider.
+      example: https://demo.example.com/
+  required:
+    - url
+IntegrationOptions:
+  title: DemoProvider
+  type: object
+  description: |
+    Integration options for the Demo Provider. See [Integration Options](/docs/dmi/demo-provider#integration-options) in the Demo Provider API Reference.
+  properties:
+    apiKey:
+      type: string
+      description: API key.
+      example: mMIHYAWLOxAQbQI1F5vGosx6Roc6mcJ3iO2A
+  required:
+    - apiKey
