@@ -5,28 +5,49 @@ properties:
   code:
     type: string
     minLength: 1
-    description: The test code
+    description: The orderable service code.
     example: HEM
   name:
     type: string
     minLength: 1
-    description: The test name
+    description: The service name.
     example: Hematology
+  description:
+    type: string
+    minLength: 1
+    description: The service description.
+    example: This is a service of the hematology system.
   category:
     type: string
     minLength: 1
-    description: The test category
+    description: The service category.
     example: Chemistry
   type:
     type: string
     minLength: 1
-    description: The test type
+    description: The service type.
     example: IN_HOUSE
   price:
     type: number
-    description: The price of the test, expressed in units of `currency`
+    description: The price of the service, expressed in units of `currency`.
     minimum: 0
   currency:
     type: string
     minLength: 1
-    description: The [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) currency code for the test price
+    description: The [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) currency code for the service price.
+  labRequisitionInfo:
+    type: array
+    description: |
+      Extra requisition information required by the lab for this service.
+    items:
+      $ref: './ProviderLabRequisitionParameter.yaml'
+    example:
+      - name: IsSpecialStaining
+        type: boolean
+        required: true
+      - name: HistoSource
+        type: string
+        required: true
+required:
+  - code
+  - name

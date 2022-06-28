@@ -373,9 +373,10 @@ paths:
         - Providers
   /providers/{providerId}/services:
     get:
-      summary: Get directory of services for a diagnostic provider
+      summary: Get directory of services for a Provider
       operationId: get-providers-providerId-services
-      description: Retrieve the directory of services for the specified provider and configured integration.
+      description: |
+        Retrieve the directory of services for the specified provider and optionally a configured integration.
       parameters:
         - $ref: './parameters/providerId.yaml'
         - $ref: './parameters/query/integration_id.yaml'

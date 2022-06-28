@@ -58,7 +58,8 @@
     {
       "type": "item",
       "title": "Directory of Services",
-      "uri": "docs/orders-and-results/directory-of-services.md"
+      "uri": "docs/orders-and-results/directory-of-services.md",
+      "slug": "directory-of-services"
     },
     {
       "type": "item",
