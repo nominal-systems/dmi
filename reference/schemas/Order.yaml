@@ -47,7 +47,7 @@ properties:
   status:
     type: string
     description: |
-      The status of the order.
+      The status of the order. See [Order Status](/docs/dmi/orders#order-status) in the API Reference for more information.
       
       - `ACCEPTED` - The order is accepted and exists in Nominal’s domain.
       - `WAITING_FOR_INPUT` - The provider requires user input before it can be submitted.
