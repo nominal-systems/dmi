@@ -4,22 +4,22 @@ Configuration:
     Configuration object for the Zoetis. See [Configuration Options](/docs/dmi/zoetis#configuration-options) in the Zoetis API Reference.
   type: object
   properties:
-    url:
+    base_url:
       type: string
       description: Base URL.
       example: https://zoetis.example.com/
-    client_id:
+    partner_id:
       type: string
-      description: FUSE Client ID.
+      description: VetScan API Partner ID.
       example: 23322323
-    client_password:
+    partner_password:
       type: string
-      description: FUSE Client Password.
+      description: VetScan API Partner Password.
       example: DDgfjs782!kswws
   required:
-    - url
-    - client_id
-    - client_password
+    - base_url
+    - partner_id
+    - partner_password
 IntegrationOptions:
   title: Zoetis
   type: object

@@ -28,8 +28,21 @@ IntegrationOptions:
   properties:
     clinic_id:
       type: string
-      description: Clinic ID used to login to Antech's API.
+      description: ID that is assigned by Antech to a particular clinic.
       example: ABC-1223-2244444
+    lab_id:
+      type: string
+      description: |
+        Region/Area.
+        
+        US = 1; Canada = 3; Fr Canada = 5; HongKong = 8; United Kingdom = 9;
+      enum:
+        - 1
+        - 3
+        - 5
+        - 8
+        - 9
   required:
       - clinic_id
+      - lab_id
 

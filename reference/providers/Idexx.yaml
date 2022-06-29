@@ -4,14 +4,6 @@ Configuration:
   description: |
     Configuration object for the IDEXX. See [Configuration Options](/docs/dmi/idexx#configuration-options) in the IDEXX API Reference.
   properties:
-    ordering_base_url:
-      type: string
-      description: Ordering base URL.
-      example: https://idexx.example.com/
-    rest_base_url:
-      type: string
-      description: Result view Base URL.
-      example: https://idexx.example.com/
     username:
       type: string
       description: IDEXX API username.
