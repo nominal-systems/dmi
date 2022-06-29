@@ -1,6 +1,5 @@
 name: provider_id
 in: query
-required: true
 description: Id of an existing provider
 schema:
   type: string

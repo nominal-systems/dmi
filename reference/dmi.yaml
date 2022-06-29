@@ -478,6 +478,8 @@ paths:
       summary: List all diagnostic provider integrations
       operationId: get-integrations
       description: Retrieve the diagnostic provider integrations.
+      parameters:
+        - $ref: './parameters/query/provider_id.yaml'
       responses:
         '200':
           $ref: './responses/IntegrationList.yaml'
