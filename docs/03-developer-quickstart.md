@@ -14,3 +14,7 @@ On this guide you will learn to:
 - Send and order to the Demo Provider
 - Get updates on the order
 - Retrieve the results
+
+---
+
+To start configuring your application learn how manage [Users](/docs/dmi/users).

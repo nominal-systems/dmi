@@ -37,7 +37,8 @@
     {
       "type": "item",
       "title": "Providers",
-      "uri": "docs/configuration/providers.md"
+      "uri": "docs/configuration/providers.md",
+      "slug": "providers"
     },
     {
       "type": "item",
@@ -70,7 +71,8 @@
     {
       "type": "item",
       "title": "Results",
-      "uri": "docs/orders-and-results/results.md"
+      "uri": "docs/orders-and-results/results.md",
+      "slug": "results"
     },
     {
       "type": "divider",
@@ -117,7 +119,8 @@
     {
       "type": "item",
       "title": "Client",
-      "uri": "reference/schemas/Client.yaml"
+      "uri": "reference/schemas/Client.yaml",
+      "slug": "schema/client"
     },
     {
       "type": "item",
@@ -128,17 +131,20 @@
     {
       "type": "item",
       "title": "EventSubscription",
-      "uri": "reference/schemas/EventSubscription.yaml"
+      "uri": "reference/schemas/EventSubscription.yaml",
+      "slug": "schemas/event-subscription"
     },
     {
       "type": "item",
       "title": "Integration",
-      "uri": "reference/schemas/Integration.yaml"
+      "uri": "reference/schemas/Integration.yaml",
+      "slug": "schemas/integration"
     },
     {
       "type": "item",
       "title": "Observation",
-      "uri": "reference/schemas/Observation.yaml"
+      "uri": "reference/schemas/Observation.yaml",
+      "slug": "schemas/observation"
     },
     {
       "type": "item",
@@ -149,7 +155,8 @@
     {
       "type": "item",
       "title": "Organization",
-      "uri": "reference/schemas/Organization.yaml"
+      "uri": "reference/schemas/Organization.yaml",
+      "slug": "schemas/organization"
     },
     {
       "type": "item",
@@ -160,22 +167,26 @@
     {
       "type": "item",
       "title": "Practice",
-      "uri": "reference/schemas/Practice.yaml"
+      "uri": "reference/schemas/Practice.yaml",
+      "slug": "schemas/practice"
     },
     {
       "type": "item",
       "title": "Provider",
-      "uri": "reference/schemas/Provider.yaml"
+      "uri": "reference/schemas/Provider.yaml",
+      "slug": "schemas/provider"
     },
     {
       "type": "item",
       "title": "ProviderConfiguration",
-      "uri": "reference/schemas/ProviderConfiguration.yaml"
+      "uri": "reference/schemas/ProviderConfiguration.yaml",
+      "slug": "schemas/provider-configuration"
     },
     {
       "type": "item",
       "title": "ProviderDevice",
-      "uri": "reference/schemas/ProviderDevice.yaml"
+      "uri": "reference/schemas/ProviderDevice.yaml",
+      "slug": "schemas/provider-device"
     },
     {
       "type": "item",
@@ -186,7 +197,8 @@
     {
       "type": "item",
       "title": "Report",
-      "uri": "reference/schemas/Report.yaml"
+      "uri": "reference/schemas/Report.yaml",
+      "slug": "schemas/report"
     },
     {
       "type": "item",
@@ -197,12 +209,14 @@
     {
       "type": "item",
       "title": "User",
-      "uri": "reference/schemas/User.yaml"
+      "uri": "reference/schemas/User.yaml",
+      "slug": "schemas/user"
     },
     {
       "type": "item",
       "title": "Veterinarian",
-      "uri": "reference/schemas/Veterinarian.yaml"
+      "uri": "reference/schemas/Veterinarian.yaml",
+      "slug": "schemas/veterinarian"
     },
     {
       "type": "divider",
@@ -211,22 +225,26 @@
     {
       "type": "item",
       "title": "Address",
-      "uri": "reference/types/Address.yaml"
+      "uri": "reference/types/Address.yaml",
+      "slug": "types/address"
     },
     {
       "type": "item",
       "title": "Attachment",
-      "uri": "reference/types/Attachment.yaml"
+      "uri": "reference/types/Attachment.yaml",
+      "slug": "types/attachment"
     },
     {
       "type": "item",
       "title": "Contact",
-      "uri": "reference/types/Contact.yaml"
+      "uri": "reference/types/Contact.yaml",
+      "slug": "types/contact"
     },
     {
       "type": "item",
       "title": "Error",
-      "uri": "reference/types/Error.yaml"
+      "uri": "reference/types/Error.yaml",
+      "slug": "types/error"
     }
   ]
 }

@@ -13,4 +13,4 @@ An admin user with server provided credentials exists by default and is the only
 
 ---
 
-Learn how organizations and practices provider logical groupings for you clinics in [Organizations & Practices](/docs/dmi/organizations-and-practices) 
+Learn how organizations and practices provider logical groupings for your clinics in [Organizations & Practices](/docs/dmi/organizations-and-practices).
