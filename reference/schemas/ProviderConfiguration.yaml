@@ -19,6 +19,12 @@ properties:
     description: The date that the provider configuration was created
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
+  updatedAt:
+    type: string
+    format: date-time
+    description: The date that the provider configuration was created
+    readOnly: true
+    example: 2020-01-01T00:00:00.000Z
   configuration:
     description: The provider-specific configuration object.
     oneOf:
