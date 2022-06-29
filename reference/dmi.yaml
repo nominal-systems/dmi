@@ -824,13 +824,9 @@ paths:
         - Reference Data
   /events:
     get:
-      summary: Search events
+      summary: List events
       operationId: get-events
-      description: Search for events that match the search criteria.
-      parameters:
-        - $ref: './parameters/query/date_start.yaml'
-        - $ref: './parameters/query/date_end.yaml'
-        - $ref: './parameters/query/event_type.yaml'
+      description: Retrieve the list of unacknowledged events.
       responses:
         '200':
           $ref: './responses/EventList.yaml'
@@ -854,6 +850,44 @@ paths:
           $ref: './responses/EventFound.yaml'
         '404':
           description: Event Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Events
+  /events/acknowledge:
+    post:
+      summary: Acknowledge events
+      operationId: post-events-acknowledge
+      description: Acknowledge the event with the matching event ID.
+      requestBody:
+        $ref: './requestBodies/EventAcknowledge.yaml'
+      responses:
+        '200':
+          description: Acknowledged
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Events
+  /events/search:
+    get:
+      summary: Search events
+      operationId: get-events-search
+      description: Search for events that match the search criteria.
+      parameters:
+        - $ref: './parameters/query/date_start.yaml'
+        - $ref: './parameters/query/date_end.yaml'
+        - $ref: './parameters/query/event_type.yaml'
+      responses:
+        '200':
+          $ref: './responses/EventList.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':

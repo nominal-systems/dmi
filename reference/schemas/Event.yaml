@@ -9,6 +9,11 @@ properties:
     description: The unique identifier of the event.
     readOnly: true
     example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
+  seq:
+    type: integer
+    description: Incremental sequence number of the event.
+    readOnly: true
+    example: 125
   time:
     type: integer
     description: Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -33,5 +38,6 @@ properties:
       - $ref: './EventType.yaml#/PayloadReportUpdated'
 required:
   - id
+  - seq
   - time
   - type

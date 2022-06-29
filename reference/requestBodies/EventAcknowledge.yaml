@@ -1,0 +1,14 @@
+description: Max event sequence number to acknowledge.
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      description: |
+        Max event sequence number to acknowledge.
+        If not specified, the last event will be acknowledged.
+      properties:
+        seq:
+          type: integer
+          description: Max event sequence number to acknowledge.
+          example: 125
