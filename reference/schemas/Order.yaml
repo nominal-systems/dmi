@@ -24,6 +24,7 @@ properties:
       The accession identifier provided by the provider.
       
       The identifier assigned to the order by the provider. This could be used by the PIMS to match the order to the original requisition in the provider's system.
+    readOnly: true
     example: 8279820
   integrationId:
     type: string
@@ -32,6 +33,7 @@ properties:
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
   manifest:
     description: The provider-generated manifest (usually a PDF) that accompanies specimens to the lab.
+    readOnly: true
     allOf:
       - $ref: '../types/Attachment.yaml'
     example:
@@ -40,6 +42,7 @@ properties:
   submissionUri:
     type: string
     format: uri
+    readOnly: true
     description: |
       The URL of the provider's UI to complete the order submission.
       
@@ -65,6 +68,7 @@ properties:
       - COMPLETED
       - CANCELLED
       - ERROR
+    readOnly: true
     example: COMPLETED
   patient:
     description: The subject the tests are ordered for.
@@ -99,9 +103,17 @@ properties:
     type: string
     description: Notes to include with the order.
     example: This is a note.
+  labRequisitionInfo:
+    description: |
+      Additional parameters required by the provider. See [Lab Requisition Information](/docs/dmi/orders#lab-requisition-information) for more information.
+    type: object
+    additionalProperties: true
+    example:
+      IsSpecialStaining: true
   editable:
     type: boolean
     description: Whether tests can be added or removed from this order.
+    readOnly: true
     example: true
 required:
   - id
