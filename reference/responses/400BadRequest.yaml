@@ -1,1 +1,14 @@
-description: Missing required information.
+description: |
+  **Bad Request**
+  
+  The server cannot or will not process the request due to something that is perceived to be a client error.
+content:
+  application/json:
+    schema:
+      $ref: '../types/Error.yaml'
+    example:
+      statusCode: 400
+      message: BadRequest
+      errors:
+        - 'Missing required field: name'
+        - 'Missing required field: email'

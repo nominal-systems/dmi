@@ -1,0 +1,13 @@
+description: |
+  **Conflict**
+  
+  Request conflict with the current state of the target resource.
+content:
+  application/json:
+    schema:
+      $ref: '../types/Error.yaml'
+    example:
+      statusCode: 409
+      message: Conflict
+      errors:
+        - 'Email already taken'

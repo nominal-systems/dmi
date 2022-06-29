@@ -1,1 +1,13 @@
-description: Forbidden operation.
+description: |
+  **Forbidden**
+  
+  The server understands the request but refuses to authorize it.
+content:
+  application/json:
+    schema:
+      $ref: '../types/Error.yaml'
+    example:
+      statusCode: 403
+      message: Forbidden
+      errors:
+        - 'User ''read-only'' not authorized to create orders'

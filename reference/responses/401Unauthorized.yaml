@@ -1,1 +1,13 @@
-description: Unauthorized operation.
+description: |
+  **Unauthorized**
+  
+  The client request has not been completed because it lacks valid authentication credentials for the requested resource.
+content:
+  application/json:
+    schema:
+      $ref: '../types/Error.yaml'
+    example:
+      statusCode: 401
+      message: Unauthorized
+      errors:
+        - 'Missing ''Authorization'' header'

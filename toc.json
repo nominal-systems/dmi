@@ -222,6 +222,11 @@
       "type": "item",
       "title": "Contact",
       "uri": "reference/types/Contact.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Error",
+      "uri": "reference/types/Error.yaml"
     }
   ]
 }
