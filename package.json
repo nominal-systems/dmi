@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/nominal-systems/dmi#readme",
   "devDependencies": {
+    "@stoplight/cli": "^5.0.717",
     "swagger-cli": "^4.0.4"
   }
 }

@@ -24,10 +24,10 @@ properties:
     description: |
       The status of the report.
       
-      - `REGISTERED` - The existence of the report is registered, but there is not results available yet. 
-      - `PARTIAL` - Some of the tests in the report are completed, data in the report may be incomplete.
-      - `FINAL` - All of the tests in the report are completed, the report is complete and verified.
-      - `CANCELLED` - The tests were cancelled and the report will not be available.
+      - `REGISTERED` — The existence of the report is registered, but there is not results available yet. 
+      - `PARTIAL` — Some of the tests in the report are completed, data in the report may be incomplete.
+      - `FINAL` — All of the tests in the report are completed, the report is complete and verified.
+      - `CANCELLED` — The tests were cancelled and the report will not be available.
     enum:
       - REGISTERED
       - PARTIAL

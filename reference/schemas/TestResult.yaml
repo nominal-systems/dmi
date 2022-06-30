@@ -16,11 +16,11 @@ properties:
     description: |
       The status of the test result.
       
-      - `PENDING` - No observations in the test have been performed yet.
-      - `PARTIAL` - Some observations in the test have been performed and their results available.
-      - `COMPLETED` - All of the observations in the test were performed and their results available. 
-      - `REVISED` - A change has been made to any observation that previously was DONE.
-      - `CANCELLED` - The test was cancelled and no observation will be performed.
+      - `PENDING` — No observations in the test have been performed yet.
+      - `PARTIAL` — Some observations in the test have been performed and their results available.
+      - `COMPLETED` — All of the observations in the test were performed and their results available. 
+      - `REVISED` — A change has been made to any observation that previously was DONE.
+      - `CANCELLED` — The test was cancelled and no observation will be performed.
     enum:
       - PENDING
       - PARTIAL

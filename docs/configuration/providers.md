@@ -18,6 +18,7 @@ Then [create an integration](/docs/dmi/api/operations/create-a-integration) by s
 ---
 
 For more information of supported providers, see their respective pages in the API Reference:
+- [Demo Provider](/docs/dmi/demo-provider)
 - [Antech](/docs/dmi/antech)
 - [IDEXX](/docs/dmi/idexx)
 - [Zoetis](/docs/dmi/zoetis)
