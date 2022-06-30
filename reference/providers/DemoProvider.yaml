@@ -20,5 +20,3 @@ IntegrationOptions:
       type: string
       description: API key.
       example: mMIHYAWLOxAQbQI1F5vGosx6Roc6mcJ3iO2A
-  required:
-    - apiKey

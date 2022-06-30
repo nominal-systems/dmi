@@ -21,13 +21,13 @@ properties:
     format: date-time
     description: The date that the practice was updated
     readOnly: true
-    example: 2020-01-01T00:00:00.000Z
+    example: '2020-01-01T00:00:00.000Z'
   updatedAt:
     type: string
     format: date-time
     description: The date that the practice was updated
     readOnly: true
-    example: 2020-02-01T00:00:00.000Z
+    example: '2020-02-01T00:00:00.000Z'
 required:
   - id
   - name

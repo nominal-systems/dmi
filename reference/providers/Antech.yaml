@@ -42,7 +42,4 @@ IntegrationOptions:
         - 5
         - 8
         - 9
-  required:
-      - clinic_id
-      - lab_id
 

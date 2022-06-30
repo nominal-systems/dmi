@@ -3,3 +3,5 @@ content:
   application/json:
     schema:
       $ref: '../schemas/Report.yaml'
+    example:
+      $ref: '../examples/Report.yaml#/Hematology'

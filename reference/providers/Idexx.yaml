@@ -31,6 +31,3 @@ IntegrationOptions:
       type: string
       description: PIMS version.
       example: 1
-  required:
-    - pims_id
-    - pims_version
