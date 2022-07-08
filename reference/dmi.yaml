@@ -228,8 +228,6 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
-        '409':
-          description: Practice name already taken.
       security:
         - ApiKeyAuth: [ ]
       tags:
@@ -258,7 +256,7 @@ paths:
         - $ref: './parameters/practiceId.yaml'
       responses:
         '200':
-          $ref: './responses/PracticeFound.yaml'
+          $ref: './responses/PracticeDetails.yaml'
         '404':
           description: Practice Not Found
         '401':
@@ -279,7 +277,7 @@ paths:
         '204':
           description: Practice deleted
         '404':
-          description: Practice Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':

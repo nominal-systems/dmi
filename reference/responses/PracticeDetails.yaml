@@ -1,4 +1,4 @@
-description: Practice Created
+description: Practice Details
 content:
   application/json:
     schema:
@@ -6,12 +6,8 @@ content:
         - $ref: '../schemas/Practice.yaml'
         - type: object
           properties:
-            organization:
-              description: The organization that the practice belongs to
-              allOf:
-                - $ref: '../schemas/Organization.yaml'
             integrations:
               type: array
               description: The integrations that are associated with the practice
               items:
-                $ref: '../schemas/Integration.yaml'
+                  $ref: '../schemas/Integration.yaml'

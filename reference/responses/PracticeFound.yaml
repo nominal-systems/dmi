@@ -1,5 +1,0 @@
-description: Practice Found
-content:
-  application/json:
-    schema:
-      $ref: '../schemas/Practice.yaml'
