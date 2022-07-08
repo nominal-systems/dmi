@@ -26,4 +26,4 @@ properties:
     example: Bad Request
 required:
   - statusCode
-  - error
+  - message

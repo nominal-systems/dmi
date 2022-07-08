@@ -1,4 +1,5 @@
 value:
-  id: 142
+  id: 349c0069-a91b-4431-9782-252e46f20d1a
   email: alice.smith@gmail.com
-  createdDate: '2020-01-01T00:00:00.000Z'
+  createdAt: '2020-01-01T00:00:00.000Z'
+  updatedAt: '2020-01-01T00:00:00.000Z'
