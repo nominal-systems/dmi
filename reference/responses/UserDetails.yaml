@@ -7,5 +7,7 @@ content:
         - type: object
           properties:
             organization:
-              $ref: '../schemas/Organization.yaml'
+              description: The organization owned by the user.
+              allOf:
+                  - $ref: '../schemas/Organization.yaml'
 

@@ -32,8 +32,6 @@ paths:
           $ref: './responses/400BadRequest.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
         '409':
           $ref: './responses/409Conflict.yaml'
       security:
@@ -49,8 +47,6 @@ paths:
           $ref: './responses/UserList.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -66,11 +62,9 @@ paths:
         '200':
           $ref: './responses/UserDetails.yaml'
         '404':
-          description: User Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -136,7 +130,7 @@ paths:
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '409':
-          description: Organization name already taken.
+          $ref: './responses/409Conflict.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -150,11 +144,11 @@ paths:
         - $ref: './parameters/organizationId.yaml'
       responses:
         '200':
-          $ref: './responses/OrganizationFound.yaml'
-        '404':
-          description: Organization Not Found
+          $ref: './responses/OrganizationDetails.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -169,10 +163,10 @@ paths:
       responses:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
-        '404':
-          description: Organization Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -187,7 +181,7 @@ paths:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
         '404':
-          description: Organization Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
       security:
@@ -205,7 +199,7 @@ paths:
         $ref: './requestBodies/OrganizationMemberCreateBody.yaml'
       responses:
         '201':
-          $ref: './responses/OrganizationFound.yaml'
+          $ref: './responses/OrganizationDetails.yaml'
         '400':
           $ref: './responses/400BadRequest.yaml'
         '401':
