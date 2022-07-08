@@ -1,5 +1,11 @@
-description: User Found
+description: User Details
 content:
   application/json:
     schema:
-      $ref: '../schemas/User.yaml'
+      allOf:
+        - $ref: '../schemas/User.yaml'
+        - type: object
+          properties:
+            organization:
+              $ref: '../schemas/Organization.yaml'
+
