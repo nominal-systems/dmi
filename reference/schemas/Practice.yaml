@@ -12,10 +12,6 @@ properties:
     type: string
     description: Name of the practice
     example: My Practice
-  organizationId:
-    type: string
-    description: Organization that owns the practice.
-    example: ee2befeb-ff19-4088-a5eb-45ea15430c16
   createdAt:
     type: string
     format: date-time
@@ -31,6 +27,5 @@ properties:
 required:
   - id
   - name
-  - organizationId
   - createdAt
   - updatedAt

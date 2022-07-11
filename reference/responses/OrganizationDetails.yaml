@@ -1,0 +1,31 @@
+description: Organization Details
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: '../schemas/Organization.yaml'
+        - type: object
+          properties:
+            owner:
+              description: Owner of the organization.
+              readOnly: true
+              allOf:
+                - $ref: '../schemas/User.yaml'
+            members:
+              type: array
+              description: Members of the organization
+              readOnly: true
+              items:
+                $ref: '../schemas/User.yaml'
+            practices:
+              type: array
+              description: Practices owned by the organization.
+              readOnly: true
+              items:
+                $ref: '../schemas/Practice.yaml'
+            providerConfigurations:
+              type: array
+              description: Provider configurations managed by the organization.
+              readOnly: true
+              items:
+                $ref: '../schemas/ProviderConfiguration.yaml'

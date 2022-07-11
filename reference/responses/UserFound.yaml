@@ -1,5 +1,0 @@
-description: User Found
-content:
-  application/json:
-    schema:
-      $ref: '../schemas/User.yaml'

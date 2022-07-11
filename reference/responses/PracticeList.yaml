@@ -4,4 +4,12 @@ content:
     schema:
       type: array
       items:
-        $ref: '../schemas/Practice.yaml'
+        allOf:
+          - $ref: '../schemas/Practice.yaml'
+          - type: object
+            properties:
+              integrations:
+                type: array
+                description: The integrations that are associated with the practice
+                items:
+                  $ref: '../schemas/Integration.yaml'

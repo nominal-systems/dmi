@@ -8,18 +8,22 @@ properties:
     description: The status code of the error.
     example: 400
   message:
+    oneOf:
+      - type: string
+        description: The error message.
+        example: "The request is invalid"
+      - type: array
+        description: |
+          A list of specific error messages that occurred during the request.
+        items:
+          type: string
+        example:
+          - 'Missing required field: name'
+          - 'Missing required field: email'
+  error:
     type: string
     description: General message describing the error.
     example: Bad Request
-  errors:
-    type: array
-    description: |
-      A list of specific errors that occurred during the request.
-    items:
-      type: string
-    example:
-      - 'Missing required field: name'
-      - 'Missing required field: email'
 required:
   - statusCode
   - message
