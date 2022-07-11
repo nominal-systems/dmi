@@ -32,10 +32,8 @@ paths:
           $ref: './responses/400BadRequest.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
         '409':
-          description: Email Already Taken
+          $ref: './responses/409Conflict.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -49,8 +47,6 @@ paths:
           $ref: './responses/UserList.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -64,13 +60,11 @@ paths:
         - $ref: './parameters/userId.yaml'
       responses:
         '200':
-          $ref: './responses/UserFound.yaml'
+          $ref: './responses/UserDetails.yaml'
         '404':
-          description: User Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
       security:
         - BasicAuth: [ ]
       tags:
@@ -96,7 +90,7 @@ paths:
       description: Retrieve the information of the logged in user.
       responses:
         '200':
-          $ref: './responses/UserFound.yaml'
+          $ref: './responses/UserDetails.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
       security:
@@ -136,7 +130,7 @@ paths:
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '409':
-          description: Organization name already taken.
+          $ref: './responses/409Conflict.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -150,11 +144,11 @@ paths:
         - $ref: './parameters/organizationId.yaml'
       responses:
         '200':
-          $ref: './responses/OrganizationFound.yaml'
-        '404':
-          description: Organization Not Found
+          $ref: './responses/OrganizationDetails.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -169,10 +163,10 @@ paths:
       responses:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
-        '404':
-          description: Organization Not Found
         '401':
           $ref: './responses/401Unauthorized.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
       security:
         - BearerAuth: [ ]
       tags:
@@ -187,7 +181,7 @@ paths:
         '200':
           $ref: './responses/OrganizationKeysFound.yaml'
         '404':
-          description: Organization Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
       security:
@@ -205,7 +199,7 @@ paths:
         $ref: './requestBodies/OrganizationMemberCreateBody.yaml'
       responses:
         '201':
-          $ref: './responses/OrganizationFound.yaml'
+          $ref: './responses/OrganizationDetails.yaml'
         '400':
           $ref: './responses/400BadRequest.yaml'
         '401':
@@ -234,8 +228,6 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
-        '409':
-          description: Practice name already taken.
       security:
         - ApiKeyAuth: [ ]
       tags:
@@ -264,7 +256,7 @@ paths:
         - $ref: './parameters/practiceId.yaml'
       responses:
         '200':
-          $ref: './responses/PracticeFound.yaml'
+          $ref: './responses/PracticeDetails.yaml'
         '404':
           description: Practice Not Found
         '401':
@@ -285,7 +277,7 @@ paths:
         '204':
           description: Practice deleted
         '404':
-          description: Practice Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':
@@ -331,25 +323,6 @@ paths:
       tags:
         - Providers
   /providers/{providerId}/configurations:
-    get:
-      summary: List all configurations for a diagnostic provider
-      operationId: get-providers-providerId-configurations
-      description: Retrieve the configurations for the specified provider.
-      parameters:
-        - $ref: './parameters/providerId.yaml'
-      responses:
-        '200':
-          $ref: './responses/ProviderConfigurationList.yaml'
-        '404':
-          description: Provider Not Found
-        '401':
-          $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
-      security:
-        - ApiKeyAuth: [ ]
-      tags:
-        - Providers
     post:
       summary: Configure a diagnostic provider
       operationId: post-providers-providerId-configurations
@@ -371,38 +344,15 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Providers
-  /providers/{providerId}/services:
     get:
-      summary: Get directory of services for a Provider
-      operationId: get-providers-providerId-services
-      description: |
-        Retrieve the directory of services for the specified provider and optionally a configured integration.
-      parameters:
-        - $ref: './parameters/providerId.yaml'
-        - $ref: './parameters/query/integration_id.yaml'
-      responses:
-        '200':
-          $ref: './responses/ProviderServiceList.yaml'
-        '404':
-          description: Integration Not Found
-        '401':
-          $ref: './responses/401Unauthorized.yaml'
-        '403':
-          $ref: './responses/403Forbidden.yaml'
-      security:
-        - ApiKeyAuth: [ ]
-      tags:
-        - Directory of Services
-  /providers/{providerId}/devices:
-    get:
-      summary: List provider devices
-      operationId: get-providers-providerId-devices
-      description: Retrieve the devices for the specified provider.
+      summary: List all configurations for a diagnostic provider
+      operationId: get-providers-providerId-configurations
+      description: Retrieve the configurations for the specified provider.
       parameters:
         - $ref: './parameters/providerId.yaml'
       responses:
         '200':
-          $ref: './responses/ProviderDeviceList.yaml'
+          $ref: './responses/ProviderConfigurationList.yaml'
         '404':
           description: Provider Not Found
         '401':
@@ -500,9 +450,9 @@ paths:
         - $ref: './parameters/integrationId.yaml'
       responses:
         '200':
-          $ref: './responses/IntegrationFound.yaml'
+          $ref: './responses/IntegrationDetails.yaml'
         '404':
-          description: Integration Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':
@@ -521,7 +471,7 @@ paths:
         '204':
           description: Integration Deleted
         '404':
-          description: Integration Not Found
+          $ref: './responses/404NotFound.yaml'
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':
@@ -530,6 +480,48 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Integrations
+  /providers/{providerId}/services:
+    get:
+      summary: List provider services
+      operationId: get-providers-providerId-services
+      description: |
+        Retrieve the directory of services for the specified provider and optionally a configured integration.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/query/integration_id.yaml'
+      responses:
+        '200':
+          $ref: './responses/ProviderServiceList.yaml'
+        '404':
+          description: Integration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Directory of Services
+  /providers/{providerId}/devices:
+    get:
+      summary: List provider devices
+      operationId: get-providers-providerId-devices
+      description: Retrieve the devices for the specified provider.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+      responses:
+        '200':
+          $ref: './responses/ProviderDeviceList.yaml'
+        '404':
+          description: Provider Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Directory of Services
   /orders:
     post:
       summary: Create an order

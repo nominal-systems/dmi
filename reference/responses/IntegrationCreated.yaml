@@ -2,4 +2,4 @@ description: Integration Created
 content:
   application/json:
     schema:
-      $ref: '../schemas/Integration.yaml'
+      $ref: '../schemas/IntegrationDescription.yaml'

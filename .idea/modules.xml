@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/dmi.iml" filepath="$PROJECT_DIR$/.idea/dmi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../provider-pocs/provider-pocs.iml" filepath="$PROJECT_DIR$/../provider-pocs/provider-pocs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dmi-api/dmi-api.iml" filepath="$PROJECT_DIR$/../dmi-api/dmi-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dmi-engine/dmi-engine.iml" filepath="$PROJECT_DIR$/../dmi-engine/dmi-engine.iml" />
     </modules>
   </component>
 </project>

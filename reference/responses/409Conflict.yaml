@@ -8,6 +8,6 @@ content:
       $ref: '../types/Error.yaml'
     example:
       statusCode: 409
-      message: Conflict
-      errors:
+      error: Conflict
+      message:
         - 'Email already taken'

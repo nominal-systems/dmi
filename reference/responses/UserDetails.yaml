@@ -1,0 +1,13 @@
+description: User Details
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: '../schemas/User.yaml'
+        - type: object
+          properties:
+            organization:
+              description: The organization owned by the user.
+              allOf:
+                  - $ref: '../schemas/Organization.yaml'
+

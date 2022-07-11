@@ -1,5 +1,0 @@
-description: Organization Found
-content:
-  application/json:
-    schema:
-      $ref: '../schemas/Organization.yaml'

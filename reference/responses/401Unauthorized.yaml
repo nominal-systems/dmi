@@ -8,6 +8,6 @@ content:
       $ref: '../types/Error.yaml'
     example:
       statusCode: 401
-      message: Unauthorized
-      errors:
+      error: Unauthorized
+      message:
         - 'Missing ''Authorization'' header'

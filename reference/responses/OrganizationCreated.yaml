@@ -2,4 +2,12 @@ description: Organization Created
 content:
   application/json:
     schema:
-      $ref: '../schemas/Organization.yaml'
+      allOf:
+        - $ref: '../schemas/Organization.yaml'
+        - type: object
+          properties:
+            owner:
+              description: Owner of the organization.
+              readOnly: true
+              allOf:
+                - $ref: '../schemas/User.yaml'
