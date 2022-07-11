@@ -1,5 +1,5 @@
-title: Integration
-description: Integration between a practice and a provider
+title: IntegrationDescription
+description: Integration description
 type: object
 properties:
   id:
@@ -8,26 +8,16 @@ properties:
     description: The unique identifier of the integration.
     readOnly: true
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
-  createdAt:
+  practiceId:
     type: string
-    format: date-time
-    description: The date that the integration was created.
+    format: uuid
     readOnly: true
-    example: '2020-01-01T00:00:00.000Z'
-  updatedAt:
+    example: 94f9bdb8-c6f2-4970-8b56-0a2de1fe62e1
+  providerConfigurationId:
     type: string
-    format: date-time
-    description: The date that the integration was updated.
+    format: uuid
     readOnly: true
-    example: '2020-01-01T00:00:00.000Z'
-  practice:
-    description: The practice of the integration.
-    allOf:
-      - $ref: './Practice.yaml'
-  providerConfiguration:
-    description: The provider configuration of the integration.
-    allOf:
-      - $ref: './ProviderConfiguration.yaml'
+    example: 0e0f3afe-9796-4ef1-adeb-92f736e8617f
   integrationOptions:
     description: The provider-specific integration options.
     anyOf:
