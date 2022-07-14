@@ -55,6 +55,7 @@ services:
       - ./containers/activemq/conf:/opt/activemq/conf
     ports:
       - '1883:1883'
+      - '8161:8161'
   redis:
     image: redis
     ports:
