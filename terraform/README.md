@@ -83,3 +83,14 @@ Build the cluster:
 terraform plan
 terraform apply
 ````
+
+Inspect the cluster using the created `kubeconfig` file:
+````
+kubectl get node --kubeconfig kubeconfig
+````
+
+Optionally, export `KUBECONFIG` to avoid using the `kubeconfig` flag:
+````
+export KUBECONFIG="${PWD}/kubeconfig"
+kubectl get node
+````

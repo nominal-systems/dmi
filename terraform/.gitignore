@@ -34,3 +34,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+
+### Kubernetes
+kubeconfig
