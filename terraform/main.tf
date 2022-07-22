@@ -39,6 +39,12 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   identity {
     type = "SystemAssigned"
   }
+
+  tags = {
+    Environment = "Development"
+  }
+
+  http_application_routing_enabled = true
 }
 
 resource "azurerm_role_assignment" "ara" {
