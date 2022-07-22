@@ -45,10 +45,10 @@ terraform init
 
 Build the cluster:
 ````
-terraform plan
-terraform apply
+terraform plan [-var-file=${env}.tfvars]
+terraform apply [-var-file=${env}.tfvars]
 ````
-
+where `env` is the environment name.
 
 ### Provision Kubernetes
 
