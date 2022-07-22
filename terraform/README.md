@@ -1,43 +1,6 @@
-## Provision Azure Kubernetes Service (AKS) cluster
+## Provision Azure Kubernetes Service (AKS) cluster with Terraform
 
-### Azure CLI
-
-Login to Azure:
-````
-az login
-````
-
-Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-cli#what-is-a-resource-group):
-````
-az group create --name dmi-dev --location westeurope
-````
-
-Register a [resource provider](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) for AKS:
-````
-az provider register -n Microsoft.ContainerService
-````
-
-Create the AKS cluster:
-```` 
-az aks create -n dmi-dev -g dmi-dev -s standard_d2ads_v5 --generate-ssh-keys --node-count 2  
-````
-
-Get the cluster details:
-````
-az aks show --name dmi-dev --resource-group dmi-dev -o yaml
-````
-
-Fetch the credentials for k8s:
-````
-az aks get-credentials --resource-group dmi-dev --name dmi-dev
-````
-
-Verify that you can access the AKS cluster with `kubectl`:
-````
-kubectl get nodes
-````
-
-### Terraform
+### Configure Azure
 
 Get the Subscription ID:
 ````
@@ -73,6 +36,8 @@ export ARM_TENANT_ID=<insert the tenant from above>
 export ARM_CLIENT_SECRET=<insert the password from above>
 ````
 
+### Run Terraform
+
 Initialize Terraform:
 ````
 terraform init
@@ -82,4 +47,24 @@ Build the cluster:
 ````
 terraform plan
 terraform apply
+````
+
+
+### Provision Kubernetes
+
+Configure `kubectl`:
+````
+export KUBECONFIG="${PWD}/kubeconfig-dev"
+````
+
+Submit the deployment and load balancer to the AKS cluster:
+````
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f ingress.yaml
+````
+
+Find out the public IP of the load balancer by inspecting the ingress:
+````
+kubectl describe ingress
 ````
