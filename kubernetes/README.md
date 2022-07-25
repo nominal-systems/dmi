@@ -1,3 +1,23 @@
+## Run locally
+
+Start your Kubernetes cluster using `minikube`:
+````
+minikube start
+minikube status
+````
+
+Submit the resource definitions to Kubernetes:
+````
+kubectl apply -f local
+````
+
+Get the URL of the DMI API by running:
+````
+minikube service dmi-api --url
+````
+
+
+## Run in Azure
 Inspect the cluster using the created `kubeconfig` file:
 ````
 kubectl get node --kubeconfig kubeconfig
