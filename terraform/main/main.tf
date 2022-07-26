@@ -54,13 +54,18 @@ resource "azurerm_role_assignment" "ara" {
   skip_service_principal_aad_check = true
 }
 
+resource "random_password" "mysql_password" {
+  length           = 16
+  special          = false
+}
+
 resource "azurerm_mysql_server" "mysql_server" {
   name                = "dmi-${var.env_name}-mysqlserver"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   administrator_login          = var.mysql_username
-  administrator_login_password = var.mysql_password
+  administrator_login_password = random_password.mysql_password.result
 
   sku_name   = "GP_Gen5_2"
   storage_mb = 5120

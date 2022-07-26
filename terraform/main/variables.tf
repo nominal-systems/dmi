@@ -15,10 +15,6 @@ variable "mysql_username" {
   description = "Username for the MySQL database"
 }
 
-variable "mysql_password" {
-  description = "Password for the MySQL user"
-}
-
 variable "mysql_public_access" {
   description = "Allow public access"
   default = false
