@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dmi-api
+spec:
+  selector:
+    matchLabels:
+      app: dmi-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dmi-api
+    spec:
+      containers:
+        - name: dmi-api
+          image: nominaldevacr.azurecr.io/dmi-api:7bc8f01a05e060cf78e72282c427d84e8ea38abd
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: '3000'
+            - name: JWT_SECRET_KEY
+              value: 'platano maduro'
+            - name: SECRET_KEY
+              value: 'To@i#q2Z5!pStQTN9HxVocWHg9YH56f^'
+            - name: DATABASE_HOST
+              value: 'dmi-dev-mysqlserver.mysql.database.azure.com'
+            - name: DATABASE_DATABASE
+              value: 'dmi'
+            - name: DATABASE_USERNAME
+              value: 'dmi@dmi-dev-mysqlserver'
+            - name: DATABASE_PASSWORD
+              value: 'Asdf1234'
+            - name: DATABASE_SYNCHRONIZE
+              value: 'true'
+            - name: MONGO_URI
+              value: 'mongodb://dmi-dev-cosmosdb-account:xZD23rN6L4FAOfan4CN4GWXH7GrbMKs7lpdKrh9pzoFfVDOcLe0vvKIaHsckSCCMePJiMUKlnQ751Zil3ze9NQ==@dmi-dev-cosmosdb-account.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@dmi-dev-cosmosdb-account@'
+            - name: ACTIVEMQ_HOSTNAME
+              value: 'activemq'
+

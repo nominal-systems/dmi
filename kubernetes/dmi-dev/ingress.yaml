@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-kubernetes
+  name: dmi-api
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   defaultBackend:
     service:
-      name: hello-kubernetes
+      name: dmi-api
       port:
         number: 80
   rules:
@@ -17,6 +17,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hello-kubernetes
+                name: dmi-api
                 port:
                   number: 80
