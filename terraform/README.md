@@ -59,9 +59,7 @@ export KUBECONFIG="${PWD}/kubeconfig-dev"
 
 Submit the deployment and load balancer to the AKS cluster:
 ````
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-kubectl apply -f ingress.yaml
+kubectl apply -f dmi-dev
 ````
 
 Find out the public IP of the load balancer by inspecting the ingress:

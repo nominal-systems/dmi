@@ -21,7 +21,7 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "Basic"
-  admin_enabled       = false
+  admin_enabled       = true
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
@@ -71,7 +71,7 @@ resource "azurerm_mysql_server" "mysql_server" {
   geo_redundant_backup_enabled      = true
   infrastructure_encryption_enabled = true
   public_network_access_enabled     = var.mysql_public_access
-  ssl_enforcement_enabled           = true
+  ssl_enforcement_enabled           = false
   ssl_minimal_tls_version_enforced  = "TLS1_2"
 }
 
@@ -89,4 +89,37 @@ resource "azurerm_mysql_firewall_rule" "mysql_firewall_rule" {
   server_name         = azurerm_mysql_server.mysql_server.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
+}
+
+resource "azurerm_resource_group" "rg_data" {
+  name     = "dmi-rg_data-${var.env_name}"
+  location = "eastus"
+}
+
+resource "azurerm_cosmosdb_account" "cosmosdb_account" {
+  name                = "dmi-${var.env_name}-cosmosdb-account"
+  resource_group_name = azurerm_resource_group.rg_data.name
+  location            = azurerm_resource_group.rg_data.location
+  offer_type          = "Standard"
+  kind                = "MongoDB"
+  enable_free_tier    = true
+  capabilities {
+    name                    = "MongoDBv3.4"
+  }
+  capabilities {
+    name                    = "EnableMongo"
+  }
+  consistency_policy {
+    consistency_level       = "Session"
+  }
+  geo_location {
+    failover_priority = 0
+    location          = azurerm_resource_group.rg_data.location
+  }
+}
+
+resource "azurerm_cosmosdb_mongo_database" "mongodb" {
+  name                = "dmi-${var.env_name}-cosmos-mongodb"
+  resource_group_name = azurerm_cosmosdb_account.cosmosdb_account.resource_group_name
+  account_name        = azurerm_cosmosdb_account.cosmosdb_account.name
 }
