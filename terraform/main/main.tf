@@ -123,3 +123,10 @@ resource "azurerm_cosmosdb_mongo_database" "mongodb" {
   resource_group_name = azurerm_cosmosdb_account.cosmosdb_account.resource_group_name
   account_name        = azurerm_cosmosdb_account.cosmosdb_account.name
 }
+
+resource "azurerm_servicebus_namespace" "activemq" {
+  name                = "dmi-${var.env_name}-servicebus-namespace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+}
