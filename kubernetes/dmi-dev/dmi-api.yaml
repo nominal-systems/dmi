@@ -26,17 +26,36 @@ spec:
             - name: SECRET_KEY
               value: 'To@i#q2Z5!pStQTN9HxVocWHg9YH56f^'
             - name: DATABASE_HOST
-              value: 'dmi-dev-mysqlserver.mysql.database.azure.com'
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_HOST
             - name: DATABASE_DATABASE
-              value: 'dmi'
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_DATABASE
             - name: DATABASE_USERNAME
-              value: 'dmi@dmi-dev-mysqlserver'
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_USERNAME
             - name: DATABASE_PASSWORD
-              value: 'Asdf1234'
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_PASSWORD
             - name: DATABASE_SYNCHRONIZE
               value: 'true'
             - name: MONGO_URI
-              value: 'mongodb://dmi-dev-cosmosdb-account:xZD23rN6L4FAOfan4CN4GWXH7GrbMKs7lpdKrh9pzoFfVDOcLe0vvKIaHsckSCCMePJiMUKlnQ751Zil3ze9NQ==@dmi-dev-cosmosdb-account.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@dmi-dev-cosmosdb-account@'
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: MONGO_URI
             - name: ACTIVEMQ_HOSTNAME
-              value: 'activemq'
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: ACTIVEMQ_HOSTNAME
+
 
