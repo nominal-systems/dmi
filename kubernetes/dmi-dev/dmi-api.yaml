@@ -5,16 +5,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: dmi-api
+      name: dmi-api
   replicas: 1
   template:
     metadata:
       labels:
-        app: dmi-api
+        name: dmi-api
     spec:
       containers:
         - name: dmi-api
-          image: nominaldevacr.azurecr.io/dmi-api:7bc8f01a05e060cf78e72282c427d84e8ea38abd
+          image: nominaldevacr.azurecr.io/dmi-api:3938f3da23d9233671e12f11f9b078647a57098c
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

@@ -31,3 +31,37 @@ To import the OpenAPI specification file, Postman collections and environments:
    1. On "Request parameter generation" select "Schema".
    2. On "Folder organization" select "Tags".
 6. Click on "Import"
+
+## Deploy to Azure
+
+### Provision Azure infrastructure with Terraform
+
+Deploy the Terraform stack to Azure:
+````
+cd terraform
+terraform plan
+terraform apply
+````
+
+This will generate a `kubeconfig-dev` with the Azure Kubernetes Service (AKS) cluster configuration. Configure `kubectl` with:
+````
+export KUBECONFIG="${PWD}/kubeconfig-dev"
+````
+
+To get the Azure Container Registry (ACR) credentials run:
+````
+az acr credential show -n <ACR_Registry_Name>
+````
+
+
+### Deploy to AKS
+
+Deploy the Kubernetes manifests:
+````
+kubectl apply -f dmi-dev/
+````
+
+Get the public IP of the load balancer:
+````
+kubectl get ingress -o=jsonpath= "-o=jsonpath={.items[0].status.loadBalancer.ingress[0].ip}"
+````
