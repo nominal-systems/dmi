@@ -19,3 +19,8 @@ variable "mysql_public_access" {
   description = "Allow public access"
   default = false
 }
+
+variable "demo_provider_database" {
+  description = "The name of the Demo Provider Database"
+  default     = "demo-provider-api"
+}

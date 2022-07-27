@@ -146,3 +146,11 @@ resource "azurerm_redis_cache" "redis" {
   enable_non_ssl_port = true
   minimum_tls_version = "1.2"
 }
+
+resource "azurerm_mysql_database" "demo_provider_mysql" {
+  name                = var.demo_provider_database
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql_server.name
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
+}

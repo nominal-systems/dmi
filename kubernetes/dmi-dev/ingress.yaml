@@ -20,3 +20,12 @@ spec:
                 name: dmi-api
                 port:
                   number: 80
+    - http:
+        paths:
+          - path: /demo
+            pathType: Prefix
+            backend:
+              service:
+                name: demo-provider-api
+                port:
+                  number: 80
