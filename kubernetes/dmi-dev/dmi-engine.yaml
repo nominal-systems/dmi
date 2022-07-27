@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dmi-engine
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 4000
+  selector:
+    name: dmi-engine
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dmi-engine
+spec:
+  selector:
+    matchLabels:
+      name: dmi-engine
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dmi-engine
+    spec:
+      containers:
+        - name: dmi-engine
+          image: nominaldevacr.azurecr.io/dmi-engine:b211cf5fc5cf1c4ba85b53f583afe50dce73202f
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          env:
+            - name: PORT
+              value: '4000'
+            - name: MQTT_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: ACTIVEMQ_HOSTNAME
+            - name: MQTT_PORT
+              value: '1883'
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_PORT
+
