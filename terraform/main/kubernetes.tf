@@ -17,5 +17,7 @@ resource "kubernetes_config_map_v1" "dmi-kubernetes_configmap" {
     DATABASE_PASSWORD     = azurerm_mysql_server.mysql_server.administrator_login_password
     MONGO_URI             = azurerm_cosmosdb_account.cosmosdb_account.connection_strings[0]
     ACTIVEMQ_HOSTNAME     = "${azurerm_servicebus_namespace.activemq.name}.servicebus.windows.net"
+    REDIS_HOST            = azurerm_redis_cache.redis.hostname
+    REDIS_PORT            = azurerm_redis_cache.redis.port
   }
 }

@@ -135,3 +135,14 @@ resource "azurerm_servicebus_namespace" "activemq" {
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "Standard"
 }
+
+resource "azurerm_redis_cache" "redis" {
+  name                = "dmi-${var.env_name}-redis-cache"
+  location            = azurerm_resource_group.rg_data.location
+  resource_group_name = azurerm_resource_group.rg_data.name
+  capacity            = 2
+  family              = "C"
+  sku_name            = "Standard"
+  enable_non_ssl_port = true
+  minimum_tls_version = "1.2"
+}
