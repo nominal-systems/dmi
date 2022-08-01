@@ -53,9 +53,8 @@ spec:
                   name: dmi-config
                   key: MONGO_URI
             - name: ACTIVEMQ_HOSTNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: dmi-config
-                  key: ACTIVEMQ_HOSTNAME
+              value: 'activemq'
+            - name: ACTIVEMQ_PORT
+              value: '1883'
 
 
