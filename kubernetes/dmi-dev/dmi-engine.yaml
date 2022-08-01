@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: dmi-engine
-          image: nominaldevacr.azurecr.io/dmi-engine:b211cf5fc5cf1c4ba85b53f583afe50dce73202f
+          image: nominaldevacr.azurecr.io/dmi-engine:50fbbddc5c7c90124e922f19ca2840dc7f0ec044
           imagePullPolicy: Always
           ports:
             - containerPort: 4000
@@ -34,10 +34,7 @@ spec:
             - name: PORT
               value: '4000'
             - name: MQTT_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: dmi-config
-                  key: ACTIVEMQ_HOSTNAME
+              value: 'activemq'
             - name: MQTT_PORT
               value: '1883'
             - name: REDIS_HOST
@@ -50,4 +47,8 @@ spec:
                 configMapKeyRef:
                   name: dmi-config
                   key: REDIS_PORT
-
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_PASSWORD
