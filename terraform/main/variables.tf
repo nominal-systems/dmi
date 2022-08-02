@@ -1,23 +1,32 @@
-variable "cluster_name" {
-  description = "The name for the AKS cluster"
-  default     = "dmi-cluster"
-}
 variable "env_name" {
   description = "The environment for the AKS cluster"
   default     = "dev"
 }
 
-variable "mysql_database" {
+variable "rg" {
+  description = "The resource group name for the resources"
+}
+
+variable "location" {
+  description = "The location for the resources"
+}
+
+variable "aks_host" {}
+variable "aks_client_certificate" {}
+variable "aks_client_key" {}
+variable "aks_cluster_ca_certificate" {}
+variable "mysql_server" {}
+variable "mysql_db_host" {}
+variable "mysql_db_username" {}
+variable "mysql_db_password" {}
+variable "mongodb_uri" {}
+variable "redis_host" {}
+variable "redis_port" {}
+variable "redis_password" {}
+
+variable "dmi_api_database" {
   description = "The name of the MySQL"
-}
-
-variable "mysql_username" {
-  description = "Username for the MySQL database"
-}
-
-variable "mysql_public_access" {
-  description = "Allow public access"
-  default = false
+  default     = "dmi"
 }
 
 variable "demo_provider_database" {
