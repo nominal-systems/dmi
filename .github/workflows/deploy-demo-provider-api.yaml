@@ -8,7 +8,6 @@ env:
   APP_NAME: demo-provider-api
   AZURE_RG: dmi-rg_app-dev
   AKS_CLUSTER_NAME: dmi-cluster-dev
-  SHA: d06255b4ecd875f55c376cf5315a8209c7009a58
 
 jobs:
   deploy:
