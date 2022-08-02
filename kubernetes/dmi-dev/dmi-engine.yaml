@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: dmi-engine
-          image: nominaldevacr.azurecr.io/dmi-engine:50fbbddc5c7c90124e922f19ca2840dc7f0ec044
+          image: nominaldevacr.azurecr.io/dmi-engine:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4000
