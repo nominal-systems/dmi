@@ -1,4 +1,4 @@
-name: Create GitHub Release
+name: Validate API Spec
 
 on:
   push:
