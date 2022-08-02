@@ -52,6 +52,9 @@ To get the Azure Container Registry (ACR) credentials run:
 ````
 az acr credential show -n <ACR_Registry_Name>
 ````
+These credentials must be set as repository secrets for the repositories that need to push images to the registry:
+- `REGISTRY_USERNAME` — Username for the registry
+- `REGISTRY_PASSWORD` — Either of the passwords for the registry
 
 
 ### Deploy to AKS
