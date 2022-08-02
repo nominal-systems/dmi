@@ -1,8 +1,8 @@
-name: Deploy Demo Provider API to AKS
+name: Deploy DMI API to AKS
 
 on:
   repository_dispatch:
-    types: [ demo-provider-api-updated ]
+    types: [ dmi-api-updated ]
 
 env:
   AZURE_RG: dmi-rg_app-dev
@@ -27,6 +27,6 @@ jobs:
         with:
           action: deploy
           manifests: |
-            kubernetes/dmi-dev/demo-provider-api.yaml
+            kubernetes/dmi-dev/dmi-api.yaml
           images: |
             ${{ github.event.client_payload.image }}
