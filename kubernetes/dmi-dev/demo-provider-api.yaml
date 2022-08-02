@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: demo-provider-api
-          image: nominaldevacr.azurecr.io/demo-provider-api:3fdeb2a7183889c32e5eed9a5fee929f6bd95985
+          image: nominaldevacr.azurecr.io/demo-provider-api:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4500
