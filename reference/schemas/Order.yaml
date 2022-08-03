@@ -97,7 +97,7 @@ properties:
       - IVLS
   technician:
     type: string
-    description: TThe name of the practicing technician.
+    description: The name of the practicing technician.
     example: Dr. Doolittle
   notes:
     type: string
