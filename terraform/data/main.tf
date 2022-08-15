@@ -6,6 +6,7 @@ resource "random_password" "mysql_password" {
 resource "azurerm_mysql_server" "mysql_server" {
   name                = "dmi-${var.env_name}-mysqlserver"
   resource_group_name = var.rg
+  depends_on          = [random_password.mysql_password]
   location            = var.location
 
   administrator_login          = var.mysql_username
@@ -27,6 +28,7 @@ resource "azurerm_mysql_server" "mysql_server" {
 resource "azurerm_mysql_firewall_rule" "mysql_firewall_rule" {
   name                = "public-access"
   resource_group_name = var.rg
+  depends_on          = [azurerm_mysql_server.mysql_server]
   server_name         = azurerm_mysql_server.mysql_server.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
