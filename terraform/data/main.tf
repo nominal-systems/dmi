@@ -72,3 +72,20 @@ resource "azurerm_redis_cache" "redis" {
   enable_non_ssl_port = true
   minimum_tls_version = "1.2"
 }
+
+resource "azurerm_eventhub_namespace" "eventhub_namespace" {
+  name                = "dmi-${var.env_name}-eventhub-namespace"
+  resource_group_name = var.rg
+  location            = var.location
+  sku                 = "Standard"
+  capacity            = 1
+}
+
+resource "azurerm_eventhub" "eventhub" {
+  name                = "dmi-${var.env_name}-eventhub"
+  depends_on          = [azurerm_eventhub_namespace.eventhub_namespace]
+  namespace_name      = azurerm_eventhub_namespace.eventhub_namespace.name
+  resource_group_name = var.rg
+  partition_count     = 2
+  message_retention   = 1
+}
