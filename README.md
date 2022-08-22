@@ -57,7 +57,16 @@ These credentials must be set as repository secrets for the repositories that ne
 - `REGISTRY_PASSWORD` — Either of the passwords for the registry
 
 
-### Deploy to AKS
+#### Repository secrets
+
+The following repository secrets must be set in this repository:
+- `AZURE_CLIENT_ID` — Azure client/app ID
+- `AZURE_CLIENT_SECRET` — Azure client secret/password
+- `AZURE_SUBSCRIPTION_ID` — Azure subscription ID
+- `AZURE_TENANT_ID` — Azure tenant ID
+
+
+### Deploy locally to AKS
 
 Deploy the Kubernetes manifests:
 ````

@@ -35,7 +35,7 @@ services:
       REDIS_PORT: '6379'
     command: ['./scripts/wait-for-all.sh', 'npm run start:prod']
   mongo:
-    image: mongo:4
+    image: mongo:3.6
     volumes:
       - ./containers/mongo/data:/data/db
     ports:

@@ -48,7 +48,7 @@ resource "azurerm_cosmosdb_account" "cosmosdb_account" {
     name                    = "EnableMongo"
   }
   consistency_policy {
-    consistency_level       = "Session"
+    consistency_level       = "Strong"
   }
   geo_location {
     failover_priority = 0
@@ -57,7 +57,7 @@ resource "azurerm_cosmosdb_account" "cosmosdb_account" {
 }
 
 resource "azurerm_cosmosdb_mongo_database" "mongodb" {
-  name                = "dmi-${var.env_name}-cosmos-mongodb"
+  name                = "dmi-${var.env_name}"
   resource_group_name = azurerm_cosmosdb_account.cosmosdb_account.resource_group_name
   account_name        = azurerm_cosmosdb_account.cosmosdb_account.name
 }
