@@ -21,6 +21,18 @@ properties:
     $ref: './EventSubscriptionType.yaml#/EventSubscriptionType'
   subscription_options:
     $ref: './EventSubscriptionType.yaml#/EventSubscriptionOptions'
+  createdAt:
+    type: string
+    format: date-time
+    description: The date that the subscription was created.
+    readOnly: true
+    example: '2020-01-01T00:00:00.000Z'
+  updatedAt:
+    type: string
+    format: date-time
+    description: The date that the subscription was updated.
+    readOnly: true
+    example: '2020-02-01T00:00:00.000Z'
 required:
   - id
   - event_type

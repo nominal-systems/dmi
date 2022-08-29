@@ -5,8 +5,8 @@ Occurs when results are added to an order
 ### Payload
 ```json
 {
-  "order": Order,
-  "report": Report,
-  "results": array[TestResult]
+    "orderId": string,
+    "order": Order,
+    "results": TestResult[]
 }
 ```

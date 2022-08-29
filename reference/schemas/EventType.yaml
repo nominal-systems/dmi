@@ -2,11 +2,11 @@ EventType:
   description: |
     The type of event. See [Event Types](/docs/dmi/events#event-types) in the API Reference for more details.
     
-    - `order:created` — Occurs when an order is created
-    - `order:updated` — Occurs when an order is updated
-    - `order:results` — Occurs when results are added to an order
-    - `report:created` — Occurs when a report is created
-    - `report:updated` — Occurs when a report is updated
+    - `order:created` — An order is created.
+    - `order:updated` — An order is updated.
+    - `order:results` — Results are added or modified to an existing order.
+    - `report:created` — A report is created.
+    - `report:updated` — A report is updated.
   type: string
   enum:
     - 'order:created'

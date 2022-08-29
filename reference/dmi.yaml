@@ -506,9 +506,10 @@ paths:
     get:
       summary: List provider devices
       operationId: get-providers-providerId-devices
-      description: Retrieve the devices for the specified provider.
+      description: Retrieve the devices for the specified provider and optionally a configured integration.
       parameters:
         - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/query/integration_id.yaml'
       responses:
         '200':
           $ref: './responses/ProviderDeviceList.yaml'
@@ -894,7 +895,8 @@ paths:
     post:
       summary: Create an event subscription
       operationId: post-event-subscriptions
-      description: Subscribe to a specific event type.
+      description: |
+        Create a subscription for a specific event type. Notifications on all events of the specified type will be sent to the mechanism specified in the subscription type and options.
       requestBody:
         $ref: './requestBodies/EventSubscriptionCreateBody.yaml'
       responses:

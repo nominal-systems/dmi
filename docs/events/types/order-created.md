@@ -1,10 +1,11 @@
 # order:created
 
-Occurs when an order is created
+An order is created.
 
 ### Payload
 ```json
 {
+    "orderId": string,
     "order": Order
 }
 ```
