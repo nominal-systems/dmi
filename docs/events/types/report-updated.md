@@ -5,7 +5,8 @@ Occurs when a report is updated
 ### Payload
 ```json
 {
-    "report": Report,
-    "orderId": string
+  "orderId": string,
+  "reportId": string,
+  "report": Report
 }
 ```

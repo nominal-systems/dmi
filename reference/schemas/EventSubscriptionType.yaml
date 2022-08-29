@@ -13,16 +13,16 @@ EventSubscriptionOptions:
     oneOf:
       - $ref: '#/AzureEventHubsSubscriptionOptions'
     example:
-      hub_name: my-event-hub
       hub_namespace: my-namespace
+      hub_name: my-event-hub
       sa_key_name: my-key-name
       sa_key_value: my-key-value
 AzureEventHubsSubscriptionOptions:
     description: |
-      Options for the Azure Event Hubs subscription:
+      Options for the Azure Events Hub subscription:
       
-      * `hub_name`: The name of the event hub.
       * `hub_namespace`: The namespace of the event hub.
+      * `hub_name`: The name of the event hub.
       * `sa_key_name`: The shared access key name.
       * `sa_key_value`:  The shared access key value.
     type: object

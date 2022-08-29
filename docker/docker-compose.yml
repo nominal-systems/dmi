@@ -53,7 +53,6 @@ services:
     env_file: .env
     volumes:
       - ./containers/activemq/data:/opt/activemq/data
-      - ./containers/activemq/conf:/opt/activemq/conf
     ports:
       - '1883:1883'
       - '8161:8161'
