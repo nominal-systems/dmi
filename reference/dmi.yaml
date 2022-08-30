@@ -892,6 +892,22 @@ paths:
       tags:
         - Events
   /event-subscriptions:
+    get:
+      summary: List event subscriptions
+      operationId: get-event-subscriptions
+      description: |
+        List all event subscriptions for the current organization.
+      responses:
+        '200':
+          $ref: './responses/EventSubscriptionList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Events
     post:
       summary: Create an event subscription
       operationId: post-event-subscriptions
