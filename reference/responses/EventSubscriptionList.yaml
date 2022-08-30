@@ -1,0 +1,7 @@
+description: Event Subscription List
+content:
+  application/json:
+    schema:
+      type: array
+      items:
+        $ref: '../schemas/EventSubscription.yaml'
