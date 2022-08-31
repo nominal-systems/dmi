@@ -5,7 +5,7 @@ Events is a streamlined, easy way to build applications that respond to activiti
 - Get all the data required in order to avoid direct API calls.
 
 ## Event Types
-The payload of an event, i.e. the data sent to the subscription endpoint, depends on the type of the event and is as follows:
+The payload of an event, i.e. the object sent in the `data` property of an [Event](/docs/dmi/schemas/event), depends on the type of the event and is as follows:
 
 | Type                                      | Description                                         |
 |-------------------------------------------|-----------------------------------------------------|
