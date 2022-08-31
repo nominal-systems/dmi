@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e6bd7c0d-675c-4900-9a62-b5a6897b3d97",
-		"name": "Nominal DMI API",
+		"name": "DMI API Bootstrap",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "65605"
 	},
