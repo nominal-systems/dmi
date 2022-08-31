@@ -17,6 +17,8 @@ info:
 servers:
   - url: 'http://localhost:4010'
     description: Local Mock Server
+  - url: 'http://20.76.167.88'
+    description: Staging Server
 paths:
   /users:
     post:
