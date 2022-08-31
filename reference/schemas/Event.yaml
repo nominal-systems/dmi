@@ -14,11 +14,12 @@ properties:
     description: Incremental sequence number of the event.
     readOnly: true
     example: 125
-  time:
-    type: integer
-    description: Time at which the object was created. Measured in seconds since the Unix epoch.
+  createdAt:
+    type: string
+    format: date-time
+    description: The date that the event was created
     readOnly: true
-    example: 1655129477
+    example: 2020-01-01T00:00:00.000Z
   type:
     readOnly: true
     allOf:

@@ -21,6 +21,10 @@ PayloadOrderCreated:
       The data sent in the `order:created` event.
   type: object
   properties:
+    orderId:
+      type: string
+      description: The ID of the order.
+      example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
     order:
       $ref: './Order.yaml'
 PayloadOrderUpdated:
@@ -29,6 +33,13 @@ PayloadOrderUpdated:
     The data sent in the `order:updated` event.
   type: object
   properties:
+    orderId:
+      type: string
+      description: The ID of the order.
+      example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
+    status:
+      type: string
+      description: The updated status of the order.
     order:
       $ref: './Order.yaml'
 PayloadOrderResults:
@@ -37,10 +48,12 @@ PayloadOrderResults:
     The data sent in the `order:results` event.
   type: object
   properties:
+    orderId:
+      type: string
+      description: The ID of the order.
+      example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
     order:
       $ref: './Order.yaml'
-    report:
-      $ref: './Report.yaml'
     results:
       type: array
       items:
@@ -51,21 +64,25 @@ PayloadReportCreated:
     The data sent in the `report:created` event.
   type: object
   properties:
-    report:
-      $ref: './Report.yaml'
     orderId:
       type: string
       description: The order ID associated with the report.
       example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
+    order:
+      $ref: './Order.yaml'
+    report:
+      $ref: './Report.yaml'
 PayloadReportUpdated:
   title: report:updated
   description: |
     The data sent in the `report:updated` event.
   type: object
   properties:
-    report:
-      $ref: './Report.yaml'
     orderId:
       type: string
       description: The order ID associated with the report.
       example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
+    order:
+      $ref: './Order.yaml'
+    report:
+      $ref: './Report.yaml'
