@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "validate": "swagger-cli validate reference/dmi.yaml",
+    "bundle": "swagger-cli bundle -r --type yaml reference/dmi.yaml > dmi-api-v$npm_package_version.yaml",
     "publish": "npm run validate && npx @stoplight/cli@5 push --ci-token $CI_TOKEN"
   },
   "repository": {
