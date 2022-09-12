@@ -245,6 +245,12 @@
       "title": "Error",
       "uri": "reference/types/Error.yaml",
       "slug": "types/error"
+    },
+    {
+      "type": "item",
+      "title": "Identifier",
+      "uri": "reference/types/Identifier.yaml",
+      "slug": "types/identifier"
     }
   ]
 }
