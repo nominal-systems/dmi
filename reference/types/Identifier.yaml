@@ -1,0 +1,13 @@
+title: Identifier
+type: object
+description: |
+  A numeric or alphanumeric string that is associated with a single object or entity within a given system. Typically, identifiers are used to connect content in resources to external content available in other systems.
+properties:
+  system:
+    type: string
+    description: The namespace for the value
+    example: 'pims:interal-id'
+  value:
+    type: string
+    description: An unique value within the system.
+    example: b9316dd0-1d41-4fe8-b5fb-055d204bb8cb
