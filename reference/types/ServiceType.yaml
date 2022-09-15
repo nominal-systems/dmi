@@ -1,0 +1,7 @@
+title: ServiceType
+type: string
+description: The service type.
+enum:
+  - IN_HOUSE
+  - PAID
+example: IN_HOUSE

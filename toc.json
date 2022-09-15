@@ -190,9 +190,9 @@
     },
     {
       "type": "item",
-      "title": "ProviderService",
-      "uri": "reference/schemas/ProviderService.yaml",
-      "slug": "schemas/provider-service"
+      "title": "Service",
+      "uri": "reference/schemas/Service.yaml",
+      "slug": "schemas/service"
     },
     {
       "type": "item",
