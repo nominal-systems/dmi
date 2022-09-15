@@ -493,7 +493,7 @@ paths:
         - $ref: './parameters/query/integration_id.yaml'
       responses:
         '200':
-          $ref: './responses/ProviderServiceList.yaml'
+          $ref: './responses/ServiceList.yaml'
         '404':
           description: Integration Not Found
         '401':
@@ -629,6 +629,8 @@ paths:
       summary: Add tests to an existing order
       operationId: post-orders-orderId-tests
       description: Add a test for the order with the matching order ID.
+      parameters:
+        - $ref: './parameters/orderId.yaml'
       requestBody:
         $ref: './requestBodies/TestCodes.yaml'
       responses:

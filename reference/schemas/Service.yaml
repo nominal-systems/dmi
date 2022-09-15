@@ -1,4 +1,4 @@
-title: ProviderService
+title: Service
 description: Service offered by a provider
 type: object
 properties:
@@ -23,10 +23,7 @@ properties:
     description: The service category.
     example: Chemistry
   type:
-    type: string
-    minLength: 1
-    description: The service type.
-    example: IN_HOUSE
+    $ref: '../types/ServiceType.yaml'
   price:
     type: number
     description: The price of the service, expressed in units of `currency`.
