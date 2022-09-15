@@ -4,4 +4,4 @@ content:
     schema:
       type: array
       items:
-        $ref: '../schemas/ProviderService.yaml'
+        $ref: '../schemas/Service.yaml'
