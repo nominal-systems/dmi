@@ -235,9 +235,11 @@ paths:
       tags:
         - Practices
     get:
-      summary: List all practices
+      summary: Search practices
       operationId: get-practices
-      description: Retrieve all practices.
+      description: Retrieve all practices that match the search criteria.
+      parameters:
+        - $ref: './parameters/query/integration_id.yaml'
       responses:
         '200':
           $ref: './responses/PracticeList.yaml'
