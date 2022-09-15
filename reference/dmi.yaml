@@ -493,7 +493,7 @@ paths:
         - $ref: './parameters/query/integration_id.yaml'
       responses:
         '200':
-          $ref: './responses/ProviderServiceList.yaml'
+          $ref: './responses/ServiceList.yaml'
         '404':
           description: Integration Not Found
         '401':
