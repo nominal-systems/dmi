@@ -57,7 +57,7 @@ spec:
                 configMapKeyRef:
                   name: dmi-config
                   key: DATABASE_PASSWORD
-            - name: DATABASE_SYNCHRONIZE
+            - name: DATABASE_RUN_MIGRATIONS
               value: 'true'
             - name: MONGO_URI
               valueFrom:
