@@ -19,6 +19,11 @@ properties:
       Business or system (not resource) identifiers.
     items:
       $ref: '../types/Identifier.yaml'
+  sex:
+    type: string
+    description: |
+      The sex code. See [Sexes](/docs/dmi/reference-data#sexes) in the API Reference.
+    example: MALE
   species:
     type: string
     description: |
@@ -29,11 +34,6 @@ properties:
     description: |
       The breed code. See [Breeds](/docs/dmi/reference-data#breeds) in the API Reference.
     example: JACK_RUSSEL_TERRIER
-  sex:
-    type: string
-    description: |
-      The sex code. See [Sexes](/docs/dmi/reference-data#sexes) in the API Reference.
-    example: MALE
   birthdate:
     type: string
     description: Birth date in `YYYY-MM-DD` format.

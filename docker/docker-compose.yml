@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   api:
-    image: 216821345641.dkr.ecr.us-east-1.amazonaws.com/dmi-api:latest
+    image: nominal-systems/dmi-api:latest
     ports:
       - '3000:3000'
     volumes:
@@ -19,7 +19,7 @@ services:
       ACTIVEMQ_HOSTNAME: 'activemq'
     command: ['./scripts/wait-for-all.sh', 'npm run start:prod']
   engine:
-    image: dmi-engine_engine:latest
+    image: nominal-systems/dmi-engine:latest
     ports:
       - '4000:4000'
     volumes:
@@ -34,6 +34,19 @@ services:
       REDIS_HOST: 'redis'
       REDIS_PORT: '6379'
     command: ['./scripts/wait-for-all.sh', 'npm run start:prod']
+  demo-provider-api:
+    image: nominal-systems/demo-provider-api:latest
+    ports:
+      - '4500:4500'
+    volumes:
+      - ./containers/demo-provider-api/logs:/app/logs
+    depends_on:
+      - mysql
+    env_file: .env
+    environment:
+      PORT: '4500'
+      DATABASE_HOST: 'mysql'
+      DATABASE_DATABASE: 'demo-provider-api'
   mongo:
     image: mongo:3.6
     volumes:
