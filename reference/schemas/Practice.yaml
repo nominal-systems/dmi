@@ -12,6 +12,12 @@ properties:
     type: string
     description: Name of the practice.
     example: My Practice
+  identifier:
+    type: array
+    description: |
+      Business or system (not resource) identifiers.
+    items:
+      $ref: '../types/Identifier.yaml'
   createdAt:
     type: string
     format: date-time

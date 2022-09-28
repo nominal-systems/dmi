@@ -9,5 +9,11 @@ content:
           type: string
           description: The name of the practice
           example: "My Practice"
+        identifier:
+          type: array
+          description: |
+            Business or system (not resource) identifiers.
+          items:
+            $ref: '../types/Identifier.yaml'
       required:
         - name
