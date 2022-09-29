@@ -15,6 +15,7 @@ services:
     environment:
       PORT: '3000'
       DATABASE_HOST: 'mysql'
+      DATABASE_DATABASE: 'dmi'
       MONGO_URI: 'mongodb://mongo/diagnostic-modality-integration'
       ACTIVEMQ_HOSTNAME: 'activemq'
     command: ['./scripts/wait-for-all.sh', 'npm run start:prod']
