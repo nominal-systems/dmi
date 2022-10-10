@@ -47,10 +47,32 @@ properties:
     items:
       $ref: '../types/Attachment.yaml'
   interpretation:
-    type: string
+    type: object
     description: |
-      Interpretation of the result in context of the reference range, usually used when the value is out of the normal range.
-    example: Normal
+      Interpretation of the result value in the context of the reference ranges. Possible interpretation codes are:
+      
+      - N — Normal
+      - A — Abnormal
+      - LL — Critical low
+      - L — Low
+      - H — High
+      - HH — Critical high
+    properties:
+      code:
+        type: string
+        description: Code of the interpretation
+        example: N
+        enum:
+          - N
+          - A
+          - LL
+          - L
+          - H
+          - HH
+      text:
+        type: string
+        description: Text of the interpretation, as received from the diagnostic provider.
+        example: Normal
   referenceRange:
     type: array
     description: Reference ranges of the test
