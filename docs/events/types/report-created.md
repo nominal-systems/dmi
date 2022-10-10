@@ -7,6 +7,7 @@ Occurs when a report is created
 {
     "orderId": string,
     "reportId": string,
-    "report": Report
+    "report": Report,
+    "practice": Practice
 }
 ```
