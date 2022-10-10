@@ -27,6 +27,8 @@ PayloadOrderCreated:
       example: 6c25928f-daa7-4dbb-94de-8ad72f0b107f
     order:
       $ref: './Order.yaml'
+    practice:
+      $ref: './Practice.yaml'
 PayloadOrderUpdated:
   title: order:updated
   description: |
@@ -42,6 +44,8 @@ PayloadOrderUpdated:
       description: The updated status of the order.
     order:
       $ref: './Order.yaml'
+    practice:
+      $ref: './Practice.yaml'
 PayloadOrderResults:
   title: order:results
   description: |
@@ -58,6 +62,8 @@ PayloadOrderResults:
       type: array
       items:
         $ref: './TestResult.yaml'
+    practice:
+      $ref: './Practice.yaml'
 PayloadReportCreated:
   title: report:created
   description: |
@@ -72,6 +78,8 @@ PayloadReportCreated:
       $ref: './Order.yaml'
     report:
       $ref: './Report.yaml'
+    practice:
+      $ref: './Practice.yaml'
 PayloadReportUpdated:
   title: report:updated
   description: |
@@ -86,3 +94,5 @@ PayloadReportUpdated:
       $ref: './Order.yaml'
     report:
       $ref: './Report.yaml'
+    practice:
+      $ref: './Practice.yaml'

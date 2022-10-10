@@ -6,6 +6,7 @@ An order is created.
 ```json
 {
     "orderId": string,
-    "order": Order
+    "order": Order,
+    "practice": Practice
 }
 ```
