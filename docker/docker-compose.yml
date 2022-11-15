@@ -19,12 +19,12 @@ services:
       MONGO_URI: 'mongodb://mongo/diagnostic-modality-integration'
       ACTIVEMQ_HOSTNAME: 'activemq'
     command: ['./scripts/wait-for-all.sh', 'npm run start:prod']
-  engine:
-    image: nominal-systems/dmi-engine:latest
+  demo-provider-integration:
+    image: nominal-systems/dmi-engine-demo-provider-integration:latest
     ports:
       - '4000:4000'
     volumes:
-      - ./containers/dmi-engine/logs:/app/logs
+      - ./containers/dmi-engine-demo-provider-integration/logs:/app/logs
     depends_on:
       - activemq
       - redis
@@ -74,3 +74,5 @@ services:
     image: redis
     ports:
       - '6379:6379'
+    volumes:
+      - ./containers/redis/data:/data

@@ -1,32 +1,32 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dmi-engine
+  name: dmi-engine-demo-provider-integration
 spec:
   type: ClusterIP
   ports:
     - port: 80
       targetPort: 4000
   selector:
-    name: dmi-engine
+    name: dmi-engine-demo-provider-integration
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dmi-engine
+  name: dmi-engine-demo-provider-integration
 spec:
   selector:
     matchLabels:
-      name: dmi-engine
+      name: dmi-engine-demo-provider-integration
   replicas: 1
   template:
     metadata:
       labels:
-        name: dmi-engine
+        name: dmi-engine-demo-provider-integration
     spec:
       containers:
-        - name: dmi-engine
-          image: nominaldevacr.azurecr.io/dmi-engine:latest
+        - name: dmi-engine-demo-provider-integration
+          image: nominaldevacr.azurecr.io/dmi-engine-demo-provider-integration:97880fd2df105ecdd19c98a9c2b9c9276ddd41e5
           imagePullPolicy: Always
           ports:
             - containerPort: 4000

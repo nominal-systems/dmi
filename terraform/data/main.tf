@@ -71,6 +71,7 @@ resource "azurerm_redis_cache" "redis" {
   sku_name            = "Standard"
   enable_non_ssl_port = true
   minimum_tls_version = "1.2"
+  redis_version       = "6"
 }
 
 resource "azurerm_eventhub_namespace" "eventhub_namespace" {
