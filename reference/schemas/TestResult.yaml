@@ -27,7 +27,7 @@ properties:
       - COMPLETED
       - REVISED
       - CANCELLED
-    example: DONE
+    example: COMPLETED
   deviceId:
     type: string
     description: |
