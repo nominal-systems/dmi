@@ -1,38 +1,38 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dmi-engine-demo-provider-integration
+  name: dmi-engine-idexx-integration
 spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 4000
+      targetPort: 4100
   selector:
-    name: dmi-engine-demo-provider-integration
+    name: dmi-engine-idexx-integration
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dmi-engine-demo-provider-integration
+  name: dmi-engine-idexx-integration
 spec:
   selector:
     matchLabels:
-      name: dmi-engine-demo-provider-integration
+      name: dmi-engine-idexx-integration
   replicas: 1
   template:
     metadata:
       labels:
-        name: dmi-engine-demo-provider-integration
+        name: dmi-engine-idexx-integration
     spec:
       containers:
-        - name: dmi-engine-demo-provider-integration
-          image: nominaldevacr.azurecr.io/dmi-engine-demo-provider-integration:latest
+        - name: dmi-engine-idexx-integration
+          image: nominaldevacr.azurecr.io/dmi-engine-idexx-integration:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 4000
+            - containerPort: 4100
           env:
             - name: PORT
-              value: '4000'
+              value: '4100'
             - name: MQTT_HOST
               value: 'activemq'
             - name: MQTT_PORT
