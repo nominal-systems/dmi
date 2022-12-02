@@ -1,4 +1,4 @@
-name: Deploy DMI API to AKS
+name: Deploy Demo Provider Integration to AKS
 
 on:
   repository_dispatch:
