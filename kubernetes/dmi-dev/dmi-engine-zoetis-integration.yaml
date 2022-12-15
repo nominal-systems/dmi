@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dmi-engine-zoetis-integration
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 4100
+  selector:
+    name: dmi-engine-zoetis-integration
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dmi-engine-zoetis-integration
+spec:
+  selector:
+    matchLabels:
+      name: dmi-engine-zoetis-integration
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dmi-engine-zoetis-integration
+    spec:
+      containers:
+        - name: dmi-engine-zoetis-integration
+          image: nominaldevacr.azurecr.io/dmi-engine-zoetis-integration:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4300
+          env:
+            - name: PORT
+              value: '4300'
+            - name: MQTT_HOST
+              value: 'activemq'
+            - name: MQTT_PORT
+              value: '1883'
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_PORT
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_PASSWORD

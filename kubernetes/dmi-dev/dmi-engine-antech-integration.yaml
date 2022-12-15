@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dmi-engine-antech-integration
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 4100
+  selector:
+    name: dmi-engine-antech-integration
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dmi-engine-antech-integration
+spec:
+  selector:
+    matchLabels:
+      name: dmi-engine-antech-integration
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dmi-engine-antech-integration
+    spec:
+      containers:
+        - name: dmi-engine-antech-integration
+          image: nominaldevacr.azurecr.io/dmi-engine-antech-integration:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4200
+          env:
+            - name: PORT
+              value: '4200'
+            - name: MQTT_HOST
+              value: 'activemq'
+            - name: MQTT_PORT
+              value: '1883'
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_PORT
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: REDIS_PASSWORD
