@@ -1,0 +1,32 @@
+name: Deploy IDEXX Integration to AKS
+
+on:
+  repository_dispatch:
+    types: [ dmi-engine-idexx-integration-updated ]
+
+env:
+  AZURE_RG: dmi-rg_app-dev
+  AKS_CLUSTER_NAME: dmi-cluster-dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+
+      - uses: azure/aks-set-context@v2
+        with:
+          resource-group: ${{ env.AZURE_RG }}
+          cluster-name: ${{ env.AKS_CLUSTER_NAME }}
+
+      - uses: Azure/k8s-deploy@v3.1
+        with:
+          action: deploy
+          manifests: |
+            kubernetes/dmi-dev/dmi-engine-idexx-integration.yaml
+          images: |
+            ${{ github.event.client_payload.image }}
