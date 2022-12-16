@@ -699,7 +699,7 @@ paths:
       operationId: get-refs-sexes
       description: Retrieve the list of the accepted sex codes, along with the list hash
       parameters:
-        - $ref: './parameters/query/integration_id.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
       responses:
         '200':
           $ref: './responses/SexesList.yaml'
@@ -715,7 +715,7 @@ paths:
       operationId: get-refs-species
       description: Retrieve the list of the accepted species codes, along with the list hash
       parameters:
-        - $ref: './parameters/query/integration_id.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
       responses:
         '200':
           $ref: './responses/SpeciesList.yaml'
@@ -731,7 +731,7 @@ paths:
       operationId: get-refs-breeds
       description: Retrieve the list of the accepted breeds, along with the list hash
       parameters:
-        - $ref: './parameters/query/integration_id.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
       responses:
         '200':
           $ref: './responses/BreedsList.yaml'
