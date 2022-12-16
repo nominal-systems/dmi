@@ -741,6 +741,57 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Reference Data
+  /refs/sexes/{providerId}:
+    get:
+      summary: Get the list of accepted sex codes
+      operationId: get-refs-sexes
+      description: Retrieve the list of the accepted sex for a provider, along with the list hash
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
+      responses:
+        '200':
+          $ref: './responses/SexesList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Reference Data
+  /refs/species/{providerId}:
+    get:
+      summary: Get the list of accepted species codes
+      operationId: get-refs-species
+      description: Retrieve the list of the accepted species for a provider, along with the list hash
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
+      responses:
+        '200':
+          $ref: './responses/SpeciesList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Reference Data
+  /refs/breeds/{providerId}:
+    get:
+      summary: Get the list of accepted breeds
+      operationId: get-refs-breeds
+      description: Retrieve the list of the accepted breeds for a provider, along with the list hash
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
+      responses:
+        '200':
+          $ref: './responses/BreedsList.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Reference Data
   /events:
     get:
       summary: List events
