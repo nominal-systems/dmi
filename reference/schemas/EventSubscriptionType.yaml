@@ -5,8 +5,8 @@ EventSubscriptionType:
     Currently only Azure Event Hubs subscriptions are supported.
   type: string
   enum:
-    - azure_event_hubs
-  example: azure_event_hubs
+    - azure-event-hubs
+  example: azure-event-hubs
 EventSubscriptionOptions:
     description: |
       Options for the subscription.
