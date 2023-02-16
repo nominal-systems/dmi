@@ -1,5 +1,7 @@
-### v1.0.3 RC
+### v1.0.3
 - Updated IDEXX Provider Configuration and Integration options.
+- Updated ProviderConfiguration schema.
+- Updated Integration schema.
 
 ### v1.0.2
 - Added endpoints to get reference data from specific providers.
