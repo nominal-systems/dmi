@@ -8,6 +8,20 @@ properties:
     description: The unique identifier of the integration.
     readOnly: true
     example: 175509ad-3b4a-4668-a7b8-3754c5437e03
+  status:
+    type: string
+    description: The status of the integration.
+    enum:
+      - RUNNING
+      - STOPPED
+    example: RUNNING
+  integrationOptions:
+    description: The provider-specific integration options.
+    anyOf:
+      - $ref: '../providers/DemoProvider.yaml#/IntegrationOptions'
+      - $ref: '../providers/Antech.yaml#/IntegrationOptions'
+      - $ref: '../providers/Idexx.yaml#/IntegrationOptions'
+      - $ref: '../providers/Zoetis.yaml#/IntegrationOptions'
   createdAt:
     type: string
     format: date-time
@@ -28,10 +42,3 @@ properties:
     description: The provider configuration of the integration.
     allOf:
       - $ref: './ProviderConfiguration.yaml'
-  integrationOptions:
-    description: The provider-specific integration options.
-    anyOf:
-      - $ref: '../providers/DemoProvider.yaml#/IntegrationOptions'
-      - $ref: '../providers/Antech.yaml#/IntegrationOptions'
-      - $ref: '../providers/Idexx.yaml#/IntegrationOptions'
-      - $ref: '../providers/Zoetis.yaml#/IntegrationOptions'

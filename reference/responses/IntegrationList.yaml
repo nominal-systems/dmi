@@ -4,4 +4,4 @@ content:
     schema:
       type: array
       items:
-        $ref: '../schemas/IntegrationDescription.yaml'
+        $ref: '../schemas/Integration.yaml'

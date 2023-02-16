@@ -13,6 +13,13 @@ properties:
     description: The unique identifier of the provider.
     readOnly: true
     example: demo
+  configurationOptions:
+    description: The provider-specific configuration object.
+    oneOf:
+      - $ref: '../providers/DemoProvider.yaml#/Configuration'
+      - $ref: '../providers/Antech.yaml#/Configuration'
+      - $ref: '../providers/Idexx.yaml#/Configuration'
+      - $ref: '../providers/Zoetis.yaml#/Configuration'
   createdAt:
     type: string
     format: date-time
@@ -25,10 +32,3 @@ properties:
     description: The date that the provider configuration was created
     readOnly: true
     example: 2020-01-01T00:00:00.000Z
-  configuration:
-    description: The provider-specific configuration object.
-    oneOf:
-      - $ref: '../providers/DemoProvider.yaml#/Configuration'
-      - $ref: '../providers/Antech.yaml#/Configuration'
-      - $ref: '../providers/Idexx.yaml#/Configuration'
-      - $ref: '../providers/Zoetis.yaml#/Configuration'
