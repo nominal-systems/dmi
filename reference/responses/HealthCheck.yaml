@@ -1,0 +1,48 @@
+description: Health Check
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+            - error
+            - shutting_down
+          example: ok
+          description: |
+            If all health indicators pass the status will be `ok`, if any is failing then `error` and if the application is shutting down but still accepting requests then `shutting_down`.
+        info:
+          type: object
+          description: |
+            Object containing information of each health indicator.
+          properties:
+            database:
+              $ref: '../types/Health.yaml#/Info'
+            mongo:
+              $ref: '../types/Health.yaml#/Info'
+            activemq:
+              $ref: '../types/Health.yaml#/Info'
+        error:
+            type: object
+            description: |
+                Object containing error information of each health indicator.
+            properties:
+              database:
+                $ref: '../types/Health.yaml#/Error'
+              mongo:
+                $ref: '../types/Health.yaml#/Error'
+              activemq:
+                $ref: '../types/Health.yaml#/Error'
+        details:
+          type: object
+          description: |
+            Object containing detailed information of each health indicator.
+          properties:
+            database:
+              $ref: '../types/Health.yaml#/Details'
+            mongo:
+              $ref: '../types/Health.yaml#/Details'
+            activemq:
+              $ref: '../types/Health.yaml#/Details'

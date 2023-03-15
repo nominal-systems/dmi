@@ -1,0 +1,33 @@
+Info:
+  type: object
+  properties:
+    status:
+      type: string
+      enum:
+        - up
+        - down
+      example: up
+      description: |
+        Health indicator which is of status `up`, or in other words "healthy", or `down`.
+Error:
+  type: object
+  properties:
+    status:
+      type: string
+      example: down
+    message:
+      type: string
+      description: |
+        Error message of the health indicator.
+      example: Operations timed out after 500 milliseconds.
+Details:
+  type: object
+  properties:
+    status:
+      type: string
+      enum:
+        - up
+        - down
+      example: down
+    message:
+      type: string

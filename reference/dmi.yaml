@@ -20,6 +20,18 @@ servers:
   - url: 'http://20.76.167.88'
     description: Staging Server
 paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: get-health
+      description: Check the health of the API.
+      responses:
+        '200':
+          $ref: './responses/HealthCheck.yaml'
+        '503':
+          $ref: './responses/HealthCheck.yaml'
+      tags:
+        - Health
   /users:
     post:
       summary: Create a user
@@ -955,6 +967,7 @@ components:
       in: header
       name: X-API-Key
 tags:
+  - name: Health
   - name: Admin
   - name: Users
   - name: Organizations
