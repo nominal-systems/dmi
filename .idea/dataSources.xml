@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MongoDB [Azure Mars VH]" uuid="64bd4d99-782e-48bb-bf26-d5eeece01564">
-      <driver-ref>mongo</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb://dmi-dev-cosmosdb-account:fe15lFKx7U6eiPuITDr8l3jNl0qQMEP0gKP8MeSDdtladCgDZmZPoMEN3uLS6WLpchdjHKjILqjCKjIQ6lEQXw==@dmi-dev-cosmosdb-account.mongo.cosmos.azure.com:10255/?ssl=true&amp;replicaSet=globaldb&amp;retrywrites=false&amp;maxIdleTimeMS=120000&amp;appName=@dmi-dev-cosmosdb-account@</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="MySQL [Local]" uuid="fca69db1-1929-4263-a4cf-77455e1f199c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -15,11 +8,11 @@
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="MySQL [Azure Mars VH]" uuid="f06f3cb7-738e-4f9f-81d0-e0b2c74e7b14">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="MS SQL [Local]" uuid="190d1aa9-8702-4e26-80b3-d215098d4282">
+      <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://dmi-dev-mysqlserver.mysql.database.azure.com:3306</jdbc-url>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost:1433</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
