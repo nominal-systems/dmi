@@ -1,0 +1,35 @@
+Configuration:
+  title: Heska
+  description: |
+    Configuration object for Heska.
+  type: object
+  properties:
+    baseUrl:
+      type: string
+      description: Base URL
+      example: https://heska.example.com
+    subscriptionKey:
+      type: string
+      description: Heska Subscription Key
+      example: 23322323
+  required:
+    - baseUrl
+    - subscriptionKey
+
+IntegrationOptions:
+  title: Heska
+  type: object
+  description: |
+      Integration options for Heska.
+  properties:
+    clientId:
+      type: string
+      description: Heska Client ID
+      example: 23322323
+    clientSecret:
+      type: string
+      description: Heska Client Secret
+      example: DDgfjs782!kswws
+  required:
+    - clientId
+    - clientSecret

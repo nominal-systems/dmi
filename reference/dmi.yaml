@@ -400,6 +400,28 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Providers
+    put:
+      summary: Update a configuration for a provider
+      operationId: patch-providers-providerId-configurations-configurationId
+      description: Update a configuration for a provider.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/configurationId.yaml'
+      requestBody:
+        $ref: './requestBodies/ProviderConfigurationCreateBody.yaml'
+      responses:
+        '200':
+          $ref: './responses/ProviderConfigurationFound.yaml'
+        '404':
+          description: Provider Configuration Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Providers
     delete:
       summary: Delete a configuration for a provider
       operationId: delete-providers-providerId-configurations-configurationId

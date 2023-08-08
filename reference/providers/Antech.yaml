@@ -4,42 +4,37 @@ Configuration:
   description: |
     Configuration object for the Antech. See [Configuration Options](/docs/dmi/antech#configuration-options) in the Antech API Reference.
   properties:
-    base_url:
+    baseUrl:
       type: string
       description: Base URL.
-      example: https://antech.example.com/
-    username:
+      example: https://antech.example.com
+    uiBaseUrl:
       type: string
-      description: Antech API username.
-      example: admin
-    password:
-      type: string
-      description: Antech API password.
-      example: admin
+      description: Base URL for the Antech UI.
+      example: https://antech.example.com
   required:
-    - base_url
-    - username
-    - password
+    - baseUrl
+    - uiBaseUrl
 IntegrationOptions:
   title: Antech
   type: object
   description: |
     Integration options for the Antech. See [Integration Options](/docs/dmi/antech#integration-options) in the Antech API Reference.
   properties:
-    clinic_id:
+    UserName:
+      type: string
+      description: Antech API username.
+      example: admin
+    Password:
+      type: string
+      description: Antech API password.
+      example: admin
+    ClinicID:
       type: string
       description: ID that is assigned by Antech to a particular clinic.
       example: ABC-1223-2244444
-    lab_id:
-      type: string
-      description: |
-        Region/Area.
-        
-        US = 1; Canada = 3; Fr Canada = 5; HongKong = 8; United Kingdom = 9;
-      enum:
-        - 1
-        - 3
-        - 5
-        - 8
-        - 9
+  required:
+    - UserName
+    - Password
+    - ClinicID
 

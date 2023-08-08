@@ -39,6 +39,13 @@ IntegrationOptions:
       type: string
       description: IDEXX API password.
       example: admin
+    locale:
+      type: string
+      enum:
+        - en
+        - es
+      description: The locale.
+      example: en
   required:
     - username
     - password

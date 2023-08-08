@@ -1,29 +1,35 @@
 Configuration:
   title: Zoetis
   description: |
-    Configuration object for the Zoetis. See [Configuration Options](/docs/dmi/zoetis#configuration-options) in the Zoetis API Reference.
+    Configuration object for Zoetis. See [Configuration Options](/docs/dmi/zoetis#configuration-options) in the Zoetis API Reference.
   type: object
   properties:
-    base_url:
+    baseUrl:
       type: string
-      description: Base URL.
-      example: https://zoetis.example.com/
-    partner_id:
+      description: Base URL
+      example: https://zoetis.example.com
+    partnerId:
       type: string
-      description: VetScan API Partner ID.
+      description: VetScan API Partner ID
       example: 23322323
-    partner_password:
+    partnerPassword:
       type: string
-      description: VetScan API Partner Password.
+      description: VetScan API Partner Password
       example: DDgfjs782!kswws
   required:
-    - base_url
-    - partner_id
-    - partner_password
+    - baseUrl
+    - partnerId
+    - partnerPassword
 IntegrationOptions:
   title: Zoetis
   type: object
-  additionalProperties: true
   description: |
-    Integration options for the Zoetis. See [Integration Options](/docs/dmi/zoetis#integration-options) in the Zoetis API Reference.
-  
+    Integration options for Zoetis. See [Integration Options](/docs/dmi/zoetis#integration-options) in the Zoetis API Reference.
+  properties:
+    clientId:
+      type: string
+      description: FUSE Client ID
+      example: 23322323
+  required:
+    - clientId
+

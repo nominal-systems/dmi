@@ -16,7 +16,6 @@ properties:
   configurationOptions:
     description: The provider-specific configuration object.
     oneOf:
-      - $ref: '../providers/DemoProvider.yaml#/Configuration'
       - $ref: '../providers/Antech.yaml#/Configuration'
       - $ref: '../providers/Idexx.yaml#/Configuration'
       - $ref: '../providers/Zoetis.yaml#/Configuration'
