@@ -1,0 +1,13 @@
+description: Update an integration options body
+required: true
+content:
+  application/json:
+    schema:
+      properties:
+        integrationOptions:
+          description: The provider-specific integration options.
+          anyOf:
+            - $ref: '../providers/Antech.yaml#/IntegrationOptions'
+            - $ref: '../providers/Idexx.yaml#/IntegrationOptions'
+            - $ref: '../providers/Zoetis.yaml#/IntegrationOptions'
+            - $ref: '../providers/Heska.yaml#/IntegrationOptions'

@@ -499,6 +499,27 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Integrations
+    patch:
+      summary: Update a diagnostic provider integration options
+      operationId: patch-integrations-integrationId
+      parameters:
+        - $ref: './parameters/integrationId.yaml'
+      requestBody:
+        $ref: './requestBodies/IntegrationUpdateBody.yaml'
+      responses:
+        '200':
+          $ref: './responses/IntegrationDetails.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Integrations
+
     delete:
       summary: Delete a diagnostic provider integration
       operationId: delete-integrations-integrationId
