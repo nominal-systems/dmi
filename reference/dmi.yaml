@@ -401,7 +401,7 @@ paths:
       tags:
         - Providers
     put:
-      summary: Update a configuration for a provider
+      summary: Update configuration options for a diagnostic provider
       operationId: patch-providers-providerId-configurations-configurationId
       description: Update a configuration for a provider.
       parameters:
