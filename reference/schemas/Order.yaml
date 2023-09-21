@@ -84,10 +84,10 @@ properties:
       - $ref: './Veterinarian.yaml'
   testCodes:
     type: array
-    description: The test codes to be ordered.
+    description: |
+      The test codes to be ordered.
     items:
-      type: string
-    example: [ HEM,COL ]
+      $ref: './TestCode.yaml#/TestCode'
   devices:
     type: array
     description: The list of desired device IDs.
