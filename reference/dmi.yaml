@@ -568,7 +568,7 @@ paths:
       description: Retrieve the devices for the specified provider and optionally a configured integration.
       parameters:
         - $ref: './parameters/providerId.yaml'
-        - $ref: './parameters/query/integration_id.yaml'
+        - $ref: './parameters/query/integrationId.yaml'
       responses:
         '200':
           $ref: './responses/ProviderDeviceList.yaml'
