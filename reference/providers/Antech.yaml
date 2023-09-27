@@ -6,12 +6,12 @@ Configuration:
   properties:
     baseUrl:
       type: string
-      description: Base URL.
+      description: Base URL
       example: https://antech.example.com
     uiBaseUrl:
       type: string
-      description: Base URL for the Antech UI.
-      example: https://antech.example.com
+      description: UI Base URL
+      example: https://ui.antech.example.com
   required:
     - baseUrl
     - uiBaseUrl
@@ -23,15 +23,15 @@ IntegrationOptions:
   properties:
     UserName:
       type: string
-      description: Antech API username.
+      description: Antech API username
       example: admin
     Password:
       type: string
-      description: Antech API password.
+      description: Antech API password
       example: admin
     ClinicID:
       type: string
-      description: ID that is assigned by Antech to a particular clinic.
+      description: Clinic ID used to login to Antech's API
       example: ABC-1223-2244444
   required:
     - UserName
