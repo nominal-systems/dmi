@@ -80,6 +80,12 @@
     },
     {
       "type": "item",
+      "title": "Provider Capabilities",
+      "uri": "docs/providers/provider-capabilities.md",
+      "slug": "provider-capabilities"
+    },
+    {
+      "type": "item",
       "title": "Demo Provider",
       "uri": "docs/providers/demo-provider.md",
       "slug": "demo-provider"
