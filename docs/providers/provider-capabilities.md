@@ -33,7 +33,7 @@ In order for DMI to be able to integrate with a provider, ideally the provider m
   - The provider must be able to return a list of unacknowledged orders for a user, including the status of the order and the unique identifier returned when the order was created.
 - **Order Acknowledgment**
   - The provider must provide a mechanism to acknowledge an order, using the unique identifier returned when the order was created.
-  - Unacknowledged orders should not be returned in the order retrieval endpoint.
+  - Acknowledged orders should not be returned in the order retrieval endpoint.
 - **Result Retrieval**
   - The provider must be able to return a list available results for a user, including the status of the result, a unique identifier for the result and a reference to the originating order.
   - The status of the should reflect the current stage in the diagnostic process and should have an identifiable set of final statuses.
@@ -41,7 +41,7 @@ In order for DMI to be able to integrate with a provider, ideally the provider m
   - The provider must be able to return the details of a result for a user, including the status of the result, using the unique identifier returned when the result was created.
 - **Result Acknowledgment**
   - The provider must provide a mechanism to acknowledge a result for a user, using the unique identifier returned when the result was created.
-  - Unacknowledged results should not be returned in the result retrieval endpoint.
+  - Acknowledged results should not be returned in the result retrieval endpoint.
 - **Test Environment**
   - The provider must have a test environment that can be used to test the integration.
   - The test environment should be able to be reset to a known state.
