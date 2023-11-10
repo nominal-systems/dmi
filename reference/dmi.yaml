@@ -589,6 +589,12 @@ paths:
       description: Create a test order for a patient.
       requestBody:
         $ref: './requestBodies/OrderCreateBody.yaml'
+      parameters:
+      - name: autoSubmitOrder
+        in: query
+        description: Auto submit order flag
+        schema:
+          type: boolean
       responses:
         '201':
           $ref: './responses/OrderCreated.yaml'
