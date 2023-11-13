@@ -1,0 +1,5 @@
+name: autoSubmitOrder
+in: query
+description: Auto submit order flag
+schema:
+  type: boolean
