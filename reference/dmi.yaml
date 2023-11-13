@@ -587,14 +587,10 @@ paths:
       summary: Create an order
       operationId: post-orders
       description: Create a test order for a patient.
+      parameters:
+        - $ref: './parameters/query/autoSubmitOrder.yaml'
       requestBody:
         $ref: './requestBodies/OrderCreateBody.yaml'
-      parameters:
-      - name: autoSubmitOrder
-        in: query
-        description: Auto submit order flag
-        schema:
-          type: boolean
       responses:
         '201':
           $ref: './responses/OrderCreated.yaml'
