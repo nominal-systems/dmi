@@ -8,6 +8,10 @@ properties:
     description: The status code of the error.
     example: 400
   message:
+    type: string
+    description: General message describing the error.
+    example: Bad Request
+  error:
     oneOf:
       - type: string
         description: The error message.
@@ -20,10 +24,17 @@ properties:
         example:
           - 'Missing required field: name'
           - 'Missing required field: email'
-  error:
+  path:
     type: string
-    description: General message describing the error.
-    example: Bad Request
+    description: |
+      The path of the request that caused the error.
+    example: /users
+  timestamp:
+    type: string
+    format: date-time
+    description: |
+      The timestamp of the error.
+    example: 2019-01-01T00:00:00.000Z
 required:
   - statusCode
   - message
