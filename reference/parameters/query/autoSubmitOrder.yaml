@@ -6,3 +6,4 @@ description: |
   If the provider requires manual submission of an order and auto-submission is supported by DMI for the provider, then set to `true` to automatically submit the order and skip the manual submission process.
 schema:
   type: boolean
+  default: false
