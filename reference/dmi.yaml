@@ -683,6 +683,26 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
+  /orders/{orderId}/manifest:
+    get:
+      summary: Get the manifest for an order
+      operationId: get-orders-orderId-manifest
+      description: Retrieve the manifest for the matching order ID.
+      parameters:
+        - $ref: './parameters/orderId.yaml'
+      responses:
+        '200':
+          $ref: './responses/OrderManifest.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Orders & Results
   /orders/{orderId}/tests:
     post:
       summary: Add tests to an existing order
