@@ -1,0 +1,7 @@
+description: Order Manifest
+content:
+  application/json:
+    schema:
+      $ref: '../types/Attachment.yaml'
+    example:
+      $ref: '../examples/Attachment.yaml'
