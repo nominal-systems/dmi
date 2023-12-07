@@ -19,6 +19,12 @@
       "slug": "developer-quickstart"
     },
     {
+      "type": "item",
+      "title": "Changelog",
+      "uri": "docs/04-changelog.md",
+      "slug": "changelog"
+    },
+    {
       "type": "divider",
       "title": "Configuration"
     },
