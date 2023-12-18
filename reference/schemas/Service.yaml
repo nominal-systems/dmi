@@ -33,7 +33,7 @@ properties:
     minLength: 1
     description: The [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) currency code for the service price.
   labRequisitionInfo:
-    type: array
+    type: object
     description: |
       Extra requisition information required by the lab for this service.
     items:

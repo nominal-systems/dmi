@@ -3,23 +3,23 @@ description: Lab requisition information parameter description.
 type: object
 properties:
   name:
-    type: string
+    type: object
     minLength: 1
     description: The name of the lab requisition parameter property.
     example: IsSpecialStaining
-  type:
-    type: string
-    minLength: 1
-    description: The type of the lab requisition parameter property.
-    enum:
-      - boolean
-      - string
-      - number
-    example: boolean
-  required:
-    type: boolean
-    description: Whether the lab requisition parameter is required.
-    example: true
+    properties:
+      type:
+        type: string
+        minLength: 1
+        description: The type of the lab requisition parameter property.
+        enum:
+          - boolean
+          - string
+          - number
+        example: boolean
+      required:
+        type: boolean
+        description: Whether the lab requisition parameter is required.
+        example: true
 required:
-  - name
   - type
