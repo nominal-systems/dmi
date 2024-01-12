@@ -12,18 +12,14 @@ properties:
     description: General message describing the error.
     example: Bad Request
   error:
-    oneOf:
-      - type: string
-        description: The error message.
-        example: "The request is invalid"
-      - type: array
-        description: |
-          A list of specific error messages that occurred during the request.
-        items:
-          type: string
-        example:
-          - 'Missing required field: name'
-          - 'Missing required field: email'
+    type: array
+    description: |
+      A list of specific error messages that occurred during the request.
+    items:
+      type: string
+    example:
+      - 'Missing required field: name'
+      - 'Missing required field: email'
   path:
     type: string
     description: |
