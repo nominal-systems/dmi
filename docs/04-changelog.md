@@ -1,5 +1,7 @@
 # Changelog
 
+### 1.0.9
+
 - Added `requestPayload` to [Error](/docs/dmi/types/error) response object.
 - Added Heska provider page
 
