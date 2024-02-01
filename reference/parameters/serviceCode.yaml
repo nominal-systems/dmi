@@ -1,0 +1,8 @@
+name: serviceCode
+in: path
+required: true
+description: Provider service code
+schema:
+  type: string
+  minLength: 1
+  example: HEM
