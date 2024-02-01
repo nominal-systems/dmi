@@ -1,5 +1,6 @@
 # Changelog
 
+
 - Change `error` parameter on [Error](docs/dmi/types/error) to be only type `array[string]`
 
 ### 1.0.10
