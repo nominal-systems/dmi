@@ -31,6 +31,18 @@ properties:
     description: |
       The timestamp of the error.
     example: 2019-01-01T00:00:00.000Z
+  requestPayload:
+    type: object
+    description: |
+      The request payload sent to the provider that caused the error.
+    example:
+      corporateRequisitionId: VOY-001
+      veterinarian: Dr. John Doe
+      tests:
+        type: array
+        items:
+          type: string
+          example: "HEM"
 required:
   - statusCode
   - message

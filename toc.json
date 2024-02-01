@@ -115,6 +115,12 @@
       "slug": "zoetis"
     },
     {
+      "type": "item",
+      "title": "Heska",
+      "uri": "docs/providers/heska.md",
+      "slug": "heska"
+    },
+    {
       "type": "divider",
       "title": "APIs"
     },

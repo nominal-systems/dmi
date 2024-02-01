@@ -561,6 +561,29 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Directory of Services
+  /providers/{providerId}/services/{serviceCode}:
+    get:
+      summary: Get a provider service by code
+      operationId: get-providers-providerId-services-serviceCode
+      description: |
+        Retrieve the service with the matching service code for the specified provider and optionally a configured integration.
+      parameters:
+        - $ref: './parameters/providerId.yaml'
+        - $ref: './parameters/serviceCode.yaml'
+        - $ref: './parameters/query/integration_id.yaml'
+      responses:
+        '200':
+          $ref: './responses/Service.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Directory of Services
   /providers/{providerId}/devices:
     get:
       summary: List provider devices

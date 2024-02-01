@@ -1,0 +1,5 @@
+description: Provider service list
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Service.yaml'
