@@ -1,7 +1,9 @@
 # Changelog
 
-### 1.0.9
+### 1.0.10
+- Added [Get a provider service by code](/docs/dmi/api/operations/get-providers-providerId-services-serviceCode) endpoint to find a specific provider service by code. 
 
+### 1.0.9
 - Added `requestPayload` to [Error](/docs/dmi/types/error) response object.
 - Added Heska provider page
 
