@@ -28,8 +28,8 @@ To import the OpenAPI specification file, Postman collections and environments:
    - DMI API Bootstrap (Postman Collection v2.1) 
    - Local (Postman Environment for local environment)
    - Azure Mars VH (Postman Environment for Azure Mars VH environment)
-5. Click on "Show advanced settings":
-   1. On "Request parameter generation" select "Schema".
+5. Click on "View Import Settings":
+   1. On "Parameter generation" select "Schema".
    2. On "Folder organization" select "Tags".
 6. Click on "Import"
 
