@@ -13,7 +13,10 @@ Alternatively, you can run the mock server locally with [prism](https://meta.sto
 npm install -g @stoplight/prism-cli
 prism mock reference/dmi.yaml
 ```
-and a mock server will be available at http://127.0.0.1:4010
+and a mock server will be available at http://127.0.0.1:4010 [^1]
+
+[^1]: When using Postman, ensure that the mock server URL and port match the environment settings.
+
 
 ### Postman Integration
 To import the OpenAPI specification file, Postman collections and environments:
