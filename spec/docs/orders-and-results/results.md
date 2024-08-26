@@ -1,5 +1,5 @@
 # Results
-Results to the ordered tests are provided in a [Report](/docs/dmi/schemas/report), which contains findings and interpretations of diagnostic tests performed on patients, and/or specimens derived from these. Reports contain an array of [Test Results](/docs/dmi/schemas/test-result), which is a grouping of clinical [Observations](/docs/dmi/schemas/observation) performed by the diagnostic provider.
+Results to the ordered tests are provided in a [Report](/spec/docs/dmi/schemas/report), which contains findings and interpretations of diagnostic tests performed on patients, and/or specimens derived from these. Reports contain an array of [Test Results](/spec/docs/dmi/schemas/test-result), which is a grouping of clinical [Observations](/spec/docs/dmi/schemas/observation) performed by the diagnostic provider.
 
 ## Report
 Reports contain an array of results that group clinical observations into test results as requested in an order, or with a meaningful logical grouping.
@@ -49,7 +49,7 @@ And the transition between Observation states is as follows:
 ---
 
 To expand your understanding on reports, explore some examples:
-- [Urinalysis](/docs/dmi/api/operations/get-a-order-urinalysi-report)
-- [Chemistry](/docs/dmi/api/operations/get-a-order-chemistry-report)
-- [Hematology](/docs/dmi/api/operations/get-a-order-hematology-report)
-- [Screening](/docs/dmi/api/operations/get-a-order-screening-report)
+- [Urinalysis](/spec/docs/dmi/api/operations/get-a-order-urinalysi-report)
+- [Chemistry](/spec/docs/dmi/api/operations/get-a-order-chemistry-report)
+- [Hematology](/spec/docs/dmi/api/operations/get-a-order-hematology-report)
+- [Screening](/spec/docs/dmi/api/operations/get-a-order-screening-report)

@@ -1,7 +1,7 @@
 # Antech
 
 ## Configuration Options
-Configure Antech by [creating a configuration](/docs/dmi/api/operations/create-a-provider-configuration) for it and specifying the following body in the `configuration` property:
+Configure Antech by [creating a configuration](/spec/docs/dmi/api/operations/create-a-provider-configuration) for it and specifying the following body in the `configuration` property:
 
 | Name             | Type   | Required | Description                |
 |------------------|--------|----------|----------------------------|
@@ -10,7 +10,7 @@ Configure Antech by [creating a configuration](/docs/dmi/api/operations/create-a
 | `PimsIdentifier` | string | yes      | PIMS 3-4 letter identifier | 
 
 ## Integration Options
-Configure Antech by [creating an integration](/docs/dmi/api/operations/create-a-integration) for it and specifying the following body in the `integrationOptions` property:
+Configure Antech by [creating an integration](/spec/docs/dmi/api/operations/create-a-integration) for it and specifying the following body in the `integrationOptions` property:
 
 | Name       | Type   | Required | Description                             |
 |------------|--------|----------|-----------------------------------------|

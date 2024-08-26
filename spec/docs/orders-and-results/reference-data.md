@@ -12,16 +12,16 @@ This dataset is periodically updated with the providers. All reference data list
 
 ## Sexes
 
-[Get the list of accepted sex codes](/docs/dmi/api/operations/list-ref-sexes) to specify the `sex` property of the [Patient](/docs/dmi/schemas/patient) object.  
+[Get the list of accepted sex codes](/spec/docs/dmi/api/operations/list-ref-sexes) to specify the `sex` property of the [Patient](/spec/docs/dmi/schemas/patient) object.  
 
 ## Species
 
-[Get the list of accepted species codes](/docs/dmi/api/operations/list-ref-species) to specify the `species` property of the [Patient](/docs/dmi/schemas/patient) object.
+[Get the list of accepted species codes](/spec/docs/dmi/api/operations/list-ref-species) to specify the `species` property of the [Patient](/spec/docs/dmi/schemas/patient) object.
 
 > If the provided species code does not match with any accepted code by a specific provider, it will be mapped to `OTHER` or an equivalent non-specific code, when applicable.
 
 ## Breeds
 
-[Get the list of accepted breeds](/docs/dmi/api/operations/list-ref-breeds) to specify the `breed` property of the [Patient](/docs/dmi/schemas/patient) object.
+[Get the list of accepted breeds](/spec/docs/dmi/api/operations/list-ref-breeds) to specify the `breed` property of the [Patient](/spec/docs/dmi/schemas/patient) object.
 
 > If the provided breed code does not match with any accepted code by a specific provider, it will be mapped to `OTHER` or an equivalent non-specific code, when applicable.

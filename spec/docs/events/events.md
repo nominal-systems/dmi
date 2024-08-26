@@ -5,7 +5,7 @@ Events is a streamlined, easy way to build applications that respond to activiti
 - Get all the data required in order to avoid direct API calls.
 
 ## Event Types
-The payload of an event, i.e. the object sent in the `data` property of an [Event](/docs/dmi/schemas/event), depends on the type of the event and is as follows:
+The payload of an event, i.e. the object sent in the `data` property of an [Event](/spec/docs/dmi/schemas/event), depends on the type of the event and is as follows:
 
 | Type                                      | Description                                         |
 |-------------------------------------------|-----------------------------------------------------|
@@ -18,7 +18,7 @@ The payload of an event, i.e. the object sent in the `data` property of an [Even
 ## Event Subscriptions
 DMI API uses event subscriptions to notify your application when an event happens in the broker. Create an event subscription to get notified about asynchronous events like when an order is created or updated, results are added to an order, etc.
 
-Currently, DMI API only supports [Azure Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-about) for asynchronous event delivery. To configure your application to subscribe to certain event types, see how to [create an event subscription](/docs/dmi/api/operations/create-a-event-subscription) in the API Reference.
+Currently, DMI API only supports [Azure Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-about) for asynchronous event delivery. To configure your application to subscribe to certain event types, see how to [create an event subscription](/spec/docs/dmi/api/operations/create-a-event-subscription) in the API Reference.
 
 ### Azure Event Hubs
 In order to create a subscription for Azure Event Hubs, you must provide the following parameters at the time of creating the subscription:
@@ -41,6 +41,6 @@ Endpoint=sb://<hub_namespace>.servicebus.windows.net/;SharedAccessKeyName=<sa_ke
 The connection string can be found on the "Shared access policies" of the Events Hub page in the Azure Portal.
 
 ## Event Acknowledgment 
-DMI API uses an acknowledgment mechanism to aid event polling. When using the [event list endpoint](/docs/dmi/api/operations/list-events) unacknowledged events will be retrieved. Once your application has processed these events it can [acknowledge them](/docs/dmi/api/operations/create-a-event-acknowledge) and they will be considered as such by the DMI API and won't be returned in the event list. 
+DMI API uses an acknowledgment mechanism to aid event polling. When using the [event list endpoint](/spec/docs/dmi/api/operations/list-events) unacknowledged events will be retrieved. Once your application has processed these events it can [acknowledge them](/spec/docs/dmi/api/operations/create-a-event-acknowledge) and they will be considered as such by the DMI API and won't be returned in the event list. 
 
-Note that while [searching events](/docs/dmi/api/operations/get-a-event-search), the acknowledged status of an event is ignored, thus all events that match the search criteria will be returned, regardless if they were previously acknowledged.
+Note that while [searching events](/spec/docs/dmi/api/operations/get-a-event-search), the acknowledged status of an event is ignored, thus all events that match the search criteria will be returned, regardless if they were previously acknowledged.

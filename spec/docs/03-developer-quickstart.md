@@ -54,7 +54,7 @@ Obtain an authorization token by calling the authorization endpoint and sending 
 }
 ```
 
-The response will include a `token` property that should be used for subsequent authenticated requests as a Bearer token. Learn more about [Authentication](/docs/dmi/getting-started#authentication) in the API Reference.
+The response will include a `token` property that should be used for subsequent authenticated requests as a Bearer token. Learn more about [Authentication](/spec/docs/dmi/getting-started#authentication) in the API Reference.
 
 ### Create your organization
 Create an organization by specifying a name:
@@ -78,7 +78,7 @@ The response will contain an `id` property with the Organization ID. This guide 
 
 > The user that created the organization will be the organization owner.
 
-To add more users as members of the organization, use the [Add member to an organization](/docs/dmi/api/operations/create-a-organization-member) endpoint.
+To add more users as members of the organization, use the [Add member to an organization](/spec/docs/dmi/api/operations/create-a-organization-member) endpoint.
 
 ### Get your organization's API keys
 After you have created a user and an organization, you can get your organization's API keys so you can start making requests to the DMI API in behalf of the organization.
@@ -98,7 +98,7 @@ Retrieve the API keys for your organization:
 
 The response will contain a property `prodKey` with your production key and a property `testKey` with your test key. This guide will reference either of these values as `apiKey`.
 
-> If you need to regenerate your API keys refer to [Organizations](/docs/dmi/organizations-and-practices#organizations) in the API Reference.
+> If you need to regenerate your API keys refer to [Organizations](/spec/docs/dmi/organizations-and-practices#organizations) in the API Reference.
 
 ### Get the list of supported Providers
 Get a list of the supported providers:
@@ -114,7 +114,7 @@ Get a list of the supported providers:
 }
 ```
 
-This will return an array of the supported providers, along with their configuration and integration options. For the purpose of this guide, we will configure our integration with the [Demo Provider](/docs/dmi/demo-provider).
+This will return an array of the supported providers, along with their configuration and integration options. For the purpose of this guide, we will configure our integration with the [Demo Provider](/spec/docs/dmi/demo-provider).
 
 > Note that the ID of the Demo Provider is `demo`
 
@@ -244,7 +244,7 @@ Order a Hematology test:
 }
 ```
 
-> Note that a patient, client and veterinarian can be provider for an order. Learn more about this in the [Orders](/docs/dmi/orders) section.
+> Note that a patient, client and veterinarian can be provider for an order. Learn more about this in the [Orders](/spec/docs/dmi/orders) section.
 
 The response will include a property `id` for the created Order. This guide will reference that value with `orderId`.
 
@@ -263,9 +263,9 @@ Get updates on your practice orders:
 }
 ```
 
-See the [Events](/docs/dmi/events) to learn more about events, and read about [Event Subscription](/docs/dmi/events#event-subscriptions) to understand how to subscribe to certain event types and get notified directly by the API.
+See the [Events](/spec/docs/dmi/events) to learn more about events, and read about [Event Subscription](/spec/docs/dmi/events#event-subscriptions) to understand how to subscribe to certain event types and get notified directly by the API.
 
-> It's important to keep track of the `seq`, this should always be the last sequence number that you obtained from the API. Events can be acknowledged to aid polling. Learn more about [Event Acknowledgment](/docs/dmi/events#event-acknowledgment)
+> It's important to keep track of the `seq`, this should always be the last sequence number that you obtained from the API. Events can be acknowledged to aid polling. Learn more about [Event Acknowledgment](/spec/docs/dmi/events#event-acknowledgment)
 
 ### Retrieve the results
 Once the order is reaches `PARTIAL` or `FINAL` status, a report will be available with the tests results:
@@ -285,4 +285,4 @@ Congratulations! You created an organization and configured it for a specific pr
 
 ---
 
-To start configuring your application learn how manage [Users](/docs/dmi/users).
+To start configuring your application learn how manage [Users](/spec/docs/dmi/users).

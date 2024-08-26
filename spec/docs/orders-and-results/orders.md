@@ -18,9 +18,9 @@ Orders can have the following states:
 ![Order state machine](https://i.imgur.com/yhuAAyi.png)
 
 ## Lab Requisition Information
-Some providers may require addition requisition parameters for specific services and tests. These parameters are described in the `labRequisitionInfo` property of the [ProviderService](/docs/dmi/schemas/provider-service) model, obtained when [querying the directory of services](/docs/dmi/api/operations/list-provider-services) for a provider. 
+Some providers may require addition requisition parameters for specific services and tests. These parameters are described in the `labRequisitionInfo` property of the [ProviderService](/spec/docs/dmi/schemas/provider-service) model, obtained when [querying the directory of services](/spec/docs/dmi/api/operations/list-provider-services) for a provider. 
 
-These parameters, if required, must be sent in the `labRequisitionInfo` property of the [create order](/docs/dmi/api/operations/create-a-order) endpoint body. 
+These parameters, if required, must be sent in the `labRequisitionInfo` property of the [create order](/spec/docs/dmi/api/operations/create-a-order) endpoint body. 
 
 ## Order Types
 There are two types of orders:

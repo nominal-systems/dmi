@@ -1,7 +1,7 @@
 # Heska
 
 ## Configuration Options
-Configure Heska by [creating a configuration](/docs/dmi/api/operations/create-a-provider-configuration) for it and specifying the following body in the `configuration` property:
+Configure Heska by [creating a configuration](/spec/docs/dmi/api/operations/create-a-provider-configuration) for it and specifying the following body in the `configuration` property:
 
 | Name              | Type   | Required | Description            |
 |-------------------|--------|----------|------------------------|
@@ -9,7 +9,7 @@ Configure Heska by [creating a configuration](/docs/dmi/api/operations/create-a-
 | `subscriptionKey` | string | yes      | Heska Subscription Key |
 
 ## Integration Options
-Configure Heska by [creating an integration](/docs/dmi/api/operations/create-a-integration) for it and specifying the following body in the `integrationOptions` property:
+Configure Heska by [creating an integration](/spec/docs/dmi/api/operations/create-a-integration) for it and specifying the following body in the `integrationOptions` property:
 
 | Name           | Type   | Required | Description         |
 |----------------|--------|----------|---------------------|
