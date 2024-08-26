@@ -16,4 +16,4 @@ jobs:
       - name: Build
         uses: mpetrunic/swagger-cli-action@v1.0.0
         with:
-          command: validate reference/dmi.yaml
+          command: validate spec/reference/dmi.yaml
