@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dmi-api
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    name: dmi-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dmi-api
+spec:
+  selector:
+    matchLabels:
+      name: dmi-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dmi-api
+    spec:
+      containers:
+        - name: dmi-api
+          image: nominaldevacr.azurecr.io/dmi-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: '3000'
+            - name: JWT_SECRET_KEY
+              value: 'platano maduro'
+            - name: SECRET_KEY
+              value: 'To@i#q2Z5!pStQTN9HxVocWHg9YH56f^'
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_HOST
+            - name: DATABASE_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_DATABASE
+            - name: DATABASE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_USERNAME
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: DATABASE_PASSWORD
+            - name: DATABASE_RUN_MIGRATIONS
+              value: 'true'
+            - name: MONGO_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: dmi-config
+                  key: MONGO_URI
+            - name: ACTIVEMQ_HOSTNAME
+              value: 'activemq'
+            - name: ACTIVEMQ_PORT
+              value: '1883'
+
+
