@@ -1,3 +1,10 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: home
+---
+
 # Diagnostic Modality Integrator
 
 Base repository for the Diagnostic Modality Integrator (DMI). DMI is a suite of components that connect to diagnostic providers (reference labs, point of care devices, etc) and exposes an API with a single interface for PIMS to implement to integrate with multiple diagnostic providers at once.
