@@ -2,11 +2,18 @@
 layout: home
 ---
 
-Base repository for the Diagnostic Modality Integrator (DMI). DMI is a suite of components that connects to diagnostic providers (reference labs, point of care devices, etc) and exposes an API with a single interface for PIMS to implement to integrate with multiple diagnostic providers at once.
+The Diagnostic Modality Integrator (DMI) is a suite of components that connects to diagnostic providers (reference labs,
+point of care devices, etc) and exposes an API with a single interface for PIMS to implement to integrate with multiple
+diagnostic providers at once.
 
-In this repository you will find:
-- The OpenAPI specification of the DMI API. See [DMI API Specification](../spec/README.md).
-- A Postman collection to help you started with the API. See [DMI API Postman collection](../postman/README.md).
-- A set of Docker-related files to help you run the system locally. See [Docker](../docker/README.md).
-- A set of Kubernetes-related files to help you configure and run the system on a Kubernetes cluster. See [Kubernetes](../kubernetes/README.md).
-- A set of Terraform-related files to help you provision infrastructure in a cloud provider. See [Terraform](../terraform/README.md).
+<h2>Getting Started with DMI</h2>
+
+<ul>
+  <li>
+    Explore our repositories:
+    <ul>
+      <li><a href="https://github.com/nominal-systems/dmi">dmi</a> — Base repository: spec definition, docker/kubernetes/terraform scripts, etc</li>
+    </ul>
+  </li>
+  <li>Read the <a href="https://nominal.stoplight.io/docs/dmi">DMI API Spec</a></li>
+</ul>
