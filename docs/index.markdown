@@ -5,8 +5,6 @@
 layout: home
 ---
 
-# Diagnostic Modality Integrator
-
 Base repository for the Diagnostic Modality Integrator (DMI). DMI is a suite of components that connect to diagnostic providers (reference labs, point of care devices, etc) and exposes an API with a single interface for PIMS to implement to integrate with multiple diagnostic providers at once.
 
 In this repository you will find:
