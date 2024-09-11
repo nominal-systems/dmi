@@ -2,9 +2,9 @@
 layout: home
 ---
 
-The Diagnostic Modality Integrator (DMI) is a suite of components that connects to diagnostic providers (reference labs,
-point of care devices, etc) and exposes an API with a single interface for PIMS to implement to integrate with multiple
-diagnostic providers at once.
+The Diagnostic Modality Integrator (DMI) is a suite of components that connects to veterinary diagnostic providers
+(reference labs, point of care devices, etc) and exposes an API with a single interface for Practice Information
+Management Systems (PIMS) to implement to integrate with multiple diagnostic providers at once.
 
 <h2>Getting Started with DMI</h2>
 
