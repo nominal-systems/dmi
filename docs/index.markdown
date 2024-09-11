@@ -13,7 +13,8 @@ Management Systems (PIMS) to implement to integrate with multiple diagnostic pro
     Explore our repositories:
     <ul>
       <li><a href="https://github.com/nominal-systems/dmi"><strong>dmi</strong></a> — Base repository: spec definition, docker/kubernetes/terraform scripts, etc.</li>
-      <li><a href="https://github.com/nominal-systems/dmi"><strong>dmi-api</strong></a> — DMI API server implemented as a NestJS application.</li>
+      <li><a href="https://github.com/nominal-systems/dmi-api"><strong>dmi-api</strong></a> — DMI API server implemented as a NestJS application.</li>
+      <li><a href="https://github.com/nominal-systems/dmi-engine"><strong>dmi-engine</strong></a> — DMI middleware that handles interaction with provider APIs implemented as a NestJS application.</li>
     </ul>
   </li>
   <li>Read the <a href="https://nominal.stoplight.io/docs/dmi">DMI API Spec</a></li>
