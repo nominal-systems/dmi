@@ -1,5 +1,5 @@
-# Diagnostic Modality Integration API
-The Diagnostic Modality Integration API (DMI API) provides common workflows and standardized resource formats for interacting with multiple diagnostic providers through a single interface, by handling all the work specific to each provider and helping partners integrate in a flexible way.
+# Diagnostic Modality Integrator API
+The Diagnostic Modality Integrator API (DMI API) provides common workflows and standardized resource formats for interacting with multiple diagnostic providers through a single interface, by handling all the work specific to each provider and helping partners integrate in a flexible way.
 
 ## Concepts
 The following concepts are used throughout the documentation and are building blocks for the API:

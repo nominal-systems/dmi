@@ -3,7 +3,7 @@
 OpenAPI 3.0.0 specification for the DMI API.
 
 ### Documentation
-Access the documentation for the Diagnostic Modality Integration API at: https://nominal.stoplight.io/docs/dmi
+Access the documentation for the Diagnostic Modality Integrator API at: https://nominal.stoplight.io/docs/dmi
 
 ### Mock Server
 The API has a publicly available mock server that can be used to test and develop integrating into the API: https://stoplight.io/mocks/nominal/dmi/57735574
