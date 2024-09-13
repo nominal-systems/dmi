@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Diagnostic Modality Integrator
-email: gonzalo@linehq.com
+#email: gonzalo@linehq.com
 description: >- # this means to ignore newlines until "baseurl:"
   DMI is a suite of components that connects to diagnostic providers (reference labs, point of care devices, etc) and 
   exposes an API with a single interface for PIMS to implement to integrate with multiple diagnostic providers at once.
