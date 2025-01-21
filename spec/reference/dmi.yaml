@@ -626,7 +626,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
     get:
       summary: Search orders
       operationId: get-orders
@@ -646,7 +646,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
   /orders/{orderId}:
     get:
       summary: Get an order
@@ -666,7 +666,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
     delete:
       summary: Cancel an order
       operationId: delete-orders-orderId
@@ -685,7 +685,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
   /orders/{orderId}/report:
     get:
       summary: Get the report for an order
@@ -705,7 +705,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
   /orders/{orderId}/manifest:
     get:
       summary: Get the manifest for an order
@@ -725,7 +725,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
   /orders/{orderId}/tests:
     post:
       summary: Add tests to an existing order
@@ -749,7 +749,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
   /orders/{orderId}/tests/{testCode}:
     delete:
       summary: Cancel a specific test
@@ -772,7 +772,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Orders
   /reports/{reportId}:
     get:
       summary: Get a report by ID
@@ -792,7 +792,7 @@ paths:
       security:
         - ApiKeyAuth: [ ]
       tags:
-        - Orders & Results
+        - Reports
   /reports/{reportId}/presentedForm:
     get:
       summary: Get the array of the report's presented form
@@ -809,6 +809,10 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Reports
   /reports/{reportId}/presentedForm/{attachmentId}:
     get:
       summary: Get a report's presented form attachment
@@ -826,6 +830,10 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Reports
   /refs/sexes:
     get:
       summary: Get the list of accepted sex codes
@@ -1097,5 +1105,6 @@ tags:
   - name: Integrations
   - name: Directory of Services
   - name: Reference Data
-  - name: Orders & Results
+  - name: Orders
+  - name: Reports
   - name: Events
