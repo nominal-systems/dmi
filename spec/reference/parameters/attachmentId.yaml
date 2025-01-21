@@ -1,0 +1,7 @@
+name: attachmentId
+in: path
+required: true
+description: Id of an existing attachment
+schema:
+  type: string
+  format: uuid

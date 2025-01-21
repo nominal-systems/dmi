@@ -793,6 +793,39 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Orders & Results
+  /reports/{reportId}/presentedForm:
+    get:
+      summary: Get the array of the report's presented form
+      operationId: get-reports-reportId-presentedForm
+      description: Retrieve the array of the report's presented form for the matching report ID.
+      parameters:
+          - $ref: './parameters/reportId.yaml'
+      responses:
+        '200':
+          $ref: './responses/ReportPresentedForm.yaml'
+        '404':
+          description: Report Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+  /reports/{reportId}/presentedForm/{attachmentId}:
+    get:
+      summary: Get a report's presented form attachment
+      operationId: get-reports-reportId-presentedForm-attachmentId
+      description: Retrieve the report's presented form attachment with the matching attachment ID for the matching report ID.
+      parameters:
+        - $ref: './parameters/reportId.yaml'
+        - $ref: './parameters/attachmentId.yaml'
+      responses:
+        '200':
+          $ref: './responses/File.yaml'
+        '404':
+          description: Report Not Found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
   /refs/sexes:
     get:
       summary: Get the list of accepted sex codes

@@ -1,0 +1,11 @@
+description: Report Presented Form
+content:
+  application/json:
+    schema:
+      type: array
+      description: |
+        Rich text representation of the entire result as issued by the diagnostic service. 
+
+        Multiple formats are allowed but they shall be semantically equivalent.
+      items:
+        $ref: '../types/Attachment.yaml'
