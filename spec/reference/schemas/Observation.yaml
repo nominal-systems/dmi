@@ -82,6 +82,12 @@ properties:
     type: string
     description: Notes about the result
     example: Measurement was performed in a non-sterile environment
+  related:
+    type: array
+    description: |
+      Related observations, e.g. derived from the same specimen.
+    items:
+      $ref: '../types/ObservationRelationship.yaml'
 required:
   - code
   - name
