@@ -49,7 +49,7 @@ services:
       DATABASE_HOST: 'mysql'
       DATABASE_DATABASE: 'demo-provider-api'
   mongo:
-    image: mongo:4.2
+    image: mongo:7
     volumes:
       - ./containers/mongo/data:/data/db
     ports:
@@ -71,7 +71,7 @@ services:
       - '1883:1883'
       - '8161:8161'
   redis:
-    image: redis
+    image: redis:6
     ports:
       - '6379:6379'
     volumes:
