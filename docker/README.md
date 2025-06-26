@@ -13,3 +13,5 @@ docker-compose up -d
 > If the ActiveMQ container fails to start, it might have to do with configuration initialization. See [Customizing configuration and persistence location](https://github.com/rmohr/docker-activemq#customizing-configuration-and-persistence-location).
 
 ### Logs
+
+See [AGENTS.md](AGENTS.md) for usage guidelines.

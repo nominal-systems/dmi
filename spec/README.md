@@ -17,3 +17,5 @@ and a mock server will be available at http://127.0.0.1:4010 [^1]
 
 [^1]: When using Postman, ensure that the mock server URL and port match the environment settings.
 
+
+See [AGENTS.md](AGENTS.md) for contribution guidelines.

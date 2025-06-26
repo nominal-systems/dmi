@@ -68,3 +68,5 @@ Find out the public IP of the load balancer by inspecting the ingress:
 ````
 kubectl describe ingress
 ````
+
+See [AGENTS.md](AGENTS.md) for usage guidelines.

@@ -42,3 +42,5 @@ Get the public IP of the load balancer:
 ````
 kubectl get svc
 ````
+
+See [AGENTS.md](AGENTS.md) for usage guidelines.

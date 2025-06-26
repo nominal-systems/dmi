@@ -23,3 +23,5 @@ Postman collection that includes the following folders:
 - Initial Setup: provisions Users, Organizations, Practices, Integrations and Provider Configurations for the Demo Provider
 - Events: related to events and event subscriptions.
 - Orders & Results: related to ordering tests and getting the order reports.
+
+See [AGENTS.md](AGENTS.md) for usage guidelines.
