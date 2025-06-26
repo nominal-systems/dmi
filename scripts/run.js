@@ -21,6 +21,7 @@ const SCRIPTS = {
     script: path.join(__dirname, 'mongodb-clean', 'clean.js'),
     params: {
       MONGO_URI: { message: 'Mongo connection URI' },
+      COLLECTIONS: { message: 'Collections to clean (comma-separated)'},
       DATE_CUTOFF: { message: 'Cutoff date (YYYY-MM-DD)' },
       BATCH_SIZE: { message: 'Batch size', default: '100' },
       DELAY_MS: { message: 'Delay between batches (ms)', default: '200' },

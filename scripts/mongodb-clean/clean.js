@@ -3,7 +3,12 @@ const { MongoClient } = require('mongodb');
 // Read environment variables
 const mongoURI = process.env.MONGO_URI;
 const dateCutoffStr = process.env.DATE_CUTOFF;
-const collectionNames = ['internal_events'];
+// Collection names to clean
+const collectionsEnv = process.env.COLLECTIONS || '';
+const collectionNames = collectionsEnv
+  .split(',')
+  .map((c) => c.trim())
+  .filter(Boolean);
 
 // Optional knobs (override via env if needed)
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE, 10) || 100;
