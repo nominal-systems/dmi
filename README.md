@@ -8,6 +8,7 @@ In this repository you will find:
 - A set of Docker-related files to help you run the system locally. See [Docker](docker/README.md).
 - A set of Kubernetes-related files to help you configure and run the system on a Kubernetes cluster. See [Kubernetes](kubernetes/README.md).
 - A set of Terraform-related files to help you provision infrastructure in a cloud provider. See [Terraform](terraform/README.md).
+- Utility scripts that can be run interactively using the program in [scripts](scripts/README.md).
 
 ## Contributing
 See [AGENTS.md](AGENTS.md) for repository guidelines.

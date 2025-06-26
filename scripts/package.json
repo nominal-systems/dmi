@@ -1,0 +1,9 @@
+{
+  "name": "dmi-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "inquirer": "^9.0.0"
+  }
+}
