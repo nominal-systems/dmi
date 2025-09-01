@@ -94,7 +94,7 @@ function sleep(ms) {
 
         const idsToDelete = docs.map((d) => d._id);
 
-        // 2) Delete that batch, retrying on 429
+        // 2) Delete that batch, retrying on 429 and transient batch write errors
         let deletedThisBatch = 0;
         let attempt = 0;
         while (true) {
@@ -108,21 +108,23 @@ function sleep(ms) {
             );
             break; // exit retry loop
           } catch (err) {
-            const isTooManyRequests = err.code === 16500 || err.codeName === 'RequestRateTooLarge';
-            if (isTooManyRequests) {
-              const retryAfter = err.errorResponse?.RetryAfterMs || DEFAULT_RETRY_MS;
+            const isTooManyRequests = err.code === 16500 || err.codeName === 'RequestRateTooLarge' || err.code === 429;
+            const isBatchWriteError = err.code === 16 || /Batch write error/i.test(err.message || '');
+            if (isTooManyRequests || isBatchWriteError) {
+              const backoff = Math.min(16000, Math.max(err.errorResponse?.RetryAfterMs || 0, DEFAULT_RETRY_MS) * Math.pow(2, Math.min(attempt - 1, 4)));
+              const reason = isTooManyRequests ? 'rate limited' : 'batch write error';
               console.warn(
-                `Batch ${batchCount} attempt ${attempt}: 429 - retrying in ${retryAfter} ms`
+                `Batch ${batchCount} attempt ${attempt}: ${reason} - retrying in ${backoff} ms (error=${err.code || err.codeName || 'unknown'})`
               );
-              await sleep(retryAfter);
+              await sleep(backoff);
               continue; // retry same batch
-            } else {
-              console.error(
-                `Batch ${batchCount} attempt ${attempt}: Unexpected delete error: ${err.message}`
-              );
-              deletedThisBatch = 0;
-              break;
             }
+
+            console.error(
+              `Batch ${batchCount} attempt ${attempt}: Unexpected delete error: ${err.message}`
+            );
+            deletedThisBatch = 0;
+            break;
           }
         }
 
