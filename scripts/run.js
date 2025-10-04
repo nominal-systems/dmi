@@ -32,11 +32,10 @@ const SCRIPTS = {
     description: 'Generate Markdown release notes from GitHub issues',
     script: path.join(__dirname, 'release-notes', 'generate.js'),
     params: {
-      START_DATE: { message: 'Start date (YYYY-MM-DD)' },
-      END_DATE: { message: 'End date (YYYY-MM-DD, optional)', default: '' },
+      START_DATE: { message: 'Start date (YYYY-MM-DD, leave blank to use last release in RELEASE_NOTES.md)', default: '' },
+      END_DATE: { message: 'End date (YYYY-MM-DD, optional - defaults to today)', default: '' },
       OWNER: { message: 'GitHub org/owner', default: 'nominal-systems' },
       REPO: { message: 'GitHub repo (leave blank for all in org)', default: '' },
-      OUT: { message: 'Output file path (optional)', default: '' },
       GITHUB_TOKEN: { message: 'GitHub token (optional; falls back to gh auth)', default: process.env.GITHUB_TOKEN || '' }
     }
   }

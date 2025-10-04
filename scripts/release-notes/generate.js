@@ -27,7 +27,6 @@ function parseArgsOrEnv() {
   const argv = process.argv.slice(2);
   let owner = process.env.OWNER || process.env.ORG || 'nominal-systems';
   let repo = process.env.REPO || '';
-  let outPath = process.env.OUT || null;
   let startDate = process.env.START_DATE || null;
   let endDate = process.env.END_DATE || null;
 
@@ -43,17 +42,16 @@ function parseArgsOrEnv() {
       if (!val || val.startsWith('--')) throw new Error(`Missing value for option ${flag}`);
       if (flag === '--owner') owner = val;
       else if (flag === '--repo') repo = val;
-      else if (flag === '--out') outPath = val;
+      // --out is ignored; always writes to RELEASE_NOTES.md at repo root
       else throw new Error(`Unknown option: ${flag}`);
     }
   }
 
-  if (!startDate) throw new Error('START_DATE is required (YYYY-MM-DD).');
-  if (!isValidDateStr(startDate)) throw new Error('Invalid START_DATE. Expected YYYY-MM-DD.');
+  if (startDate && !isValidDateStr(startDate)) throw new Error('Invalid START_DATE. Expected YYYY-MM-DD.');
   if (!endDate) endDate = toYMD(new Date());
   if (!isValidDateStr(endDate)) throw new Error('Invalid END_DATE. Expected YYYY-MM-DD.');
 
-  return { owner, repo, outPath, startDate, endDate };
+  return { owner, repo, startDate, endDate };
 }
 
 async function ghFetch(url, token) {
@@ -69,8 +67,54 @@ async function ghFetch(url, token) {
 
   const res = await fetch(url, { headers });
   if (!res.ok) {
-    const text = await res.text().catch(() => '');
-    throw new Error(`GitHub API error ${res.status}: ${text || res.statusText}`);
+    const raw = await res.text().catch(() => '');
+    let apiMsg = '';
+    try {
+      const j = JSON.parse(raw);
+      if (j && typeof j.message === 'string') apiMsg = j.message;
+    } catch {}
+
+    const h = (name) => {
+      try { return res.headers.get(name); } catch { return null; }
+    };
+    const status = res.status;
+    const retryAfter = h('Retry-After');
+    const rateReset = h('X-RateLimit-Reset');
+
+    let retryAfterSeconds = null;
+    let retryAtIso = null;
+    let retryAtMs = null;
+    if (status === 429 || status === 403) {
+      if (retryAfter) {
+        if (/^\d+$/.test(retryAfter)) {
+          retryAfterSeconds = parseInt(retryAfter, 10);
+          retryAtMs = Date.now() + retryAfterSeconds * 1000;
+          retryAtIso = new Date(retryAtMs).toISOString();
+        } else {
+          const d = new Date(retryAfter);
+          if (!isNaN(d.getTime())) {
+            retryAtMs = d.getTime();
+            retryAtIso = d.toISOString();
+            retryAfterSeconds = Math.max(0, Math.round((retryAtMs - Date.now()) / 1000));
+          }
+        }
+      } else if (rateReset) {
+        const epochSec = parseInt(rateReset, 10);
+        if (!Number.isNaN(epochSec)) {
+          retryAtMs = epochSec * 1000;
+          retryAtIso = new Date(retryAtMs).toISOString();
+          retryAfterSeconds = Math.max(0, Math.round((retryAtMs - Date.now()) / 1000));
+        }
+      }
+    }
+
+    const baseMsg = apiMsg || raw || res.statusText || 'Unknown error';
+    const err = new Error(`GitHub API error ${status}: ${baseMsg}`);
+    err.status = status;
+    err.retryAfterSeconds = retryAfterSeconds;
+    err.retryAtIso = retryAtIso;
+    err.retryAtMs = retryAtMs;
+    throw err;
   }
   return res.json();
 }
@@ -126,71 +170,140 @@ async function listOrgRepos(org, token) {
   return repos;
 }
 
+function humanizeSeconds(sec) {
+  if (sec == null || !isFinite(sec)) return null;
+  const s = Math.max(0, Math.round(sec));
+  const parts = [];
+  const days = Math.floor(s / 86400);
+  let rem = s % 86400;
+  const hours = Math.floor(rem / 3600);
+  rem = rem % 3600;
+  const minutes = Math.floor(rem / 60);
+  const seconds = rem % 60;
+  if (days) parts.push(`${days}d`);
+  if (hours) parts.push(`${hours}h`);
+  if (minutes) parts.push(`${minutes}m`);
+  if (seconds || parts.length === 0) parts.push(`${seconds}s`);
+  return parts.join(' ');
+}
+
+function formatLocalDateTime(ms) {
+  if (ms == null) return null;
+  const d = new Date(ms);
+  if (isNaN(d.getTime())) return null;
+  const pad = (n) => String(n).padStart(2, '0');
+  const y = d.getFullYear();
+  const m = pad(d.getMonth() + 1);
+  const day = pad(d.getDate());
+  const hh = pad(d.getHours());
+  const mm = pad(d.getMinutes());
+  const ss = pad(d.getSeconds());
+  const tzMin = -d.getTimezoneOffset();
+  const sign = tzMin >= 0 ? '+' : '-';
+  const tzH = pad(Math.floor(Math.abs(tzMin) / 60));
+  const tzM = pad(Math.abs(tzMin) % 60);
+  return `${y}-${m}-${day} ${hh}:${mm}:${ss} ${sign}${tzH}:${tzM}`;
+}
+
 async function main() {
   let cfg;
   try {
     cfg = parseArgsOrEnv();
   } catch (e) {
     console.error(e.message);
-    console.error('Usage (CLI): node scripts/release-notes/generate.js <start: YYYY-MM-DD> [end: YYYY-MM-DD] [--owner OWNER] [--repo REPO] [--out PATH]');
-    console.error('Or set env: START_DATE, [END_DATE], [OWNER], [REPO], [OUT]');
+    console.error('Usage (CLI): node scripts/release-notes/generate.js [start: YYYY-MM-DD] [end: YYYY-MM-DD] [--owner OWNER] [--repo REPO]');
+    console.error('Or set env: [START_DATE], [END_DATE], [OWNER], [REPO]');
     process.exit(1);
     return;
   }
 
   const token = getAuthToken();
 
-  // Determine repository list: specific repo if provided, else all repos in org
-  let repoNames = [];
-  if (cfg.repo && cfg.repo.trim()) {
-    repoNames = [cfg.repo.trim()];
-  } else {
-    console.error(`Listing repositories for org ${cfg.owner} ...`);
+  // Resolve repo root and output path
+  const repoRoot = path.resolve(__dirname, '..', '..');
+  const outFile = path.join(repoRoot, 'RELEASE_NOTES.md');
+
+  // If no start date provided, try to infer from existing RELEASE_NOTES.md
+  if (!cfg.startDate) {
     try {
-      const repos = await listOrgRepos(cfg.owner, token);
-      // Include all repos accessible; skip disabled
-      repoNames = repos.filter(r => !r.disabled).map(r => r.name);
+      const existing = fs.readFileSync(outFile, 'utf8');
+      const m = existing.match(/^#\s+DMI Release Notes\s+(\d{4}-\d{2}-\d{2})/m);
+      if (m) {
+        cfg.startDate = m[1];
+        console.error(`Inferred START_DATE=${cfg.startDate} from RELEASE_NOTES.md`);
+      } else {
+        throw new Error('No previous release date found in RELEASE_NOTES.md');
+      }
     } catch (err) {
-      console.error('Failed to list organization repositories:', err.message);
-      process.exit(2);
+      console.error('START_DATE not provided and could not infer from RELEASE_NOTES.md.');
+      console.error('Provide START_DATE or create RELEASE_NOTES.md with a header like:');
+      console.error('# DMI Release Notes YYYY-MM-DD');
+      process.exit(1);
       return;
     }
   }
 
-  console.error(`Fetching closed issues from ${cfg.startDate} to ${cfg.endDate} across ${repoNames.length} repo(s)...`);
+  let currentAction = `list repositories for ${cfg.owner}`;
+  try {
+    // Determine repository list: specific repo if provided, else all repos in org
+    let repoNames = [];
+    if (cfg.repo && cfg.repo.trim()) {
+      repoNames = [cfg.repo.trim()];
+    } else {
+      console.error(`Listing repositories for org ${cfg.owner} ...`);
+      const repos = await listOrgRepos(cfg.owner, token);
+      repoNames = repos.filter(r => !r.disabled).map(r => r.name);
+    }
 
-  const allIssues = [];
-  for (const r of repoNames) {
-    try {
+    console.error(`Fetching closed issues from ${cfg.startDate} to ${cfg.endDate} across ${repoNames.length} repo(s)...`);
+
+    // Atomic aggregation: if any request fails, abort without writing
+    var allIssues = [];
+    for (const r of repoNames) {
+      currentAction = `fetch issues for ${cfg.owner}/${r}`;
       const issues = await searchClosedIssues({ owner: cfg.owner, repo: r, startDate: cfg.startDate, endDate: cfg.endDate, token });
       for (const it of issues) {
         allIssues.push({ ...it, repo: `${cfg.owner}/${r}` });
       }
-    } catch (err) {
-      console.error(`Failed to fetch issues for ${cfg.owner}/${r}: ${err.message}`);
     }
-  }
 
-  // Sort across repos by closed_at desc
-  allIssues.sort((a, b) => new Date(b.closed_at) - new Date(a.closed_at));
+    // Sort across repos by closed_at desc
+    allIssues.sort((a, b) => new Date(b.closed_at) - new Date(a.closed_at));
 
-  const lines = [];
-  lines.push(`# DMI Release Notes ${cfg.endDate}`);
-  lines.push('');
-  if (allIssues.length === 0) {
-    lines.push(`- No closed issues between ${cfg.startDate} and ${cfg.endDate}.`);
-  } else {
-    for (const it of allIssues) {
-      lines.push(`- ${it.repo} [#${it.number}](${it.url}) ${it.title}`);
+    const lines = [];
+    lines.push(`# DMI Release Notes ${cfg.endDate}`);
+    lines.push('');
+    if (allIssues.length === 0) {
+      lines.push(`- No closed issues between ${cfg.startDate} and ${cfg.endDate}.`);
+    } else {
+      for (const it of allIssues) {
+        lines.push(`- ${it.repo} [#${it.number}](${it.url}) ${it.title}`);
+      }
     }
+    lines.push('');
+
+    const newBlock = lines.join('\n');
+    let finalContent = newBlock;
+    if (fs.existsSync(outFile)) {
+      const existing = fs.readFileSync(outFile, 'utf8');
+      finalContent = `${newBlock}\n${existing}`;
+    }
+    fs.writeFileSync(outFile, finalContent, 'utf8');
+    console.log(`Prepended ${allIssues.length} issues to ${outFile}`);
+    return;
+  } catch (err) {
+    console.error(`Sorry, I couldn't ${currentAction}.`);
+    if (err && err.message) console.error(err.message);
+    if (typeof err?.retryAfterSeconds === 'number' || err?.retryAtIso) {
+      const pretty = humanizeSeconds(err.retryAfterSeconds);
+      const when = formatLocalDateTime(err.retryAtMs) || err.retryAtIso || '';
+      if (pretty || when) {
+        console.error(`Rate limit encountered. Please retry in ~${pretty || 'a moment'}${when ? ` (at ${when})` : ''}.`);
+      }
+    }
+    console.error('No changes were made to RELEASE_NOTES.md.');
+    process.exit(2);
   }
-
-  const filename = cfg.outPath && cfg.outPath.trim().length > 0
-    ? cfg.outPath
-    : path.join(process.cwd(), `DMI-Release-Notes-${cfg.endDate}.md`);
-
-  fs.writeFileSync(filename, lines.join('\n'), 'utf8');
-  console.log(`Wrote ${allIssues.length} issues to ${filename}`);
 }
 
 main().catch((err) => {
