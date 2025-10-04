@@ -36,6 +36,7 @@ const SCRIPTS = {
       END_DATE: { message: 'End date (YYYY-MM-DD, optional - defaults to today)', default: '' },
       OWNER: { message: 'GitHub org/owner', default: 'nominal-systems' },
       REPO: { message: 'GitHub repo (leave blank for all in org)', default: '' },
+      FILE: { message: 'Output file (relative to repo root; default RELEASE_NOTES.md)', default: '' },
       GITHUB_TOKEN: { message: 'GitHub token (optional; falls back to gh auth)', default: process.env.GITHUB_TOKEN || '' }
     }
   }

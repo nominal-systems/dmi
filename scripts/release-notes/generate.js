@@ -29,6 +29,7 @@ function parseArgsOrEnv() {
   let repo = process.env.REPO || '';
   let startDate = process.env.START_DATE || null;
   let endDate = process.env.END_DATE || null;
+  let filePath = process.env.FILE || process.env.OUT || null; // OUT kept for compatibility
 
   if (argv.length >= 1) {
     startDate = argv[0];
@@ -42,7 +43,7 @@ function parseArgsOrEnv() {
       if (!val || val.startsWith('--')) throw new Error(`Missing value for option ${flag}`);
       if (flag === '--owner') owner = val;
       else if (flag === '--repo') repo = val;
-      // --out is ignored; always writes to RELEASE_NOTES.md at repo root
+      else if (flag === '--file' || flag === '--out') filePath = val;
       else throw new Error(`Unknown option: ${flag}`);
     }
   }
@@ -51,7 +52,7 @@ function parseArgsOrEnv() {
   if (!endDate) endDate = toYMD(new Date());
   if (!isValidDateStr(endDate)) throw new Error('Invalid END_DATE. Expected YYYY-MM-DD.');
 
-  return { owner, repo, startDate, endDate };
+  return { owner, repo, startDate, endDate, filePath };
 }
 
 async function ghFetch(url, token) {
@@ -219,24 +220,27 @@ async function main() {
 
   const token = getAuthToken();
 
-  // Resolve repo root and output path
+  // Resolve repo root and output path (default RELEASE_NOTES.md at repo root)
   const repoRoot = path.resolve(__dirname, '..', '..');
-  const outFile = path.join(repoRoot, 'RELEASE_NOTES.md');
+  let outFile = path.join(repoRoot, 'RELEASE_NOTES.md');
+  if (cfg.filePath && cfg.filePath.trim().length > 0) {
+    outFile = path.isAbsolute(cfg.filePath) ? cfg.filePath : path.join(repoRoot, cfg.filePath);
+  }
 
-  // If no start date provided, try to infer from existing RELEASE_NOTES.md
+  // If no start date provided, try to infer from the chosen output file
   if (!cfg.startDate) {
     try {
       const existing = fs.readFileSync(outFile, 'utf8');
       const m = existing.match(/^#\s+DMI Release Notes\s+(\d{4}-\d{2}-\d{2})/m);
       if (m) {
         cfg.startDate = m[1];
-        console.error(`Inferred START_DATE=${cfg.startDate} from RELEASE_NOTES.md`);
+        console.error(`Inferred START_DATE=${cfg.startDate} from ${path.relative(repoRoot, outFile)}`);
       } else {
-        throw new Error('No previous release date found in RELEASE_NOTES.md');
+        throw new Error(`No previous release date found in ${outFile}`);
       }
     } catch (err) {
-      console.error('START_DATE not provided and could not infer from RELEASE_NOTES.md.');
-      console.error('Provide START_DATE or create RELEASE_NOTES.md with a header like:');
+      console.error(`START_DATE not provided and could not infer from ${path.relative(repoRoot, outFile)}.`);
+      console.error('Provide START_DATE or create the file with a header like:');
       console.error('# DMI Release Notes YYYY-MM-DD');
       process.exit(1);
       return;
@@ -301,7 +305,7 @@ async function main() {
         console.error(`Rate limit encountered. Please retry in ~${pretty || 'a moment'}${when ? ` (at ${when})` : ''}.`);
       }
     }
-    console.error('No changes were made to RELEASE_NOTES.md.');
+    console.error(`No changes were made to ${path.relative(repoRoot, outFile)}.`);
     process.exit(2);
   }
 }

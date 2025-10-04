@@ -16,7 +16,7 @@ configuration values before execution.
 
 ## Release Notes
 
-Generate Markdown release notes for issues closed between two dates. By default it aggregates across all repositories in a GitHub organization (owner). You can optionally target a single repo. The script always writes to `RELEASE_NOTES.md` at the repository root and prepends new content so the latest release appears first.
+Generate Markdown release notes for issues closed between two dates. By default it aggregates across all repositories in a GitHub organization (owner). You can optionally target a single repo. By default it writes to `RELEASE_NOTES.md` at the repository root and prepends new content so the latest release appears first. You can override the output file to generate period-specific notes (e.g., monthly).
 
 - Prereq: Node 18+ (for global `fetch`).
 - Auth: Uses `GITHUB_TOKEN`/`GH_TOKEN` if set, otherwise falls back to `gh auth token` (GitHub CLI) if available.
@@ -39,14 +39,18 @@ Examples:
 node scripts/release-notes/generate.js 2025-01-01 --owner nominal-systems
 
 # For a specific repo and window, to custom file
-node scripts/release-notes/generate.js 2025-05-01 2025-06-01 --owner nominal-systems --repo some-repo
+node scripts/release-notes/generate.js 2025-05-01 2025-06-01 --owner nominal-systems --repo some-repo --file notes-2025-05.md
 
 Non-interactive from last release until today
 
 ```bash
-# No dates provided: script infers START_DATE from the top header in RELEASE_NOTES.md
+# No dates provided: script infers START_DATE from the top header in the chosen file
+# Default file is RELEASE_NOTES.md
 node scripts/release-notes/generate.js --owner nominal-systems
+
+# Monthly example: append June 2025 notes to a month-specific file
+node scripts/release-notes/generate.js 2025-06-01 2025-06-30 --owner nominal-systems --file notes-2025-06.md
 ```
 ```
 
-Output: header `# DMI Release Notes <end-date>`, then a bullet list of closed issues. The issue number is the link (not the full URL). Each bullet includes the `owner/repo` prefix when aggregating across multiple repositories. New sections are prepended to `RELEASE_NOTES.md`.
+Output: header `# DMI Release Notes <end-date>`, then a bullet list of closed issues. The issue number is the link (not the full URL). Each bullet includes the `owner/repo` prefix when aggregating across multiple repositories. New sections are prepended to the chosen output file.
