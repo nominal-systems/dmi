@@ -73,6 +73,6 @@ services:
   redis:
     image: redis:6
     ports:
-      - '6379:6379'
+      - '${REDIS_HOST_PORT:-6379}:6379'
     volumes:
       - ./containers/redis/data:/data

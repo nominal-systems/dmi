@@ -1,3 +1,7 @@
+# DMI Release Notes 2025-11-04
+
+- nominal-systems/dmi-api [#245](https://github.com/nominal-systems/dmi-api/issues/245) Support MongoDB sharding
+
 # DMI Release Notes 2025-10-04
 
 - nominal-systems/dmi-api [#254](https://github.com/nominal-systems/dmi-api/issues/254) Unable to map multiple PMS species to the same broader Antech species
