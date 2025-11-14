@@ -38,21 +38,18 @@ properties:
     type: string
     description: Birth date in `YYYY-MM-DD` format.
     example: 2011-05-14
-  weight:
-    type: object
-    properties:
-      measurement:
-        type: number
-        minimum: 0
-        description: Measured amount.
-        example: 10.5
-      units:
-        type: string
-        description: The units of the measurement.
-        enum:
-          - KG
-          - LBS
-        example: KG
+  weightMeasurement:
+    type: number
+    minimum: 0
+    description: Measured amount.
+    example: 10.5
+  weightUnits:
+    type: string
+    description: The units of the measurement.
+    enum:
+      - KG
+      - LBS
+    example: KG
 required:
   - id
   - name
