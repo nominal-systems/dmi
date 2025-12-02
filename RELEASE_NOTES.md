@@ -1,3 +1,9 @@
+# DMI Release Notes 2025-12-02
+
+- nominal-systems/dmi-engine-antech-v6-integration [#29](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/29) Dynamically determine which ordering endpoint should be used
+- nominal-systems/dmi-engine-antech-v6-integration [#33](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/33) Add autoSubmit flag in integrationOptions to control headless ordering
+- nominal-systems/dmi-api [#245](https://github.com/nominal-systems/dmi-api/issues/245) Support MongoDB sharding
+
 # DMI Release Notes 2025-11-04
 
 - nominal-systems/dmi-api [#245](https://github.com/nominal-systems/dmi-api/issues/245) Support MongoDB sharding
