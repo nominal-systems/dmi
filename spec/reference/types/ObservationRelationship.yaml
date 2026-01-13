@@ -1,0 +1,29 @@
+title: ObservationRelationship
+type: object
+description: Resource related to this observation.
+properties:
+  type:
+    type: string
+    description: | 
+      A code specifying the kind of relationship that exists with the target resource:
+        - has-member: This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements) that includes the target as a member of the group.
+        - sequel-to: This observation follows the target observation (e.g. timed tests such as Glucose Tolerance Test).
+        - replaces: This observation replaces a previous observation (i.e. a revised value). The target observation is now obsolete.
+        - qualified-by: The value of the target observation qualifies (refines) the semantics of the source observation (e.g. a lipemia measure target from a plasma measure)
+        - interfered-by: The value of the target observation interferes (degrades quality, or prevents valid observation) with the semantics of the source observation (e.g. a hemolysis measure target from a plasma potassium measure which has no value).
+        - is-interpretation-of: The value of the target observation is an interpretation of this observation (e.g. low, high, normal).
+    example: has-member
+    enum:
+      - has-member
+      - sequel-to
+      - replaces
+      - qualified-by
+      - interfered-by
+      - is-interpretation-of
+  target:
+    type: string
+    description: The target resource that belongs to the observation.
+    example: 3025460e-7606-4643-a1ff-47c732e8ab20
+required:
+  - type
+  - target
