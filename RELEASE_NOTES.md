@@ -1,3 +1,8 @@
+# DMI Release Notes 2025-12-31
+
+- nominal-systems/dmi-engine-antech-v6-integration [#38](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/38) Trim extra whitespaces from client names
+- nominal-systems/dmi-engine-antech-v6-integration [#32](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/32) Handling multiple UnitCodeResults with the same OrderCode
+
 # DMI Release Notes 2025-12-02
 
 - nominal-systems/dmi-engine-antech-v6-integration [#29](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/29) Dynamically determine which ordering endpoint should be used
