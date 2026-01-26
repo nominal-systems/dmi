@@ -933,6 +933,98 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Reference Data
+  /refs/create:
+    post:
+      summary: Create a reference value
+      operationId: post-refs-create
+      description: Create a new reference value and optionally map provider refs.
+      requestBody:
+        $ref: './requestBodies/RefCreateBody.yaml'
+      responses:
+        '201':
+          $ref: './responses/RefCreated.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+        '409':
+          $ref: './responses/409Conflict.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference Data
+  /refs/{refId}:
+    get:
+      summary: Get a reference value
+      operationId: get-refs-refId
+      description: Retrieve a reference value by ID.
+      parameters:
+        - $ref: './parameters/refId.yaml'
+      responses:
+        '200':
+          $ref: './responses/RefFound.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference Data
+    put:
+      summary: Update a reference value
+      operationId: put-refs-refId
+      description: Update a reference value by ID.
+      parameters:
+        - $ref: './parameters/refId.yaml'
+      requestBody:
+        $ref: './requestBodies/RefUpdateBody.yaml'
+      responses:
+        '200':
+          $ref: './responses/RefFound.yaml'
+        '400':
+          $ref: './responses/400BadRequest.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference Data
+    delete:
+      summary: Delete a reference value
+      operationId: delete-refs-refId
+      description: Delete a reference value by ID.
+      parameters:
+        - $ref: './parameters/refId.yaml'
+      responses:
+        '200':
+          description: Ref deleted
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '404':
+          $ref: './responses/404NotFound.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference Data
+  /refs/mapped:
+    get:
+      summary: List mapped and unmapped provider references
+      operationId: get-refs-mapped
+      description: Retrieve provider references grouped by mapped and unmapped.
+      responses:
+        '200':
+          $ref: './responses/RefMappingsFound.yaml'
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Reference Data
   /events:
     get:
       summary: List events

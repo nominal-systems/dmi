@@ -1,0 +1,189 @@
+RefSummary:
+  title: Ref Summary
+  type: object
+  description: A reference value used for species, breed, or sex.
+  properties:
+    id:
+      type: integer
+      description: Ref identifier
+      example: 123
+    name:
+      type: string
+      description: Ref name
+      example: Labrador Retriever
+    code:
+      type: string
+      description: Ref code
+      example: LABRADOR_RETRIEVER
+    species:
+      type: string
+      nullable: true
+      description: Species code for breed references
+      example: CANIS_FAMILIARIS
+    type:
+      type: string
+      description: Ref type
+      enum:
+        - species
+        - breed
+        - sex
+      example: breed
+  required:
+    - id
+    - name
+    - code
+    - type
+ProviderRefSummary:
+  title: Provider Reference Summary
+  type: object
+  description: A provider-specific reference value.
+  properties:
+    id:
+      type: integer
+      description: Provider ref identifier
+      example: 456
+    code:
+      type: string
+      nullable: true
+      description: Provider reference code
+      example: CANIS_FAMILIARIS
+    name:
+      type: string
+      description: Provider reference name
+      example: Canine
+    species:
+      type: string
+      nullable: true
+      description: Provider species code for breed references
+      example: CANIS_FAMILIARIS
+    type:
+      type: string
+      description: Provider reference type
+      enum:
+        - species
+        - breed
+        - sex
+      example: species
+    provider:
+      type: object
+      description: Provider identifier
+      properties:
+        id:
+          type: string
+          description: Provider id
+          example: demo
+      required:
+        - id
+  required:
+    - id
+    - name
+    - type
+    - provider
+ProviderRefWithRefs:
+  title: Provider Reference With Mappings
+  type: object
+  description: A provider-specific reference value and its mapped refs.
+  properties:
+    id:
+      type: integer
+      description: Provider ref identifier
+      example: 456
+    code:
+      type: string
+      nullable: true
+      description: Provider reference code
+      example: CANIS_FAMILIARIS
+    name:
+      type: string
+      description: Provider reference name
+      example: Canine
+    species:
+      type: string
+      nullable: true
+      description: Provider species code for breed references
+      example: CANIS_FAMILIARIS
+    type:
+      type: string
+      description: Provider reference type
+      enum:
+        - species
+        - breed
+        - sex
+      example: species
+    provider:
+      type: object
+      description: Provider identifier
+      properties:
+        id:
+          type: string
+          description: Provider id
+          example: demo
+      required:
+        - id
+    refs:
+      type: array
+      description: Mapped reference data
+      items:
+        $ref: './Ref.yaml#/RefSummary'
+  required:
+    - id
+    - name
+    - type
+    - provider
+    - refs
+Ref:
+  title: Ref
+  type: object
+  description: A reference value with provider mappings.
+  properties:
+    id:
+      type: integer
+      description: Ref identifier
+      example: 123
+    name:
+      type: string
+      description: Ref name
+      example: Labrador Retriever
+    code:
+      type: string
+      description: Ref code
+      example: LABRADOR_RETRIEVER
+    species:
+      type: string
+      nullable: true
+      description: Species code for breed references
+      example: CANIS_FAMILIARIS
+    type:
+      type: string
+      description: Ref type
+      enum:
+        - species
+        - breed
+        - sex
+      example: breed
+    providerRef:
+      type: array
+      description: Provider mappings
+      items:
+        $ref: './Ref.yaml#/ProviderRefSummary'
+  required:
+    - id
+    - name
+    - code
+    - type
+MappedRefs:
+  title: Ref Mapping Lists
+  type: object
+  description: Provider reference mappings grouped by mapped and unmapped.
+  properties:
+    mappedRefs:
+      type: array
+      items:
+        $ref: './Ref.yaml#/ProviderRefWithRefs'
+    unmappedRefs:
+      type: array
+      items:
+        $ref: './Ref.yaml#/ProviderRefWithRefs'
+  required:
+    - mappedRefs
+    - unmappedRefs

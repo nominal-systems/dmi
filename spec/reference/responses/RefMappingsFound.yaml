@@ -1,0 +1,5 @@
+description: Ref mappings found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Ref.yaml#/MappedRefs'

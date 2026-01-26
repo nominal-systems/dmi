@@ -1,0 +1,7 @@
+name: refId
+in: path
+required: true
+description: Id of an existing reference value
+schema:
+  type: integer
+  example: 123

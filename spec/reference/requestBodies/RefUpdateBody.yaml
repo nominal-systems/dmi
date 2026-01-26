@@ -1,0 +1,26 @@
+description: Update a reference value
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Ref name
+          example: Labrador Retriever
+        code:
+          type: string
+          description: Ref code
+          example: LABRADOR_RETRIEVER
+        species:
+          type: string
+          nullable: true
+          description: Species code for breed references
+          example: CANIS_FAMILIARIS
+        providerRefIds:
+          type: array
+          description: Provider reference identifiers to map
+          items:
+            type: integer
+            example: 456

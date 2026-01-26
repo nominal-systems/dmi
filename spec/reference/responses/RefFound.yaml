@@ -1,0 +1,5 @@
+description: Ref Found
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Ref.yaml#/Ref'
