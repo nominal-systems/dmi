@@ -50,12 +50,14 @@ services:
       DATABASE_DATABASE: 'demo-provider-api'
   mongo:
     image: mongo:7
+    restart: unless-stopped
     volumes:
       - ./containers/mongo/data:/data/db
     ports:
       - '27017:27017'
   mysql:
     image: mysql:8
+    restart: unless-stopped
     env_file: .env
     volumes:
       - ./containers/mysql/data:/var/lib/mysql
@@ -64,6 +66,7 @@ services:
       - '3306:3306'
   activemq:
     image: rmohr/activemq
+    restart: unless-stopped
     env_file: .env
     volumes:
       - ./containers/activemq/data:/opt/activemq/data
@@ -72,6 +75,7 @@ services:
       - '8161:8161'
   redis:
     image: redis:6
+    restart: unless-stopped
     ports:
       - '${REDIS_HOST_PORT:-6379}:6379'
     volumes:
