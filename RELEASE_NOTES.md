@@ -1,3 +1,7 @@
+# DMI Release Notes 2026-01-31
+
+- nominal-systems/dmi-api [#262](https://github.com/nominal-systems/dmi-api/issues/262) Medplum demo
+
 # DMI Release Notes 2025-12-31
 
 - nominal-systems/dmi-engine-antech-v6-integration [#38](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/38) Trim extra whitespaces from client names
