@@ -1,5 +1,14 @@
-# DMI Release Notes 2026-01-31
+# DMI Release Notes 2026-02-28
 
+- nominal-systems/dmi-engine-antech-v6-integration [#53](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/53) Fix POC Order Code check when submitting orders
+- nominal-systems/dmi-engine-antech-v6-integration [#50](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/50) Improve Statsig gate targeting context and pass full feature flag context in Antech mapper
+- nominal-systems/dmi-engine-antech-v6-integration [#49](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/49) Send empty petWeight if it's zero
+- nominal-systems/dmi-api [#263](https://github.com/nominal-systems/dmi-api/issues/263) Fix T4 issue
+- nominal-systems/dmi-api [#264](https://github.com/nominal-systems/dmi-api/issues/264) Statsig integration
+- nominal-systems/dmi-engine-antech-v6-integration [#40](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/40) Allow only petWeight higher than zero in native ordering enpoint
+- nominal-systems/dmi-engine-antech-v6-integration [#45](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/45) Pass Antech API error details to Voyager
+- nominal-systems/dmi-engine-antech-v6-integration [#47](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/47) Update T4 feature flag name
+- nominal-systems/dmi-engine-antech-v6-integration [#42](https://github.com/nominal-systems/dmi-engine-antech-v6-integration/issues/42) Integrate T4 grouping logic with Statsig flags per integration
 - nominal-systems/dmi-api [#262](https://github.com/nominal-systems/dmi-api/issues/262) Medplum demo
 
 # DMI Release Notes 2025-12-31
