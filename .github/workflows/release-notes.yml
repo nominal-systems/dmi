@@ -1,0 +1,69 @@
+name: Generate Release Notes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dmi (this repo)
+        uses: actions/checkout@v4
+        with:
+          path: dmi
+
+      - name: Checkout project repositories
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          repos=(
+            dmi-api
+            dmi-api-admin-ui
+            dmi-engine
+            dmi-engine-antech-integration
+            dmi-engine-antech-v6-integration
+            dmi-engine-wisdom-panel-integration
+            dmi-engine-idexx-integration
+            dmi-engine-zoetis-integration
+          )
+          for repo in "${repos[@]}"; do
+            echo "Cloning $repo..."
+            git clone --quiet "https://x-access-token:${GH_TOKEN}@github.com/nominal-systems/${repo}.git" "$repo"
+          done
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate release notes
+        run: |
+          python3 dmi/scripts/release-notes/generate-html.py \
+            --config dmi/scripts/release-notes/config.json \
+            --workspace ${{ github.workspace }} \
+            --output _site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

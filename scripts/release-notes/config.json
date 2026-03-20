@@ -1,0 +1,63 @@
+{
+  "title": "DMI Platform Release Notes",
+  "github_org": "nominal-systems",
+  "workspace_root": "../../../",
+  "projects": [
+    {
+      "name": "dmi-api",
+      "display_name": "DMI API",
+      "description": "Core API service",
+      "baseline": "v1.13.3",
+      "directory": "dmi-api"
+    },
+    {
+      "name": "dmi-api-admin-ui",
+      "display_name": "DMI Admin UI",
+      "description": "Administration interface",
+      "baseline": "v0.8.0",
+      "directory": "dmi-api-admin-ui"
+    },
+    {
+      "name": "dmi-engine",
+      "display_name": "DMI Engine",
+      "description": "Core engine service",
+      "baseline": "v1.4.4",
+      "directory": "dmi-engine"
+    },
+    {
+      "name": "dmi-engine-antech-integration",
+      "display_name": "Antech V3 Integration",
+      "description": "Antech legacy integration module",
+      "baseline": "v1.4.0",
+      "directory": "dmi-engine-antech-integration"
+    },
+    {
+      "name": "dmi-engine-antech-v6-integration",
+      "display_name": "Antech V6 Integration",
+      "description": "Antech V6 integration module",
+      "baseline": "v0.4.16",
+      "directory": "dmi-engine-antech-v6-integration"
+    },
+    {
+      "name": "dmi-engine-wisdom-panel-integration",
+      "display_name": "Wisdom Panel Integration",
+      "description": "Wisdom Panel integration module",
+      "baseline": "v0.3.13",
+      "directory": "dmi-engine-wisdom-panel-integration"
+    },
+    {
+      "name": "dmi-engine-idexx-integration",
+      "display_name": "IDEXX Integration",
+      "description": "IDEXX integration module",
+      "baseline": "v1.1.0",
+      "directory": "dmi-engine-idexx-integration"
+    },
+    {
+      "name": "dmi-engine-zoetis-integration",
+      "display_name": "Zoetis Integration",
+      "description": "Zoetis integration module",
+      "baseline": "v1.1.0",
+      "directory": "dmi-engine-zoetis-integration"
+    }
+  ]
+}
