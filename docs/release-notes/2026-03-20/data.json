@@ -1,0 +1,566 @@
+{
+  "generated_at": "2026-03-20T18:50:10.354954",
+  "config": {
+    "title": "DMI Platform Release Notes",
+    "github_org": "nominal-systems",
+    "workspace_root": "../../../",
+    "projects": [
+      {
+        "name": "dmi-api",
+        "display_name": "DMI API",
+        "description": "Core API service",
+        "baseline": "v1.13.3",
+        "directory": "dmi-api"
+      },
+      {
+        "name": "dmi-api-admin-ui",
+        "display_name": "DMI Admin UI",
+        "description": "Administration interface",
+        "baseline": "v0.8.0",
+        "directory": "dmi-api-admin-ui"
+      },
+      {
+        "name": "dmi-engine",
+        "display_name": "DMI Engine",
+        "description": "Core engine service",
+        "baseline": "v1.4.4",
+        "directory": "dmi-engine"
+      },
+      {
+        "name": "dmi-engine-antech-integration",
+        "display_name": "Antech V3 Integration",
+        "description": "Antech legacy integration module",
+        "baseline": "v1.4.0",
+        "directory": "dmi-engine-antech-integration"
+      },
+      {
+        "name": "dmi-engine-antech-v6-integration",
+        "display_name": "Antech V6 Integration",
+        "description": "Antech V6 integration module",
+        "baseline": "v0.4.16",
+        "directory": "dmi-engine-antech-v6-integration"
+      },
+      {
+        "name": "dmi-engine-wisdom-panel-integration",
+        "display_name": "Wisdom Panel Integration",
+        "description": "Wisdom Panel integration module",
+        "baseline": "v0.3.13",
+        "directory": "dmi-engine-wisdom-panel-integration"
+      },
+      {
+        "name": "dmi-engine-idexx-integration",
+        "display_name": "IDEXX Integration",
+        "description": "IDEXX integration module",
+        "baseline": "v1.1.0",
+        "directory": "dmi-engine-idexx-integration"
+      },
+      {
+        "name": "dmi-engine-zoetis-integration",
+        "display_name": "Zoetis Integration",
+        "description": "Zoetis integration module",
+        "baseline": "v1.1.0",
+        "directory": "dmi-engine-zoetis-integration"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "name": "dmi-api",
+      "display_name": "DMI API",
+      "description": "Core API service",
+      "baseline": "v1.13.3",
+      "latest": "v1.13.13",
+      "baseline_date": "2025-11-28T12:38:53+01:00",
+      "latest_date": "2026-03-20T16:12:21+01:00",
+      "total_commits": 18,
+      "categorized": {
+        "chore": [
+          {
+            "sha": "3895dbe",
+            "full_sha": "3895dbeb0a976219748515fa6bfb514f53a74450",
+            "date": "2026-03-20T15:57:28+01:00",
+            "scope": "deps",
+            "description": "bumped @nominal-systems/dmi-api-admin-ui to 0.8.3",
+            "original_message": "chore(deps): bumped @nominal-systems/dmi-api-admin-ui to 0.8.3"
+          },
+          {
+            "sha": "6f53ab7",
+            "full_sha": "6f53ab77977b856228738517bf1dbc778efaf8e4",
+            "date": "2026-03-17T12:59:28+01:00",
+            "scope": "deps",
+            "description": "bumped @nominal-systems/dmi-api-admin-ui to 0.8.2",
+            "original_message": "chore(deps): bumped @nominal-systems/dmi-api-admin-ui to 0.8.2"
+          },
+          {
+            "sha": "46b186f",
+            "full_sha": "46b186fcf92cb5320da516c7ae7598a4d9ae8aa0",
+            "date": "2026-03-11T10:22:20+01:00",
+            "scope": "deps",
+            "description": "bumped @nominal-systems/dmi-api-admin-ui to 0.8.1",
+            "original_message": "chore(deps): bumped @nominal-systems/dmi-api-admin-ui to 0.8.1"
+          }
+        ],
+        "feat": [
+          {
+            "sha": "f368e95",
+            "full_sha": "f368e95f140ad51579961cdb3302d95506be4d61",
+            "date": "2026-03-20T11:40:26-03:00",
+            "scope": null,
+            "description": "Add search parameter to integrations search DTO and update admin controller query",
+            "original_message": "Add search parameter to integrations search DTO and update admin controller query"
+          },
+          {
+            "sha": "5f77600",
+            "full_sha": "5f7760045ebb9479fe6af1f78164be60f957f336",
+            "date": "2026-03-17T01:07:35-03:00",
+            "scope": null,
+            "description": "Add timezone configuration to TypeORM settings",
+            "original_message": "Add timezone configuration to TypeORM settings"
+          },
+          {
+            "sha": "524ae81",
+            "full_sha": "524ae8182921944e34b2e622c86378e2df661d36",
+            "date": "2026-03-17T01:07:05-03:00",
+            "scope": null,
+            "description": "Implement isMatchingOrder utility and enhance order extraction logic",
+            "original_message": "Implement isMatchingOrder utility and enhance order extraction logic"
+          }
+        ],
+        "other": [
+          {
+            "sha": "792f1cb",
+            "full_sha": "792f1cb39cf4078b207d1ede7dd9e54ce786a6e9",
+            "date": "2026-03-19T12:25:55-03:00",
+            "scope": null,
+            "description": "Make order matching strict: treat missing fields as orphan",
+            "original_message": "Make order matching strict: treat missing fields as orphan"
+          },
+          {
+            "sha": "d84dd23",
+            "full_sha": "d84dd2351401bdc9881244276139091ecc564064",
+            "date": "2026-02-26T11:56:13+01:00",
+            "scope": null,
+            "description": "Only updates jobs when integration status is RUNNING; for NEW/STOPPED, it skips emitting update-job events.",
+            "original_message": "Only updates jobs when integration status is RUNNING; for NEW/STOPPED, it skips emitting update-job events."
+          }
+        ],
+        "fix": [
+          {
+            "sha": "e167414",
+            "full_sha": "e167414f678971134d68d4b0179ed1be4af72cee",
+            "date": "2026-03-05T17:26:45-03:00",
+            "scope": null,
+            "description": "Fix auth redirect paths to include baseUrl prefix",
+            "original_message": "Fix auth redirect paths to include baseUrl prefix"
+          },
+          {
+            "sha": "aeb7a17",
+            "full_sha": "aeb7a17c149076e7061338b35f9c20c4f9a22f0d",
+            "date": "2026-03-05T14:38:15+01:00",
+            "scope": null,
+            "description": "Fix auth logic",
+            "original_message": "Fix auth logic"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v1.13.8",
+          "date": "2026-03-05T14:38:26+01:00"
+        },
+        {
+          "tag": "v1.13.9",
+          "date": "2026-03-05T15:36:15+01:00"
+        },
+        {
+          "tag": "v1.13.10",
+          "date": "2026-03-10T16:15:29+01:00"
+        },
+        {
+          "tag": "v1.13.11",
+          "date": "2026-03-11T10:22:42+01:00"
+        },
+        {
+          "tag": "v1.13.12",
+          "date": "2026-03-17T12:59:45+01:00"
+        },
+        {
+          "tag": "v1.13.13",
+          "date": "2026-03-20T16:12:21+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-api"
+    },
+    {
+      "name": "dmi-api-admin-ui",
+      "display_name": "DMI Admin UI",
+      "description": "Administration interface",
+      "baseline": "v0.8.0",
+      "latest": "v0.8.3",
+      "baseline_date": "2025-10-02T14:32:25+02:00",
+      "latest_date": "2026-03-20T15:57:01+01:00",
+      "total_commits": 9,
+      "categorized": {
+        "feat": [
+          {
+            "sha": "256ffcf",
+            "full_sha": "256ffcf2b504860a874a8d48e401402749872f1d",
+            "date": "2026-03-19T23:18:31-03:00",
+            "scope": null,
+            "description": "Add search by practice to integrations tab",
+            "original_message": "Add search by practice to integrations tab"
+          }
+        ],
+        "fix": [
+          {
+            "sha": "cfcaea0",
+            "full_sha": "cfcaea085d9ccec9c1576d7ac858b5caa6e62f90",
+            "date": "2026-03-17T12:58:30+01:00",
+            "scope": null,
+            "description": "modal plugin init",
+            "original_message": "fix: modal plugin init"
+          }
+        ],
+        "other": [
+          {
+            "sha": "73167db",
+            "full_sha": "73167dbe26d15be8e023355cc335ae9566e9ec87",
+            "date": "2026-03-11T01:21:48-03:00",
+            "scope": null,
+            "description": "Increase provider refs search limit",
+            "original_message": "Increase provider refs search limit"
+          },
+          {
+            "sha": "7e0f2e3",
+            "full_sha": "7e0f2e32bea145139874390396b5bdb39e7d74cd",
+            "date": "2025-11-05T13:09:38+01:00",
+            "scope": null,
+            "description": "Read environment for dev scripts",
+            "original_message": "Read environment for dev scripts"
+          },
+          {
+            "sha": "14c9811",
+            "full_sha": "14c98114cf5033fa9bcbd5f33308503a4dbc3034",
+            "date": "2025-10-03T10:55:10+02:00",
+            "scope": null,
+            "description": "IntelliJ config",
+            "original_message": "IntelliJ config"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v0.8.1",
+          "date": "2026-03-11T10:20:35+01:00"
+        },
+        {
+          "tag": "v0.8.2",
+          "date": "2026-03-17T12:58:42+01:00"
+        },
+        {
+          "tag": "v0.8.3",
+          "date": "2026-03-20T15:57:01+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-api-admin-ui"
+    },
+    {
+      "name": "dmi-engine",
+      "display_name": "DMI Engine",
+      "description": "Core engine service",
+      "baseline": "v1.4.4",
+      "latest": "v1.4.8",
+      "baseline_date": "2026-02-25T11:16:41+01:00",
+      "latest_date": "2026-03-20T16:17:52+01:00",
+      "total_commits": 8,
+      "categorized": {
+        "chore": [
+          {
+            "sha": "be9696c",
+            "full_sha": "be9696c4ddc76611b12dde7551691e856c747efb",
+            "date": "2026-03-17T17:27:48+01:00",
+            "scope": "deps",
+            "description": "bumped @nominal-systems/dmi-engine-antech-v6-integration to 0.4.18, @nominal-systems/dmi-engine-wisdom-panel-integration to 0.3.14",
+            "original_message": "chore(deps): bumped @nominal-systems/dmi-engine-antech-v6-integration to 0.4.18, @nominal-systems/dmi-engine-wisdom-panel-integration to 0.3.14"
+          },
+          {
+            "sha": "359e666",
+            "full_sha": "359e666a5fbf58f350f1d6200d01a2d672f5d677",
+            "date": "2026-03-10T15:38:28+01:00",
+            "scope": "deps",
+            "description": "bumped @nominal-systems/dmi-engine-antech-v6-integration to 0.4.17",
+            "original_message": "chore(deps): bumped @nominal-systems/dmi-engine-antech-v6-integration to 0.4.17"
+          }
+        ],
+        "other": [
+          {
+            "sha": "eebcc73",
+            "full_sha": "eebcc73501f6b5166cddc71066c9bc043c772e45",
+            "date": "2026-03-10T15:32:11+01:00",
+            "scope": null,
+            "description": "Wrap queue Redis operations in try/catch for graceful degradation on startup and /queues endpoint",
+            "original_message": "Wrap queue Redis operations in try/catch for graceful degradation on startup and /queues endpoint"
+          }
+        ],
+        "fix": [
+          {
+            "sha": "d1af4df",
+            "full_sha": "d1af4dff1102ffc91d65cbb556f018a34f109332",
+            "date": "2026-03-10T14:38:38+01:00",
+            "scope": "dmi-engine",
+            "description": "add Redis commandTimeout and error handling to prevent 504s on transient Redis blips",
+            "original_message": "fix(dmi-engine): add Redis commandTimeout and error handling to prevent 504s on transient Redis blips"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v1.4.5",
+          "date": "2026-03-10T15:38:50+01:00"
+        },
+        {
+          "tag": "v1.4.8",
+          "date": "2026-03-20T16:17:52+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine"
+    },
+    {
+      "name": "dmi-engine-antech-integration",
+      "display_name": "Antech V3 Integration",
+      "description": "Antech legacy integration module",
+      "baseline": "v1.4.0",
+      "latest": "v1.4.1",
+      "baseline_date": "2025-03-19T16:27:43+01:00",
+      "latest_date": "2026-03-04T12:40:48+01:00",
+      "total_commits": 2,
+      "categorized": {
+        "feat": [
+          {
+            "sha": "7c8eb7b",
+            "full_sha": "7c8eb7beeb9bdcd034d8963fa0cf6bdddec6be6f",
+            "date": "2026-03-04T12:39:36+01:00",
+            "scope": null,
+            "description": "Added prefix for Redis queues",
+            "original_message": "Added prefix for Redis queues"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v1.4.1",
+          "date": "2026-03-04T12:40:48+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine-antech-integration"
+    },
+    {
+      "name": "dmi-engine-antech-v6-integration",
+      "display_name": "Antech V6 Integration",
+      "description": "Antech V6 integration module",
+      "baseline": "v0.4.16",
+      "latest": "v0.4.18",
+      "baseline_date": "2026-02-25T11:11:00+01:00",
+      "latest_date": "2026-03-17T17:22:52+01:00",
+      "total_commits": 5,
+      "categorized": {
+        "refactor": [
+          {
+            "sha": "67ed68c",
+            "full_sha": "67ed68c0ccf47dd427c33cd0cd2069cc6a1b7411",
+            "date": "2026-03-16T20:57:33-03:00",
+            "scope": null,
+            "description": "Refactor exception handling by removing global RpcExceptionFilter and applying it directly in AntechV6Controller",
+            "original_message": "Refactor exception handling by removing global RpcExceptionFilter and applying it directly in AntechV6Controller"
+          }
+        ],
+        "other": [
+          {
+            "sha": "be5b409",
+            "full_sha": "be5b4092b6bc5c527777a6b72d4d21cf2e7c5d7e",
+            "date": "2026-03-10T15:11:36+01:00",
+            "scope": null,
+            "description": "Remove redundant authentication call in placePreOrder and placeOrder",
+            "original_message": "Remove redundant authentication call in placePreOrder and placeOrder"
+          },
+          {
+            "sha": "c0451e7",
+            "full_sha": "c0451e743272314c2aba7826c918dffe1f1dae54",
+            "date": "2026-02-25T11:12:27+01:00",
+            "scope": null,
+            "description": "Lint fix",
+            "original_message": "Lint fix"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v0.4.17",
+          "date": "2026-03-10T15:34:00+01:00"
+        },
+        {
+          "tag": "v0.4.18",
+          "date": "2026-03-17T17:22:52+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine-antech-v6-integration"
+    },
+    {
+      "name": "dmi-engine-wisdom-panel-integration",
+      "display_name": "Wisdom Panel Integration",
+      "description": "Wisdom Panel integration module",
+      "baseline": "v0.3.13",
+      "latest": "v0.3.14",
+      "baseline_date": "2025-08-28T11:45:12+02:00",
+      "latest_date": "2026-03-17T17:23:10+01:00",
+      "total_commits": 2,
+      "categorized": {
+        "refactor": [
+          {
+            "sha": "fed84d2",
+            "full_sha": "fed84d209bc3430c88675dd6095d9c3169873601",
+            "date": "2026-03-16T23:32:12-03:00",
+            "scope": null,
+            "description": "Refactor exception handling by removing global RpcExceptionFilter and applying it directly in WisdomPanelController",
+            "original_message": "Refactor exception handling by removing global RpcExceptionFilter and applying it directly in WisdomPanelController"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v0.3.14",
+          "date": "2026-03-17T17:23:10+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine-wisdom-panel-integration"
+    },
+    {
+      "name": "dmi-engine-idexx-integration",
+      "display_name": "IDEXX Integration",
+      "description": "IDEXX integration module",
+      "baseline": "v1.1.0",
+      "latest": "v1.1.5",
+      "baseline_date": "2025-03-19T16:34:56+01:00",
+      "latest_date": "2026-03-20T16:12:29+01:00",
+      "total_commits": 9,
+      "categorized": {
+        "feat": [
+          {
+            "sha": "f34ff4f",
+            "full_sha": "f34ff4fb5cbd08b6ff4374d6093fb697954e71b8",
+            "date": "2026-03-17T01:11:24-03:00",
+            "scope": null,
+            "description": "Add PIMS identifiers to patient and client in Idexx result mapping",
+            "original_message": "Add PIMS identifiers to patient and client in Idexx result mapping"
+          },
+          {
+            "sha": "25b8ea2",
+            "full_sha": "25b8ea2eb32c6d9c7326e1fb1ff4304ed3e1a8c1",
+            "date": "2026-03-04T12:39:37+01:00",
+            "scope": null,
+            "description": "Added prefix for Redis queues",
+            "original_message": "Added prefix for Redis queues"
+          },
+          {
+            "sha": "50782c1",
+            "full_sha": "50782c1ee461a910b5703cdb1c59dcd375fb4bfb",
+            "date": "2025-12-02T13:35:01+01:00",
+            "scope": null,
+            "description": "Added missing dep",
+            "original_message": "Added missing dep"
+          },
+          {
+            "sha": "720d18d",
+            "full_sha": "720d18d7ccb7a8aa5790bbaf8129054b58d18690",
+            "date": "2025-12-02T13:02:07+01:00",
+            "scope": null,
+            "description": "Improved support for Redis cluster connections",
+            "original_message": "Improved support for Redis cluster connections"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v1.1.1",
+          "date": "2025-12-02T13:02:16+01:00"
+        },
+        {
+          "tag": "v1.1.2",
+          "date": "2025-12-02T13:35:09+01:00"
+        },
+        {
+          "tag": "v1.1.3",
+          "date": "2026-03-04T12:39:54+01:00"
+        },
+        {
+          "tag": "v1.1.4",
+          "date": "2026-03-04T12:40:02+01:00"
+        },
+        {
+          "tag": "v1.1.5",
+          "date": "2026-03-20T16:12:29+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine-idexx-integration"
+    },
+    {
+      "name": "dmi-engine-zoetis-integration",
+      "display_name": "Zoetis Integration",
+      "description": "Zoetis integration module",
+      "baseline": "v1.1.0",
+      "latest": "v1.1.2",
+      "baseline_date": "2025-03-19T16:40:52+01:00",
+      "latest_date": "2026-03-17T12:57:27+01:00",
+      "total_commits": 5,
+      "categorized": {
+        "feat": [
+          {
+            "sha": "228147c",
+            "full_sha": "228147c5666cac9a57531eb71043f711a458ee1e",
+            "date": "2026-03-17T12:57:19+01:00",
+            "scope": null,
+            "description": "Added logs for integration operations.",
+            "original_message": "Added logs for integration operations."
+          },
+          {
+            "sha": "72c4a16",
+            "full_sha": "72c4a169660643f316a2b8f675eac56f8ab7f216",
+            "date": "2025-12-02T13:21:14+01:00",
+            "scope": null,
+            "description": "Extended support for Redis cluster connections",
+            "original_message": "Extended support for Redis cluster connections"
+          }
+        ],
+        "other": [
+          {
+            "sha": "cc460da",
+            "full_sha": "cc460da826cb414614dce85b4c11c641554afa54",
+            "date": "2026-03-17T12:51:27+01:00",
+            "scope": null,
+            "description": "Using @MessagePattern for integration operations.",
+            "original_message": "Using @MessagePattern for integration operations."
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v1.1.1",
+          "date": "2025-12-02T13:21:24+01:00"
+        },
+        {
+          "tag": "v1.1.2",
+          "date": "2026-03-17T12:57:27+01:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine-zoetis-integration"
+    }
+  ]
+}

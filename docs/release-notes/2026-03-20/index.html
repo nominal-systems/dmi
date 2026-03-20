@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMI Platform Release Notes</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-2: #1c2129;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --text-dim: #6e7681;
+            --accent: #58a6ff;
+            --accent-subtle: #1f6feb22;
+            --green: #3fb950;
+            --green-subtle: #23863622;
+            --red: #f85149;
+            --purple: #bc8cff;
+            --orange: #d29922;
+            --yellow: #e3b341;
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .hero {
+            padding: 64px 0 48px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #161b2280 0%, transparent 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 32px;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .stat:nth-child(2) .stat-value { color: var(--green); }
+        .stat:nth-child(3) .stat-value { color: var(--red); }
+        .stat:nth-child(4) .stat-value { color: var(--purple); }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* Layout */
+        .content {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 32px;
+            padding: 40px 0 80px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .sidebar { display: none; }
+        }
+
+        /* Sidebar nav */
+        .sidebar {
+            position: sticky;
+            top: 24px;
+            align-self: start;
+        }
+
+        .sidebar h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+            padding-left: 12px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.15s;
+            margin-bottom: 2px;
+        }
+
+        .nav-item:hover {
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .nav-name {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-range {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* Project sections */
+        .project {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 24px;
+            scroll-margin-top: 24px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .project-info h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .project-info h3 a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .project-info h3 a:hover {
+            color: var(--accent);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .version-range {
+            background: var(--accent-subtle);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .commit-count {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* Version badges */
+        .version-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .version-badge {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+            transition: all 0.15s;
+        }
+
+        .version-badge:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Categories */
+        .category {
+            margin-bottom: 16px;
+        }
+
+        .category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .count {
+            background: var(--surface-2);
+            color: var(--text-dim);
+            font-size: 0.7rem;
+            padding: 1px 7px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .commit-list {
+            list-style: none;
+        }
+
+        .commit-list li {
+            padding: 5px 0;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .sha {
+            font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            text-decoration: none;
+            background: var(--accent-subtle);
+            padding: 1px 6px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .sha:hover {
+            text-decoration: underline;
+        }
+
+        .scope {
+            background: var(--green-subtle);
+            color: var(--green);
+            font-size: 0.75rem;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .commit-desc {
+            color: var(--text);
+        }
+
+        /* Issues */
+        .issues-section {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .issues-section h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .issues-section a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.88rem;
+        }
+
+        .issues-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>DMI Platform Release Notes</h1>
+            <p class="subtitle">Generated on March 20, 2026 at 18:50</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">58</div>
+                    <div class="stat-label">Commits</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">11</div>
+                    <div class="stat-label">Features</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Bug Fixes</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <nav class="sidebar">
+                <h2>Projects</h2>
+                <a href="#dmi-api" class="nav-item"><span class="nav-name">DMI API</span><span class="nav-range">v1.13.3 &rarr; v1.13.13</span></a><a href="#dmi-api-admin-ui" class="nav-item"><span class="nav-name">DMI Admin UI</span><span class="nav-range">v0.8.0 &rarr; v0.8.3</span></a><a href="#dmi-engine" class="nav-item"><span class="nav-name">DMI Engine</span><span class="nav-range">v1.4.4 &rarr; v1.4.8</span></a><a href="#dmi-engine-antech-integration" class="nav-item"><span class="nav-name">Antech V3 Integration</span><span class="nav-range">v1.4.0 &rarr; v1.4.1</span></a><a href="#dmi-engine-antech-v6-integration" class="nav-item"><span class="nav-name">Antech V6 Integration</span><span class="nav-range">v0.4.16 &rarr; v0.4.18</span></a><a href="#dmi-engine-wisdom-panel-integration" class="nav-item"><span class="nav-name">Wisdom Panel Integration</span><span class="nav-range">v0.3.13 &rarr; v0.3.14</span></a><a href="#dmi-engine-idexx-integration" class="nav-item"><span class="nav-name">IDEXX Integration</span><span class="nav-range">v1.1.0 &rarr; v1.1.5</span></a><a href="#dmi-engine-zoetis-integration" class="nav-item"><span class="nav-name">Zoetis Integration</span><span class="nav-range">v1.1.0 &rarr; v1.1.2</span></a>
+            </nav>
+            <main>
+                
+        <section class="project" id="dmi-api">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-api" target="_blank">DMI API</a>
+                    </h3>
+                    <p class="project-desc">Core API service</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v1.13.3 &rarr; v1.13.13</span>
+                    <span class="commit-count">18 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-api/releases/tag/v1.13.8" class="version-badge" target="_blank">v1.13.8</a><a href="https://github.com/nominal-systems/dmi-api/releases/tag/v1.13.9" class="version-badge" target="_blank">v1.13.9</a><a href="https://github.com/nominal-systems/dmi-api/releases/tag/v1.13.10" class="version-badge" target="_blank">v1.13.10</a><a href="https://github.com/nominal-systems/dmi-api/releases/tag/v1.13.11" class="version-badge" target="_blank">v1.13.11</a><a href="https://github.com/nominal-systems/dmi-api/releases/tag/v1.13.12" class="version-badge" target="_blank">v1.13.12</a><a href="https://github.com/nominal-systems/dmi-api/releases/tag/v1.13.13" class="version-badge" target="_blank">v1.13.13</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="rocket"></span>
+                        Features
+                        <span class="count">3</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/f368e95f140ad51579961cdb3302d95506be4d61" class="sha" target="_blank">f368e95</a>
+                        
+                        <span class="commit-desc">Add search parameter to integrations search DTO and update admin controller query</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/5f7760045ebb9479fe6af1f78164be60f957f336" class="sha" target="_blank">5f77600</a>
+                        
+                        <span class="commit-desc">Add timezone configuration to TypeORM settings</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/524ae8182921944e34b2e622c86378e2df661d36" class="sha" target="_blank">524ae81</a>
+                        
+                        <span class="commit-desc">Implement isMatchingOrder utility and enhance order extraction logic</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="bug"></span>
+                        Bug Fixes
+                        <span class="count">2</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/e167414f678971134d68d4b0179ed1be4af72cee" class="sha" target="_blank">e167414</a>
+                        
+                        <span class="commit-desc">Fix auth redirect paths to include baseUrl prefix</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/aeb7a17c149076e7061338b35f9c20c4f9a22f0d" class="sha" target="_blank">aeb7a17</a>
+                        
+                        <span class="commit-desc">Fix auth logic</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="wrench"></span>
+                        Maintenance
+                        <span class="count">3</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/3895dbeb0a976219748515fa6bfb514f53a74450" class="sha" target="_blank">3895dbe</a>
+                        <span class="scope">deps</span>
+                        <span class="commit-desc">bumped @nominal-systems/dmi-api-admin-ui to 0.8.3</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/6f53ab77977b856228738517bf1dbc778efaf8e4" class="sha" target="_blank">6f53ab7</a>
+                        <span class="scope">deps</span>
+                        <span class="commit-desc">bumped @nominal-systems/dmi-api-admin-ui to 0.8.2</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/46b186fcf92cb5320da516c7ae7598a4d9ae8aa0" class="sha" target="_blank">46b186f</a>
+                        <span class="scope">deps</span>
+                        <span class="commit-desc">bumped @nominal-systems/dmi-api-admin-ui to 0.8.1</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="git-commit"></span>
+                        Other Changes
+                        <span class="count">2</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/792f1cb39cf4078b207d1ede7dd9e54ce786a6e9" class="sha" target="_blank">792f1cb</a>
+                        
+                        <span class="commit-desc">Make order matching strict: treat missing fields as orphan</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api/commit/d84dd2351401bdc9881244276139091ecc564064" class="sha" target="_blank">d84dd23</a>
+                        
+                        <span class="commit-desc">Only updates jobs when integration status is RUNNING; for NEW/STOPPED, it skips emitting update-job events.</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-api-admin-ui">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-api-admin-ui" target="_blank">DMI Admin UI</a>
+                    </h3>
+                    <p class="project-desc">Administration interface</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v0.8.0 &rarr; v0.8.3</span>
+                    <span class="commit-count">9 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-api-admin-ui/releases/tag/v0.8.1" class="version-badge" target="_blank">v0.8.1</a><a href="https://github.com/nominal-systems/dmi-api-admin-ui/releases/tag/v0.8.2" class="version-badge" target="_blank">v0.8.2</a><a href="https://github.com/nominal-systems/dmi-api-admin-ui/releases/tag/v0.8.3" class="version-badge" target="_blank">v0.8.3</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="rocket"></span>
+                        Features
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api-admin-ui/commit/256ffcf2b504860a874a8d48e401402749872f1d" class="sha" target="_blank">256ffcf</a>
+                        
+                        <span class="commit-desc">Add search by practice to integrations tab</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="bug"></span>
+                        Bug Fixes
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api-admin-ui/commit/cfcaea085d9ccec9c1576d7ac858b5caa6e62f90" class="sha" target="_blank">cfcaea0</a>
+                        
+                        <span class="commit-desc">modal plugin init</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="git-commit"></span>
+                        Other Changes
+                        <span class="count">3</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api-admin-ui/commit/73167dbe26d15be8e023355cc335ae9566e9ec87" class="sha" target="_blank">73167db</a>
+                        
+                        <span class="commit-desc">Increase provider refs search limit</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api-admin-ui/commit/7e0f2e32bea145139874390396b5bdb39e7d74cd" class="sha" target="_blank">7e0f2e3</a>
+                        
+                        <span class="commit-desc">Read environment for dev scripts</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-api-admin-ui/commit/14c98114cf5033fa9bcbd5f33308503a4dbc3034" class="sha" target="_blank">14c9811</a>
+                        
+                        <span class="commit-desc">IntelliJ config</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-engine">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-engine" target="_blank">DMI Engine</a>
+                    </h3>
+                    <p class="project-desc">Core engine service</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v1.4.4 &rarr; v1.4.8</span>
+                    <span class="commit-count">8 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-engine/releases/tag/v1.4.5" class="version-badge" target="_blank">v1.4.5</a><a href="https://github.com/nominal-systems/dmi-engine/releases/tag/v1.4.8" class="version-badge" target="_blank">v1.4.8</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="bug"></span>
+                        Bug Fixes
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine/commit/d1af4dff1102ffc91d65cbb556f018a34f109332" class="sha" target="_blank">d1af4df</a>
+                        <span class="scope">dmi-engine</span>
+                        <span class="commit-desc">add Redis commandTimeout and error handling to prevent 504s on transient Redis blips</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="wrench"></span>
+                        Maintenance
+                        <span class="count">2</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine/commit/be9696c4ddc76611b12dde7551691e856c747efb" class="sha" target="_blank">be9696c</a>
+                        <span class="scope">deps</span>
+                        <span class="commit-desc">bumped @nominal-systems/dmi-engine-antech-v6-integration to 0.4.18, @nominal-systems/dmi-engine-wisdom-panel-integration to 0.3.14</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine/commit/359e666a5fbf58f350f1d6200d01a2d672f5d677" class="sha" target="_blank">359e666</a>
+                        <span class="scope">deps</span>
+                        <span class="commit-desc">bumped @nominal-systems/dmi-engine-antech-v6-integration to 0.4.17</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="git-commit"></span>
+                        Other Changes
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine/commit/eebcc73501f6b5166cddc71066c9bc043c772e45" class="sha" target="_blank">eebcc73</a>
+                        
+                        <span class="commit-desc">Wrap queue Redis operations in try/catch for graceful degradation on startup and /queues endpoint</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-engine-antech-integration">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-engine-antech-integration" target="_blank">Antech V3 Integration</a>
+                    </h3>
+                    <p class="project-desc">Antech legacy integration module</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v1.4.0 &rarr; v1.4.1</span>
+                    <span class="commit-count">2 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-engine-antech-integration/releases/tag/v1.4.1" class="version-badge" target="_blank">v1.4.1</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="rocket"></span>
+                        Features
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-antech-integration/commit/7c8eb7beeb9bdcd034d8963fa0cf6bdddec6be6f" class="sha" target="_blank">7c8eb7b</a>
+                        
+                        <span class="commit-desc">Added prefix for Redis queues</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-engine-antech-v6-integration">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-engine-antech-v6-integration" target="_blank">Antech V6 Integration</a>
+                    </h3>
+                    <p class="project-desc">Antech V6 integration module</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v0.4.16 &rarr; v0.4.18</span>
+                    <span class="commit-count">5 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-engine-antech-v6-integration/releases/tag/v0.4.17" class="version-badge" target="_blank">v0.4.17</a><a href="https://github.com/nominal-systems/dmi-engine-antech-v6-integration/releases/tag/v0.4.18" class="version-badge" target="_blank">v0.4.18</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="recycle"></span>
+                        Refactoring
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-antech-v6-integration/commit/67ed68c0ccf47dd427c33cd0cd2069cc6a1b7411" class="sha" target="_blank">67ed68c</a>
+                        
+                        <span class="commit-desc">Refactor exception handling by removing global RpcExceptionFilter and applying it directly in AntechV6Controller</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="git-commit"></span>
+                        Other Changes
+                        <span class="count">2</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-antech-v6-integration/commit/be5b4092b6bc5c527777a6b72d4d21cf2e7c5d7e" class="sha" target="_blank">be5b409</a>
+                        
+                        <span class="commit-desc">Remove redundant authentication call in placePreOrder and placeOrder</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-antech-v6-integration/commit/c0451e743272314c2aba7826c918dffe1f1dae54" class="sha" target="_blank">c0451e7</a>
+                        
+                        <span class="commit-desc">Lint fix</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-engine-wisdom-panel-integration">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-engine-wisdom-panel-integration" target="_blank">Wisdom Panel Integration</a>
+                    </h3>
+                    <p class="project-desc">Wisdom Panel integration module</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v0.3.13 &rarr; v0.3.14</span>
+                    <span class="commit-count">2 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-engine-wisdom-panel-integration/releases/tag/v0.3.14" class="version-badge" target="_blank">v0.3.14</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="recycle"></span>
+                        Refactoring
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-wisdom-panel-integration/commit/fed84d209bc3430c88675dd6095d9c3169873601" class="sha" target="_blank">fed84d2</a>
+                        
+                        <span class="commit-desc">Refactor exception handling by removing global RpcExceptionFilter and applying it directly in WisdomPanelController</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-engine-idexx-integration">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-engine-idexx-integration" target="_blank">IDEXX Integration</a>
+                    </h3>
+                    <p class="project-desc">IDEXX integration module</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v1.1.0 &rarr; v1.1.5</span>
+                    <span class="commit-count">9 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/releases/tag/v1.1.1" class="version-badge" target="_blank">v1.1.1</a><a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/releases/tag/v1.1.2" class="version-badge" target="_blank">v1.1.2</a><a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/releases/tag/v1.1.3" class="version-badge" target="_blank">v1.1.3</a><a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/releases/tag/v1.1.4" class="version-badge" target="_blank">v1.1.4</a><a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/releases/tag/v1.1.5" class="version-badge" target="_blank">v1.1.5</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="rocket"></span>
+                        Features
+                        <span class="count">4</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/commit/f34ff4fb5cbd08b6ff4374d6093fb697954e71b8" class="sha" target="_blank">f34ff4f</a>
+                        
+                        <span class="commit-desc">Add PIMS identifiers to patient and client in Idexx result mapping</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/commit/25b8ea2eb32c6d9c7326e1fb1ff4304ed3e1a8c1" class="sha" target="_blank">25b8ea2</a>
+                        
+                        <span class="commit-desc">Added prefix for Redis queues</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/commit/50782c1ee461a910b5703cdb1c59dcd375fb4bfb" class="sha" target="_blank">50782c1</a>
+                        
+                        <span class="commit-desc">Added missing dep</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-idexx-integration/commit/720d18d7ccb7a8aa5790bbaf8129054b58d18690" class="sha" target="_blank">720d18d</a>
+                        
+                        <span class="commit-desc">Improved support for Redis cluster connections</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+        <section class="project" id="dmi-engine-zoetis-integration">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>
+                        <a href="https://github.com/nominal-systems/dmi-engine-zoetis-integration" target="_blank">Zoetis Integration</a>
+                    </h3>
+                    <p class="project-desc">Zoetis integration module</p>
+                </div>
+                <div class="project-meta">
+                    <span class="version-range">v1.1.0 &rarr; v1.1.2</span>
+                    <span class="commit-count">5 commits</span>
+                </div>
+            </div>
+            <div class="version-list"><a href="https://github.com/nominal-systems/dmi-engine-zoetis-integration/releases/tag/v1.1.1" class="version-badge" target="_blank">v1.1.1</a><a href="https://github.com/nominal-systems/dmi-engine-zoetis-integration/releases/tag/v1.1.2" class="version-badge" target="_blank">v1.1.2</a></div>
+            <div class="categories">
+                
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="rocket"></span>
+                        Features
+                        <span class="count">2</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-zoetis-integration/commit/228147c5666cac9a57531eb71043f711a458ee1e" class="sha" target="_blank">228147c</a>
+                        
+                        <span class="commit-desc">Added logs for integration operations.</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-zoetis-integration/commit/72c4a169660643f316a2b8f675eac56f8ab7f216" class="sha" target="_blank">72c4a16</a>
+                        
+                        <span class="commit-desc">Extended support for Redis cluster connections</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h4 class="category-title">
+                        <span class="category-icon" data-icon="git-commit"></span>
+                        Other Changes
+                        <span class="count">1</span>
+                    </h4>
+                    <ul class="commit-list">
+                    <li>
+                        <a href="https://github.com/nominal-systems/dmi-engine-zoetis-integration/commit/cc460da826cb414614dce85b4c11c641554afa54" class="sha" target="_blank">cc460da</a>
+                        
+                        <span class="commit-desc">Using @MessagePattern for integration operations.</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Generated by <a href="https://github.com/nominal-systems">Nominal Systems</a> release notes tool</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for nav
+        document.querySelectorAll('.nav-item').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Highlight active nav on scroll
+        const sections = document.querySelectorAll('.project');
+        const navItems = document.querySelectorAll('.nav-item');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navItems.forEach(n => n.style.background = '');
+                    const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+                    if (active) active.style.background = 'var(--surface)';
+                }
+            });
+        }, { threshold: 0.3 });
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>

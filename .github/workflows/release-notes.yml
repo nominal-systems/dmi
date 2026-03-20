@@ -4,12 +4,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: "pages"
+  group: "release-notes"
   cancel-in-progress: false
 
 jobs:
@@ -47,23 +45,24 @@ jobs:
 
       - name: Generate release notes
         run: |
+          DATE=$(date -u +%Y-%m-%d)
+          echo "RELEASE_DATE=${DATE}" >> $GITHUB_ENV
+
           python3 dmi/scripts/release-notes/generate-html.py \
             --config dmi/scripts/release-notes/config.json \
             --workspace ${{ github.workspace }} \
-            --output _site
+            --output "dmi/docs/release-notes/${DATE}"
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
+      - name: Generate index page
+        run: |
+          python3 dmi/scripts/release-notes/generate-index.py \
+            --site-dir dmi/docs
 
-  deploy:
-    needs: generate
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Commit and push
+        working-directory: dmi
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "release-notes: generate ${RELEASE_DATE}" || echo "No changes to commit"
+          git push
