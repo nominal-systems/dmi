@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DMI Release Notes — March 2026</title>
+<style>
+* { font-family: Helvetica, sans-serif; font-size: 12pt; }
+</style>
+</head>
+<body>
+
+<h1>DMI Release Notes — March 2026</h1>
+
+<h2>DMI API (v1.13.4 → v1.13.13)</h2>
+<ul>
+<li>Add search parameter to integrations search DTO and update admin controller query</li>
+<li>Make order matching strict: treat missing fields as orphan</li>
+<li>Implement isMatchingOrder utility and enhance order extraction logic</li>
+<li>Add timezone configuration to TypeORM settings</li>
+<li>Fix auth redirect paths to include baseUrl prefix</li>
+<li>Fix auth logic</li>
+</ul>
+<p>Closed issues:
+<a href="https://github.com/nominal-systems/dmi-api/issues/51">#51</a>,
+<a href="https://github.com/nominal-systems/dmi-api/issues/96">#96</a>
+</p>
+
+<h2>DMI Admin UI (v0.8.1 → v0.8.3)</h2>
+<ul>
+<li>Add search by practice to integrations tab</li>
+<li>Fix modal plugin init</li>
+<li>Increase provider refs search limit</li>
+</ul>
+<p>Closed issues:
+<a href="https://github.com/nominal-systems/dmi-api-admin-ui/issues/50">#50</a>
+</p>
+
+<h2>DMI Engine (v1.4.5 → v1.4.8)</h2>
+<ul>
+<li>Enhance job queue configuration and settings</li>
+<li>Add Redis commandTimeout and error handling to prevent 504s on transient Redis blips</li>
+<li>Wrap queue Redis operations in try/catch for graceful degradation on startup and /queues endpoint</li>
+<li>Remove redundant authentication call in placePreOrder and placeOrder (Antech V6)</li>
+</ul>
+<p>Closed issues:
+<a href="https://github.com/nominal-systems/dmi-engine/issues/55">#55</a>,
+<a href="https://github.com/nominal-systems/dmi-engine/issues/56">#56</a>
+</p>
+
+<h2>Antech Integration (v1.4.1)</h2>
+<ul>
+<li>Added prefix for Redis queues</li>
+</ul>
+
+<h2>Antech V6 Integration (v0.4.17 → v0.4.18)</h2>
+<ul>
+<li>Refactor exception handling by removing global RpcExceptionFilter and applying it directly in AntechV6Controller</li>
+<li>Remove redundant authentication call in placePreOrder and placeOrder</li>
+</ul>
+
+<h2>Wisdom Panel Integration (v0.3.14)</h2>
+<ul>
+<li>Refactor exception handling by removing global RpcExceptionFilter and applying it directly in WisdomPanelController</li>
+</ul>
+<p>Closed issues:
+<a href="https://github.com/nominal-systems/dmi-engine-wisdom-panel-integration/issues/18">#18</a>
+</p>
+
+<h2>IDEXX Integration (v1.1.3 → v1.1.5)</h2>
+<ul>
+<li>Add PIMS identifiers to patient and client in Idexx result mapping</li>
+<li>Added prefix for Redis queues</li>
+</ul>
+
+<h2>Zoetis Integration (v1.1.2)</h2>
+<ul>
+<li>Added logs for integration operations</li>
+<li>Using @MessagePattern for integration operations</li>
+</ul>
+
+</body>
+</html>
