@@ -1,0 +1,341 @@
+{
+  "generated_at": "2026-05-15T19:28:38.846739",
+  "config": {
+    "title": "DMI Platform Release Notes",
+    "github_org": "nominal-systems",
+    "workspace_root": "../../../",
+    "projects": [
+      {
+        "name": "dmi-api",
+        "display_name": "DMI API",
+        "description": "Core API service",
+        "baseline": "v1.13.13",
+        "directory": "dmi-api"
+      },
+      {
+        "name": "dmi-api-admin-ui",
+        "display_name": "DMI Admin UI",
+        "description": "Administration interface",
+        "baseline": "v0.8.3",
+        "directory": "dmi-api-admin-ui"
+      },
+      {
+        "name": "dmi-engine",
+        "display_name": "DMI Engine",
+        "description": "Core engine service",
+        "baseline": "v1.4.8",
+        "directory": "dmi-engine"
+      },
+      {
+        "name": "dmi-engine-antech-integration",
+        "display_name": "Antech V3 Integration",
+        "description": "Antech legacy integration module",
+        "baseline": "v1.4.1",
+        "directory": "dmi-engine-antech-integration"
+      },
+      {
+        "name": "dmi-engine-antech-v6-integration",
+        "display_name": "Antech V6 Integration",
+        "description": "Antech V6 integration module",
+        "baseline": "v0.4.18",
+        "directory": "dmi-engine-antech-v6-integration"
+      },
+      {
+        "name": "dmi-engine-wisdom-panel-integration",
+        "display_name": "Wisdom Panel Integration",
+        "description": "Wisdom Panel integration module",
+        "baseline": "v0.3.14",
+        "directory": "dmi-engine-wisdom-panel-integration"
+      },
+      {
+        "name": "dmi-engine-idexx-integration",
+        "display_name": "IDEXX Integration",
+        "description": "IDEXX integration module",
+        "baseline": "v1.1.5",
+        "directory": "dmi-engine-idexx-integration"
+      },
+      {
+        "name": "dmi-engine-zoetis-integration",
+        "display_name": "Zoetis Integration",
+        "description": "Zoetis integration module",
+        "baseline": "v1.1.2",
+        "directory": "dmi-engine-zoetis-integration"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "name": "dmi-api",
+      "display_name": "DMI API",
+      "description": "Core API service",
+      "baseline": "v1.13.13",
+      "latest": "v1.13.18",
+      "baseline_date": "2026-03-20T16:12:21+01:00",
+      "latest_date": "2026-05-06T16:07:39+02:00",
+      "total_commits": 13,
+      "categorized": {
+        "fix": [
+          {
+            "sha": "37e884c",
+            "full_sha": "37e884cbe6a0ab25049562e713fcb4dfec8b78b2",
+            "date": "2026-05-06T15:33:04+02:00",
+            "scope": null,
+            "description": "set partition key on Event Hub events to preserve ordering (#288)",
+            "original_message": "fix: set partition key on Event Hub events to preserve ordering (#288)"
+          }
+        ],
+        "chore": [
+          {
+            "sha": "c6d2d6e",
+            "full_sha": "c6d2d6e3a77c5ee538aaf99fc6c3a39bfb9106dd",
+            "date": "2026-05-01T11:34:43+02:00",
+            "scope": null,
+            "description": "bumped dmi-api-admin-ui to v0.8.7",
+            "original_message": "chore: bumped dmi-api-admin-ui to v0.8.7"
+          },
+          {
+            "sha": "bc5af80",
+            "full_sha": "bc5af80dcd4cea1c1f2026723b7d37f2fb96a497",
+            "date": "2026-04-10T10:49:02+02:00",
+            "scope": null,
+            "description": "bump deps dmi-api-admin-ui:0.8.5",
+            "original_message": "chore: bump deps dmi-api-admin-ui:0.8.5"
+          },
+          {
+            "sha": "fe1c132",
+            "full_sha": "fe1c1326c0d6dd051ec9cd31fd368c3e9a0fc385",
+            "date": "2026-04-10T10:38:09+02:00",
+            "scope": null,
+            "description": "bump deps dmi-api-admin-ui:0.8.4",
+            "original_message": "chore: bump deps dmi-api-admin-ui:0.8.4"
+          }
+        ],
+        "other": [
+          {
+            "sha": "7e0ff8d",
+            "full_sha": "7e0ff8d53df32150c914be3bd33861554a2370b4",
+            "date": "2026-05-01T06:14:07-03:00",
+            "scope": null,
+            "description": "Issues/282 (#283)",
+            "original_message": "Issues/282 (#283)"
+          },
+          {
+            "sha": "2fcbc3e",
+            "full_sha": "2fcbc3ea9a23484a1b4ec3bce51574dacc1a72e0",
+            "date": "2026-04-07T11:04:23+02:00",
+            "scope": null,
+            "description": "Increased engine timeout",
+            "original_message": "Increased engine timeout"
+          }
+        ],
+        "feat": [
+          {
+            "sha": "37031ca",
+            "full_sha": "37031caac332c7cda8c2d7edd9420cc1d9b9ac6b",
+            "date": "2026-04-10T00:32:23-03:00",
+            "scope": null,
+            "description": "Add search functionality to events query",
+            "original_message": "Add search functionality to events query"
+          }
+        ]
+      },
+      "issues": [
+        283,
+        288
+      ],
+      "versions": [
+        {
+          "tag": "v1.13.14",
+          "date": "2026-04-07T11:12:01+02:00"
+        },
+        {
+          "tag": "v1.13.15",
+          "date": "2026-04-10T10:49:17+02:00"
+        },
+        {
+          "tag": "v1.13.16",
+          "date": "2026-05-01T11:38:01+02:00"
+        },
+        {
+          "tag": "v1.13.17",
+          "date": "2026-05-01T12:35:40+02:00"
+        },
+        {
+          "tag": "v1.13.18",
+          "date": "2026-05-06T16:07:39+02:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-api"
+    },
+    {
+      "name": "dmi-api-admin-ui",
+      "display_name": "DMI Admin UI",
+      "description": "Administration interface",
+      "baseline": "v0.8.3",
+      "latest": "v0.8.7",
+      "baseline_date": "2026-03-20T15:57:01+01:00",
+      "latest_date": "2026-05-01T11:34:13+02:00",
+      "total_commits": 14,
+      "categorized": {
+        "other": [
+          {
+            "sha": "4821328",
+            "full_sha": "4821328d77049af415a662377b76dc0dc74a3919",
+            "date": "2026-05-01T06:33:48-03:00",
+            "scope": null,
+            "description": "Normalize accessionId to uppercase in search and initialization (#99)",
+            "original_message": "Normalize accessionId to uppercase in search and initialization (#99)"
+          },
+          {
+            "sha": "d7e2c43",
+            "full_sha": "d7e2c4341d5edd79c793bb8b44a6a88d6f4ba9eb",
+            "date": "2026-05-01T06:24:16-03:00",
+            "scope": null,
+            "description": "Use UTC for date formatting in dataPointSelection event (#101)",
+            "original_message": "Use UTC for date formatting in dataPointSelection event (#101)"
+          }
+        ],
+        "fix": [
+          {
+            "sha": "959d7c8",
+            "full_sha": "959d7c898f6ca5399b3fcf9ab4a39449be88f1f7",
+            "date": "2026-05-01T06:27:07-03:00",
+            "scope": null,
+            "description": "Fix event detail modal showing empty details after first open (#110)",
+            "original_message": "Fix event detail modal showing empty details after first open (#110)"
+          }
+        ],
+        "feat": [
+          {
+            "sha": "cf6eb07",
+            "full_sha": "cf6eb07a10e10371d37463d00064bf54a216e243",
+            "date": "2026-04-10T00:26:54-03:00",
+            "scope": null,
+            "description": "Added the search bar to the Events table and wired up the search query param",
+            "original_message": "Added the search bar to the Events table and wired up the search query param"
+          },
+          {
+            "sha": "578e26a",
+            "full_sha": "578e26a645a0b0693d1dcace3dcd2121f87f1631",
+            "date": "2026-04-08T23:18:36-03:00",
+            "scope": null,
+            "description": "Add Test action to individual integrations in the table",
+            "original_message": "Add Test action to individual integrations in the table"
+          },
+          {
+            "sha": "f71694c",
+            "full_sha": "f71694cd530b0852dbc8f43412d161a7fe8e37cd",
+            "date": "2026-04-08T22:52:13-03:00",
+            "scope": null,
+            "description": "Add continue option when batch test fails",
+            "original_message": "Add continue option when batch test fails"
+          }
+        ],
+        "perf": [
+          {
+            "sha": "e03ebad",
+            "full_sha": "e03ebad028ff433be84db96f4f74f4c180adce19",
+            "date": "2026-04-09T12:53:06-03:00",
+            "scope": null,
+            "description": "Improve modal handling for external requests",
+            "original_message": "Improve modal handling for external requests"
+          },
+          {
+            "sha": "b1df520",
+            "full_sha": "b1df520a2c1fd636d22aff202d5d9f80cad2fa89",
+            "date": "2026-04-08T23:36:52-03:00",
+            "scope": null,
+            "description": "Enhance integration modals with detailed practice and provider information",
+            "original_message": "Enhance integration modals with detailed practice and provider information"
+          }
+        ]
+      },
+      "issues": [
+        99,
+        101,
+        110
+      ],
+      "versions": [
+        {
+          "tag": "v0.8.4",
+          "date": "2026-04-10T10:37:11+02:00"
+        },
+        {
+          "tag": "v0.8.5",
+          "date": "2026-04-10T10:47:37+02:00"
+        },
+        {
+          "tag": "v0.8.6",
+          "date": "2026-05-01T11:27:38+02:00"
+        },
+        {
+          "tag": "v0.8.7",
+          "date": "2026-05-01T11:34:13+02:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-api-admin-ui"
+    },
+    {
+      "name": "dmi-engine",
+      "display_name": "DMI Engine",
+      "description": "Core engine service",
+      "baseline": "v1.4.8",
+      "latest": "v1.4.9",
+      "baseline_date": "2026-03-20T16:17:52+01:00",
+      "latest_date": "2026-04-07T11:11:57+02:00",
+      "total_commits": 2,
+      "categorized": {
+        "other": [
+          {
+            "sha": "2434088",
+            "full_sha": "2434088a8ba7c1150993781ad98d8bb2a588eb03",
+            "date": "2026-04-07T11:06:02+02:00",
+            "scope": null,
+            "description": "Increased polling intervals",
+            "original_message": "Increased polling intervals"
+          }
+        ]
+      },
+      "issues": [],
+      "versions": [
+        {
+          "tag": "v1.4.9",
+          "date": "2026-04-07T11:11:57+02:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine"
+    },
+    {
+      "name": "dmi-engine-idexx-integration",
+      "display_name": "IDEXX Integration",
+      "description": "IDEXX integration module",
+      "baseline": "v1.1.5",
+      "latest": "v1.1.6",
+      "baseline_date": "2026-03-20T16:12:29+01:00",
+      "latest_date": "2026-05-06T16:31:10+02:00",
+      "total_commits": 2,
+      "categorized": {
+        "other": [
+          {
+            "sha": "34bcea3",
+            "full_sha": "34bcea34f1ee199d18cecfc05b150fd3f6004e3f",
+            "date": "2026-05-06T11:30:56-03:00",
+            "scope": null,
+            "description": "Use IDEXX order ID as primary identifier for result linking and log grouping (#53)",
+            "original_message": "Use IDEXX order ID as primary identifier for result linking and log grouping (#53)"
+          }
+        ]
+      },
+      "issues": [
+        53
+      ],
+      "versions": [
+        {
+          "tag": "v1.1.6",
+          "date": "2026-05-06T16:31:10+02:00"
+        }
+      ],
+      "github_url": "https://github.com/nominal-systems/dmi-engine-idexx-integration"
+    }
+  ]
+}
