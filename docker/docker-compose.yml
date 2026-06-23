@@ -65,14 +65,16 @@ services:
     ports:
       - '3306:3306'
   activemq:
-    image: rmohr/activemq
+    image: apache/activemq-artemis:latest
     restart: unless-stopped
-    env_file: .env
-    volumes:
-      - ./containers/activemq/data:/opt/activemq/data
+    environment:
+      ARTEMIS_USER: artemis
+      ARTEMIS_PASSWORD: artemis
     ports:
       - '1883:1883'
       - '8161:8161'
+    volumes:
+      - ./containers/activemq/data:/var/lib/artemis-instance
   redis:
     image: redis:6
     restart: unless-stopped
