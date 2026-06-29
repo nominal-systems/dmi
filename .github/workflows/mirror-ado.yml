@@ -1,0 +1,35 @@
+name: Mirror to ADO — dmi
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:    # allows manual trigger from GitHub Actions UI
+
+jobs:
+  mirror:
+    name: Mirror to Azure DevOps
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0    # full history — not shallow clone
+
+      - name: Push to ADO
+        env:
+          ADO_PAT: ${{ secrets.ADO_PAT }}
+        run: |
+          git config user.email "github-mirror@voyager.marsvh.com"
+          git config user.name "GitHub Mirror Bot"
+
+          # Add ADO remote using PAT for auth
+          git remote add ado \
+            "https://anything:${ADO_PAT}@dev.azure.com/MarsVH/Voyager%20Health/_git/DMI-dmi"
+
+          # Push all branches and tags to ADO
+          git push ado --all --force
+          git push ado --tags --force
+
+          echo "✅ Successfully mirrored dmi to ADO"
