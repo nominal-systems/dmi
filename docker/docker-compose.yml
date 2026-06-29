@@ -65,7 +65,7 @@ services:
     ports:
       - '3306:3306'
   activemq:
-    image: apache/activemq-artemis:latest
+    image: apache/activemq-artemis:2.44.0
     restart: unless-stopped
     environment:
       ARTEMIS_USER: artemis
