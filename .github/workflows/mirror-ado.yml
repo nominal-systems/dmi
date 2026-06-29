@@ -3,7 +3,7 @@ name: Mirror to ADO — dmi
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:    # allows manual trigger from GitHub Actions UI
 
 jobs:
