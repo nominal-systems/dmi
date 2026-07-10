@@ -11,7 +11,7 @@ On this guide you will learn to:
 - Create a practice
 - Create an integration for your practice
 - Get available tests
-- Send and order to the Demo Provider
+- Send an order to the Demo Provider
 - Get updates on the order
 - Retrieve the results
 
@@ -24,7 +24,7 @@ Create a user by providing a valid email and your password:
 {
     "method": "POST",
     "url": "/users",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Authorization": "Basic MjMzMjozMg==",
         "Content-Type": "application/json"
@@ -43,7 +43,7 @@ Obtain an authorization token by calling the authorization endpoint and sending 
 {
     "method": "POST",
     "url": "/users/auth",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Content-Type": "application/json"
     },
@@ -54,7 +54,7 @@ Obtain an authorization token by calling the authorization endpoint and sending 
 }
 ```
 
-The response will include a `token` property that should be used for subsequent authenticated requests as a Bearer token. Learn more about [Authentication](/spec/docs/dmi/getting-started#authentication) in the API Reference.
+The response will include a `token` property that should be used for subsequent authenticated requests as a Bearer token. Learn more about [Authentication](02-getting-started.md#authentication) in the API Reference.
 
 ### Create your organization
 Create an organization by specifying a name:
@@ -63,7 +63,7 @@ Create an organization by specifying a name:
 {
     "method": "POST",
     "url": "/organizations",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Content-Type": "application/json",
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
@@ -78,10 +78,10 @@ The response will contain an `id` property with the Organization ID. This guide 
 
 > The user that created the organization will be the organization owner.
 
-To add more users as members of the organization, use the [Add member to an organization](/spec/docs/dmi/api/operations/create-a-organization-member) endpoint.
+To add more users as members of the organization, use the [Add member to an organization](https://nominal.stoplight.io/docs/dmi/api/operations/create-a-organization-member) endpoint.
 
 ### Get your organization's API keys
-After you have created a user and an organization, you can get your organization's API keys so you can start making requests to the DMI API in behalf of the organization.
+After you have created a user and an organization, you can get your organization's API keys so you can start making requests to the DMI API on behalf of the organization.
 
 Retrieve the API keys for your organization:
 
@@ -89,7 +89,7 @@ Retrieve the API keys for your organization:
 {
     "method": "GET",
     "url": "/organizations/ee2befeb-ff19-4088-a5eb-45ea15430c16/keys",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     }
@@ -98,7 +98,7 @@ Retrieve the API keys for your organization:
 
 The response will contain a property `prodKey` with your production key and a property `testKey` with your test key. This guide will reference either of these values as `apiKey`.
 
-> If you need to regenerate your API keys refer to [Organizations](/spec/docs/dmi/organizations-and-practices#organizations) in the API Reference.
+> If you need to regenerate your API keys refer to [Organizations](configuration/organizations-and-practices.md#organizations) in the API Reference.
 
 ### Get the list of supported Providers
 Get a list of the supported providers:
@@ -107,14 +107,14 @@ Get a list of the supported providers:
 {
     "method": "GET",
     "url": "/providers",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "X-Api-Key": "<apiKey>"
     }
 }
 ```
 
-This will return an array of the supported providers, along with their configuration and integration options. For the purpose of this guide, we will configure our integration with the [Demo Provider](/spec/docs/dmi/demo-provider).
+This will return an array of the supported providers, along with their configuration and integration options. For the purpose of this guide, we will configure our integration with the [Demo Provider](providers/demo-provider.md).
 
 > Note that the ID of the Demo Provider is `demo`
 
@@ -125,7 +125,7 @@ Configure the Demo Provider by providing the Demo Provider URL, as specified by 
 {
     "method": "POST",
     "url": "/providers/demo/configurations",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Content-Type": "application/json",
         "X-Api-Key": "<apiKey>"
@@ -147,7 +147,7 @@ Create a Practice by providing its name:
 {
     "method": "POST",
     "url": "/practices",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Content-Type": "application/json",
         "X-Api-Key": "<apiKey>"
@@ -158,7 +158,7 @@ Create a Practice by providing its name:
 }
 ```
 
-The response will include a property with the ID of the created Practice. This guide reference that value as `practiceId`.
+The response will include a property with the ID of the created Practice. This guide will reference that value as `practiceId`.
 
 ### Create an Integration
 Create an Integration to connect your practice with the Demo Provider:
@@ -167,7 +167,7 @@ Create an Integration to connect your practice with the Demo Provider:
 {
     "method": "POST",
     "url": "/integrations",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "Content-Type": "application/json",
         "X-Api-Key": "<apiKey>"
@@ -191,7 +191,7 @@ Get the list of tests supported for your Integration:
 {
     "method": "GET",
     "url": "/providers/demo/services",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "X-Api-Key": "<apiKey>"
     },
@@ -213,7 +213,7 @@ Order a Hematology test:
 {
     "method": "POST",
     "url": "/orders",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
       "Content-Type": "application/json",
       "X-Api-Key": "<apiKey>"
@@ -222,7 +222,7 @@ Order a Hematology test:
       "integrationId": "9a25c4d5-4faf-49a2-a2b7-c1b7dc60999b",
       "patient": {
         "name": "Berlin",
-        "species": "CANIS_LUPUS",
+        "species": "CANIS_LUPUS_FAMILIARIS",
         "breed": "JACK_RUSSEL_TERRIER",
         "sex": "MALE",
         "birthdate": "2011-05-08",
@@ -244,7 +244,7 @@ Order a Hematology test:
 }
 ```
 
-> Note that a patient, client and veterinarian can be provider for an order. Learn more about this in the [Orders](/spec/docs/dmi/orders) section.
+> Note that a patient, client and veterinarian can be provided for an order. Learn more about this in the [Orders](orders-and-results/orders.md) section.
 
 The response will include a property `id` for the created Order. This guide will reference that value with `orderId`.
 
@@ -256,25 +256,25 @@ Get updates on your practice orders:
 {
     "method": "GET",
     "url": "/events",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "X-Api-Key": "<apiKey>"
     }
 }
 ```
 
-See the [Events](/spec/docs/dmi/events) to learn more about events, and read about [Event Subscription](/spec/docs/dmi/events#event-subscriptions) to understand how to subscribe to certain event types and get notified directly by the API.
+See the [Events](events/events.md) section to learn more about events, and read about [Event Subscriptions](events/events.md#event-subscriptions) to understand how to subscribe to certain event types and get notified directly by the API.
 
-> It's important to keep track of the `seq`, this should always be the last sequence number that you obtained from the API. Events can be acknowledged to aid polling. Learn more about [Event Acknowledgment](/spec/docs/dmi/events#event-acknowledgment)
+> It's important to keep track of the `seq`, this should always be the last sequence number that you obtained from the API. Events can be acknowledged to aid polling. Learn more about [Event Acknowledgment](events/events.md#event-acknowledgment)
 
 ### Retrieve the results
-Once the order is reaches `PARTIAL` or `FINAL` status, a report will be available with the tests results:
+Once the order reaches `PARTIAL` or `COMPLETED` status, a report will be available with the test results:
 
 ```json http
 {
     "method": "GET",
     "url": "/orders/74c7cac2-0bd5-4e56-b114-f088a502dc6a/report",
-    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574"
+    "baseUrl": "https://stoplight.io/mocks/nominal/dmi/57735574",
     "headers": {
         "X-Api-Key": "<apiKey>"
     }
@@ -285,4 +285,4 @@ Congratulations! You created an organization and configured it for a specific pr
 
 ---
 
-To start configuring your application learn how manage [Users](/spec/docs/dmi/users).
+To start configuring your application, learn how to manage [Users](configuration/users.md).

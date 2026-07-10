@@ -14,7 +14,7 @@ In order for DMI to be able to integrate with a provider, ideally the provider m
   - The provider must store user credentials and any other sensitive information in an encrypted and secure manner.
 - **Order Creation** 
   - The provider must be able to create an order for a user, and return a unique identifier for the order, as well as other order details.
-  - The provider must be able to accept and store requisition number that can be used for cross-identification purposes.
+  - The provider must be able to accept and store a requisition number that can be used for cross-identification purposes.
   - The provider must be able to accept patient, client and veterinarian details.
   - The provider must be able to accept a list of test codes to be ordered.
   - The provider should provide a manifest for the order, ideally in PDF format, if applicable.
@@ -35,8 +35,8 @@ In order for DMI to be able to integrate with a provider, ideally the provider m
   - The provider must provide a mechanism to acknowledge an order, using the unique identifier returned when the order was created.
   - Acknowledged orders should not be returned in the order retrieval endpoint.
 - **Result Retrieval**
-  - The provider must be able to return a list available results for a user, including the status of the result, a unique identifier for the result and a reference to the originating order.
-  - The status of the should reflect the current stage in the diagnostic process and should have an identifiable set of final statuses.
+  - The provider must be able to return a list of available results for a user, including the status of the result, a unique identifier for the result and a reference to the originating order.
+  - The status of the result should reflect the current stage in the diagnostic process and should have an identifiable set of final statuses.
 - **Result Details**
   - The provider must be able to return the details of a result for a user, including the status of the result, using the unique identifier returned when the result was created.
 - **Result Acknowledgment**
@@ -47,7 +47,7 @@ In order for DMI to be able to integrate with a provider, ideally the provider m
   - The test environment should be able to be reset to a known state.
   - The test environment should be able to simulate ordering workflows.
   - The test environment should be able to generate simulated results as broadly as possible.
-  - The test environment should be able to accept parameters to generate specific results, such typical results or edge cases.
+  - The test environment should be able to accept parameters to generate specific results, such as typical results or edge cases.
 - **Support** 
   - The provider must provide a mechanism to contact technical support.
 
@@ -56,9 +56,9 @@ In order for DMI to be able to integrate with a provider, ideally the provider m
 ## Desirable Capabilities
 - **API Versioning**: The provider should be able to version their API.
 - **User Management**: The provider should be able to create, update, and delete users.
-  - The provider should to provide a mechanism to update user credentials.
+  - The provider should provide a mechanism to update user credentials.
 - **Order Cancellation**: The provider should be able to cancel an order for a user.
 - **Order Modification**: The provider should be able to accept order modifications, if possible. 
 - **Push mechanism**: The provider should be able to push results to DMI.
   - The provider should be able to push results to DMI using a secure mechanism.
-  - The provider should have a mechanism to specifying endpoints for authorization as well as order and results delivery. 
+  - The provider should have a mechanism for specifying endpoints for authorization as well as order and results delivery. 

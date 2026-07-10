@@ -6,7 +6,7 @@ The following concepts are used throughout the documentation and are building bl
 
 - **Partner** — Developer or system (usually a PIMS) that wants to integrate with a set of diagnostic providers.
 - **Provider** — A diagnostic provider that accepts test orders, performs observations and delivers reports.
-- **Organization** — A logical grouping within a partner's domain that managers users and practices.
+- **Organization** — A logical grouping within a partner's domain that manages users and practices.
 - **Admin User** — A system-provided administrator user with privileges to provision API users. 
 - **User** — A user of the API which is owner of or is member of an organization.
 - **Practice** — A clinical practice, lab or hospital belonging to the organization.
@@ -20,7 +20,7 @@ The following concepts are used throughout the documentation and are building bl
 
 In summary:
 
-A **Partner** needs to integrate with a diagnostic modality **Provider**. An **Admin User** provision **Users** that manage **Organizations** and their **Practices**. Then **Provider Configurations** are created for each Provider the Organization wants to connect to and connects Practices to Providers through an **Integration**. **Orders** for diagnostic tests can be ordered through the API, which eventually will generate a diagnostic **Report** with the findings.
+A **Partner** needs to integrate with a diagnostic modality **Provider**. An **Admin User** provisions **Users** that manage **Organizations** and their **Practices**. Then **Provider Configurations** are created for each Provider the Organization wants to connect to, and Practices are connected to Providers through an **Integration**. **Orders** for diagnostic tests can be placed through the API, which eventually will generate a diagnostic **Report** with the findings.
 
 ---
 

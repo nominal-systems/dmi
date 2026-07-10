@@ -1,5 +1,5 @@
 # Results
-Results to the ordered tests are provided in a [Report](/spec/docs/dmi/schemas/report), which contains findings and interpretations of diagnostic tests performed on patients, and/or specimens derived from these. Reports contain an array of [Test Results](/spec/docs/dmi/schemas/test-result), which is a grouping of clinical [Observations](/spec/docs/dmi/schemas/observation) performed by the diagnostic provider.
+Results to the ordered tests are provided in a [Report](https://nominal.stoplight.io/docs/dmi/schemas/report), which contains findings and interpretations of diagnostic tests performed on patients, and/or specimens derived from these. Reports contain an array of [Test Results](https://nominal.stoplight.io/docs/dmi/schemas/test-result), which is a grouping of clinical [Observations](https://nominal.stoplight.io/docs/dmi/schemas/observation) performed by the diagnostic provider.
 
 ## Report
 Reports contain an array of results that group clinical observations into test results as requested in an order, or with a meaningful logical grouping.
@@ -7,7 +7,7 @@ Reports contain an array of results that group clinical observations into test r
 ### Report Status
 Reports can have the following states:
 
-- `REGISTERED` — The existence of the report is registered, but there is not results available yet.
+- `REGISTERED` — The existence of the report is registered, but there are no results available yet.
 - `PARTIAL` — Some of the tests in the report are completed, data in the report may be incomplete.
 - `FINAL` — All of the tests in the report are completed, the report is complete and verified.
 - `CANCELLED` — The tests were cancelled and the report will not be available.
@@ -48,8 +48,8 @@ And the transition between Observation states is as follows:
 
 ---
 
-To expand your understanding on reports, explore some examples:
-- [Urinalysis](/spec/docs/dmi/api/operations/get-a-order-urinalysi-report)
-- [Chemistry](/spec/docs/dmi/api/operations/get-a-order-chemistry-report)
-- [Hematology](/spec/docs/dmi/api/operations/get-a-order-hematology-report)
-- [Screening](/spec/docs/dmi/api/operations/get-a-order-screening-report)
+To expand your understanding on reports, explore the response examples of the [Get the report for an order](https://nominal.stoplight.io/docs/dmi/api/operations/get-a-order-report) endpoint:
+- Urinalysis
+- Chemistry
+- Hematology
+- Screening
