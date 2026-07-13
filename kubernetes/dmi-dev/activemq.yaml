@@ -35,12 +35,16 @@ spec:
     spec:
       containers:
         - name: activemq
-          image: symptoma/activemq:latest
+          image: apache/activemq-artemis:2.44.0
+          env:
+            # Consumers in these manifests connect without credentials
+            - name: ANONYMOUS_LOGIN
+              value: 'true'
           ports:
             - containerPort: 1883
           volumeMounts:
             - name: storage
-              mountPath: /data/db
+              mountPath: /var/lib/artemis-instance
       volumes:
         - name: storage
           persistentVolumeClaim:
