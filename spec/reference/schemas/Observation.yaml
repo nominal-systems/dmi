@@ -36,10 +36,18 @@ properties:
         type: number
         description: Numerical value of the result
         example: 10.0
-      unit:
+      units:
         type: string
         description: Unit of the result value
         example: g/dL
+  units:
+    type: string
+    description: |
+      Unit of the result value, at the observation level. Present whenever the
+      diagnostic provider reports a unit, regardless of whether the value is
+      numeric (`valueQuantity`) or textual (`valueString`). For numeric results
+      this duplicates `valueQuantity.units`; consumers should read `units` here.
+    example: g/dL
   media:
     type: array
     description: |
