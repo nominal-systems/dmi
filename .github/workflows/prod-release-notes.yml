@@ -1,0 +1,207 @@
+name: PROD Release Notes
+
+# Aggregates what actually changed in PROD across every DMI service, including
+# the repositories that never deploy on their own but ship inside another
+# service as an npm dependency.
+#
+# Manual only. The result is a draft release - nothing becomes public until
+# somebody reviews the draft and presses Publish.
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_name:
+        description: 'Release name, used for the title, the file name and the release tag (e.g. w33)'
+        required: true
+        type: string
+      versions:
+        description: >-
+          PROD version map as JSON: {"repo": {"from": "<version in PROD now>", "to": "<version being promoted>"}}.
+          Use "to": null (or omit the repo) for a service that is unchanged this release.
+        required: true
+        type: string
+      create_release:
+        description: 'Create/update the draft GitHub Release (uncheck to only produce the markdown)'
+        required: false
+        default: true
+        type: boolean
+
+# contents: write is needed to create the draft release on this repository.
+# Reading the other repositories is done with RELEASE_NOTES_TOKEN, because the
+# default GITHUB_TOKEN is scoped to this repository alone.
+permissions:
+  contents: write
+
+concurrency:
+  group: prod-release-notes-${{ inputs.release_name }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: Generate ${{ inputs.release_name }} notes
+    runs-on: ubuntu-latest
+
+    env:
+      RELEASE_NAME: ${{ inputs.release_name }}
+
+    steps:
+      - name: Checkout dmi
+        uses: actions/checkout@v4
+        with:
+          path: dmi
+
+      # Preferred: a GitHub App installation token, minted fresh for this run and
+      # valid for one hour. The App's private key does not expire, so there is no
+      # yearly rotation to forget. Skipped automatically when the App is not
+      # configured, which is what makes the PAT fallback below work.
+      - name: Mint a GitHub App installation token
+        id: app-token
+        if: ${{ vars.RELEASE_NOTES_APP_ID != '' }}
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.RELEASE_NOTES_APP_ID }}
+          private-key: ${{ secrets.RELEASE_NOTES_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Select the cross-repository token
+        env:
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          PAT_TOKEN: ${{ secrets.RELEASE_NOTES_TOKEN || secrets.GH_PAT }}
+        run: |
+          set -uo pipefail
+          # The default GITHUB_TOKEN is scoped to this repository alone and cannot
+          # read the other DMI repos, so one of these two is required.
+          if [ -n "${APP_TOKEN}" ]; then
+            echo "Using the GitHub App installation token (expires in 1 hour)."
+            echo "GH_TOKEN=${APP_TOKEN}" >> "$GITHUB_ENV"
+          elif [ -n "${PAT_TOKEN}" ]; then
+            echo "::warning::Falling back to a personal access token. PATs expire; configure the GitHub App (RELEASE_NOTES_APP_ID / RELEASE_NOTES_APP_PRIVATE_KEY) to remove the rotation risk."
+            echo "GH_TOKEN=${PAT_TOKEN}" >> "$GITHUB_ENV"
+          else
+            echo "::error::No cross-repository credential configured. Set up either the"
+            echo "::error::GitHub App or RELEASE_NOTES_TOKEN. The default GITHUB_TOKEN"
+            echo "::error::cannot read the other DMI repositories, so this workflow"
+            echo "::error::cannot run. See scripts/prod-release-notes/README.md."
+            exit 1
+          fi
+
+      - name: Validate the version map
+        working-directory: dmi
+        env:
+          VERSIONS_JSON: ${{ inputs.versions }}
+        run: |
+          # Fail here, before any cloning, so a malformed blob cannot produce a
+          # half-empty release note.
+          printf '%s' "$VERSIONS_JSON" > /tmp/versions.json
+          python3 - <<'PY'
+          import json, sys, pathlib
+          raw = pathlib.Path("/tmp/versions.json").read_text().strip()
+          if not raw:
+              sys.exit("::error::The versions input is empty.")
+          try:
+              data = json.loads(raw)
+          except json.JSONDecodeError as exc:
+              print(f"::error::versions is not valid JSON: {exc}")
+              print(f"::error::Received: {raw[:300]}")
+              sys.exit(1)
+          if not isinstance(data, dict):
+              sys.exit(f"::error::versions must be a JSON object, got {type(data).__name__}.")
+          print(f"Version map parsed: {len(data)} service(s).")
+          PY
+
+      - name: Clone the DMI repositories
+        run: |
+          set -euo pipefail
+          # One source of truth: the repositories named in config.json.
+          repos=$(python3 -c "
+          import json
+          cfg = json.load(open('dmi/scripts/prod-release-notes/config.json'))
+          names = [d['repo'] for d in cfg['deployables']]
+          names += list(cfg.get('display_names') or {})
+          print(' '.join(dict.fromkeys(names)))
+          ")
+          echo "Cloning: $repos"
+          for repo in $repos; do
+            # Full history and tags: the ranges span several releases.
+            git clone --quiet \
+              "https://x-access-token:${GH_TOKEN}@github.com/nominal-systems/${repo}.git" \
+              "$repo"
+            echo "  cloned $repo ($(git -C "$repo" tag | wc -l | tr -d ' ') tags)"
+          done
+
+      - name: Generate release notes
+        id: generate
+        env:
+          VERSIONS_JSON: ${{ inputs.versions }}
+        run: |
+          set -uo pipefail
+          # GitHub runs steps with `bash -e`, which would abort on the script's
+          # exit code 2 (notes written, but some services failed). Turn -e off so
+          # that case can be handled instead of losing the output.
+          set +e
+          printf '%s' "$VERSIONS_JSON" > /tmp/versions.json
+          # Slug is used as a file name and as the release tag, so strip anything
+          # that is not safe in a path or valid in a git ref ('..' is rejected by git).
+          slug=$(printf '%s' "$RELEASE_NAME" | tr -cs '[:alnum:].-' '-' | sed 's/\.\.*/./g; s/^[-.]*//; s/[-.]*$//')
+          if [ -z "$slug" ]; then
+            echo "::error::release_name '$RELEASE_NAME' contains no usable characters."
+            exit 1
+          fi
+          echo "slug=${slug}" >> "$GITHUB_OUTPUT"
+          echo "notes_file=release-notes-${slug}.md" >> "$GITHUB_OUTPUT"
+
+          python3 dmi/scripts/prod-release-notes/generate.py \
+            --versions "@/tmp/versions.json" \
+            --release-name "$RELEASE_NAME" \
+            --workspace "$PWD" \
+            --config dmi/scripts/prod-release-notes/config.json \
+            --output "release-notes-${slug}.md"
+          status=$?
+
+          # Exit code 2 means some services failed but the notes were still
+          # written. Surface that without throwing away the output.
+          if [ $status -eq 2 ]; then
+            echo "::warning::Some services could not be processed - see the 'Services that could not be processed' section of the notes."
+          elif [ $status -ne 0 ]; then
+            exit $status
+          fi
+
+      - name: Publish to the run summary
+        run: cat "${{ steps.generate.outputs.notes_file }}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the notes as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes-${{ steps.generate.outputs.slug }}
+          path: ${{ steps.generate.outputs.notes_file }}
+          if-no-files-found: error
+
+      - name: Create or update the draft release
+        if: ${{ inputs.create_release }}
+        env:
+          # The draft release is created on this repository, so the default
+          # token is the right one here.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOTES_FILE: ${{ steps.generate.outputs.notes_file }}
+          TAG: ${{ steps.generate.outputs.slug }}
+        run: |
+          set -euo pipefail
+          # Idempotent: running twice with the same inputs updates the existing
+          # draft rather than creating a second release.
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            is_draft=$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft)
+            if [ "$is_draft" != "true" ]; then
+              echo "::warning::Release '$TAG' is already published. Updating its notes in place; it stays published."
+            fi
+            echo "Updating existing release '$TAG'."
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" \
+              --title "DMI PROD Release $RELEASE_NAME" \
+              --notes-file "$NOTES_FILE"
+          else
+            echo "Creating draft release '$TAG'."
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" \
+              --draft \
+              --title "DMI PROD Release $RELEASE_NAME" \
+              --notes-file "$NOTES_FILE"
+          fi
+          echo "Draft release ready for review: $(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"

@@ -1,0 +1,37 @@
+{
+  "org": "nominal-systems",
+
+  "_comment_deployables": "Services with their own container and their own PROD version. These are the only repos accepted as keys in the --versions input.",
+  "deployables": [
+    { "repo": "dmi-api", "display": "DMI API" },
+    { "repo": "dmi-engine", "display": "DMI Engine" },
+    { "repo": "dmi-engine-idexx-integration", "display": "IDEXX Integration" },
+    { "repo": "dmi-engine-antech-integration", "display": "Antech V3 Integration" },
+    { "repo": "dmi-engine-zoetis-integration", "display": "Zoetis Integration" }
+  ],
+
+  "_comment_display_names": "Cosmetic names for repos that are discovered as bundled dependencies rather than listed above.",
+  "display_names": {
+    "dmi-engine-antech-v6-integration": "Antech V6 Integration",
+    "dmi-engine-wisdom-panel-integration": "Wisdom Panel Integration",
+    "dmi-engine-common": "DMI Engine Common"
+  },
+
+  "_comment_package_to_repo": "Overrides for npm package name -> GitHub repo name. By default the '@nominal-systems/' scope is stripped and the remainder is used as the repo name; only add entries here when that derivation is wrong.",
+  "package_to_repo": {},
+
+  "_comment_npm_scope": "Dependencies under this scope are treated as first-party and followed into their own repository.",
+  "npm_scope": "@nominal-systems/",
+
+  "_comment_excluded": "Repos deliberately left out of the release note, with the reason printed in the footer.",
+  "excluded": {
+    "dmi-engine-heska-integration": "Deprecated - no longer built or deployed.",
+    "dmi-api-admin-ui": "Operator tooling, released on its own cadence and not part of the DMI PROD service set.",
+    "dmi-e2e": "Test harness, not deployed to PROD.",
+    "dmi-cli": "Developer tooling, not deployed to PROD.",
+    "dmi-monitor": "Monitoring sidecar, released on its own cadence."
+  },
+
+  "_comment_bundled_max_depth": "How many levels of first-party dependency to follow (1 = direct deps of the deployables only).",
+  "bundled_max_depth": 3
+}

@@ -1,0 +1,7 @@
+{
+  "dmi-api":                       { "from": "v1.14.5", "to": "v1.14.9" },
+  "dmi-engine":                    { "from": "v1.5.1",  "to": "v1.5.5"  },
+  "dmi-engine-idexx-integration":  { "from": "v1.2.5",  "to": "v1.2.6"  },
+  "dmi-engine-antech-integration": { "from": "v1.4.1",  "to": null      },
+  "dmi-engine-zoetis-integration": { "from": "v1.1.2",  "to": null      }
+}
