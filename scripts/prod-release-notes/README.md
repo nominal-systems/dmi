@@ -189,6 +189,14 @@ the workflow uses it to detect whether the App is configured at all. With the
 variable unset the App step is skipped and the PAT fallback takes over, so the
 workflow keeps working throughout the switchover.
 
+Storing the App ID as a *secret* by mistake is the easy way to get this wrong:
+the App step would skip, the run would still succeed on the PAT, and nothing
+would look broken. The workflow guards against exactly that — if
+`RELEASE_NOTES_APP_PRIVATE_KEY` is set while the `RELEASE_NOTES_APP_ID` variable
+is empty, it fails with an explanatory error instead of falling back silently.
+A deliberate PAT-only setup (neither App value present) still falls back with
+just a warning.
+
 Two honest caveats. The App does not remove the need to store a credential — it
 replaces an expiring token with a non-expiring private key, which is a *more*
 powerful secret if it ever leaks (it can mint tokens for everything the App is

@@ -66,9 +66,27 @@ jobs:
       - name: Select the cross-repository token
         env:
           APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_ID: ${{ vars.RELEASE_NOTES_APP_ID }}
+          HAS_APP_KEY: ${{ secrets.RELEASE_NOTES_APP_PRIVATE_KEY != '' && 'true' || '' }}
           PAT_TOKEN: ${{ secrets.RELEASE_NOTES_TOKEN || secrets.GH_PAT }}
         run: |
           set -uo pipefail
+
+          # Half-configured App: the private key is stored but the App ID variable
+          # is missing, so the mint step above was skipped and this would quietly
+          # fall through to the PAT. That combination is always a mistake - most
+          # often the App ID was saved as a *secret* instead of a *variable* - so
+          # fail here rather than hiding it behind a successful run.
+          if [ -z "${APP_TOKEN}" ] && [ -n "${HAS_APP_KEY}" ] && [ -z "${APP_ID}" ]; then
+            echo "::error::RELEASE_NOTES_APP_PRIVATE_KEY is set but the"
+            echo "::error::RELEASE_NOTES_APP_ID *variable* is empty, so the GitHub App"
+            echo "::error::token could not be minted. RELEASE_NOTES_APP_ID must be a"
+            echo "::error::repository VARIABLE (Settings > Secrets and variables >"
+            echo "::error::Actions > Variables), not a secret. Fix it with:"
+            echo "::error::  gh variable set RELEASE_NOTES_APP_ID -R \$GITHUB_REPOSITORY --body <app-id>"
+            exit 1
+          fi
+
           # The default GITHUB_TOKEN is scoped to this repository alone and cannot
           # read the other DMI repos, so one of these two is required.
           if [ -n "${APP_TOKEN}" ]; then
