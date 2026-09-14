@@ -10,11 +10,14 @@ intermediate versions, not just the last hop.
 
 - Workflow: [`.github/workflows/prod-release-notes.yml`](../../.github/workflows/prod-release-notes.yml)
 - Generator: [`generate.py`](generate.py) (Python 3 standard library only)
+- Site publisher: [`publish_page.py`](publish_page.py) (turns the markdown into a page on the docs site)
 - Topology: [`config.json`](config.json)
+- Published notes: <https://nominal-systems.github.io/dmi/release-notes/>
 
 This is separate from the older `release-notes.yml`, which publishes the
-date-stamped HTML site under `docs/` from a fixed per-project baseline. That one
-is not PROD-to-PROD and is left untouched.
+date-stamped HTML site under `docs/release-notes/<date>/` from a fixed
+per-project baseline. That one is not PROD-to-PROD; its output is kept as a
+labelled archive on the release-notes index and it is otherwise left untouched.
 
 ## Running it
 
@@ -25,6 +28,7 @@ Actions → **PROD Release Notes** → Run workflow.
 | `release_name` | Free text, e.g. `w33`. Used for the title, the artifact name and the draft release tag. |
 | `versions` | JSON map of PROD versions (below). |
 | `create_release` | Leave checked to create/update the draft release; uncheck for markdown only. |
+| `publish_page` | Leave checked to commit the notes to the docs site; uncheck to skip the site. |
 
 `versions` for the w33 release:
 
@@ -52,6 +56,39 @@ Tags may be written `v1.14.5` or `1.14.5`; both are resolved.
 2. A **draft** GitHub Release on `nominal-systems/dmi` tagged with the release
    name. It stays a draft until somebody publishes it. Re-running with the same
    release name updates that draft instead of creating a second one.
+3. A page on the GitHub Pages site. `publish_page.py` writes the markdown into
+   `docs/_release_notes/<slug>.md` (a Jekyll collection document) and the
+   workflow commits and pushes it to the branch it ran from with the default
+   `GITHUB_TOKEN`. GitHub Pages serves `docs/` from `master`, so a run from
+   `master` is live at `https://nominal-systems.github.io/dmi/release-notes/<slug>/`
+   within a few minutes; the index at `/release-notes/` lists every release
+   newest-first. Re-running for the same release name rewrites the same page, and
+   a re-run that changes nothing makes no commit.
+
+   The page is independent of the draft release: it does not need the release
+   to be published, tagged, or to exist at all. That is deliberate. Draft
+   releases have no tag and are invisible to the Releases API for anything
+   but the repository's own collaborators, so a site built *from* releases
+   would show nothing until someone pressed Publish.
+
+   The bot commit is made with `GITHUB_TOKEN`, so it does not trigger other
+   workflows (the ADO mirror catches up on the next human push).
+
+### Publishing the page by hand
+
+To put an existing note on the site without re-running the generator, for
+example to backfill a release generated before the site existed:
+
+```bash
+gh api repos/nominal-systems/dmi/releases/<release id> --jq .body > w33.md
+python3 scripts/prod-release-notes/publish_page.py \
+  --notes w33.md --release-name w33 --slug w33 --site-dir docs \
+  --date 2026-08-25T21:15:41Z    # when it was generated; orders the index
+cd docs && bundle exec jekyll build   # check it renders, then commit
+```
+
+Draft releases have no tag, so they are addressed by id
+(`gh api repos/nominal-systems/dmi/releases --jq '.[] | {id, name, draft}'`).
 
 ### Running it locally
 
