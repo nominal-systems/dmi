@@ -1,0 +1,81 @@
+# The DMI service map as shown on the landing page.
+#
+# `deployables` have their own container and their own PROD version; they are
+# the only services that appear as keys in the release-notes version map.
+# Each may list `bundles`: first-party npm packages that ship inside it and
+# therefore have no PROD deployment of their own.
+#
+# Keep this in step with scripts/prod-release-notes/config.json.
+
+deployables:
+  - name: DMI API
+    repo: dmi-api
+    description: The public API PIMS integrate with. NestJS application in front of MongoDB and Redis.
+    bundles:
+      - dmi-engine-common
+  - name: DMI Engine
+    repo: dmi-engine
+    description: Middleware that talks to the diagnostic providers on the API's behalf. Hosts the provider modules below.
+    bundles:
+      - dmi-engine-antech-v6-integration
+      - dmi-engine-wisdom-panel-integration
+      - dmi-engine-common
+  - name: IDEXX Integration
+    repo: dmi-engine-idexx-integration
+    description: Standalone engine service for IDEXX reference labs and in-house analysers.
+    bundles:
+      - dmi-engine-common
+  - name: Antech V3 Integration
+    repo: dmi-engine-antech-integration
+    description: Standalone engine service for the legacy Antech V3 API.
+    bundles:
+      - dmi-engine-common
+  - name: Zoetis Integration
+    repo: dmi-engine-zoetis-integration
+    description: Standalone engine service for Zoetis reference labs.
+    bundles:
+      - dmi-engine-common
+
+bundled:
+  - name: Antech V6 Integration
+    repo: dmi-engine-antech-v6-integration
+    description: Antech V6 provider module. Ships inside DMI Engine as an npm dependency.
+  - name: Wisdom Panel Integration
+    repo: dmi-engine-wisdom-panel-integration
+    description: Wisdom Panel provider module. Ships inside DMI Engine as an npm dependency.
+  - name: DMI Engine Common
+    repo: dmi-engine-common
+    description: Shared library used by the API, the Engine and every provider service.
+
+# Repositories that exist but are deliberately not part of the PROD service set
+# and therefore never appear in PROD release notes.
+other:
+  - name: DMI Admin UI
+    repo: dmi-api-admin-ui
+    description: Operator front-end for a DMI installation. Released on its own cadence, bundled into the API image.
+  - name: DMI CLI
+    repo: dmi-cli
+    description: Developer tooling.
+  - name: DMI E2E
+    repo: dmi-e2e
+    description: End-to-end test harness.
+  - name: DMI Monitor
+    repo: dmi-monitor
+    description: Monitoring sidecar, released on its own cadence.
+
+resources:
+  - title: DMI API specification
+    url: https://nominal.stoplight.io/docs/dmi
+    description: OpenAPI reference for the DMI API, hosted on Stoplight.
+  - title: Docker
+    url: https://github.com/nominal-systems/dmi/tree/master/docker
+    description: Compose files to run the whole system locally.
+  - title: Kubernetes
+    url: https://github.com/nominal-systems/dmi/tree/master/kubernetes
+    description: Manifests to run DMI on a cluster.
+  - title: Terraform
+    url: https://github.com/nominal-systems/dmi/tree/master/terraform
+    description: Infrastructure provisioning for a cloud provider.
+  - title: Postman collection
+    url: https://github.com/nominal-systems/dmi/tree/master/postman
+    description: Ready-made requests to get started with the API.

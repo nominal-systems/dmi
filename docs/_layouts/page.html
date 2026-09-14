@@ -1,14 +1,16 @@
 ---
 layout: default
 ---
-<article class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title | escape }}</h1>
-  </header>
-
-  <div class="post-content">
+<section class="hero hero--compact">
+  <div class="container">
+    <h1>{{ page.title | escape }}</h1>
+    {%- if page.description -%}
+      <p class="subtitle">{{ page.description | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+<article class="section">
+  <div class="container prose">
     {{ content }}
   </div>
-
 </article>

@@ -1,209 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMI Release Notes</title>
-    <style>
-        :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --surface-2: #1c2129;
-            --border: #30363d;
-            --border-accent: #58a6ff44;
-            --text: #e6edf3;
-            --text-muted: #8b949e;
-            --text-dim: #6e7681;
-            --accent: #58a6ff;
-            --green: #3fb950;
-            --radius: 8px;
-            --radius-lg: 12px;
-        }
+---
+layout: default
+title: Release notes
+description: What changed in PROD, release by release, across every DMI service.
+permalink: /release-notes/
+---
+{%- assign notes = site.release_notes | sort: "date" | reverse -%}
+<section class="hero">
+  <div class="container">
+    <h1>DMI Release Notes</h1>
+    <p class="subtitle">
+      What reached production, PROD-to-PROD, across every DMI service and the packages bundled inside them.
+      {{ notes.size }} release{% if notes.size != 1 %}s{% endif %}.
+    </p>
+  </div>
+</section>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .hero {
-            padding: 64px 0 48px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            background: linear-gradient(180deg, #161b2280 0%, transparent 100%);
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-        }
-
-        .hero .subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .generations {
-            padding: 40px 0 80px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .generation-card {
-            display: block;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.15s;
-        }
-
-        .generation-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-
-        .latest-card {
-            border-color: var(--border-accent);
-        }
-
-        .gen-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .gen-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .badge {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 2px 10px;
-            border-radius: 20px;
-        }
-
-        .badge.latest {
-            background: #3fb95022;
-            color: var(--green);
-        }
-
-        .gen-stats {
-            display: flex;
-            gap: 8px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-        }
-
-        .project-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .project-chip {
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .project-chip em {
-            font-style: normal;
-            color: var(--text-dim);
-            font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
-            font-size: 0.7rem;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 32px 0;
-            border-top: 1px solid var(--border);
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-    </style>
-</head>
-<body>
-    <header class="hero">
-        <div class="container">
-            <h1>DMI Release Notes</h1>
-            <p class="subtitle">3 generations available</p>
+<section class="section">
+  <div class="container">
+    <div class="stack">
+      {%- if notes.size == 0 %}
+      <div class="card"><p class="muted">No release notes have been published yet.</p></div>
+      {%- endif %}
+      {%- for note in notes %}
+      <a class="card card--link{% if forloop.first %} card--latest{% endif %}" href="{{ note.url | relative_url }}">
+        <div class="card-header">
+          <h3>{{ note.title | escape }}</h3>
+          {%- if forloop.first %}<span class="badge badge--latest">Latest</span>{% endif %}
         </div>
-    </header>
-
-    <div class="container">
-        <div class="generations">
-            
-        <a href="2026-05-15/" class="generation-card latest-card">
-            <div class="gen-header">
-                <h3>May 15, 2026</h3>
-                <span class="badge latest">Latest</span>
-            </div>
-            
-                <div class="gen-stats">
-                    <span>4 projects</span>
-                    <span>&middot;</span>
-                    <span>31 commits</span>
-                </div>
-            <div class="project-chips"><span class="project-chip">DMI API <em>v1.13.13 → v1.13.18</em></span><span class="project-chip">DMI Admin UI <em>v0.8.3 → v0.8.7</em></span><span class="project-chip">DMI Engine <em>v1.4.8 → v1.4.9</em></span><span class="project-chip">IDEXX Integration <em>v1.1.5 → v1.1.6</em></span></div>
-        </a>
-        <a href="2026-04-14/" class="generation-card">
-            <div class="gen-header">
-                <h3>April 14, 2026</h3>
-                
-            </div>
-            
-                <div class="gen-stats">
-                    <span>3 projects</span>
-                    <span>&middot;</span>
-                    <span>18 commits</span>
-                </div>
-            <div class="project-chips"><span class="project-chip">DMI API <em>v1.13.13 → v1.13.15</em></span><span class="project-chip">DMI Admin UI <em>v0.8.3 → v0.8.5</em></span><span class="project-chip">DMI Engine <em>v1.4.8 → v1.4.9</em></span></div>
-        </a>
-        <a href="2026-03-20/" class="generation-card">
-            <div class="gen-header">
-                <h3>March 20, 2026</h3>
-                
-            </div>
-            
-                <div class="gen-stats">
-                    <span>8 projects</span>
-                    <span>&middot;</span>
-                    <span>58 commits</span>
-                </div>
-            <div class="project-chips"><span class="project-chip">DMI API <em>v1.13.3 → v1.13.13</em></span><span class="project-chip">DMI Admin UI <em>v0.8.0 → v0.8.3</em></span><span class="project-chip">DMI Engine <em>v1.4.4 → v1.4.8</em></span><span class="project-chip">Antech V3 Integration <em>v1.4.0 → v1.4.1</em></span><span class="project-chip">Antech V6 Integration <em>v0.4.16 → v0.4.18</em></span><span class="project-chip">Wisdom Panel Integration <em>v0.3.13 → v0.3.14</em></span><span class="project-chip">IDEXX Integration <em>v1.1.0 → v1.1.5</em></span><span class="project-chip">Zoetis Integration <em>v1.1.0 → v1.1.2</em></span></div>
-        </a>
+        <div class="card-meta">
+          <span>Generated {{ note.generated_on | date: "%-d %B %Y" }}</span>
+          {%- assign changed = 0 -%}
+          {%- for v in note.versions -%}
+            {%- if v.after and v.after != "unchanged" and v.after != "-" -%}{%- assign changed = changed | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
+          <span>&middot;</span>
+          <span>{{ changed }} service{% if changed != 1 %}s{% endif %} changed</span>
         </div>
+        <div class="chips">
+          {%- for v in note.versions -%}
+            {%- if v.after and v.after != "unchanged" and v.after != "-" -%}
+              <span class="chip{% if v.bundled %} chip--bundled{% endif %}">{{ v.service | escape }} <em>{{ v.before | escape }} → {{ v.after | escape }}</em></span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </a>
+      {%- endfor %}
     </div>
+  </div>
+</section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>Generated by <a href="https://github.com/nominal-systems" style="color: var(--text-muted); text-decoration: none;">Nominal Systems</a> release notes tool</p>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Archive <span class="badge badge--archive">legacy</span></h2>
+    <p class="section-lead">
+      Earlier notes produced by a previous tool. They use a different model: fixed per-project baselines rather than
+      PROD-to-PROD ranges, and they include the Admin UI. Kept for reference, not comparable with the releases above.
+    </p>
+    <div class="stack">
+      {%- for g in site.data.legacy_generations %}
+      <a class="card card--link card--compact" href="{{ g.path | relative_url }}">
+        <div class="card-header">
+          <h3>{{ g.title | escape }}</h3>
+          <span class="badge badge--archive">archive</span>
         </div>
-    </footer>
-</body>
-</html>
+        <div class="card-meta">
+          <span>{{ g.projects }} projects</span><span>&middot;</span><span>{{ g.commits }} commits</span>
+        </div>
+        <div class="chips">
+          {%- for c in g.chips -%}
+            <span class="chip">{{ c.name | escape }} <em>{{ c.range | escape }}</em></span>
+          {%- endfor -%}
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

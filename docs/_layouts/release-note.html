@@ -1,0 +1,50 @@
+---
+layout: default
+---
+{%- assign notes = site.release_notes | sort: "date" | reverse -%}
+{%- assign latest = notes | first -%}
+{%- assign idx = 0 -%}
+{%- for n in notes -%}
+  {%- if n.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign newer_idx = idx | minus: 1 -%}
+{%- assign older_idx = idx | plus: 1 -%}
+<section class="hero hero--compact">
+  <div class="container">
+    <h1>{{ page.title | escape }}</h1>
+    <p class="subtitle">
+      Generated {{ page.generated_on | date: "%-d %B %Y" }}
+      {%- if page.release_tag %} &middot; release <code>{{ page.release_tag | escape }}</code>{% endif -%}
+    </p>
+    <div class="meta">
+      {%- if latest and latest.url == page.url -%}
+        <span class="badge badge--latest">Latest</span>
+      {%- endif -%}
+      {%- for v in page.versions -%}
+        {%- if v.after and v.after != "unchanged" and v.after != "-" -%}
+          <span class="chip{% if v.bundled %} chip--bundled{% endif %}">{{ v.service | escape }} <em>{{ v.before | escape }} → {{ v.after | escape }}</em></span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<article class="section release-note">
+  <div class="container prose">
+    {{ content }}
+    <nav class="release-nav" aria-label="Release notes">
+      <span>
+        {%- if newer_idx >= 0 -%}
+          {%- assign newer = notes[newer_idx] -%}
+          <a href="{{ newer.url | relative_url }}">&larr; {{ newer.title | escape }}</a>
+        {%- endif -%}
+      </span>
+      <a href="{{ "/release-notes/" | relative_url }}">All release notes</a>
+      <span>
+        {%- if older_idx < notes.size -%}
+          {%- assign older = notes[older_idx] -%}
+          <a href="{{ older.url | relative_url }}">{{ older.title | escape }} &rarr;</a>
+        {%- endif -%}
+      </span>
+    </nav>
+  </div>
+</article>

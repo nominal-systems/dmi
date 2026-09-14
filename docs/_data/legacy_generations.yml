@@ -1,0 +1,34 @@
+# The three "generations" produced by the earlier release-notes tool
+# (scripts/release-notes/, workflow release-notes.yml), which stopped in
+# May 2026. The HTML under docs/release-notes/<date>/ is untouched; this file
+# only drives the archive list on /release-notes/.
+- title: May 15, 2026
+  path: /release-notes/2026-05-15/
+  projects: 4
+  commits: 31
+  chips:
+    - { name: DMI API, range: v1.13.13 → v1.13.18 }
+    - { name: DMI Admin UI, range: v0.8.3 → v0.8.7 }
+    - { name: DMI Engine, range: v1.4.8 → v1.4.9 }
+    - { name: IDEXX Integration, range: v1.1.5 → v1.1.6 }
+- title: April 14, 2026
+  path: /release-notes/2026-04-14/
+  projects: 3
+  commits: 18
+  chips:
+    - { name: DMI API, range: v1.13.13 → v1.13.15 }
+    - { name: DMI Admin UI, range: v0.8.3 → v0.8.5 }
+    - { name: DMI Engine, range: v1.4.8 → v1.4.9 }
+- title: March 20, 2026
+  path: /release-notes/2026-03-20/
+  projects: 8
+  commits: 58
+  chips:
+    - { name: DMI API, range: v1.13.3 → v1.13.13 }
+    - { name: DMI Admin UI, range: v0.8.0 → v0.8.3 }
+    - { name: DMI Engine, range: v1.4.4 → v1.4.8 }
+    - { name: Antech V3 Integration, range: v1.4.0 → v1.4.1 }
+    - { name: Antech V6 Integration, range: v0.4.16 → v0.4.18 }
+    - { name: Wisdom Panel Integration, range: v0.3.13 → v0.3.14 }
+    - { name: IDEXX Integration, range: v1.1.0 → v1.1.5 }
+    - { name: Zoetis Integration, range: v1.1.0 → v1.1.2 }
