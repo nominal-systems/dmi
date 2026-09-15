@@ -3,7 +3,7 @@ layout: release-note
 title: "DMI PROD Release Redis Separation"
 release_name: "Redis Separation"
 release_tag: "Redis-Separation"
-date: 2026-09-15 00:00:00 +0000
+date: 2026-09-04 07:59:23 +0000
 generated_on: 2026-09-15
 excerpt: "7 services changed: DMI API v1.14.9 → v1.14.10, DMI Engine v1.5.7 → v1.5.8, IDEXX Integration v1.2.7 → v1.2.8, Antech V3 Integration v1.5.1 → v1.5.2, Zoetis Integration v1.2.1 → v1.2.3, Antech V6 Integration v0.4.22 → v0.4.23, DMI Admin UI v0.8.7 → v0.9.0."
 versions:

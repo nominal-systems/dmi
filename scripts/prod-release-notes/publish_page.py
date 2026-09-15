@@ -35,6 +35,7 @@ from datetime import datetime, timezone
 
 H1_RE = re.compile(r"^# DMI PROD Release Notes - (.+?)\s*$", re.M)
 GENERATED_RE = re.compile(r"\bGenerated (\d{4}-\d{2}-\d{2})\.")
+EXISTING_DATE_RE = re.compile(r"^date: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [+-]\d{4})$", re.M)
 TABLE_ROW_RE = re.compile(r"^\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.*?)\s*\|\s*$")
 BUNDLED_RE = re.compile(r"\s*_\(bundled\)_\s*$")
 
@@ -148,16 +149,30 @@ def main() -> int:
     parser.add_argument("--site-dir", default="docs", help="Jekyll site root (default: docs).")
     parser.add_argument("--date", default="",
                         help="ISO-8601 timestamp used to order the page "
-                             "(default: the 'Generated' date in the notes, midnight UTC).")
+                             "(default: the date already on the page if it exists, else the 'Generated' date in the notes, midnight UTC).")
     args = parser.parse_args()
 
     with open(args.notes, encoding="utf-8") as handle:
         markdown = handle.read()
 
+    target_dir = os.path.join(args.site_dir, "_release_notes")
+    os.makedirs(target_dir, exist_ok=True)
+    target = os.path.join(target_dir, page_name(args.slug) + ".md")
+
+    previous = None
+    if os.path.exists(target):
+        with open(target, encoding="utf-8") as handle:
+            previous = handle.read()
+
     if args.date:
         date = datetime.fromisoformat(args.date.replace("Z", "+00:00"))
         if date.tzinfo is None:
             date = date.replace(tzinfo=timezone.utc)
+    elif previous and (existing := EXISTING_DATE_RE.search(previous)):
+        # The page already exists: keep the timestamp it was first published
+        # with. `date` orders the index, so regenerating an old release (for
+        # example after a generator fix) must not move it above newer ones.
+        date = datetime.strptime(existing.group(1), "%Y-%m-%d %H:%M:%S %z")
     else:
         # Default to the date stamped in the notes themselves rather than the
         # clock: a re-run on the same day that changes nothing then produces a
@@ -170,14 +185,6 @@ def main() -> int:
 
     document = build_document(markdown, args.release_name.strip(), args.slug, date)
 
-    target_dir = os.path.join(args.site_dir, "_release_notes")
-    os.makedirs(target_dir, exist_ok=True)
-    target = os.path.join(target_dir, page_name(args.slug) + ".md")
-
-    previous = None
-    if os.path.exists(target):
-        with open(target, encoding="utf-8") as handle:
-            previous = handle.read()
     with open(target, "w", encoding="utf-8") as handle:
         handle.write(document)
 
