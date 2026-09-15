@@ -132,6 +132,22 @@ installed. Where a pin did not move, that is stated explicitly
 A library consumed by more than one service (`dmi-engine-common`) is reported
 once, annotated with everything that picked it up.
 
+**Pinned components.** Not everything that ships inside a service is an npm
+dependency. The Admin UI (`dmi-api-admin-ui`) is checked out by `dmi-api`'s
+build workflow at the tag named in `UI_APP_VERSION`
+(`.github/workflows/build-and-push-to-registry.yml`, `env:` block), built, and
+copied into the image - nothing in `package.json` knows about it. Those are
+declared per parent in `pinned_components`: which file to read at each tag and
+a regular expression that captures the pinned tag. From there the component is
+handled exactly like an npm-bundled one: its own section, its own commit range,
+its own row in the Versions table, "Ships inside: DMI API".
+
+A pin that cannot be read at one end of the range (the file did not exist at
+the old tag, or the value is a branch rather than a version tag) does not fail
+the run. The parent's own changes are still reported, the bump commit stays
+visible in the parent's log, and the parent's dependency line says why the
+component was not expanded.
+
 **Grouping.** Change type is derived, in order of preference, from: the
 conventional-commit prefix, the PR labels, then the branch prefix (`fix/`,
 `feat/`). Anything with none of those goes to a **Changes** bucket rather than
@@ -154,6 +170,15 @@ is derived from it.
   workflow clones. **If a new first-party dependency starts shipping inside a
   service, add it here**, otherwise the generator reports
   `no clone at ...` for it rather than silently omitting it.
+- `pinned_components` — first-party repos that ship inside a service *without*
+  being an npm dependency of it, keyed by the parent repo. Each entry names the
+  `file` to read from the parent at each tag and a `pattern` (Python regex,
+  multiline) whose `version` group captures the pinned tag; `description` is
+  printed in the footer. The repo must also be in `display_names` (so it is
+  cloned) and must not be in `excluded`. If the pin ever changes shape - moves
+  to a different file, or from `env:` to a build arg - update `file`/`pattern`
+  here; the generator warns, and the note says so, whenever a pin cannot be
+  read at one end of a range.
 - `excluded` — repos deliberately left out, with the reason printed in the
   footer of every release note.
 - npm package → repo name is derived by stripping the `@nominal-systems/`
@@ -185,7 +210,7 @@ does not break when someone changes roles or leaves.
 
 The org already has an App that is most of the way there: **`dmi-ci`**
 (org-owned, created 2026-07-14) with `contents: read` and `metadata: read`. It
-needs **Pull requests: Read** added and needs to cover all eight repositories
+needs **Pull requests: Read** added and needs to cover all nine repositories
 below. Extending it is less work than creating a new App; create a separate one
 only if you would rather keep release-notes access isolated from the rest of CI.
 
@@ -200,7 +225,7 @@ only if you would rather keep release-notes access isolated from the rest of CI.
 **Repositories** it must be installed on: `dmi-api`, `dmi-engine`,
 `dmi-engine-idexx-integration`, `dmi-engine-antech-integration`,
 `dmi-engine-zoetis-integration`, `dmi-engine-antech-v6-integration`,
-`dmi-engine-wisdom-panel-integration`, `dmi-engine-common`.
+`dmi-engine-wisdom-panel-integration`, `dmi-engine-common`, `dmi-api-admin-ui`.
 
 No write access anywhere.
 
@@ -211,7 +236,7 @@ No write access anywhere.
 2. Permissions & events → Repository permissions → set Contents, Pull requests
    and Metadata to **Read-only**. Save. (Changing permissions on an existing App
    raises a request an org owner must accept on the installation.)
-3. Install App → nominal-systems → **Only select repositories** → the eight above.
+3. Install App → nominal-systems → **Only select repositories** → the nine above.
 4. On the App's General page, note the **App ID**, then
    **Generate a private key** — this downloads a `.pem` file once.
 5. `dmi` → Settings → Secrets and variables → Actions:
@@ -250,14 +275,14 @@ switch to the App when convenient.
 
 Same permissions as the table above. Personal Settings → Developer settings →
 Personal access tokens → Fine-grained tokens → Generate new token; resource
-owner `nominal-systems`; **Only select repositories** → the eight above;
+owner `nominal-systems`; **Only select repositories** → the nine above;
 Contents: Read-only, Pull requests: Read-only, Metadata: Read-only. If the org
 requires approval, an owner approves it under the org's Personal access tokens
 settings. Then `dmi` → Settings → Secrets and variables → Actions → New
 repository secret named **`RELEASE_NOTES_TOKEN`**.
 
 If neither `RELEASE_NOTES_TOKEN` nor the App is configured, the workflow falls
-back to the existing `GH_PAT` secret, which today already clones all eight
+back to the existing `GH_PAT` secret, which today already clones the other eight
 repositories. If whichever token is in use lacks **Pull requests: Read**, the
 run still succeeds: the API returns 403, a warning is logged, and titles and
 authors fall back to commit metadata.

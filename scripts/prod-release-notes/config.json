@@ -10,11 +10,12 @@
     { "repo": "dmi-engine-zoetis-integration", "display": "Zoetis Integration" }
   ],
 
-  "_comment_display_names": "Cosmetic names for repos that are discovered as bundled dependencies rather than listed above.",
+  "_comment_display_names": "Cosmetic names for repos that are discovered as bundled components rather than listed above (npm dependencies and pinned_components alike). The workflow also derives its clone list from here.",
   "display_names": {
     "dmi-engine-antech-v6-integration": "Antech V6 Integration",
     "dmi-engine-wisdom-panel-integration": "Wisdom Panel Integration",
-    "dmi-engine-common": "DMI Engine Common"
+    "dmi-engine-common": "DMI Engine Common",
+    "dmi-api-admin-ui": "DMI Admin UI"
   },
 
   "_comment_package_to_repo": "Overrides for npm package name -> GitHub repo name. By default the '@nominal-systems/' scope is stripped and the remainder is used as the repo name; only add entries here when that derivation is wrong.",
@@ -23,10 +24,21 @@
   "_comment_npm_scope": "Dependencies under this scope are treated as first-party and followed into their own repository.",
   "npm_scope": "@nominal-systems/",
 
+  "_comment_pinned_components": "First-party repos that ship inside a service without being an npm dependency of it, keyed by the parent repo. 'file' is read from the parent at each end of the range and 'pattern' (a Python regex, multiline) captures the pinned tag in its 'version' group. A pin that is absent or does not match at either end is reported in the note under the parent and the component is simply not expanded; it never fails the run. 'description' is printed in the footer.",
+  "pinned_components": {
+    "dmi-api": [
+      {
+        "repo": "dmi-api-admin-ui",
+        "file": ".github/workflows/build-and-push-to-registry.yml",
+        "pattern": "^\\s*UI_APP_VERSION:\\s*['\"]?(?P<version>[^'\"\\s#]+)",
+        "description": "the tag the build workflow checks out, builds and copies into the DMI API image, so it reaches PROD with the DMI API version that pins it"
+      }
+    ]
+  },
+
   "_comment_excluded": "Repos deliberately left out of the release note, with the reason printed in the footer.",
   "excluded": {
     "dmi-engine-heska-integration": "Deprecated - no longer built or deployed.",
-    "dmi-api-admin-ui": "Operator tooling, released on its own cadence and not part of the DMI PROD service set.",
     "dmi-e2e": "Test harness, not deployed to PROD.",
     "dmi-cli": "Developer tooling, not deployed to PROD.",
     "dmi-monitor": "Monitoring sidecar, released on its own cadence."

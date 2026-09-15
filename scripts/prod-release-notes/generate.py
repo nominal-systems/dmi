@@ -10,12 +10,15 @@ version replacing it.
 
 Two things make that harder than a tag-to-tag diff:
 
-1. Some repositories never deploy on their own. They ship inside another service
-   as an npm dependency (for example dmi-engine-antech-v6-integration ships
-   inside dmi-engine). A change to one of those is invisible in the parent's
-   commit log apart from a one-line version bump, so the script reads the pinned
-   dependency version at the old and new tags and follows the difference into
-   the bundled repository.
+1. Some repositories never deploy on their own. They ship inside another service,
+   either as an npm dependency (dmi-engine-antech-v6-integration ships inside
+   dmi-engine) or baked into its container image at build time (dmi-api-admin-ui
+   is checked out at the tag named in dmi-api's build workflow and copied into
+   the image). A change to one of those is invisible in the parent's commit log
+   apart from a one-line version bump, so the script reads the pinned version at
+   the old and new tags - from package-lock.json / package.json for npm
+   dependencies, from a configured file and pattern for everything else - and
+   follows the difference into the bundled repository.
 
 2. A shared library (dmi-engine-common) is consumed by several services at once.
    It is reported once, annotated with everything that picked it up, rather than
@@ -200,11 +203,15 @@ def branch_commits(repo_dir: str, merge_sha: str) -> list[str]:
 
 
 def collect_changes(repo_dir: str, repo: str, rev_range: str, gh: "GitHub",
-                    scope: str) -> tuple[list[Change], dict[str, int]]:
+                    markers: list[str]) -> tuple[list[Change], dict[str, int]]:
     """Group a commit range into merged PRs plus any commits that landed directly.
 
     Each commit is attributed at most once: commits carried in by a merge belong
     to that merge's PR, and everything left over is reported on its own.
+
+    ``markers`` are the strings that identify a first-party component bump in a
+    commit title: the npm scope, plus the repo name of any component pinned in
+    this repository outside npm (see ``pinned_components`` in config.json).
     """
     commits = read_commits(repo_dir, rev_range)
     by_sha = {c["sha"]: c for c in commits}
@@ -274,11 +281,11 @@ def collect_changes(repo_dir: str, repo: str, rev_range: str, gh: "GitHub",
             change.url = meta.get("html_url") or change.url
 
         reason = suppression_reason(repo_dir, change.shas, change.title,
-                                    change.author, scope)
+                                    change.author, markers)
         if reason:
             suppress(reason)
             continue
-        classify(change, scope)
+        classify(change, markers)
         changes.append(change)
 
     # Commits with no PR anywhere in sight.
@@ -312,25 +319,33 @@ def collect_changes(repo_dir: str, repo: str, rev_range: str, gh: "GitHub",
                 change.url = meta.get("html_url") or change.url
 
         reason = suppression_reason(repo_dir, change.shas, change.title,
-                                    change.author, scope)
+                                    change.author, markers)
         if reason:
             suppress(reason)
             continue
-        classify(change, scope)
+        classify(change, markers)
         changes.append(change)
 
     changes.sort(key=lambda c: c.sort_key, reverse=True)
     return changes, suppressed
 
 
+def is_first_party_bump(title: str, markers: list[str]) -> bool:
+    """True when a commit title names a first-party component (npm scope or a
+    pinned component's repo name), i.e. it is the parent-side trace of that
+    component moving."""
+    lowered = title.lower()
+    return any(marker.lower() in lowered for marker in markers if marker)
+
+
 def suppression_reason(repo_dir: str, shas: list[str], title: str, author: str,
-                       scope: str) -> str | None:
+                       markers: list[str]) -> str | None:
     """Why this change should be collapsed into a count, or None to keep it.
 
-    A first-party dependency bump is never suppressed: it is the visible trace of
-    a bundled library moving, which is exactly the signal we are trying to keep.
+    A first-party component bump is never suppressed: it is the visible trace of
+    a bundled component moving, which is exactly the signal we are trying to keep.
     """
-    if scope.lower() in title.lower():
+    if is_first_party_bump(title, markers):
         return None
 
     if VERSION_BUMP_RE.match(title.strip()):
@@ -401,13 +416,15 @@ CATEGORY_ORDER = [
 ]
 
 
-def classify(change: Change, scope: str = "@nominal-systems/") -> None:
-    # A first-party version bump is the visible trace of a bundled library moving.
-    # It gets its own bucket so it is not buried among routine chores - the detail
-    # lives in that library's own section.
-    if scope.lower() in change.title.lower():
+def classify(change: Change, markers: list[str] = ("@nominal-systems/",)) -> None:
+    # A first-party version bump is the visible trace of a bundled component
+    # moving - an npm library, or a component pinned by other means such as the
+    # Admin UI tag in the build workflow. It gets its own bucket so it is not
+    # buried among routine chores; the detail lives in that component's own
+    # section.
+    if is_first_party_bump(change.title, list(markers)):
         change.category = BUNDLED_CATEGORY
-        change.category_source = "first-party dependency bump"
+        change.category_source = "first-party component bump"
         return
 
     match = CONVENTIONAL_RE.match(change.title)
@@ -511,15 +528,22 @@ def read_json_at(repo_dir: str, ref: str, path: str) -> dict | None:
         return None
 
 
-def first_party_deps(repo_dir: str, ref: str, scope: str) -> dict[str, str]:
+def first_party_deps(repo_dir: str, ref: str, scope: str,
+                     required: bool = True) -> dict[str, str]:
     """Resolved versions of first-party dependencies at a ref.
 
     package.json only records a range ('^0.4.21'), and what actually shipped is
     whatever the lockfile resolved that range to. The lockfile wins where it is
     present; the range's base version is the fallback.
+
+    A deployable without a package.json is an error. A bundled component may
+    legitimately not be an npm package at all (``required=False``), in which
+    case it simply has no npm dependencies to follow.
     """
     package = read_json_at(repo_dir, ref, "package.json")
     if not package:
+        if not required:
+            return {}
         raise ServiceError(f"no package.json at {ref}")
 
     declared: dict[str, str] = {}
@@ -549,6 +573,97 @@ def package_to_repo(name: str, config: dict) -> str:
     if name in overrides:
         return overrides[name]
     return name.split("/", 1)[-1]
+
+
+# --------------------------------------------------------------------------
+# Pinned components: first-party repos that ship inside a service without being
+# an npm dependency of it. The Admin UI is the case in point - dmi-api's build
+# workflow checks out dmi-api-admin-ui at the tag named in its `env:` block,
+# builds it, and copies the result into the image. Nothing in package.json
+# knows about it, so the npm resolver above cannot see it.
+#
+# config.json describes each one as: which file in the parent to read at each
+# tag, and a regular expression whose `version` group (or first group) captures
+# the pinned tag. Everything after that - resolving the tag in the component's
+# own clone, collecting its commits, the section in the notes - is the same
+# path the npm-bundled components take.
+# --------------------------------------------------------------------------
+
+PIN_VALUE_RE = re.compile(r"^v?\d+(?:\.\d+)+(?:[-+.][0-9A-Za-z.-]+)?$")
+
+
+@dataclass
+class PinnedComponent:
+    parent: str
+    repo: str
+    file: str
+    pattern: "re.Pattern[str]"
+    description: str = ""
+
+
+def load_pinned_components(config: dict) -> dict[str, list[PinnedComponent]]:
+    """Validate the `pinned_components` section and index it by parent repo.
+
+    Bad configuration is a hard failure (exit 1): a pin that can never match
+    would otherwise degrade every release note silently.
+    """
+    raw = config.get("pinned_components") or {}
+    if not isinstance(raw, dict):
+        fail("config 'pinned_components' must be an object mapping parent repo -> list of pins.")
+
+    known_repos = {d["repo"] for d in config["deployables"]}
+    known_repos |= set(config.get("display_names") or {})
+    out: dict[str, list[PinnedComponent]] = {}
+    for parent, pins in raw.items():
+        if not isinstance(pins, list):
+            fail(f"config 'pinned_components.{parent}' must be a list.")
+        for index, pin in enumerate(pins):
+            where = f"pinned_components.{parent}[{index}]"
+            if not isinstance(pin, dict):
+                fail(f"config {where} must be an object.")
+            missing = [k for k in ("repo", "file", "pattern") if not pin.get(k)]
+            if missing:
+                fail(f"config {where} is missing: {', '.join(missing)}.")
+            try:
+                pattern = re.compile(pin["pattern"], re.M)
+            except re.error as exc:
+                fail(f"config {where}.pattern is not a valid regular expression: {exc}")
+            if pattern.groups < 1:
+                fail(f"config {where}.pattern must capture the version in a group "
+                     f"(preferably named 'version').")
+            if pin["repo"] not in known_repos:
+                warn(f"config {where}.repo '{pin['repo']}' has no entry in display_names; "
+                     f"the workflow derives its clone list from there, so add it.")
+            if pin["repo"] in (config.get("excluded") or {}):
+                fail(f"config {where}.repo '{pin['repo']}' is also listed in 'excluded'; "
+                     f"it cannot be both followed and excluded.")
+            out.setdefault(parent, []).append(PinnedComponent(
+                parent=parent, repo=pin["repo"], file=pin["file"], pattern=pattern,
+                description=pin.get("description", ""),
+            ))
+    return out
+
+
+def pinned_version(repo_dir: str, ref: str, pin: PinnedComponent) -> tuple[str | None, str]:
+    """The version a pin resolves to at a ref, or (None, why not).
+
+    The reason is written into the note, so it says exactly which file and tag
+    were looked at: a pin that is absent at an old tag (the component did not
+    exist yet) reads differently from one that has changed shape.
+    """
+    raw = git(repo_dir, "show", f"{ref}:{pin.file}", check=False)
+    if not raw.strip():
+        return None, f"`{pin.file}` does not exist at {ref}"
+    match = pin.pattern.search(raw)
+    if not match:
+        return None, f"no `{pin.repo}` pin matched in `{pin.file}` at {ref}"
+    groups = match.groupdict()
+    value = (groups.get("version") if "version" in groups else match.group(1)) or ""
+    value = value.strip().strip("'\"")
+    if not PIN_VALUE_RE.match(value):
+        return None, (f"the `{pin.repo}` pin in `{pin.file}` at {ref} is `{value}`, "
+                      f"which is not a version tag")
+    return value, ""
 
 
 # --------------------------------------------------------------------------
@@ -637,6 +752,13 @@ def build_reports(versions: dict[str, dict], config: dict, workspace: str,
     def display_for(repo: str) -> str:
         return deployable_display.get(repo) or display_names.get(repo) or repo
 
+    pinned = load_pinned_components(config)
+
+    def markers_for(repo: str) -> list[str]:
+        # What identifies a first-party bump in *this* repo's commit titles: the
+        # npm scope everywhere, plus the name of anything this repo pins directly.
+        return [scope, *(pin.repo for pin in pinned.get(repo, []))]
+
     deployable_reports: list[ServiceReport] = []
     # repo -> {'from':..., 'to':..., 'consumers': [...]}
     bundled_ranges: dict[str, dict] = {}
@@ -654,6 +776,38 @@ def build_reports(versions: dict[str, dict], config: dict, workspace: str,
             existing["from"] = from_v
         if version_key(to_v) > version_key(existing["to"]):
             existing["to"] = to_v
+
+    def follow_pins(repo: str, repo_dir: str, from_tag: str, to_tag: str,
+                    report: ServiceReport) -> None:
+        """Follow components pinned outside npm (config `pinned_components`).
+
+        A pin that cannot be read at either end never aborts the parent: the
+        parent's own changes are still reported, the bump commit stays visible
+        in its log, and the note says why the component was not expanded.
+        """
+        for pin in pinned.get(repo, []):
+            name = display_for(pin.repo)
+            old_v, old_why = pinned_version(repo_dir, from_tag, pin)
+            new_v, new_why = pinned_version(repo_dir, to_tag, pin)
+            if old_v and new_v and old_v != new_v:
+                note_bundled(pin.repo, old_v, new_v, repo)
+            elif old_v and new_v:
+                report.dep_notes.append(f"{name} unchanged at {vtag(old_v)}")
+            elif new_v and not old_v:
+                report.dep_notes.append(
+                    f"{name} newly pinned at {vtag(new_v)} ({old_why}), so its "
+                    f"changes are not expanded here")
+                warn(f"{repo}: {name}: {old_why}")
+            elif old_v and not new_v:
+                report.dep_notes.append(
+                    f"{name} was {vtag(old_v)} and its pin could not be read at "
+                    f"{to_tag} ({new_why}), so its changes are not expanded here")
+                warn(f"{repo}: {name}: {new_why}")
+            else:
+                report.dep_notes.append(
+                    f"{name} could not be resolved ({old_why}; {new_why}), so its "
+                    f"changes are not expanded here")
+                warn(f"{repo}: {name}: {old_why}; {new_why}")
 
     # --- standalone deployables -------------------------------------------
     for entry in config["deployables"]:
@@ -682,7 +836,7 @@ def build_reports(versions: dict[str, dict], config: dict, workspace: str,
                 to_tag = resolve_tag(repo_dir, spec["to"])
                 info(f"{repo}: {from_tag}..{to_tag}")
                 report.changes, report.suppressed = collect_changes(
-                    repo_dir, repo, f"{from_tag}..{to_tag}", gh, scope)
+                    repo_dir, repo, f"{from_tag}..{to_tag}", gh, markers_for(repo))
                 report.status = "changed"
 
                 # Follow first-party dependencies into their own repos.
@@ -702,6 +856,9 @@ def build_reports(versions: dict[str, dict], config: dict, workspace: str,
                     elif old_v and not new_v:
                         report.dep_notes.append(
                             f"{display_for(dep_repo)} removed (was v{old_v})")
+
+                # Then anything pinned by other means (build workflow, etc.).
+                follow_pins(repo, repo_dir, from_tag, to_tag, report)
         except ServiceError as exc:
             report.status = "error"
             report.message = str(exc)
@@ -736,12 +893,13 @@ def build_reports(versions: dict[str, dict], config: dict, workspace: str,
                 to_tag = resolve_tag(repo_dir, span["to"])
                 info(f"{repo} (bundled): {from_tag}..{to_tag}")
                 report.changes, report.suppressed = collect_changes(
-                    repo_dir, repo, f"{from_tag}..{to_tag}", gh, scope)
+                    repo_dir, repo, f"{from_tag}..{to_tag}", gh, markers_for(repo))
                 report.status = "changed"
 
                 if depth + 1 < max_depth:
-                    old_deps = first_party_deps(repo_dir, from_tag, scope)
-                    new_deps = first_party_deps(repo_dir, to_tag, scope)
+                    # A component pinned outside npm need not be an npm package.
+                    old_deps = first_party_deps(repo_dir, from_tag, scope, required=False)
+                    new_deps = first_party_deps(repo_dir, to_tag, scope, required=False)
                     for name in sorted(set(old_deps) | set(new_deps)):
                         dep_repo = package_to_repo(name, config)
                         old_v, new_v = old_deps.get(name), new_deps.get(name)
@@ -750,6 +908,7 @@ def build_reports(versions: dict[str, dict], config: dict, workspace: str,
                         elif old_v and new_v:
                             report.dep_notes.append(
                                 f"{display_for(dep_repo)} unchanged at v{old_v}")
+                    follow_pins(repo, repo_dir, from_tag, to_tag, report)
             except ServiceError as exc:
                 report.status = "error"
                 report.message = str(exc)
@@ -951,9 +1110,19 @@ def render_footer(add, deployables, bundled, config) -> None:
     add("- Ranges are PROD-to-PROD: every commit between the version production is "
         "running and the version replacing it, including releases that only ever "
         "reached DEV, QA or UAT.")
-    add("- Bundled components are resolved by reading the dependency version pinned in "
-        "the parent at each tag, preferring `package-lock.json` (what actually shipped) "
-        "over the `package.json` range.")
+    add("- Bundled components are resolved by reading the version pinned in the parent "
+        "at each tag. For npm dependencies that is `package-lock.json` (what actually "
+        "shipped), falling back to the `package.json` range.")
+    deployable_display = {d["repo"]: d.get("display", d["repo"]) for d in config["deployables"]}
+    display_names = config.get("display_names") or {}
+    for parent, pins in (config.get("pinned_components") or {}).items():
+        parent_name = deployable_display.get(parent) or display_names.get(parent) or parent
+        for pin in pins:
+            name = deployable_display.get(pin["repo"]) or display_names.get(pin["repo"]) or pin["repo"]
+            line = (f"- {name} is not an npm dependency: it is resolved from `{pin['file']}` "
+                    f"in {parent_name} at each tag")
+            description = (pin.get("description") or "").strip().rstrip(".")
+            add(f"{line} - {description}." if description else f"{line}.")
     add("- Change types come from, in order: conventional-commit prefix, PR label, "
         "branch prefix. Anything with none of those lands in **Changes** rather than "
         "being guessed at.")
