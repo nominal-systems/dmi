@@ -1,0 +1,11 @@
+description: |
+  **Bad Gateway**
+
+  The request to the provider's engine failed, the engine failed to handle it, or the provider failed: an error status, a 408 or 429, or no answer at all. The `message` says which, as far as dmi-api can tell, and for a provider error gives its status and its errors.
+content:
+  application/json:
+    schema:
+      $ref: '../types/Error.yaml'
+    example:
+      statusCode: 502
+      message: 'The provider idexx failed to list devices with status 500: UNKNOWN_ERROR error in idexx: device registry unavailable'

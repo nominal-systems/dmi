@@ -588,19 +588,48 @@ paths:
     get:
       summary: List provider devices
       operationId: get-providers-providerId-devices
-      description: Retrieve the devices for the specified provider and optionally a configured integration.
+      description: |
+        Retrieve the devices for the specified provider, through the configured integration that `integrationId` names.
+
+        Once the integration is found, a failed lookup is answered with where it failed: 400 when the provider refuses the integration's credentials or configuration, 502 when the provider, the engine or the request to the engine fails, and 504 when the engine or the provider does not answer in time. The `message` names the cause.
       parameters:
         - $ref: './parameters/providerId.yaml'
         - $ref: './parameters/query/integrationId.yaml'
       responses:
         '200':
           $ref: './responses/ProviderDeviceList.yaml'
+        '400':
+          description: |
+            **Bad Request**
+
+            Either `integrationId` is missing or not a UUID, which is rejected before the integration is looked up, or the provider refused the lookup: it answered the engine with a 4xx status other than 408 or 429, which points at the integration's credentials or configuration rather than at an outage. In that case the `message` names the provider, its status and its errors.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 400
+                message: 'The provider idexx failed to list devices with status 401: A request to /api/v1/ivls/devices failed with 401 status code.'
         '404':
-          description: Provider Not Found
+          description: |
+            **Not Found**
+
+            The integration was not found, or it is not this provider's. Both are answered before any request to the provider's engine. The classic Antech engine, which does not implement device lookups, answers 404 as well, with its own message (`Method not implemented.`).
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 404
+                message: The integration was not found
         '401':
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
+        '502':
+          $ref: './responses/502BadGateway.yaml'
+        '504':
+          $ref: './responses/504GatewayTimeout.yaml'
       security:
         - ApiKeyAuth: [ ]
       tags:

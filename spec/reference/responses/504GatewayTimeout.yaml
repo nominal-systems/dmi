@@ -1,0 +1,11 @@
+description: |
+  **Gateway Timeout**
+
+  The provider's engine, or the provider behind it, did not answer in time. The `message` says which, as far as dmi-api can tell.
+content:
+  application/json:
+    schema:
+      $ref: '../types/Error.yaml'
+    example:
+      statusCode: 504
+      message: The engine did not respond in time
