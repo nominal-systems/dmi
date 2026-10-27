@@ -8,5 +8,4 @@ content:
       $ref: '../types/Error.yaml'
     example:
       statusCode: 504
-      error: Gateway Timeout
       message: The engine did not respond in time

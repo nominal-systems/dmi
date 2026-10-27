@@ -8,5 +8,4 @@ content:
       $ref: '../types/Error.yaml'
     example:
       statusCode: 502
-      error: Bad Gateway
       message: 'The provider idexx failed to list devices with status 500: UNKNOWN_ERROR error in idexx: device registry unavailable'
