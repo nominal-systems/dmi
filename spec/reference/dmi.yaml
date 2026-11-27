@@ -539,6 +539,138 @@ paths:
         - ApiKeyAuth: [ ]
       tags:
         - Integrations
+  /integrations/{integrationId}/start:
+    post:
+      summary: Start a diagnostic provider integration
+      operationId: post-integrations-integrationId-start
+      description: |
+        Start one of the organization's integrations: the provider's engine schedules its polling for orders and results, and its status becomes `RUNNING`. An integration is created `NEW` and polls nothing until it is started.
+
+        An integration that is running already is left as it is, and the engine is not asked.
+      parameters:
+        - $ref: './parameters/integrationId.yaml'
+      responses:
+        '200':
+          description: |
+            **OK**
+
+            The integration is `RUNNING`. `ok` says whether this request started it (`Integration started`), or it was running already (`Integration is already running`).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: string
+                    description: What the request did.
+                required:
+                  - ok
+              example:
+                ok: Integration started
+        '404':
+          description: |
+            **Not Found**
+
+            The organization has no integration with that ID. An integration of another organization's is not found either, and nothing is changed.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 404
+                message: The integration was not found
+        '409':
+          description: |
+            **Conflict**
+
+            The integration's status is not one it can be started from with an API key. Nothing is changed.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 409
+                message: Integration 175509ad-3b4a-4668-a7b8-3754c5437e03 is ERROR and cannot be started with an organization key
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+        '502':
+          description: |
+            **Bad Gateway**
+
+            The provider's engine did not start the integration: the request to it failed, or it did not answer. The status is unchanged.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 502
+                message: Error starting integration 175509ad-3b4a-4668-a7b8-3754c5437e03
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Integrations
+  /integrations/{integrationId}/stop:
+    post:
+      summary: Stop a diagnostic provider integration
+      operationId: post-integrations-integrationId-stop
+      description: |
+        Stop one of the organization's integrations: the provider's engine removes its polling, and its status becomes `STOPPED`.
+
+        An integration that is stopped already, or has never been started, is left as it is, and the engine is not asked: `ok` is `Integration is already stopped` or `Integration has not been started`.
+      parameters:
+        - $ref: './parameters/integrationId.yaml'
+      responses:
+        '200':
+          description: |
+            **OK**
+
+            The integration is not running. `ok` says whether this request stopped it (`Integration stopped`), or there was nothing to stop.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: string
+                    description: What the request did.
+                required:
+                  - ok
+              example:
+                ok: Integration stopped
+        '404':
+          description: |
+            **Not Found**
+
+            The organization has no integration with that ID. An integration of another organization's is not found either, and nothing is changed.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 404
+                message: The integration was not found
+        '401':
+          $ref: './responses/401Unauthorized.yaml'
+        '403':
+          $ref: './responses/403Forbidden.yaml'
+        '502':
+          description: |
+            **Bad Gateway**
+
+            The provider's engine did not stop the integration: the request to it failed, or it did not answer. The status is unchanged.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 502
+                message: Error stopping integration 175509ad-3b4a-4668-a7b8-3754c5437e03
+      security:
+        - ApiKeyAuth: [ ]
+      tags:
+        - Integrations
   /providers/{providerId}/services:
     get:
       summary: List provider services
