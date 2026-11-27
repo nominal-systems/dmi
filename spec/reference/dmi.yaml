@@ -550,9 +550,9 @@ paths:
       parameters:
         - $ref: './parameters/integrationId.yaml'
       responses:
-        '200':
+        '201':
           description: |
-            **OK**
+            **Created**
 
             The integration is `RUNNING`. `ok` says whether this request started it (`Integration started`), or it was running already (`Integration is already running`).
           content:
@@ -622,9 +622,9 @@ paths:
       parameters:
         - $ref: './parameters/integrationId.yaml'
       responses:
-        '200':
+        '201':
           description: |
-            **OK**
+            **Created**
 
             The integration is not running. `ok` says whether this request stopped it (`Integration stopped`), or there was nothing to stop.
           content:
