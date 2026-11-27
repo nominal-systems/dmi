@@ -817,7 +817,7 @@ paths:
           description: |
             **Conflict**
 
-            Test code not in order, or the order's provider does not support cancelling individual tests. In the second case the test was not cancelled, the order is left as it was, and `errors` holds the token `CANCELLATION_NOT_SUPPORTED`, which does not change; the `message` names the provider and may change.
+            The order's provider does not support cancelling individual tests. The test was not cancelled: the order is left as it was, here and at the provider, and asking again will not change that. `errors` holds the token `CANCELLATION_NOT_SUPPORTED`, which does not change; the `message` names the provider and may change.
           content:
             application/json:
               schema:
