@@ -699,7 +699,10 @@ paths:
     delete:
       summary: Cancel an order
       operationId: delete-orders-orderId
-      description: Cancel the order with the matching order ID.
+      description: |
+        Cancel the order with the matching order ID.
+
+        Some providers cannot cancel an order. Then the order is left as it was and the answer is `409`, with `CANCELLATION_NOT_SUPPORTED` in `errors`.
       parameters:
         - $ref: './parameters/orderId.yaml'
       responses:
@@ -711,6 +714,20 @@ paths:
           $ref: './responses/401Unauthorized.yaml'
         '403':
           $ref: './responses/403Forbidden.yaml'
+        '409':
+          description: |
+            **Conflict**
+
+            The order's provider does not support cancelling orders. The order was not cancelled: it is left as it was, here and at the provider, and asking again will not change that. `errors` holds the token `CANCELLATION_NOT_SUPPORTED`, which does not change; the `message` names the provider and may change.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 409
+                message: The provider antech-v6 does not support cancelling orders. The order was not cancelled.
+                errors:
+                  - CANCELLATION_NOT_SUPPORTED
       security:
         - ApiKeyAuth: [ ]
       tags:
@@ -797,7 +814,19 @@ paths:
         '403':
           $ref: './responses/403Forbidden.yaml'
         '409':
-          description: Test code not in order
+          description: |
+            **Conflict**
+
+            The order's provider does not support cancelling individual tests. The test was not cancelled: the order is left as it was, here and at the provider, and asking again will not change that. `errors` holds the token `CANCELLATION_NOT_SUPPORTED`, which does not change; the `message` names the provider and may change.
+          content:
+            application/json:
+              schema:
+                $ref: './types/Error.yaml'
+              example:
+                statusCode: 409
+                message: The provider antech-v6 does not support cancelling individual tests. The test was not cancelled.
+                errors:
+                  - CANCELLATION_NOT_SUPPORTED
       security:
         - ApiKeyAuth: [ ]
       tags:
